@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { LAYER_STYLES } from './iconStyles'
 
 export async function createCastellaPuntenLayerOL() {
-  const response = await fetch('/webapp/data/rom_def_points.geojson')
+  const response = await fetch('/detectorapp-nl/data/rom_def_points.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

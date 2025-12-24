@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { LAYER_STYLES } from './iconStyles'
 
 export async function createFrankrijkMonumentenLayerOL() {
-  const response = await fetch('/webapp/data/monuments_fr.geojson')
+  const response = await fetch('/detectorapp-nl/data/monuments_fr.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

@@ -22,7 +22,7 @@ function getLineWidth(resolution: number): number {
 }
 
 export async function createCastellaLijnenLayerOL() {
-  const response = await fetch('/webapp/data/rom_def_lines.geojson')
+  const response = await fetch('/detectorapp-nl/data/rom_def_lines.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

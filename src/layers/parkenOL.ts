@@ -16,7 +16,7 @@ register(proj4)
  * 4.665 locaties
  */
 export async function createParkenLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/parken.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/parken.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

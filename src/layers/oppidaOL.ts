@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { LAYER_STYLES } from './iconStyles'
 
 export async function createOppidaLayerOL() {
-  const response = await fetch('/webapp/data/oppida.geojson')
+  const response = await fetch('/detectorapp-nl/data/oppida.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

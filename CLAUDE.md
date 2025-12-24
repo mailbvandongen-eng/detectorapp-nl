@@ -3,7 +3,7 @@
 ## ⚠️ PROJECT IDENTIFICATIE
 **Dit is: DETECTORAPP-NL** - Alleen Nederlandse lagen
 - GitHub repo: `detectorapp-nl`
-- Vite base path: `/detectorapp-nl/` (MOET NOG AANGEPAST)
+- Vite base path: `/detectorapp-nl/`
 - Directory: `C:\VSCode\detectorapp-nl`
 
 **Let op:** Er bestaat ook `webapp` (detectorapp-v3) - internationale versie met NL/BE/DE/FR!
@@ -45,4 +45,4 @@ const source = new VectorSource({
 StrictMode is UITGESCHAKELD in `main.tsx` omdat het OpenLayers breekt (double-render van effects).
 
 ## Layer Paden
-Alle layer files moeten `/webapp/data/...` gebruiken, NIET `/data/...`
+Alle layer files moeten `/detectorapp-nl/data/...` gebruiken, NIET `/data/...`

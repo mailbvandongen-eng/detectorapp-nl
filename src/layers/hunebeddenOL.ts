@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { LAYER_STYLES } from './iconStyles'
 
 export async function createHunebeddenLayerOL() {
-  const response = await fetch('/webapp/data/steentijd/hunebedden.geojson')
+  const response = await fetch('/detectorapp-nl/data/steentijd/hunebedden.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { Style, Fill, Stroke } from 'ol/style'
 
 export async function createVeengebiedenLayerOL() {
-  const response = await fetch('/webapp/data/veengebieden_toemaakdekken.geojson')
+  const response = await fetch('/detectorapp-nl/data/veengebieden_toemaakdekken.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

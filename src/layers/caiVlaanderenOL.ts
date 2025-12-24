@@ -8,7 +8,7 @@ export function createCAIVlaanderenLayerOL() {
   // Using static GeoJSON because the WFS server lacks CORS headers
   const source = new VectorSource({
     format: new GeoJSON(),
-    url: '/webapp/data/cai_vlaanderen.geojson'
+    url: '/detectorapp-nl/data/cai_vlaanderen.geojson'
   })
 
   const layer = new VectorLayer({

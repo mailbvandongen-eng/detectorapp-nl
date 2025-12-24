@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { LAYER_STYLES } from './iconStyles'
 
 export async function createKastelenLayerOL() {
-  const response = await fetch('/webapp/data/kastelen_osm.geojson')
+  const response = await fetch('/detectorapp-nl/data/kastelen_osm.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

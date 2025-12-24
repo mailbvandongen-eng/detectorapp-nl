@@ -15,7 +15,7 @@ register(proj4)
  * Door experts aangewezen gebieden
  */
 export async function createUIKAVExpertLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/uikav/uikav_expert_aanpassingen.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/uikav/uikav_expert_aanpassingen.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

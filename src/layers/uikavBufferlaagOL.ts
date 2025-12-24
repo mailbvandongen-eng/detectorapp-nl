@@ -15,7 +15,7 @@ register(proj4)
  * Bufferzones rond archeologische vindplaatsen
  */
 export async function createUIKAVBufferlaagLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/uikav/uikav_bufferlaag.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/uikav/uikav_bufferlaag.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

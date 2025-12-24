@@ -9,7 +9,7 @@ import { Style, Fill, Stroke } from 'ol/style'
 
 export async function createNormandiePatrimoineLayerOL() {
   try {
-    const response = await fetch('/webapp/data/sites_patrimoine_normandie.geojson')
+    const response = await fetch('/detectorapp-nl/data/sites_patrimoine_normandie.geojson')
 
     if (!response.ok) {
       throw new Error(`Normandie patrimoine fetch error: ${response.status}`)

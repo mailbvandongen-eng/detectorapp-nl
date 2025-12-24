@@ -25,7 +25,7 @@ function getLineWidth(resolution: number): number {
 
 export async function createRomeinseWegenLayerOL() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/romeinse_wegen_itiner_e.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/romeinse_wegen_itiner_e.geojson')
     const features = parseGeoJSON(geojson)
 
     const layer = new VectorLayer({

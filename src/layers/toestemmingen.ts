@@ -19,7 +19,7 @@ function createToestemmingIcon(zoom) {
 
 export async function createToestemmingenLayer(map) {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/toestemmingen_custom.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/toestemmingen_custom.geojson')
 
     console.log(`📊 Loaded ${geojson.features.length} toestemmingen`)
 

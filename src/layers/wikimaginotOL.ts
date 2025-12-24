@@ -9,7 +9,7 @@ import { Style, Circle, Fill, Stroke } from 'ol/style'
 
 export async function createWikimaginotLayerOL() {
   try {
-    const response = await fetch('/webapp/data/wikimaginot_fr.geojson')
+    const response = await fetch('/detectorapp-nl/data/wikimaginot_fr.geojson')
 
     if (!response.ok) {
       throw new Error(`Wikimaginot fetch error: ${response.status}`)

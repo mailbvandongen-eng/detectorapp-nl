@@ -8,7 +8,7 @@ function getZoomFromResolution(resolution) {
 }
 
 export async function createMonumentenCustomLayerOL() {
-  const response = await fetch('/webapp/data/monumenten_custom.geojson')
+  const response = await fetch('/detectorapp-nl/data/monumenten_custom.geojson')
   const geojson = await response.json()
 
   const source = new VectorSource({

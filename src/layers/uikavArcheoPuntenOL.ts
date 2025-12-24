@@ -16,7 +16,7 @@ register(proj4)
  * Met periode info (IJzertijd-Romeins, Middeleeuwen, etc.)
  */
 export async function createUIKAVArcheoPuntenLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/uikav/uikav_archeo_punten.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/uikav/uikav_archeo_punten.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

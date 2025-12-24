@@ -9,7 +9,7 @@ import { LAYER_STYLES } from './iconStyles'
 
 export async function createInrapSitesFRLayerOL() {
   try {
-    const response = await fetch('/webapp/data/inrap_sites_fr.geojson')
+    const response = await fetch('/detectorapp-nl/data/inrap_sites_fr.geojson')
 
     if (!response.ok) {
       throw new Error(`INRAP data fetch error: ${response.status}`)

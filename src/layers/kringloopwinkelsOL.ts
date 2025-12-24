@@ -10,7 +10,7 @@ import { LAYER_STYLES } from './iconStyles'
  * 1.048 locaties
  */
 export async function createKringloopwinkelsLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/kringloopwinkels.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/kringloopwinkels.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

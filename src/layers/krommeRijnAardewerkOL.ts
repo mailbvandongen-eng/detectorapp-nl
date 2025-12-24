@@ -11,7 +11,7 @@ import { LAYER_STYLES } from './iconStyles'
 
 export async function createKrommeRijnAardewerkLayerOL() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/punten_custom.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/punten_custom.geojson')
     const allFeatures = parseGeoJSON(geojson)
 
     // Filter ONLY Kromme Rijn aardewerk

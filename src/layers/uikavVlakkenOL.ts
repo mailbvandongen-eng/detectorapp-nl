@@ -15,7 +15,7 @@ register(proj4)
  * Polygonen met archeologische gebieden uit de Uiterwaarden Inventarisatie
  */
 export async function createUIKAVVlakkenLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/uikav/uikav_archeo_vlakken.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/uikav/uikav_archeo_vlakken.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

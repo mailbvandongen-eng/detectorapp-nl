@@ -22,7 +22,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export async function createArchisPuntenLayerOL() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/punten_custom.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/punten_custom.geojson')
     const allFeatures = parseGeoJSON(geojson)
 
     // Filter OUT Kromme Rijn aardewerk (those go in separate layer)

@@ -35,7 +35,7 @@ function createArchisIcon(category) {
 
 export async function createArchisPuntenLayer() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/punten_custom.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/punten_custom.geojson')
 
     console.log(`📊 Loaded ${geojson.features.length} Archis points`)
 

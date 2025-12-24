@@ -29,7 +29,7 @@ function getZoomFromResolution(resolution: number) {
  * Indeling van uiterwaarden per rivier
  */
 export async function createUIKAVUiterwaardenLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/uikav/uikav_uiterwaarden_indeling.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/uikav/uikav_uiterwaarden_indeling.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

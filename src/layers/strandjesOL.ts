@@ -16,7 +16,7 @@ register(proj4)
  * 216 locaties
  */
 export async function createStrandjesLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/strandjes.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/strandjes.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

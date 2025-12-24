@@ -16,7 +16,7 @@ register(proj4)
  * 7.305 locaties in Nederland
  */
 export async function createSpeeltuinenLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/speeltuinen.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/speeltuinen.geojson')
 
   const allFeatures = new GeoJSON().readFeatures(geojson, {
     dataProjection: 'EPSG:28992',

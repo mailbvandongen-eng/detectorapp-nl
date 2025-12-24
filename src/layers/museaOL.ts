@@ -16,7 +16,7 @@ register(proj4)
  * 1.149 locaties
  */
 export async function createMuseaLayerOL() {
-  const geojson = await loadGeoJSON('/webapp/data/musea.geojson')
+  const geojson = await loadGeoJSON('/detectorapp-nl/data/musea.geojson')
 
   const source = new VectorSource({
     features: new GeoJSON().readFeatures(geojson, {

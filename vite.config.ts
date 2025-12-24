@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/webapp/',
+  base: '/detectorapp-nl/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

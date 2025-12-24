@@ -9,7 +9,7 @@ import { Style, Fill, Stroke } from 'ol/style'
 
 export async function createOccitaniePatrimoineLayerOL() {
   try {
-    const response = await fetch('/webapp/data/sites_patrimoine_occitanie.geojson')
+    const response = await fetch('/detectorapp-nl/data/sites_patrimoine_occitanie.geojson')
 
     if (!response.ok) {
       throw new Error(`Occitanie patrimoine fetch error: ${response.status}`)

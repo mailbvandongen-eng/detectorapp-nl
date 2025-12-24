@@ -18,7 +18,7 @@ const AMK_COLORS = {
 
 export async function createAMKLayerOL() {
   try {
-    const geojson = await loadTopoJSON('/webapp/data/amk_monumenten.topojson')
+    const geojson = await loadTopoJSON('/detectorapp-nl/data/amk_monumenten.topojson')
     const features = parseGeoJSON(geojson)
 
     const layer = new VectorLayer({

@@ -8,7 +8,7 @@ import { loadGeoJSON, createGeoJSONLayer } from '../utils/layerLoader.js'
 
 export async function createRomeinseWegenLayer() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/romeinse_wegen_itiner_e.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/romeinse_wegen_itiner_e.geojson')
 
     return createGeoJSONLayer(geojson, {
       style: {

@@ -10,7 +10,7 @@ import { LAYER_STYLES } from './iconStyles'
 
 export async function createToestemmingenLayerOL() {
   try {
-    const geojson = await loadGeoJSON('/webapp/data/toestemmingen_custom.geojson')
+    const geojson = await loadGeoJSON('/detectorapp-nl/data/toestemmingen_custom.geojson')
     const features = parseGeoJSON(geojson)
 
     const layer = new VectorLayer({
