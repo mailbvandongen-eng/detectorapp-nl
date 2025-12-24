@@ -1,2 +1,0 @@
-import{G as t}from"./GeoJSON-myBNyW4E.js";import{L as r}from"./iconStyles-DMBxNC8p.js";import{G as s,H as a}from"./index-CymeeoG1.js";async function u(){const e=await(await fetch("/detectorapp-nl/data/steentijd/euroevol_nl_be.geojson")).json(),o=new s({features:new t().readFeatures(e,{dataProjection:"EPSG:4326",featureProjection:"EPSG:3857"})});return new a({source:o,properties:{title:"EUROEVOL Sites"},visible:!1,zIndex:24,style:r.neolithic()})}export{u as createEuroevolLayerOL};
-//# sourceMappingURL=euroevolOL-BrTbqz0j.js.map

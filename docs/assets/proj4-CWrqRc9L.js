@@ -1,0 +1,2 @@
+import{az as c,aA as m,aB as g,aC as j,aD as u,aE as C,aF as l}from"./index-sepMzkky.js";function x(a){const n=Object.keys(a.defs),d=n.length;let o,r;for(o=0;o<d;++o){const s=n[o];if(!c(s)){const e=a.defs(s);let t=e.units;!t&&e.projName==="longlat"&&(t="degrees"),m(new g({code:s,axisOrientation:e.axis,metersPerUnit:e.to_meter,units:t}))}}for(o=0;o<d;++o){const s=n[o],e=c(s);for(r=0;r<d;++r){const t=n[r],i=c(t);if(!j(s,t))if(a.defs[s]===a.defs[t])u([e,i]);else{const f=a(s,t);C(e,i,l(e,i,f.forward),l(i,e,f.inverse))}}}}export{x as r};
+//# sourceMappingURL=proj4-CWrqRc9L.js.map

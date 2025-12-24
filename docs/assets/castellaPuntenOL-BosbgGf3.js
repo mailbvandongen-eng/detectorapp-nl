@@ -1,2 +1,0 @@
-import{G as o}from"./GeoJSON-myBNyW4E.js";import{L as r}from"./iconStyles-DMBxNC8p.js";import{G as a,H as s}from"./index-CymeeoG1.js";async function f(){const e=await(await fetch("/detectorapp-nl/data/rom_def_points.geojson")).json(),t=new a({features:new o().readFeatures(e,{featureProjection:"EPSG:3857"})});return new s({source:t,properties:{title:"Castella (punten)"},visible:!1,style:r.landmark("#2b6cb0")})}export{f as createCastellaPuntenLayerOL};
-//# sourceMappingURL=castellaPuntenOL-BosbgGf3.js.map
