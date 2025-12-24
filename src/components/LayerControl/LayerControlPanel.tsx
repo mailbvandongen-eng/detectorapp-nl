@@ -27,61 +27,32 @@ export function LayerControlPanel() {
             </button>
           </div>
           <div className="p-2 overflow-y-auto flex-1">
-              {/* Base Layers - First */}
+              {/* Base Layers */}
               <LayerGroup title="Achtergrond" defaultExpanded={true}>
                 <LayerItem name="CartoDB Positron" type="base" />
                 <LayerItem name="OpenStreetMap" type="base" />
                 <LayerItem name="Satellite" type="base" />
                 <LayerItem name="TMK 1850" type="base" />
                 <LayerItem name="Bonnebladen 1900" type="base" />
-                <LayerItem name="Carte Cassini" type="base" />
               </LayerGroup>
 
-              {/* Steentijd (Stone Age) - Second */}
+              {/* Steentijd (Stone Age) */}
               <LayerGroup title="Steentijd" defaultExpanded={false}>
                 <LayerItem name="Hunebedden" type="overlay" />
                 <LayerItem name="EUROEVOL Sites" type="overlay" />
                 <LayerItem name="FAMKE Steentijd" type="overlay" />
-                <LayerItem name="Archeo Landschappen" type="overlay" />
-                <LayerItem name="IKAW" type="overlay" />
               </LayerGroup>
 
-              {/* Archaeological Layers - Third */}
+              {/* Archaeological Layers */}
               <LayerGroup title="Archeologische lagen" defaultExpanded={false}>
                 <LayerItem name="AMK Monumenten" type="overlay" />
-                <LayerItem name="Archis-punten" type="overlay" />
-                <LayerItem name="CAI Vlaanderen" type="overlay" />
                 <LayerItem name="Romeinse wegen" type="overlay" />
                 <LayerItem name="Castella (punten)" type="overlay" />
                 <LayerItem name="Castella (lijnen)" type="overlay" />
                 <LayerItem name="Oppida" type="overlay" />
                 <LayerItem name="Kastelen" type="overlay" />
-                <LayerItem name="Toestemmingen" type="overlay" />
-                <LayerItem name="Vici.org Romeins" type="overlay" />
-              </LayerGroup>
-
-              {/* Frankrijk */}
-              <LayerGroup title="Frankrijk" defaultExpanded={false}>
-                <LayerItem name="Archeo Sites Bretagne" type="overlay" />
-                <LayerItem name="Operaties Bretagne" type="overlay" />
-                <LayerItem name="Archeo Parijs" type="overlay" />
-                <LayerItem name="Sites Patrimoine Occitanie" type="overlay" />
-                <LayerItem name="Sites Patrimoine PACA" type="overlay" />
-                <LayerItem name="Maginotlinie" type="overlay" />
-                <LayerItem name="Sites Patrimoine Normandie" type="overlay" />
-                <LayerItem name="INRAP Sites FR" type="overlay" />
-                <LayerItem name="Hist. Gebouwen FR" type="overlay" />
-              </LayerGroup>
-
-              {/* België */}
-              <LayerGroup title="België" defaultExpanded={false}>
-                <LayerItem name="Archeo Zones Vlaanderen" type="overlay" />
-                <LayerItem name="Beschermde Sites Vlaanderen" type="overlay" />
-                <LayerItem name="Monumenten BE" type="overlay" />
-                <LayerItem name="Archeo Zones BE" type="overlay" />
-                <LayerItem name="Arch Sites BE" type="overlay" />
-                <LayerItem name="Erfgoed Landschap BE" type="overlay" />
-                <LayerItem name="CAI Elementen" type="overlay" />
+                <LayerItem name="IKAW" type="overlay" />
+                <LayerItem name="Archeo Landschappen" type="overlay" />
               </LayerGroup>
 
               {/* Uiterwaarden Layers */}
@@ -93,39 +64,26 @@ export function LayerControlPanel() {
                 <LayerItem name="Indeling" type="overlay" />
               </LayerGroup>
 
-              {/* Hillshade & LiDAR Layers */}
+              {/* Hillshade & LiDAR Layers - NL only */}
               <LayerGroup title="Hillshade & LiDAR" defaultExpanded={false}>
                 <LayerItem name="AHN4 Hillshade NL" type="overlay" />
                 <LayerItem name="AHN4 Multi-Hillshade NL" type="overlay" />
                 <LayerItem name="AHN4 Helling NL" type="overlay" />
                 <LayerItem name="AHN 0.5m" type="overlay" />
-                <LayerItem name="Hillshade Vlaanderen 25cm" type="overlay" />
-                <LayerItem name="Skyview Vlaanderen 25cm" type="overlay" />
-                <LayerItem name="DTM Vlaanderen 1m" type="overlay" />
-                <LayerItem name="Hillshade Wallonië" type="overlay" />
-                <LayerItem name="Hillshade NRW 25cm" type="overlay" />
-                <LayerItem name="Hillshade NRW Kleur" type="overlay" />
-                <LayerItem name="Hillshade Frankrijk" type="overlay" />
-                <LayerItem name="LiDAR HD Frankrijk" type="overlay" />
-                <LayerItem name="RGE Alti Frankrijk 1m" type="overlay" />
-                <LayerItem name="Hoogtelijn Frankrijk" type="overlay" />
+                <LayerItem name="World Hillshade" type="overlay" />
               </LayerGroup>
 
-              {/* Terrain Layers - Third */}
+              {/* Terrain Layers */}
               <LayerGroup title="Terrein & Bodem" defaultExpanded={false}>
                 <LayerItem name="Veengebieden" type="overlay" />
                 <LayerItem name="Geomorfologie" type="overlay" />
                 <LayerItem name="Bodemkaart" type="overlay" />
               </LayerGroup>
 
-              {/* Fossils */}
+              {/* Fossils - NL only */}
               <LayerGroup title="Fossielen (vondsten)" defaultExpanded={false}>
                 <LayerItem name="Fossielen Nederland" type="overlay" />
-                <LayerItem name="Fossielen België" type="overlay" />
-                <LayerItem name="Fossielen Duitsland" type="overlay" />
-                <LayerItem name="Fossielen Frankrijk" type="overlay" />
               </LayerGroup>
-
 
               {/* Recreation */}
               <LayerGroup title="Recreatie" defaultExpanded={false}>
@@ -133,7 +91,6 @@ export function LayerControlPanel() {
                 <LayerItem name="Speeltuinen" type="overlay" />
                 <LayerItem name="Musea" type="overlay" />
                 <LayerItem name="Strandjes" type="overlay" />
-                <LayerItem name="Kringloopwinkels" type="overlay" />
               </LayerGroup>
             </div>
         </motion.div>

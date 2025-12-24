@@ -30,87 +30,50 @@ interface LayerState {
 
 export const useLayerStore = create<LayerState>()(
   immer((set, get) => ({
-    // Initial visibility state
+    // Initial visibility state - NL only
     visible: {
-      'AMK Monumenten': false,
-      'Archis-punten': false,
-      'Romeinse wegen': false,
-      'Toestemmingen': false,
-      'Monumenten (custom)': false,
-      'Castella (punten)': false,
-      'Castella (lijnen)': false,
-      'Oppida': false,
-      'Kastelen': false,
-      'Veengebieden': false,
-      'AHN 0.5m': false,
-      'Geomorfologie': false,
-      'Bodemkaart': false,
-      'IKAW': false,
-      'FAMKE Steentijd': false,
-      'Archeo Landschappen': false,
-      'Archeo Zones Vlaanderen': false,
-      'Beschermde Sites Vlaanderen': false,
-      'Archeo Punten': false,
-      'Vlakken': false,
-      'Bufferlaag': false,
-      'Expert': false,
-      'Indeling': false,
-      'Speeltuinen': false,
-      'Musea': false,
-      'Strandjes': false,
-      'Parken': false,
-      'Kringloopwinkels': false,
+      // Base layers
       'CartoDB Positron': true,
       'OpenStreetMap': false,
       'Satellite': false,
       'TMK 1850': false,
       'Bonnebladen 1900': false,
-      'Carte Cassini': false,
-      // Hillshade layers
+      // Steentijd
+      'Hunebedden': false,
+      'EUROEVOL Sites': false,
+      'FAMKE Steentijd': false,
+      // Archeologische lagen
+      'AMK Monumenten': false,
+      'Romeinse wegen': false,
+      'Castella (punten)': false,
+      'Castella (lijnen)': false,
+      'Oppida': false,
+      'Kastelen': false,
+      'IKAW': false,
+      'Archeo Landschappen': false,
+      // Uiterwaarden
+      'Archeo Punten': false,
+      'Vlakken': false,
+      'Bufferlaag': false,
+      'Expert': false,
+      'Indeling': false,
+      // Hillshade NL
       'AHN4 Hillshade NL': false,
       'AHN4 Multi-Hillshade NL': false,
       'AHN4 Helling NL': false,
+      'AHN 0.5m': false,
       'World Hillshade': false,
-      'Hillshade Vlaanderen 25cm': false,
-      'Skyview Vlaanderen 25cm': false,
-      'DTM Vlaanderen 1m': false,
-      'Hillshade NRW 25cm': false,
-      'Hillshade NRW Kleur': false,
-      'Hillshade Frankrijk': false,
-      'LiDAR HD Frankrijk': false,
-      'RGE Alti Frankrijk 1m': false,
-      'Hoogtelijn Frankrijk': false,
-      'Hillshade Wallonië': false,
-      // Fossil layers
+      // Terrein
+      'Veengebieden': false,
+      'Geomorfologie': false,
+      'Bodemkaart': false,
+      // Fossielen
       'Fossielen Nederland': false,
-      'Fossielen België': false,
-      'Fossielen Duitsland': false,
-      'Fossielen Frankrijk': false,
-      // CAI
-      'CAI Vlaanderen': false,
-      'CAI Elementen': false,
-      // Belgian Heritage (Onroerend Erfgoed)
-      'Monumenten BE': false,
-      'Archeo Zones BE': false,
-      'Arch Sites BE': false,
-      'Erfgoed Landschap BE': false,
-      // France
-      'Hist. Gebouwen FR': false,
-      'INRAP Sites FR': false,
-      'Archeo Sites Bretagne': false,
-      'Operaties Bretagne': false,
-      'Archeo Parijs': false,
-      'Sites Patrimoine Occitanie': false,
-      'Sites Patrimoine PACA': false,
-      'Maginotlinie': false,
-      'Sites Patrimoine Normandie': false,
-      // Kromme Rijn
-      'Kromme Rijn Aardewerk': false,
-      // Steentijd layers
-      'Hunebedden': false,
-      'EUROEVOL Sites': false,
-      // Vici.org Roman sites
-      'Vici.org Romeins': false
+      // Recreatie
+      'Parken': false,
+      'Speeltuinen': false,
+      'Musea': false,
+      'Strandjes': false
     },
 
     // Initial opacity state
@@ -120,26 +83,10 @@ export const useLayerStore = create<LayerState>()(
       'Bodemkaart': 0.6,
       'IKAW': 0.5,
       'Archeo Landschappen': 0.5,
-      // Hillshade layers
       'AHN4 Hillshade NL': 0.7,
       'AHN4 Multi-Hillshade NL': 0.7,
       'AHN4 Helling NL': 0.6,
-      'World Hillshade': 0.7,
-      'Hillshade Vlaanderen 25cm': 0.7,
-      'Skyview Vlaanderen 25cm': 0.7,
-      'DTM Vlaanderen 1m': 0.6,
-      'Hillshade NRW 25cm': 0.7,
-      'Hillshade NRW Kleur': 0.7,
-      'Hillshade Frankrijk': 0.7,
-      'LiDAR HD Frankrijk': 0.7,
-      'RGE Alti Frankrijk 1m': 0.6,
-      'Hoogtelijn Frankrijk': 0.8,
-      'Hillshade Wallonië': 0.7,
-      // Belgian heritage
-      'Monumenten BE': 0.8,
-      'Archeo Zones BE': 0.6,
-      'Arch Sites BE': 0.7,
-      'Erfgoed Landschap BE': 0.5
+      'World Hillshade': 0.7
     },
 
     // Loading state for lazy-loaded layers

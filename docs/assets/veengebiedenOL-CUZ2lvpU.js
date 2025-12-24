@@ -1,2 +1,0 @@
-import{G as t}from"./GeoJSON-C7etc6NX.js";import{G as a,H as n,J as r,M as s,N as c}from"./index-sepMzkky.js";async function f(){const e=await(await fetch("/detectorapp-nl/data/veengebieden_toemaakdekken.geojson")).json(),o=new a({features:new t().readFeatures(e,{featureProjection:"EPSG:3857"})});return new n({source:o,title:"Veengebieden/Toemaakdekken",visible:!1,style:new r({fill:new c({color:"rgba(139, 69, 19, 0.15)"}),stroke:new s({color:"#8B4513",width:1})})})}export{f as createVeengebiedenLayerOL};
-//# sourceMappingURL=veengebiedenOL-CUZ2lvpU.js.map
