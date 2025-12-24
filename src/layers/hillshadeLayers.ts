@@ -57,7 +57,7 @@ export function createAHN4SlopeLayerOL() {
       url: 'https://ahn.arcgisonline.nl/arcgis/rest/services/Hoogtebestand/AHN4_DTM_5m/ImageServer',
       params: {
         renderingRule: JSON.stringify({
-          rasterFunction: 'Slope Degrees'
+          rasterFunction: 'AHN - Slope'
         })
       },
       crossOrigin: 'anonymous',
