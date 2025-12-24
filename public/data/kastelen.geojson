@@ -1,0 +1,382 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Vaantje"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.313735,
+          51.6540013
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Maurick"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3060532,
+          51.6583676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Landgoed Haanwijk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3235412,
+          51.6543341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Herlaer"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3245282,
+          51.6507928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kerk van Heldring"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7003915,
+          51.9342277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Doorwerth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7888508,
+          51.9667718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Raatakkers Wekeromse Zand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6665421,
+          52.1079549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Beverweerd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2509069,
+          52.0287131
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oude akkers Meijendel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3315905,
+          52.1281665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Akkers Harstenhoek?"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2960539,
+          52.1144219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oude akkers Katwijk?"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3910658,
+          52.1896082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broodpenning"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2898204,
+          52.0286437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Sterkenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.283823,
+          52.0236101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Hardenbroek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2837157,
+          52.011012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Weerdensteijn"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3002167,
+          52.0111969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Hindersteijn"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3108597,
+          52.0143006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Lunenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3197968,
+          52.0122469
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Rhijnestein"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3155696,
+          51.9970166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Walenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3390014,
+          52.0060788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Sandenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3422952,
+          52.0070893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Groenensteijn"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3479278,
+          52.0038729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Dompselaer"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3802323,
+          51.9920818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Zuilenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3851569,
+          51.9919893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Broekhuizen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3995442,
+          52.0084365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Natewisch"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3911114,
+          51.9792501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Hoeven"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4081059,
+          51.981074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zeisterbos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2690172,
+          52.0917157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasteel Polanen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.192003,
+          52.0313831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nick zijn landgoed"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.40428510308266,
+          52.1374110429198
+        ]
+      }
+    }
+  ]
+}

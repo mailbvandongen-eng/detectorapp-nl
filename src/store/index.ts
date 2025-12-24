@@ -1,0 +1,7 @@
+// Central export for all stores
+export { useGPSStore } from './gpsStore'
+export { useLayerStore } from './layerStore'
+export { useMapStore } from './mapStore'
+export { useUIStore } from './uiStore'
+export { useAuthStore } from './authStore'
+export { useVondstenStore } from './vondstenStore'

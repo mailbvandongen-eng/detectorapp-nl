@@ -1,0 +1,8045 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5472125,
+          52.2489752
+        ]
+      },
+      "properties": {
+        "osm_id": 34051108,
+        "osm_type": "node",
+        "name": "Huis Dever",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8308118,
+          50.8619431
+        ]
+      },
+      "properties": {
+        "osm_id": 205161375,
+        "osm_type": "node",
+        "name": "Kasteel Valkenburg",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Valkenburg",
+        "wikidata": "Q1473283",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1224148,
+          52.1935416
+        ]
+      },
+      "properties": {
+        "osm_id": 263747518,
+        "osm_type": "node",
+        "name": "Sypesteyn",
+        "historic": "castle",
+        "website": "https://www.sypesteyn.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9218387,
+          52.9612522
+        ]
+      },
+      "properties": {
+        "osm_id": 290076702,
+        "osm_type": "node",
+        "name": "Crackstate",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Crackstate",
+        "wikidata": "Q3344264"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4620351,
+          52.1491275
+        ]
+      },
+      "properties": {
+        "osm_id": 299818876,
+        "osm_type": "node",
+        "name": "Huis ter Wadding",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Ter Wadding",
+        "wikidata": "Q2539450"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4497516,
+          52.1606153
+        ]
+      },
+      "properties": {
+        "osm_id": 308660414,
+        "osm_type": "node",
+        "name": "Rhijnhof",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.463135,
+          52.1726203
+        ]
+      },
+      "properties": {
+        "osm_id": 312055080,
+        "osm_type": "node",
+        "name": "Endegeest",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Endegeest",
+        "wikidata": "Q17438202"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4174567,
+          52.1113566
+        ]
+      },
+      "properties": {
+        "osm_id": 347390738,
+        "osm_type": "node",
+        "name": "Duivenvoorde",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Duivenvoorde",
+        "wikidata": "Q2312054",
+        "website": "https://www.kasteelduivenvoorde.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4621041,
+          52.134524
+        ]
+      },
+      "properties": {
+        "osm_id": 349151940,
+        "osm_type": "node",
+        "name": "Berbice",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Buitenplaats Berbice",
+        "wikidata": "Q11721989",
+        "website": "https://www.buitenplaatsberbice.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4158683,
+          52.1159448
+        ]
+      },
+      "properties": {
+        "osm_id": 353389374,
+        "osm_type": "node",
+        "name": "Ter Horst",
+        "historic": "castle",
+        "wikipedia": "nl:Landgoed Ter Horst",
+        "wikidata": "Q2130459"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.177767,
+          52.0691429
+        ]
+      },
+      "properties": {
+        "osm_id": 403256504,
+        "osm_type": "node",
+        "name": "Kasteel Rhijnauwen",
+        "historic": "castle",
+        "wikipedia": "nl:Rhijnauwen",
+        "wikidata": "Q2697019"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1166435,
+          52.0927486
+        ]
+      },
+      "properties": {
+        "osm_id": 415887735,
+        "osm_type": "node",
+        "name": "Kasteel Oudaen",
+        "historic": "castle",
+        "wikipedia": "nl:Oudaen (Utrecht)",
+        "wikidata": "Q1820630",
+        "website": "https://www.oudaen.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2838847,
+          52.0236017
+        ]
+      },
+      "properties": {
+        "osm_id": 582895380,
+        "osm_type": "node",
+        "name": "Ridderhofstad Sterkenburg",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.139262,
+          51.4354994
+        ]
+      },
+      "properties": {
+        "osm_id": 1237451250,
+        "osm_type": "node",
+        "name": "Huis Kaldenbroek",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1477619,
+          51.4103687
+        ]
+      },
+      "properties": {
+        "osm_id": 1237451294,
+        "osm_type": "node",
+        "name": "Gebroken Slot",
+        "historic": "castle",
+        "wikidata": "Q2375019"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7150164,
+          52.2663899
+        ]
+      },
+      "properties": {
+        "osm_id": 1313338082,
+        "osm_type": "node",
+        "name": "Twickel",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.1039347,
+          51.9164701
+        ]
+      },
+      "properties": {
+        "osm_id": 1596722315,
+        "osm_type": "node",
+        "name": "Jacobaburcht",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Burcht van Voorne",
+        "wikidata": "Q2765622",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4973461,
+          52.2354431
+        ]
+      },
+      "properties": {
+        "osm_id": 1625584880,
+        "osm_type": "node",
+        "name": "Orangerie Kasteel Salentein",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7275987,
+          51.8085399
+        ]
+      },
+      "properties": {
+        "osm_id": 1805036781,
+        "osm_type": "node",
+        "name": "Museum Kasteel Wijchen",
+        "historic": "castle",
+        "website": "https://www.museumwijchen.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2548739,
+          52.2186247
+        ]
+      },
+      "properties": {
+        "osm_id": 1928223207,
+        "osm_type": "node",
+        "name": "Kasteel Groeneveld",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Groeneveld (Baarn)",
+        "wikidata": "Q2862994",
+        "website": "https://www.kasteelgroeneveld.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.360782,
+          51.9603928
+        ]
+      },
+      "properties": {
+        "osm_id": 2152516403,
+        "osm_type": "node",
+        "name": "Kasteel Slangenburg",
+        "historic": "castle",
+        "wikipedia": "nl:Slangenburg",
+        "wikidata": "Q2534458",
+        "website": "https://www.kasteelslangenburg.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3169843,
+          52.8549364
+        ]
+      },
+      "properties": {
+        "osm_id": 2325778359,
+        "osm_type": "node",
+        "name": "Schultehuis",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q17347267"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8794591,
+          51.4090543
+        ]
+      },
+      "properties": {
+        "osm_id": 2336791096,
+        "osm_type": "node",
+        "name": "Hellenburg",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5912534,
+          52.1426399
+        ]
+      },
+      "properties": {
+        "osm_id": 2388543597,
+        "osm_type": "node",
+        "name": "Kasteel De Schaffelaar",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8841497,
+          51.2181222
+        ]
+      },
+      "properties": {
+        "osm_id": 2441595298,
+        "osm_type": "node",
+        "name": "Kasteel Baexem",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3339465,
+          52.1566104
+        ]
+      },
+      "properties": {
+        "osm_id": 2652707251,
+        "osm_type": "node",
+        "name": "Huis de Velhorst",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Velhorst",
+        "wikidata": "Q15883346",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4233509,
+          52.1729843
+        ]
+      },
+      "properties": {
+        "osm_id": 2658106112,
+        "osm_type": "node",
+        "name": "Kasteel Ampsen",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Ampsen",
+        "wikidata": "Q2341162",
+        "website": "https://ampsen.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2568787,
+          52.4214571
+        ]
+      },
+      "properties": {
+        "osm_id": 2712749161,
+        "osm_type": "node",
+        "name": "Kasteel 't Reelaer",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3972051,
+          52.1245038
+        ]
+      },
+      "properties": {
+        "osm_id": 2713230754,
+        "osm_type": "node",
+        "name": "Eikenhorst",
+        "historic": "castle",
+        "castle_type": "stately"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.496249,
+          52.2353834
+        ]
+      },
+      "properties": {
+        "osm_id": 2719245417,
+        "osm_type": "node",
+        "name": "Kasteel Salentein te Nijkerk",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0777676,
+          51.9269438
+        ]
+      },
+      "properties": {
+        "osm_id": 2762291113,
+        "osm_type": "node",
+        "name": "Huis Sevenaer",
+        "historic": "castle",
+        "website": "https://www.huissevenaer.com"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4349262,
+          53.1345176
+        ]
+      },
+      "properties": {
+        "osm_id": 2778274935,
+        "osm_type": "node",
+        "name": "Mensinge",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Mensinge",
+        "wikidata": "Q2976863",
+        "website": "https://www.mensinge.nl/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5474222,
+          52.1964395
+        ]
+      },
+      "properties": {
+        "osm_id": 2787450038,
+        "osm_type": "node",
+        "name": "Warmelo",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6670621,
+          51.7919182
+        ]
+      },
+      "properties": {
+        "osm_id": 2788560627,
+        "osm_type": "node",
+        "name": "Kasteel Crabbehoff",
+        "historic": "castle",
+        "wikipedia": "nl:Crabbehoff (kasteel)",
+        "wikidata": "Q2052633"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3243543,
+          51.5832628
+        ]
+      },
+      "properties": {
+        "osm_id": 2790958845,
+        "osm_type": "node",
+        "name": "Kasteel Stapelen",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Stapelen",
+        "wikidata": "Q13742026",
+        "heritage": "2",
+        "start_date": "1293"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4431663,
+          52.0013376
+        ]
+      },
+      "properties": {
+        "osm_id": 2800394146,
+        "osm_type": "node",
+        "name": "Zuylestein",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8417518,
+          50.8618783
+        ]
+      },
+      "properties": {
+        "osm_id": 2815493163,
+        "osm_type": "node",
+        "name": "Kasteel Oost",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Oost (Valkenburg)",
+        "wikidata": "Q931161"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1365063,
+          52.0787384
+        ]
+      },
+      "properties": {
+        "osm_id": 2846532525,
+        "osm_type": "node",
+        "name": "Huis Den Bosch",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1469879,
+          52.0801041
+        ]
+      },
+      "properties": {
+        "osm_id": 2846533028,
+        "osm_type": "node",
+        "name": "Huis De Rees",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1454826,
+          52.097407
+        ]
+      },
+      "properties": {
+        "osm_id": 2846660261,
+        "osm_type": "node",
+        "name": "Huis Rhienderstein",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1148923,
+          52.1033136
+        ]
+      },
+      "properties": {
+        "osm_id": 2847129740,
+        "osm_type": "node",
+        "name": "Leusveld",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9973549,
+          52.2295449
+        ]
+      },
+      "properties": {
+        "osm_id": 2881763865,
+        "osm_type": "node",
+        "name": "Kasteel Loenersloot",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Loenersloot",
+        "wikidata": "Q2747025",
+        "website": "https://www.utrechtslandschap.nl/loenersloot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7475047,
+          51.8742166
+        ]
+      },
+      "properties": {
+        "osm_id": 2976433878,
+        "osm_type": "node",
+        "name": "Slot Doddendael",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9525145,
+          50.8247984
+        ]
+      },
+      "properties": {
+        "osm_id": 3396717670,
+        "osm_type": "node",
+        "name": "Kasteel Goedenraad",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Goedenraad",
+        "wikidata": "Q617504"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0161164,
+          51.6254018
+        ]
+      },
+      "properties": {
+        "osm_id": 3468239949,
+        "osm_type": "node",
+        "name": "Oostersteyn",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7345503,
+          51.6858747
+        ]
+      },
+      "properties": {
+        "osm_id": 3471719213,
+        "osm_type": "node",
+        "name": "Slot Crayenstein",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.44657,
+          51.27266
+        ]
+      },
+      "properties": {
+        "osm_id": 3673021169,
+        "osm_type": "node",
+        "name": "Kasteel",
+        "historic": "castle",
+        "castle_type": "castrum",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9951031,
+          50.7894615
+        ]
+      },
+      "properties": {
+        "osm_id": 4570094270,
+        "osm_type": "node",
+        "name": "Kasteel Lemiers",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Lemiers",
+        "wikidata": "Q1832947"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.282768,
+          51.9778857
+        ]
+      },
+      "properties": {
+        "osm_id": 4771806996,
+        "osm_type": "node",
+        "name": "De Kelder",
+        "historic": "castle",
+        "castle_type": "manor",
+        "website": "https://www.kasteeldekelder.nl",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1224793,
+          51.9035396
+        ]
+      },
+      "properties": {
+        "osm_id": 5761644938,
+        "osm_type": "node",
+        "name": "Huize Babberich",
+        "historic": "castle",
+        "wikipedia": "nl:Huize Babberich",
+        "wikidata": "Q2862053"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7720358,
+          50.9011881
+        ]
+      },
+      "properties": {
+        "osm_id": 6123713571,
+        "osm_type": "node",
+        "name": "Huize Vliek",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Vliek",
+        "wikidata": "Q1918527"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7856945,
+          50.8205123
+        ]
+      },
+      "properties": {
+        "osm_id": 6133170034,
+        "osm_type": "node",
+        "name": "Kasteel Blankenberg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Blankenberg",
+        "wikidata": "Q2529924"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8759615,
+          52.4334189
+        ]
+      },
+      "properties": {
+        "osm_id": 6161569134,
+        "osm_type": "node",
+        "name": "Zwaluwenburg",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3542363,
+          52.8350946
+        ]
+      },
+      "properties": {
+        "osm_id": 9274687068,
+        "osm_type": "node",
+        "name": "Havezathe Batinghe",
+        "historic": "castle",
+        "castle_type": "manor",
+        "website": "https://nl.wikipedia.org/wiki/Batinge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7089083,
+          51.256519
+        ]
+      },
+      "properties": {
+        "osm_id": 10056805173,
+        "osm_type": "node",
+        "name": "Kasteel Nijenborgh",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Nijenborgh",
+        "wikidata": "Q1862696",
+        "start_date": "1923"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.9418118,
+          51.8028674
+        ]
+      },
+      "properties": {
+        "osm_id": 11307988293,
+        "osm_type": "node",
+        "name": "Spreeuwenstein",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteelberg Spreeuwenstein",
+        "wikidata": "Q2410007",
+        "heritage": "2",
+        "start_date": "before 1336"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6966107,
+          51.9348942
+        ]
+      },
+      "properties": {
+        "osm_id": 12849471573,
+        "osm_type": "node",
+        "name": "Kasteelruïne Hemmen",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1204938,
+          52.0908223
+        ]
+      },
+      "properties": {
+        "osm_id": 13013620274,
+        "osm_type": "node",
+        "name": "Paleis Lofen",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Lofen",
+        "wikidata": "Q2505395",
+        "website": "https://www.paleislofen.nl/",
+        "heritage": "2",
+        "start_date": "1020"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3909349,
+          52.1045145
+        ]
+      },
+      "properties": {
+        "osm_id": 28742479,
+        "osm_type": "way",
+        "name": "Huize Den Treek",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17463657",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4924261,
+          52.1589856
+        ]
+      },
+      "properties": {
+        "osm_id": 30714513,
+        "osm_type": "way",
+        "name": "De Burcht",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Burcht van Leiden",
+        "wikidata": "Q2345558",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.997267,
+          52.229545
+        ]
+      },
+      "properties": {
+        "osm_id": 33115170,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9424569,
+          52.2353269
+        ]
+      },
+      "properties": {
+        "osm_id": 44405552,
+        "osm_type": "way",
+        "name": "Kasteel Het Oude Loo",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Het Oude Loo",
+        "wikidata": "Q1913236",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5060077,
+          51.4655623
+        ]
+      },
+      "properties": {
+        "osm_id": 44748222,
+        "osm_type": "way",
+        "name": "Kasteel Eckart",
+        "historic": "castle",
+        "start_date": "1695"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0541546,
+          53.2983413
+        ]
+      },
+      "properties": {
+        "osm_id": 44975092,
+        "osm_type": "way",
+        "name": "Rinsma State",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q2610081",
+        "start_date": "1947"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7419107,
+          51.6976983
+        ]
+      },
+      "properties": {
+        "osm_id": 46681471,
+        "osm_type": "way",
+        "name": "Slot Haamstede",
+        "historic": "castle",
+        "wikipedia": "nl:Slot Haamstede",
+        "wikidata": "Q2395071",
+        "heritage": "2",
+        "start_date": "1229"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5880154,
+          53.2007849
+        ]
+      },
+      "properties": {
+        "osm_id": 47510178,
+        "osm_type": "way",
+        "name": "Groenestein",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Groenestein",
+        "wikidata": "Q2329102",
+        "heritage": "2",
+        "start_date": "1685"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6690892,
+          52.3576068
+        ]
+      },
+      "properties": {
+        "osm_id": 48283580,
+        "osm_type": "way",
+        "name": "Huize Almelo",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1662"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.905444,
+          53.3194068
+        ]
+      },
+      "properties": {
+        "osm_id": 48352970,
+        "osm_type": "way",
+        "name": "Vliethoven",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Vliethoven",
+        "wikidata": "Q2680701",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8579444,
+          53.3360611
+        ]
+      },
+      "properties": {
+        "osm_id": 48789605,
+        "osm_type": "way",
+        "name": "Harstastate",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Harsta State",
+        "wikidata": "Q17458794",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.476286,
+          53.2205794
+        ]
+      },
+      "properties": {
+        "osm_id": 49005872,
+        "osm_type": "way",
+        "name": "Liauckamastate",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Liauckama State",
+        "wikidata": "Q7477520"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7836016,
+          53.2332253
+        ]
+      },
+      "properties": {
+        "osm_id": 49032345,
+        "osm_type": "way",
+        "name": "Dekemastate",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Dekemastate",
+        "wikidata": "Q1990622",
+        "website": "https://www.dekemastate.nl",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9906166,
+          53.2395204
+        ]
+      },
+      "properties": {
+        "osm_id": 49043856,
+        "osm_type": "way",
+        "name": "Schierstins",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Schierstins",
+        "wikidata": "Q2135085",
+        "start_date": "1300"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1101457,
+          53.264623
+        ]
+      },
+      "properties": {
+        "osm_id": 49053434,
+        "osm_type": "way",
+        "name": "Fogelsanghstate",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Fogelsanghstate",
+        "wikidata": "Q3464842",
+        "website": "https://www.fogelsangh-state.nl/index.php",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4170685,
+          53.2763139
+        ]
+      },
+      "properties": {
+        "osm_id": 49067013,
+        "osm_type": "way",
+        "name": "Piloersemaborg",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Piloersemaborg",
+        "wikidata": "Q2990341",
+        "website": "http://www.piloersema.nl/",
+        "heritage": "2",
+        "start_date": "1633"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9994399,
+          53.1923989
+        ]
+      },
+      "properties": {
+        "osm_id": 49817208,
+        "osm_type": "way",
+        "name": "Ennemaborg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Ennemaborg",
+        "wikidata": "Q3520358",
+        "start_date": "1620"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5400658,
+          53.3865568
+        ]
+      },
+      "properties": {
+        "osm_id": 49877270,
+        "osm_type": "way",
+        "name": "Breedenborg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Breedenborg",
+        "wikidata": "Q2447151",
+        "start_date": "1995"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1848307,
+          51.4713623
+        ]
+      },
+      "properties": {
+        "osm_id": 49951795,
+        "osm_type": "way",
+        "name": "Kasteel Arcen",
+        "historic": "castle",
+        "start_date": "1653"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2443801,
+          52.1447777
+        ]
+      },
+      "properties": {
+        "osm_id": 50400967,
+        "osm_type": "way",
+        "name": "Huis het Velde",
+        "historic": "castle",
+        "wikipedia": "nl:Huis 't Velde",
+        "wikidata": "Q14941971",
+        "start_date": "1326"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8016107,
+          53.3181845
+        ]
+      },
+      "properties": {
+        "osm_id": 50986622,
+        "osm_type": "way",
+        "name": "Rusthoven",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Rusthoven",
+        "wikidata": "Q2692376",
+        "start_date": "1686"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3930599,
+          53.3625416
+        ]
+      },
+      "properties": {
+        "osm_id": 51860115,
+        "osm_type": "way",
+        "name": "Borg Verhildersum",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Verhildersum",
+        "wikidata": "Q2775823",
+        "start_date": "1450"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4529344,
+          53.3191513
+        ]
+      },
+      "properties": {
+        "osm_id": 51879903,
+        "osm_type": "way",
+        "name": "Allersmaborg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Allersmaborg",
+        "wikidata": "Q2122464",
+        "website": "https://www.allersmaborg.nl",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1703422,
+          51.9987486
+        ]
+      },
+      "properties": {
+        "osm_id": 52543782,
+        "osm_type": "way",
+        "name": "Vuylcop",
+        "historic": "castle",
+        "wikipedia": "nl:Vuijlcop",
+        "wikidata": "Q2272526",
+        "heritage": "2",
+        "start_date": "1392"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2271749,
+          52.1798295
+        ]
+      },
+      "properties": {
+        "osm_id": 52599496,
+        "osm_type": "way",
+        "name": "Drakensteyn",
+        "historic": "castle",
+        "wikipedia": "nl:Drakensteyn",
+        "wikidata": "Q1783601",
+        "start_date": "1640"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8069936,
+          53.3174912
+        ]
+      },
+      "properties": {
+        "osm_id": 52769802,
+        "osm_type": "way",
+        "name": "Ekenstein",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Ekenstein",
+        "wikidata": "Q2689747",
+        "start_date": "1648"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8095621,
+          53.215454
+        ]
+      },
+      "properties": {
+        "osm_id": 52817990,
+        "osm_type": "way",
+        "name": "Fraeylemaborg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Fraeylemaborg",
+        "wikidata": "Q374958",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9635184,
+          52.0094904
+        ]
+      },
+      "properties": {
+        "osm_id": 53237303,
+        "osm_type": "way",
+        "name": "Kasteel Rosendael",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Rosendael",
+        "wikidata": "Q17607231",
+        "website": "https://rosendael.glk.nl/",
+        "heritage": "2",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0697292,
+          52.0190299
+        ]
+      },
+      "properties": {
+        "osm_id": 53301290,
+        "osm_type": "way",
+        "name": "Kasteel Middachten",
+        "historic": "castle",
+        "wikidata": "Q2325697",
+        "website": "https://www.middachten.nl/",
+        "heritage": "2",
+        "start_date": "1697"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9927651,
+          51.9966782
+        ]
+      },
+      "properties": {
+        "osm_id": 53303710,
+        "osm_type": "way",
+        "name": "Kasteel Biljoen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Biljoen",
+        "wikidata": "Q1585508",
+        "heritage": "2",
+        "start_date": "1530"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2974108,
+          51.9392397
+        ]
+      },
+      "properties": {
+        "osm_id": 53316084,
+        "osm_type": "way",
+        "name": "De Kemnade",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kemnade",
+        "wikidata": "Q18774841",
+        "heritage": "2",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5241125,
+          52.1864368
+        ]
+      },
+      "properties": {
+        "osm_id": 53397199,
+        "osm_type": "way",
+        "name": "Huis Westerflier",
+        "castle_type": "manor",
+        "start_date": "1729"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4451356,
+          52.0788482
+        ]
+      },
+      "properties": {
+        "osm_id": 53419976,
+        "osm_type": "way",
+        "name": "Kasteel Huize Ruurlo",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Ruurlo",
+        "wikidata": "Q4989654",
+        "website": "https://www.museummore-kasteelruurlo.nl",
+        "start_date": "1450"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6157553,
+          53.1390438
+        ]
+      },
+      "properties": {
+        "osm_id": 53618161,
+        "osm_type": "way",
+        "name": "Huis te Glimmen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis te Glimmen",
+        "wikidata": "Q2933766",
+        "heritage": "2",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0729283,
+          53.0673289
+        ]
+      },
+      "properties": {
+        "osm_id": 53778128,
+        "osm_type": "way",
+        "name": "Burcht Wedde",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Wedderborg",
+        "wikidata": "Q2583171",
+        "website": "https://www.burchtwedde.nl",
+        "start_date": "1658"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8532026,
+          51.1920787
+        ]
+      },
+      "properties": {
+        "osm_id": 54207328,
+        "osm_type": "way",
+        "name": "Kasteel Ten Hove",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel ten Hove (Grathem)",
+        "wikidata": "Q2789513",
+        "start_date": "1620"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2307026,
+          52.1713715
+        ]
+      },
+      "properties": {
+        "osm_id": 54493486,
+        "osm_type": "way",
+        "name": "Het Barge",
+        "historic": "castle",
+        "start_date": "1903"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3918905,
+          52.2004722
+        ]
+      },
+      "properties": {
+        "osm_id": 54502273,
+        "osm_type": "way",
+        "name": "Huis Verwolde",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Huis Verwolde",
+        "wikidata": "Q2153812",
+        "website": "https://www.mooigelderland.nl",
+        "start_date": "1776"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3771127,
+          52.0689822
+        ]
+      },
+      "properties": {
+        "osm_id": 54525638,
+        "osm_type": "way",
+        "name": "Huis 't Zelle",
+        "historic": "castle",
+        "castle_type": "manor",
+        "heritage": "2",
+        "start_date": "1792"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3752431,
+          52.0885466
+        ]
+      },
+      "properties": {
+        "osm_id": 54525721,
+        "osm_type": "way",
+        "name": "Het Onstein",
+        "historic": "castle",
+        "wikipedia": "nl:Onstein",
+        "wikidata": "Q2408271",
+        "heritage": "2",
+        "start_date": "1711"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3844914,
+          52.1211524
+        ]
+      },
+      "properties": {
+        "osm_id": 54526271,
+        "osm_type": "way",
+        "name": "De Wildenborch",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Wildenborch",
+        "wikidata": "Q776148",
+        "website": "https://www.wildenborch.nl",
+        "heritage": "2",
+        "start_date": "1550"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3838959,
+          52.1051484
+        ]
+      },
+      "properties": {
+        "osm_id": 54527685,
+        "osm_type": "way",
+        "name": "'t Medler",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Medler",
+        "wikidata": "Q1875273",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3496681,
+          52.1055584
+        ]
+      },
+      "properties": {
+        "osm_id": 54527787,
+        "osm_type": "way",
+        "name": "De Wientjesvoort",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1852"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2766201,
+          52.1002095
+        ]
+      },
+      "properties": {
+        "osm_id": 54542166,
+        "osm_type": "way",
+        "name": "Kasteel Hackfort",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Hackfort",
+        "wikidata": "Q2791288",
+        "heritage": "2",
+        "start_date": "1788"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3283224,
+          52.0841958
+        ]
+      },
+      "properties": {
+        "osm_id": 54542465,
+        "osm_type": "way",
+        "name": "Kiefskamp",
+        "historic": "castle",
+        "wikipedia": "nl:Huis Kiefskamp",
+        "wikidata": "Q1928320",
+        "heritage": "2",
+        "start_date": "1776"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3111535,
+          52.1217628
+        ]
+      },
+      "properties": {
+        "osm_id": 54542692,
+        "osm_type": "way",
+        "name": "Den Bramel",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Den Bramel",
+        "wikidata": "Q18775574",
+        "heritage": "2",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3224654,
+          52.1013923
+        ]
+      },
+      "properties": {
+        "osm_id": 54546174,
+        "osm_type": "way",
+        "name": "Kasteel Vorden",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Vorden",
+        "wikidata": "Q2755825",
+        "website": "https://www.kasteelvorden.nl",
+        "heritage": "2",
+        "start_date": "1712"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2327554,
+          52.0775386
+        ]
+      },
+      "properties": {
+        "osm_id": 54547750,
+        "osm_type": "way",
+        "name": "Huis Baak",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Baak",
+        "wikidata": "Q2371250",
+        "website": "https://www.landgoedbaak.nl",
+        "heritage": "2",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5596194,
+          51.4250789
+        ]
+      },
+      "properties": {
+        "osm_id": 55107963,
+        "osm_type": "way",
+        "name": "Kasteel Geldrop",
+        "historic": "castle",
+        "start_date": "1616"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.005758,
+          52.1722298
+        ]
+      },
+      "properties": {
+        "osm_id": 55191520,
+        "osm_type": "way",
+        "name": "Ridderhofstad Gunterstein",
+        "historic": "castle",
+        "start_date": "1680"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0148509,
+          52.160503
+        ]
+      },
+      "properties": {
+        "osm_id": 55193416,
+        "osm_type": "way",
+        "name": "Kasteel Oudaen",
+        "historic": "castle",
+        "wikipedia": "nl:Ridderhofstad Oudaan",
+        "wikidata": "Q1905701",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0731344,
+          52.1271295
+        ]
+      },
+      "properties": {
+        "osm_id": 55277368,
+        "osm_type": "way",
+        "name": "Slot Zuylen",
+        "historic": "castle",
+        "wikipedia": "nl:Slot Zuylen",
+        "wikidata": "Q2131198",
+        "start_date": "1610"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9862946,
+          52.1214623
+        ]
+      },
+      "properties": {
+        "osm_id": 55299438,
+        "osm_type": "way",
+        "name": "Kasteel de Haar",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel de Haar",
+        "wikidata": "Q1735318",
+        "website": "https://www.kasteeldehaar.nl",
+        "heritage": "2",
+        "start_date": "1943"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2665776,
+          51.8317816
+        ]
+      },
+      "properties": {
+        "osm_id": 56833464,
+        "osm_type": "way",
+        "name": "Kasteel Waardenburg",
+        "historic": "castle",
+        "start_date": "1627"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2805191,
+          51.8327281
+        ]
+      },
+      "properties": {
+        "osm_id": 56838201,
+        "osm_type": "way",
+        "name": "Kasteel Neerijnen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Neerijnen",
+        "wikidata": "Q1903627",
+        "heritage": "2",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7475385,
+          51.8742245
+        ]
+      },
+      "properties": {
+        "osm_id": 56984004,
+        "osm_type": "way",
+        "name": "Slot Doddendael",
+        "historic": "castle",
+        "website": "https://www.doddendael.nl/",
+        "start_date": "1910"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7591814,
+          51.8893922
+        ]
+      },
+      "properties": {
+        "osm_id": 57747554,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1825"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2300352,
+          52.0867193
+        ]
+      },
+      "properties": {
+        "osm_id": 57915129,
+        "osm_type": "way",
+        "name": "De Brink",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17596561",
+        "heritage": "2",
+        "start_date": "1856"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3157083,
+          51.9970454
+        ]
+      },
+      "properties": {
+        "osm_id": 57925757,
+        "osm_type": "way",
+        "name": "Rhijnestein",
+        "historic": "castle",
+        "start_date": "1300"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3200437,
+          52.0121437
+        ]
+      },
+      "properties": {
+        "osm_id": 57926250,
+        "osm_type": "way",
+        "name": "Kasteel Lunenburg",
+        "historic": "castle",
+        "wikidata": "Q2922939",
+        "website": "https://kasteellunenburg.nl/",
+        "heritage": "2",
+        "start_date": "1960"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3423669,
+          52.0070774
+        ]
+      },
+      "properties": {
+        "osm_id": 57927100,
+        "osm_type": "way",
+        "name": "Kasteel Sandenburg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Sandenburg",
+        "wikidata": "Q2561786",
+        "website": "https://www.sandenburg.nl/",
+        "heritage": "2",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1967842,
+          52.0721856
+        ]
+      },
+      "properties": {
+        "osm_id": 57928909,
+        "osm_type": "way",
+        "name": "Huis Cammingha",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Cammingha",
+        "wikidata": "Q929002",
+        "start_date": "1968"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2497701,
+          52.0319808
+        ]
+      },
+      "properties": {
+        "osm_id": 57930820,
+        "osm_type": "way",
+        "name": "Beverweerd",
+        "historic": "castle",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4585388,
+          51.9953986
+        ]
+      },
+      "properties": {
+        "osm_id": 58038034,
+        "osm_type": "way",
+        "name": "Kasteel Amerongen",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Amerongen",
+        "wikidata": "Q572269",
+        "website": "https://www.kasteelamerongen.nl/",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3213701,
+          52.0467929
+        ]
+      },
+      "properties": {
+        "osm_id": 58570835,
+        "osm_type": "way",
+        "name": "Te Werve",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1954"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3436654,
+          52.0932252
+        ]
+      },
+      "properties": {
+        "osm_id": 58615617,
+        "osm_type": "way",
+        "name": "Huis ten Bosch",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Paleis Huis ten Bosch",
+        "wikidata": "Q1072284",
+        "heritage": "2",
+        "start_date": "1645"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3142989,
+          52.0804012
+        ]
+      },
+      "properties": {
+        "osm_id": 58616683,
+        "osm_type": "way",
+        "name": "Mauritshuis",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Mauritshuis",
+        "wikidata": "Q221092",
+        "heritage": "2",
+        "start_date": "1644"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.303411,
+          51.6951141
+        ]
+      },
+      "properties": {
+        "osm_id": 60207712,
+        "osm_type": "way",
+        "name": "Citadel van 's-Hertogenbosch",
+        "historic": "castle",
+        "castle_type": "citadel",
+        "wikipedia": "nl:Citadel van 's-Hertogenbosch",
+        "wikidata": "Q17403581"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5403876,
+          51.8199629
+        ]
+      },
+      "properties": {
+        "osm_id": 76625274,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.9629452,
+          51.4892515
+        ]
+      },
+      "properties": {
+        "osm_id": 78019780,
+        "osm_type": "way",
+        "name": "Maelstede",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7884769,
+          51.9665078
+        ]
+      },
+      "properties": {
+        "osm_id": 80926752,
+        "osm_type": "way",
+        "name": "Kasteel Doorwerth",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Doorwerth",
+        "wikidata": "Q680425",
+        "website": "https://doorwerth.glk.nl/",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.058305,
+          51.4656736
+        ]
+      },
+      "properties": {
+        "osm_id": 129133883,
+        "osm_type": "way",
+        "name": "Huys ter Horst",
+        "historic": "castle",
+        "wikidata": "Q2793189"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0527656,
+          51.6359119
+        ]
+      },
+      "properties": {
+        "osm_id": 135408890,
+        "osm_type": "way",
+        "name": "Kasteel Bleijenbeek",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Bleijenbeek",
+        "wikidata": "Q603412",
+        "website": "http://kasteelbleijenbeek.nl/",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0691792,
+          52.3309735
+        ]
+      },
+      "properties": {
+        "osm_id": 172288023,
+        "osm_type": "way",
+        "name": "Vesting Muiden",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "heritage": "Unesco"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1621748,
+          52.296183
+        ]
+      },
+      "properties": {
+        "osm_id": 173306282,
+        "osm_type": "way",
+        "name": "Vesting Naarden",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q18767385",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9464615,
+          52.233789
+        ]
+      },
+      "properties": {
+        "osm_id": 191884475,
+        "osm_type": "way",
+        "name": "Paleis het Loo",
+        "historic": "castle",
+        "wikipedia": "nl:Paleis Het Loo",
+        "wikidata": "Q692381",
+        "heritage": "2",
+        "start_date": "1686"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1925185,
+          53.0066662
+        ]
+      },
+      "properties": {
+        "osm_id": 222272320,
+        "osm_type": "way",
+        "name": "Vesting Bourtange",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikipedia": "en:Fort Bourtange",
+        "wikidata": "Q5470838"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3183651,
+          52.0585892
+        ]
+      },
+      "properties": {
+        "osm_id": 257463238,
+        "osm_type": "way",
+        "name": "Kasteel Het Regelink",
+        "historic": "castle",
+        "castle_type": "stately",
+        "heritage": "2",
+        "start_date": "1832"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.320902,
+          52.1212372
+        ]
+      },
+      "properties": {
+        "osm_id": 257993509,
+        "osm_type": "way",
+        "name": "Het Enzerinck",
+        "historic": "castle",
+        "wikipedia": "nl:Het Enzerinck",
+        "wikidata": "Q13725656",
+        "website": "https://www.natuurmonumenten.nl/nieuws/park-landgoed-t-enzerinck-wordt-opgeknapt",
+        "heritage": "2",
+        "start_date": "1836"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4054189,
+          52.0986213
+        ]
+      },
+      "properties": {
+        "osm_id": 259824489,
+        "osm_type": "way",
+        "name": "Huize de Wiersse",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:De Wiersse",
+        "wikidata": "Q2004773",
+        "website": "https://www.dewiersse.nl",
+        "heritage": "2",
+        "start_date": "1912"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2408304,
+          52.2060719
+        ]
+      },
+      "properties": {
+        "osm_id": 259829889,
+        "osm_type": "way",
+        "name": "'t Joppe",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis 't Joppe",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2431516,
+          52.152149
+        ]
+      },
+      "properties": {
+        "osm_id": 260022573,
+        "osm_type": "way",
+        "name": "Huis de Voorst",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1695"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5355476,
+          52.3097197
+        ]
+      },
+      "properties": {
+        "osm_id": 261207291,
+        "osm_type": "way",
+        "name": "De Oosterhof",
+        "historic": "castle",
+        "start_date": "1675"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3974387,
+          52.1491989
+        ]
+      },
+      "properties": {
+        "osm_id": 261661458,
+        "osm_type": "way",
+        "name": "Huize Randenbroek",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17608145",
+        "heritage": "2",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3565529,
+          51.9174254
+        ]
+      },
+      "properties": {
+        "osm_id": 261694378,
+        "osm_type": "way",
+        "name": "Kasteel Wisch",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Wisch",
+        "wikidata": "Q2354245",
+        "start_date": "1655"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0213579,
+          51.8164185
+        ]
+      },
+      "properties": {
+        "osm_id": 262756729,
+        "osm_type": "way",
+        "name": "Slot Loevestein",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikidata": "Q21775577",
+        "website": "https://www.slotloevestein.nl/",
+        "heritage": "2",
+        "start_date": "1370"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3846266,
+          52.1776701
+        ]
+      },
+      "properties": {
+        "osm_id": 263054562,
+        "osm_type": "way",
+        "name": "Huize Schothorst",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17594446",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2841612,
+          52.0112659
+        ]
+      },
+      "properties": {
+        "osm_id": 264757597,
+        "osm_type": "way",
+        "name": "Hardenbroek",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Hardenbroek",
+        "wikidata": "Q2186739",
+        "heritage": "2",
+        "start_date": "before 1309"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4093025,
+          52.138506
+        ]
+      },
+      "properties": {
+        "osm_id": 265159005,
+        "osm_type": "way",
+        "name": "De Heiligenberg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17457584",
+        "start_date": "1815"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4194092,
+          52.0996836
+        ]
+      },
+      "properties": {
+        "osm_id": 265159740,
+        "osm_type": "way",
+        "name": "De Boom",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:De Boom (Leusden)",
+        "wikidata": "Q18774319",
+        "heritage": "2",
+        "start_date": "1879"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4506514,
+          52.1526238
+        ]
+      },
+      "properties": {
+        "osm_id": 265176306,
+        "osm_type": "way",
+        "name": "Huis Stoutenburg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1888"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2892716,
+          52.4977428
+        ]
+      },
+      "properties": {
+        "osm_id": 265210800,
+        "osm_type": "way",
+        "name": "Kasteel Rechteren",
+        "historic": "castle",
+        "castle_type": "castrum",
+        "wikipedia": "nl:Kasteel Rechteren",
+        "wikidata": "Q11721778",
+        "website": "https://nl.wikipedia.org/wiki/Lijst_van_rijksmonumenten_in_Dalfsen_(plaats)",
+        "start_date": "1320"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3645373,
+          52.1112554
+        ]
+      },
+      "properties": {
+        "osm_id": 265717204,
+        "osm_type": "way",
+        "name": "Kasteel de Wittenburg",
+        "castle_type": "stately",
+        "website": "https://www.wittenburg.nl/",
+        "start_date": "1899"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3373636,
+          52.0670336
+        ]
+      },
+      "properties": {
+        "osm_id": 265836798,
+        "osm_type": "way",
+        "name": "De Binckhorst",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel De Binckhorst",
+        "wikidata": "Q2171082",
+        "heritage": "2",
+        "start_date": "1729"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2135331,
+          52.4164567
+        ]
+      },
+      "properties": {
+        "osm_id": 265841746,
+        "osm_type": "way",
+        "name": "Kasteel het Nijenhuis",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Nijenhuis (Olst-Wijhe)",
+        "wikidata": "Q17456679",
+        "heritage": "2",
+        "start_date": "1382"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3868527,
+          52.1437579
+        ]
+      },
+      "properties": {
+        "osm_id": 266009123,
+        "osm_type": "way",
+        "name": "Vreeburg",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1880"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4442442,
+          52.1755472
+        ]
+      },
+      "properties": {
+        "osm_id": 266108066,
+        "osm_type": "way",
+        "name": "Huize Hoevelaken",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17463609",
+        "heritage": "2",
+        "start_date": "1926"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8931277,
+          51.9992921
+        ]
+      },
+      "properties": {
+        "osm_id": 266584307,
+        "osm_type": "way",
+        "name": "Huis Zypendaal",
+        "historic": "castle",
+        "wikipedia": "nl:Huis Zypendaal",
+        "wikidata": "Q2693553",
+        "heritage": "2",
+        "start_date": "1764"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5446219,
+          52.070591
+        ]
+      },
+      "properties": {
+        "osm_id": 267711278,
+        "osm_type": "way",
+        "name": "Kasteel Renswoude",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Renswoude",
+        "wikidata": "Q2593212",
+        "website": "https://www.kasteelrenswoude.nl/",
+        "heritage": "2",
+        "start_date": "1654"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7748461,
+          51.5913928
+        ]
+      },
+      "properties": {
+        "osm_id": 267781365,
+        "osm_type": "way",
+        "name": "Kasteel van Breda",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Breda",
+        "wikidata": "Q1918354",
+        "heritage": "2",
+        "start_date": "1536"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9404092,
+          52.1602532
+        ]
+      },
+      "properties": {
+        "osm_id": 268419517,
+        "osm_type": "way",
+        "name": "kasteel Spelderholt",
+        "historic": "castle",
+        "start_date": "1908"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.090287,
+          51.878196
+        ]
+      },
+      "properties": {
+        "osm_id": 268445688,
+        "osm_type": "way",
+        "name": "kasteel Heukelum",
+        "historic": "castle",
+        "website": "https://www.kasteelheukelum.nl/",
+        "start_date": "1734"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7834462,
+          51.5626285
+        ]
+      },
+      "properties": {
+        "osm_id": 268521343,
+        "osm_type": "way",
+        "name": "Kasteel Bouvigne",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Bouvigne",
+        "wikidata": "Q2360734",
+        "start_date": "1554"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.250485,
+          52.0935678
+        ]
+      },
+      "properties": {
+        "osm_id": 268705852,
+        "osm_type": "way",
+        "name": "Kasteel 't Suideras",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Vierakker",
+        "wikidata": "Q2179244",
+        "heritage": "2",
+        "start_date": "1891"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2299865,
+          52.0147403
+        ]
+      },
+      "properties": {
+        "osm_id": 268747308,
+        "osm_type": "way",
+        "name": "Landhuis Enghuizen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Enghuizen (Hummelo)",
+        "wikidata": "Q3022944",
+        "start_date": "1875"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1944913,
+          52.0118891
+        ]
+      },
+      "properties": {
+        "osm_id": 268747495,
+        "osm_type": "way",
+        "name": "Kasteel Ulenpas",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Ulenpas",
+        "wikidata": "Q1958843",
+        "website": "https://www.ulenpas.nl/",
+        "start_date": "1965"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9250406,
+          52.9599416
+        ]
+      },
+      "properties": {
+        "osm_id": 268786216,
+        "osm_type": "way",
+        "name": "Oenemastate",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Oenemastate",
+        "wikidata": "Q2369557",
+        "start_date": "1672"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2460172,
+          52.2038131
+        ]
+      },
+      "properties": {
+        "osm_id": 269022792,
+        "osm_type": "way",
+        "name": "Kasteel de Hooge Vuursche",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel de Hooge Vuursche",
+        "wikidata": "Q2682802",
+        "website": "https://www.hoogevuursche.nl/",
+        "heritage": "2",
+        "start_date": "1906"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2268606,
+          52.7674782
+        ]
+      },
+      "properties": {
+        "osm_id": 269024797,
+        "osm_type": "way",
+        "name": "Overcinge",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Overcinge",
+        "wikidata": "Q2337844",
+        "start_date": "1669"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2795664,
+          52.1935306
+        ]
+      },
+      "properties": {
+        "osm_id": 269296570,
+        "osm_type": "way",
+        "name": "Paleis Soestdijk",
+        "historic": "castle",
+        "wikipedia": "nl:Paleis Soestdijk",
+        "wikidata": "Q234048",
+        "website": "https://www.paleissoestdijk.nl/",
+        "heritage": "2",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5401742,
+          52.2677626
+        ]
+      },
+      "properties": {
+        "osm_id": 269891112,
+        "osm_type": "way",
+        "name": "Kasteel Keukenhof",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Keukenhof",
+        "wikidata": "Q2701826",
+        "website": "https://kasteelkeukenhof.nl/",
+        "start_date": "1655"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7120287,
+          51.8214059
+        ]
+      },
+      "properties": {
+        "osm_id": 270333037,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "wikipedia": "nl:Huis te Merwede",
+        "wikidata": "Q11722018",
+        "start_date": "2003"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4027298,
+          52.7127013
+        ]
+      },
+      "properties": {
+        "osm_id": 270567955,
+        "osm_type": "way",
+        "name": "Huis te Echten",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis te Echten",
+        "wikidata": "Q3187352",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1542707,
+          51.7535874
+        ]
+      },
+      "properties": {
+        "osm_id": 270684947,
+        "osm_type": "way",
+        "name": "Kasteel Nederhemert",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Nederhemert",
+        "wikidata": "Q2684013",
+        "heritage": "2",
+        "start_date": "1660"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5945673,
+          52.385851
+        ]
+      },
+      "properties": {
+        "osm_id": 271056347,
+        "osm_type": "way",
+        "name": "Duinlust",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Duinlust (Overveen)",
+        "wikidata": "Q1983599",
+        "start_date": "1882"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2067778,
+          51.7465495
+        ]
+      },
+      "properties": {
+        "osm_id": 271241627,
+        "osm_type": "way",
+        "name": "Slot van Well",
+        "historic": "castle",
+        "wikidata": "Q2528633",
+        "heritage": "2",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5683899,
+          52.3262009
+        ]
+      },
+      "properties": {
+        "osm_id": 271297232,
+        "osm_type": "way",
+        "name": "Huis te Vogelenzang",
+        "historic": "castle",
+        "castle_type": "stately",
+        "website": "https://rijksmonumenten.nl/monument/511228/huis-te-vogelenzang:-hoofdonderdeel/vogelenzang",
+        "heritage": "2",
+        "start_date": "1760"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0753154,
+          51.923014
+        ]
+      },
+      "properties": {
+        "osm_id": 271333214,
+        "osm_type": "way",
+        "name": "Mathena",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6767688,
+          52.0155243
+        ]
+      },
+      "properties": {
+        "osm_id": 271473106,
+        "osm_type": "way",
+        "name": "Kasteel Hoekelum",
+        "historic": "castle",
+        "wikipedia": "nl:Hoekelum (kasteel)",
+        "wikidata": "Q2034523",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8540882,
+          50.9409616
+        ]
+      },
+      "properties": {
+        "osm_id": 271494529,
+        "osm_type": "way",
+        "name": "Huis Ten Dijcken",
+        "historic": "castle",
+        "wikipedia": "nl:Huis ten Dijcken",
+        "wikidata": "Q2079988",
+        "start_date": "1823"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0526933,
+          52.4645883
+        ]
+      },
+      "properties": {
+        "osm_id": 271560239,
+        "osm_type": "way",
+        "name": "Molecaten",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q18813910",
+        "start_date": "1646"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4186683,
+          51.8613616
+        ]
+      },
+      "properties": {
+        "osm_id": 271614160,
+        "osm_type": "way",
+        "name": "Kasteel van Rhoon",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Rhoon",
+        "wikidata": "Q1931861",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8328803,
+          52.1215565
+        ]
+      },
+      "properties": {
+        "osm_id": 271885663,
+        "osm_type": "way",
+        "name": "Jachthuis Sint Hubertus",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Jachthuis Sint-Hubertus",
+        "wikidata": "Q1678308",
+        "website": "https://www.hogeveluwe.nl/",
+        "heritage": "2",
+        "start_date": "1916"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3421664,
+          51.8013166
+        ]
+      },
+      "properties": {
+        "osm_id": 272038280,
+        "osm_type": "way",
+        "name": "Kasteel Rossum",
+        "historic": "castle",
+        "start_date": "1872"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9259348,
+          50.9399087
+        ]
+      },
+      "properties": {
+        "osm_id": 272101116,
+        "osm_type": "way",
+        "name": "Kasteel Amstenrade",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Amstenrade",
+        "wikidata": "Q11171626",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3061158,
+          51.658429
+        ]
+      },
+      "properties": {
+        "osm_id": 272337631,
+        "osm_type": "way",
+        "name": "Kasteel Maurick",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Maurick",
+        "wikidata": "Q5035625",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.222131,
+          51.6422007
+        ]
+      },
+      "properties": {
+        "osm_id": 272450749,
+        "osm_type": "way",
+        "name": "Zwijnsbergen",
+        "historic": "castle",
+        "wikidata": "Q17596105",
+        "heritage": "2",
+        "start_date": "1432"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8867328,
+          51.4087347
+        ]
+      },
+      "properties": {
+        "osm_id": 272487292,
+        "osm_type": "way",
+        "name": "Slot Baarland",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8868544,
+          51.4086869
+        ]
+      },
+      "properties": {
+        "osm_id": 272487363,
+        "osm_type": "way",
+        "name": "Slot Baarland",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.445085,
+          53.0498338
+        ]
+      },
+      "properties": {
+        "osm_id": 272769681,
+        "osm_type": "way",
+        "name": "Huis te Westervelde",
+        "historic": "house",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis te Westervelde",
+        "wikidata": "Q2309881",
+        "start_date": "1799"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2585048,
+          52.6742777
+        ]
+      },
+      "properties": {
+        "osm_id": 272830204,
+        "osm_type": "way",
+        "name": "Havixhorst",
+        "historic": "castle",
+        "wikipedia": "nl:Havixhorst",
+        "wikidata": "Q4038319",
+        "start_date": "1977"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5605836,
+          53.1514966
+        ]
+      },
+      "properties": {
+        "osm_id": 273037390,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q17590084",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1152085,
+          52.241822
+        ]
+      },
+      "properties": {
+        "osm_id": 273066932,
+        "osm_type": "way",
+        "name": "Het Holthuis",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q17446490",
+        "start_date": "1920"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5753932,
+          53.1453356
+        ]
+      },
+      "properties": {
+        "osm_id": 273076590,
+        "osm_type": "way",
+        "name": "Huize Lemferdinge",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Lemferdinge",
+        "wikidata": "Q7474807",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2489936,
+          51.8112944
+        ]
+      },
+      "properties": {
+        "osm_id": 273079464,
+        "osm_type": "way",
+        "name": "Maarten van Rossumhuis",
+        "historic": "castle",
+        "wikipedia": "nl:Maarten van Rossumhuis",
+        "wikidata": "Q2025139",
+        "website": "https://stadskasteelzaltbommel.nl/",
+        "heritage": "2",
+        "start_date": "1535"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5827035,
+          52.2173183
+        ]
+      },
+      "properties": {
+        "osm_id": 273292553,
+        "osm_type": "way",
+        "name": "Weldam",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q17456213",
+        "website": "http://weldam.nl/",
+        "heritage": "2",
+        "start_date": "1680"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2318555,
+          51.5892622
+        ]
+      },
+      "properties": {
+        "osm_id": 273346276,
+        "osm_type": "way",
+        "name": "Kasteel Nemerlaer",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Nemerlaer",
+        "wikidata": "Q2162853",
+        "website": "https://www.kasteelnemerlaer.nl",
+        "heritage": "2",
+        "start_date": "1303"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5294274,
+          52.0094905
+        ]
+      },
+      "properties": {
+        "osm_id": 273488209,
+        "osm_type": "way",
+        "name": "Kasteel Prattenburg",
+        "historic": "castle",
+        "start_date": "1887"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2572971,
+          52.1125018
+        ]
+      },
+      "properties": {
+        "osm_id": 273533161,
+        "osm_type": "way",
+        "name": "Zandbergen",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Zandbergen (Huis ter Heide)",
+        "wikidata": "Q2051584",
+        "website": "https://www.landgoedoudzandbergen.nl",
+        "start_date": "1754"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2259035,
+          52.0921666
+        ]
+      },
+      "properties": {
+        "osm_id": 273748195,
+        "osm_type": "way",
+        "name": "Ma Retraite",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Ma Retraite (Zeist)",
+        "wikidata": "Q15878970",
+        "heritage": "2",
+        "start_date": "1901"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2942338,
+          52.3513451
+        ]
+      },
+      "properties": {
+        "osm_id": 273924124,
+        "osm_type": "way",
+        "name": "Schoonheten",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1920"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5743626,
+          52.2033992
+        ]
+      },
+      "properties": {
+        "osm_id": 273938342,
+        "osm_type": "way",
+        "name": "Nijenhuis",
+        "historic": "castle",
+        "castle_type": "stately",
+        "heritage": "yes",
+        "start_date": "1653"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5450682,
+          52.2013998
+        ]
+      },
+      "properties": {
+        "osm_id": 273956060,
+        "osm_type": "way",
+        "name": "Huize Diepenheim",
+        "historic": "castle",
+        "start_date": "1648"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2346069,
+          52.0789994
+        ]
+      },
+      "properties": {
+        "osm_id": 274026492,
+        "osm_type": "way",
+        "name": "Slot Zeist",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Slot Zeist",
+        "wikidata": "Q2951084",
+        "website": "https://www.slotzeist.nl",
+        "heritage": "2",
+        "start_date": "1677"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4528133,
+          52.484517
+        ]
+      },
+      "properties": {
+        "osm_id": 274133527,
+        "osm_type": "way",
+        "name": "Kasteel Eerde",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Lijst van rijksmonumenten in Eerde (Overijssel)",
+        "wikidata": "Q5347111",
+        "heritage": "2",
+        "start_date": "1715"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0131386,
+          50.7728405
+        ]
+      },
+      "properties": {
+        "osm_id": 274187069,
+        "osm_type": "way",
+        "name": "Huis Bloemendal",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Bloemendal",
+        "wikidata": "Q1645763",
+        "heritage": "2",
+        "start_date": "1992"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.994344,
+          50.7676164
+        ]
+      },
+      "properties": {
+        "osm_id": 274284479,
+        "osm_type": "way",
+        "name": "Kasteel Vaalsbroek",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Vaalsbroek",
+        "wikidata": "Q2243832",
+        "heritage": "2",
+        "start_date": "1960"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9088003,
+          50.9615496
+        ]
+      },
+      "properties": {
+        "osm_id": 274363533,
+        "osm_type": "way",
+        "name": "Kasteel Doenrade",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Doenrade",
+        "wikidata": "Q1928263",
+        "website": "https://www.kasteeldoenrade.nl",
+        "start_date": "1629"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8824435,
+          50.8080138
+        ]
+      },
+      "properties": {
+        "osm_id": 274429500,
+        "osm_type": "way",
+        "name": "Kasteel Neubourg",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Neubourg",
+        "wikidata": "Q1669881",
+        "start_date": "1644"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8598421,
+          50.7892974
+        ]
+      },
+      "properties": {
+        "osm_id": 274507698,
+        "osm_type": "way",
+        "name": "Kasteel Karsveld",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Karsveld",
+        "wikidata": "Q2424472",
+        "start_date": "1902"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.083341,
+          51.5163009
+        ]
+      },
+      "properties": {
+        "osm_id": 274577288,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "start_date": "1619"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1558492,
+          51.5060736
+        ]
+      },
+      "properties": {
+        "osm_id": 274592803,
+        "osm_type": "way",
+        "name": "Kasteel Ooijen",
+        "historic": "castle",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7648124,
+          50.7961979
+        ]
+      },
+      "properties": {
+        "osm_id": 274615892,
+        "osm_type": "way",
+        "name": "Het Stenen Huis",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1980"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2204745,
+          51.8897735
+        ]
+      },
+      "properties": {
+        "osm_id": 274658954,
+        "osm_type": "way",
+        "name": "Mariënwaerdt",
+        "historic": "castle",
+        "castle_type": "stately",
+        "website": "https://www.marienwaerdt.nl/",
+        "start_date": "1734"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.690195,
+          52.6644115
+        ]
+      },
+      "properties": {
+        "osm_id": 274699319,
+        "osm_type": "way",
+        "name": "Het Oude Hof",
+        "historic": "castle",
+        "castle_type": "manor",
+        "website": "https://www.weareblooming.com/",
+        "heritage": "2",
+        "start_date": "1926"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.699643,
+          50.7736911
+        ]
+      },
+      "properties": {
+        "osm_id": 274773908,
+        "osm_type": "way",
+        "name": "Kasteel Eijsden",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Eijsden",
+        "wikidata": "Q18767588",
+        "start_date": "1637"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7060664,
+          50.7961294
+        ]
+      },
+      "properties": {
+        "osm_id": 274864793,
+        "osm_type": "way",
+        "name": "Kasteel Oost",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Oost (Oost-Maarland)",
+        "wikidata": "Q2689086",
+        "heritage": "2",
+        "start_date": "1970"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7274243,
+          50.7995785
+        ]
+      },
+      "properties": {
+        "osm_id": 274881646,
+        "osm_type": "way",
+        "name": "Kasteel Rijckholt",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Rijckholt",
+        "wikidata": "Q1919857",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6994442,
+          50.821527
+        ]
+      },
+      "properties": {
+        "osm_id": 274942935,
+        "osm_type": "way",
+        "name": "Kasteel Hoogenweerth",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Hoogenweerth",
+        "wikidata": "Q2799398",
+        "website": "https://www.kasteeldehoogenweerth.nl/",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4564303,
+          51.5588649
+        ]
+      },
+      "properties": {
+        "osm_id": 274965555,
+        "osm_type": "way",
+        "name": "Kasteel Henkenshage",
+        "historic": "castle",
+        "start_date": "1300"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7254116,
+          50.8358743
+        ]
+      },
+      "properties": {
+        "osm_id": 274991191,
+        "osm_type": "way",
+        "name": "Huis Eyll",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Eyll",
+        "wikidata": "Q17189353",
+        "start_date": "1952"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7199736,
+          50.8368949
+        ]
+      },
+      "properties": {
+        "osm_id": 274992036,
+        "osm_type": "way",
+        "name": "De Burght",
+        "historic": "castle",
+        "wikipedia": "nl:De Burght (Heer)",
+        "wikidata": "Q4017351",
+        "start_date": "1981"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9764872,
+          51.671456
+        ]
+      },
+      "properties": {
+        "osm_id": 274995835,
+        "osm_type": "way",
+        "name": "Kasteel Huys Heijen",
+        "historic": "castle",
+        "website": "https://www.kasteelheijen.nl/",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4414086,
+          51.6559015
+        ]
+      },
+      "properties": {
+        "osm_id": 275063377,
+        "osm_type": "way",
+        "name": "Kasteel Heeswijk",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Heeswijk",
+        "wikidata": "Q1341673",
+        "website": "https://www.kasteelheeswijk.nl/",
+        "start_date": "1150"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9259732,
+          51.8417886
+        ]
+      },
+      "properties": {
+        "osm_id": 275263405,
+        "osm_type": "way",
+        "name": "Kasteel Schelluinen",
+        "historic": "castle",
+        "website": "https://www.kasteleninnederland.nl/kasteeldetails.php?id=328",
+        "start_date": "1546"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6940899,
+          50.8316625
+        ]
+      },
+      "properties": {
+        "osm_id": 275332705,
+        "osm_type": "way",
+        "name": "Huis De Torentjes",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis de Torentjes",
+        "wikidata": "Q2551149",
+        "start_date": "1875"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7897968,
+          50.933536
+        ]
+      },
+      "properties": {
+        "osm_id": 275345582,
+        "osm_type": "way",
+        "name": "Kasteel Genbroek",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Genbroek",
+        "wikidata": "Q2462298",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6674044,
+          50.8186846
+        ]
+      },
+      "properties": {
+        "osm_id": 275371594,
+        "osm_type": "way",
+        "name": "Château Neercanne",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Neercanne",
+        "wikidata": "Q1630851",
+        "heritage": "2",
+        "start_date": "1960"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3200838,
+          52.0271216
+        ]
+      },
+      "properties": {
+        "osm_id": 275481746,
+        "osm_type": "way",
+        "name": "Kasteel Moersbergen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Moersbergen",
+        "wikidata": "Q2466459",
+        "start_date": "1464"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7414503,
+          52.6625654
+        ]
+      },
+      "properties": {
+        "osm_id": 275925199,
+        "osm_type": "way",
+        "name": "Kasteel van Coevorden",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel van Coevorden",
+        "wikidata": "Q3544183",
+        "website": "https://www.kasteleninnederland.nl/kasteeldetails.php?id=14",
+        "start_date": "1550"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7864733,
+          51.7335314
+        ]
+      },
+      "properties": {
+        "osm_id": 276111544,
+        "osm_type": "way",
+        "name": "Slot Moermond",
+        "historic": "castle",
+        "start_date": "1297"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7855321,
+          51.733887
+        ]
+      },
+      "properties": {
+        "osm_id": 276114825,
+        "osm_type": "way",
+        "name": "Slot Moermond",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Slot Moermond",
+        "wikidata": "Q1515774",
+        "heritage": "2",
+        "start_date": "1297"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6863848,
+          50.8778091
+        ]
+      },
+      "properties": {
+        "osm_id": 276321839,
+        "osm_type": "way",
+        "name": "Kasteel Borgharen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Borgharen",
+        "wikidata": "Q2606808",
+        "start_date": "1855"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7197095,
+          50.8895496
+        ]
+      },
+      "properties": {
+        "osm_id": 276584314,
+        "osm_type": "way",
+        "name": "Kasteel Meerssenhoven",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Meerssenhoven",
+        "wikidata": "Q2638684",
+        "start_date": "1958"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7199154,
+          50.8691959
+        ]
+      },
+      "properties": {
+        "osm_id": 276584688,
+        "osm_type": "way",
+        "name": "La Petite Suisse",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Mariënwaard#La Petite Suisse",
+        "wikidata": "Q18768170",
+        "start_date": "1879"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7258362,
+          50.8795366
+        ]
+      },
+      "properties": {
+        "osm_id": 276584845,
+        "osm_type": "way",
+        "name": "Kasteel Vaeshartelt",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Vaeshartelt",
+        "wikidata": "Q11163389",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7268279,
+          50.8627676
+        ]
+      },
+      "properties": {
+        "osm_id": 276630306,
+        "osm_type": "way",
+        "name": "Huis Severen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huis Severen",
+        "wikidata": "Q2539494",
+        "start_date": "1930"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7199577,
+          50.8602808
+        ]
+      },
+      "properties": {
+        "osm_id": 276634614,
+        "osm_type": "way",
+        "name": "Kasteel Geusselt",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Geusselt",
+        "wikidata": "Q2490801",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0158749,
+          50.8177193
+        ]
+      },
+      "properties": {
+        "osm_id": 276720533,
+        "osm_type": "way",
+        "name": "Hoeve Overhuizen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Hoeve Overhuizen",
+        "wikidata": "Q17440640",
+        "start_date": "1364"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0035269,
+          50.8231244
+        ]
+      },
+      "properties": {
+        "osm_id": 276721710,
+        "osm_type": "way",
+        "name": "Kasteel De Bongard",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Bongard",
+        "wikidata": "Q2201403",
+        "start_date": "1523"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9599206,
+          50.8065414
+        ]
+      },
+      "properties": {
+        "osm_id": 276771006,
+        "osm_type": "way",
+        "name": "Kasteel Nijswiller",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Nijswiller",
+        "wikidata": "Q2288886",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9097491,
+          50.813863
+        ]
+      },
+      "properties": {
+        "osm_id": 276792612,
+        "osm_type": "way",
+        "name": "Kasteel Wittem",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Wittem",
+        "wikidata": "Q2521084",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.857492,
+          51.0358135
+        ]
+      },
+      "properties": {
+        "osm_id": 276804906,
+        "osm_type": "way",
+        "name": "Huize Witham",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huize Witham",
+        "wikidata": "Q2550183",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8904714,
+          50.8301187
+        ]
+      },
+      "properties": {
+        "osm_id": 276809945,
+        "osm_type": "way",
+        "name": "Kasteel Wijlre",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Wijlre",
+        "wikidata": "Q2674901",
+        "heritage": "2",
+        "start_date": "1652"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9021316,
+          50.8224483
+        ]
+      },
+      "properties": {
+        "osm_id": 276810996,
+        "osm_type": "way",
+        "name": "Kasteel Cartils",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Cartils",
+        "wikidata": "Q2002749",
+        "heritage": "2",
+        "start_date": "1883"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.850924,
+          50.8568602
+        ]
+      },
+      "properties": {
+        "osm_id": 276996108,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Schaloen",
+        "wikidata": "Q2695787",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8561547,
+          50.8554564
+        ]
+      },
+      "properties": {
+        "osm_id": 276996218,
+        "osm_type": "way",
+        "name": "Kasteel Genhoes",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Genhoes (Valkenburg)",
+        "wikidata": "Q2109262",
+        "heritage": "2",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9059046,
+          51.1810595
+        ]
+      },
+      "properties": {
+        "osm_id": 277008569,
+        "osm_type": "way",
+        "name": "Huis Nederhoven",
+        "historic": "castle",
+        "wikipedia": "nl:Huis Nederhoven",
+        "wikidata": "Q2528818",
+        "start_date": "1614"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8207294,
+          50.8466946
+        ]
+      },
+      "properties": {
+        "osm_id": 277076319,
+        "osm_type": "way",
+        "name": "Sibberhuuske",
+        "historic": "castle",
+        "wikipedia": "nl:Sibberhuuske",
+        "wikidata": "Q2551295",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.401399,
+          51.910073
+        ]
+      },
+      "properties": {
+        "osm_id": 277254143,
+        "osm_type": "way",
+        "name": "Kasteel Soelen",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1275"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1130711,
+          52.7724132
+        ]
+      },
+      "properties": {
+        "osm_id": 277269150,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "start_date": "1288"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7280204,
+          50.899161
+        ]
+      },
+      "properties": {
+        "osm_id": 277631011,
+        "osm_type": "way",
+        "name": "Huis Heiligenberg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1955"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7403341,
+          50.9251181
+        ]
+      },
+      "properties": {
+        "osm_id": 277647215,
+        "osm_type": "way",
+        "name": "Kasteel Geulle",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Geulle",
+        "wikidata": "Q2028439",
+        "start_date": "1609"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8253559,
+          50.8945778
+        ]
+      },
+      "properties": {
+        "osm_id": 277853307,
+        "osm_type": "way",
+        "name": "Kasteel De Bockhof",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Bockenhof",
+        "wikidata": "Q2436216",
+        "start_date": "1677"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8825621,
+          50.9023767
+        ]
+      },
+      "properties": {
+        "osm_id": 277895667,
+        "osm_type": "way",
+        "name": "Kasteel Wijnandsrade",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Wijnandsrade",
+        "wikidata": "Q2030260",
+        "heritage": "2",
+        "start_date": "1726"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9243041,
+          50.8967571
+        ]
+      },
+      "properties": {
+        "osm_id": 278040692,
+        "osm_type": "way",
+        "name": "Kasteel Rivieren",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Rivieren",
+        "wikidata": "Q4319680",
+        "heritage": "2",
+        "start_date": "1550"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8891775,
+          50.8832699
+        ]
+      },
+      "properties": {
+        "osm_id": 278041011,
+        "osm_type": "way",
+        "name": "Huize Retersbeek",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Klimmender Huuske",
+        "wikidata": "Q17446345",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.889639,
+          51.7701436
+        ]
+      },
+      "properties": {
+        "osm_id": 278077585,
+        "osm_type": "way",
+        "name": "Jachtslot De Mookerheide",
+        "historic": "castle",
+        "wikipedia": "nl:Jachtslot de Mookerheide",
+        "wikidata": "Q2353041",
+        "heritage": "2",
+        "start_date": "1905"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3463262,
+          52.822856
+        ]
+      },
+      "properties": {
+        "osm_id": 278132854,
+        "osm_type": "way",
+        "name": "Oldengaerde",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Oldengaerde",
+        "wikidata": "Q2456717",
+        "start_date": "1717"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3664943,
+          52.8360634
+        ]
+      },
+      "properties": {
+        "osm_id": 278132858,
+        "osm_type": "way",
+        "name": "Westrup",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Westrup (havezate in Dwingeloo)",
+        "wikidata": "Q2573612",
+        "start_date": "1875"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1251498,
+          52.0330048
+        ]
+      },
+      "properties": {
+        "osm_id": 278141087,
+        "osm_type": "way",
+        "name": "Kasteel Heemstede",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Heemstede",
+        "wikidata": "Q579118",
+        "start_date": "1645"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6838906,
+          53.4049311
+        ]
+      },
+      "properties": {
+        "osm_id": 278296097,
+        "osm_type": "way",
+        "name": "Menkemaborg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Menkemaborg",
+        "wikidata": "Q2665541",
+        "website": "https://www.menkemaborg.nl",
+        "heritage": "2",
+        "start_date": "1841"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9253775,
+          50.8885984
+        ]
+      },
+      "properties": {
+        "osm_id": 278384867,
+        "osm_type": "way",
+        "name": "Kasteel Puth",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Puth",
+        "wikidata": "Q2048485",
+        "start_date": "1550"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9151847,
+          50.8804975
+        ]
+      },
+      "properties": {
+        "osm_id": 278385712,
+        "osm_type": "way",
+        "name": "Kasteel Haeren",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Haeren",
+        "wikidata": "Q2047397",
+        "start_date": "1743"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.934344,
+          50.8847172
+        ]
+      },
+      "properties": {
+        "osm_id": 278387798,
+        "osm_type": "way",
+        "name": "Kasteel Cortenbach",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Cortenbach",
+        "wikidata": "Q1735305",
+        "heritage": "2",
+        "start_date": "1776"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9689955,
+          50.8710519
+        ]
+      },
+      "properties": {
+        "osm_id": 278417169,
+        "osm_type": "way",
+        "name": "Huis De Dohm",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1647"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9697001,
+          50.8753504
+        ]
+      },
+      "properties": {
+        "osm_id": 278417297,
+        "osm_type": "way",
+        "name": "Huis Strijthagen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1972"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6463683,
+          53.3534806
+        ]
+      },
+      "properties": {
+        "osm_id": 278492523,
+        "osm_type": "way",
+        "name": "Borg Ewsum",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Ewsum (borg)",
+        "wikidata": "Q2388424",
+        "start_date": "1472"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5873707,
+          51.3811871
+        ]
+      },
+      "properties": {
+        "osm_id": 278621440,
+        "osm_type": "way",
+        "name": "Kasteel Heeze",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Heeze",
+        "wikidata": "Q1895608",
+        "website": "https://www.kasteelheeze.nl/",
+        "heritage": "2",
+        "start_date": "1665"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9823645,
+          52.3742576
+        ]
+      },
+      "properties": {
+        "osm_id": 278812811,
+        "osm_type": "way",
+        "name": "Huis Singraven",
+        "historic": "manor",
+        "castle_type": "stately",
+        "wikipedia": "nl:Singraven",
+        "wikidata": "Q18772557",
+        "start_date": "1381"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5217569,
+          51.5697719
+        ]
+      },
+      "properties": {
+        "osm_id": 278919160,
+        "osm_type": "way",
+        "name": "Kasteel Westhove",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Westhove",
+        "wikidata": "Q2200004",
+        "heritage": "2",
+        "start_date": "1577"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3260465,
+          53.156858
+        ]
+      },
+      "properties": {
+        "osm_id": 279047538,
+        "osm_type": "way",
+        "name": "Iwema Steenhuis",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Iwema-steenhuis",
+        "wikidata": "Q2351867",
+        "start_date": "1960"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3008481,
+          53.1482422
+        ]
+      },
+      "properties": {
+        "osm_id": 279050082,
+        "osm_type": "way",
+        "name": "Coendersborg",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Coendersborg (borg)",
+        "wikidata": "Q2208759",
+        "heritage": "2",
+        "start_date": "1990"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7554321,
+          50.9628893
+        ]
+      },
+      "properties": {
+        "osm_id": 279120201,
+        "osm_type": "way",
+        "name": "Kasteel Stein",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Stein",
+        "wikidata": "Q2268934",
+        "start_date": "1300"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7477794,
+          52.7639691
+        ]
+      },
+      "properties": {
+        "osm_id": 279354420,
+        "osm_type": "way",
+        "name": "De Klencke",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:De Klencke",
+        "wikidata": "Q2615740",
+        "start_date": "1912"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0744193,
+          51.6245687
+        ]
+      },
+      "properties": {
+        "osm_id": 279851464,
+        "osm_type": "way",
+        "name": "Het Witte Kasteel",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Het Witte Kasteel",
+        "wikidata": "Q2548852",
+        "website": "https://hetwittekasteel.nl",
+        "start_date": "1777"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6898668,
+          53.0959148
+        ]
+      },
+      "properties": {
+        "osm_id": 280087923,
+        "osm_type": "way",
+        "name": "Laarwoud",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Laarwoud",
+        "wikidata": "Q1809424",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9497187,
+          50.8894887
+        ]
+      },
+      "properties": {
+        "osm_id": 280275262,
+        "osm_type": "way",
+        "name": "Kasteel Terworm",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Ter Worm",
+        "wikidata": "Q3206226",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9831111,
+          50.8989022
+        ]
+      },
+      "properties": {
+        "osm_id": 280558436,
+        "osm_type": "way",
+        "name": "Kasteel Meezenbroek",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1944479,
+          52.1080963
+        ]
+      },
+      "properties": {
+        "osm_id": 280562027,
+        "osm_type": "way",
+        "name": "Kasteel Reuversweerd",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Reuversweerd",
+        "wikidata": "Q2432205",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8725186,
+          51.8474235
+        ]
+      },
+      "properties": {
+        "osm_id": 280669018,
+        "osm_type": "way",
+        "name": "Belvédère",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0868436,
+          51.5547252
+        ]
+      },
+      "properties": {
+        "osm_id": 280907288,
+        "osm_type": "way",
+        "name": "Paleis-Raadhuis",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Paleis-Raadhuis",
+        "wikidata": "Q2926389",
+        "heritage": "2",
+        "start_date": "1847"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3386438,
+          52.0061855
+        ]
+      },
+      "properties": {
+        "osm_id": 281131947,
+        "osm_type": "way",
+        "name": "Walenburg",
+        "historic": "castle",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8880866,
+          52.0850892
+        ]
+      },
+      "properties": {
+        "osm_id": 281153139,
+        "osm_type": "way",
+        "name": "Kasteel van Woerden",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Woerden",
+        "wikidata": "Q2012324",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9888139,
+          51.9224498
+        ]
+      },
+      "properties": {
+        "osm_id": 281350287,
+        "osm_type": "way",
+        "name": "Huis Loowaard",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikidata": "Q2349735",
+        "start_date": "1878"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.299916,
+          52.0112279
+        ]
+      },
+      "properties": {
+        "osm_id": 281388264,
+        "osm_type": "way",
+        "name": "Weerdesteyn",
+        "historic": "castle",
+        "start_date": "1642"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6978342,
+          52.3592136
+        ]
+      },
+      "properties": {
+        "osm_id": 281635831,
+        "osm_type": "way",
+        "name": "Kasteel De Essenburgh",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Essenburgh",
+        "wikidata": "Q2134378",
+        "start_date": "1955"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.484833,
+          52.1796352
+        ]
+      },
+      "properties": {
+        "osm_id": 281670196,
+        "osm_type": "way",
+        "name": "Oud Poelgeest",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Oud-Poelgeest",
+        "wikidata": "Q18771243",
+        "website": "https://www.kasteeloudpoelgeest.com/",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8961359,
+          51.8896128
+        ]
+      },
+      "properties": {
+        "osm_id": 282379391,
+        "osm_type": "way",
+        "name": "De Kinkelenburg",
+        "historic": "castle",
+        "wikipedia": "nl:De Kinkelenburg",
+        "wikidata": "Q2782816",
+        "heritage": "2",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0419186,
+          52.2616135
+        ]
+      },
+      "properties": {
+        "osm_id": 282563531,
+        "osm_type": "way",
+        "name": "Kasteel Nederhorst",
+        "historic": "castle",
+        "castle_type": "manor",
+        "website": "https://www.kasteelnederhorst.nl",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1224402,
+          52.1935531
+        ]
+      },
+      "properties": {
+        "osm_id": 282619622,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1926"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0364008,
+          52.1401765
+        ]
+      },
+      "properties": {
+        "osm_id": 282958602,
+        "osm_type": "way",
+        "name": "Ridderhofstad Bolenstein",
+        "historic": "castle",
+        "wikidata": "Q1829998",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0547315,
+          50.871409
+        ]
+      },
+      "properties": {
+        "osm_id": 283237834,
+        "osm_type": "way",
+        "name": "Kasteel Erenstein",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Erenstein",
+        "wikidata": "Q1735307",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0330062,
+          50.8847002
+        ]
+      },
+      "properties": {
+        "osm_id": 283482297,
+        "osm_type": "way",
+        "name": "Kasteel Strijthagen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Strijthagen",
+        "wikidata": "Q1699841",
+        "start_date": "1685"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8758052,
+          51.0247318
+        ]
+      },
+      "properties": {
+        "osm_id": 283676467,
+        "osm_type": "way",
+        "name": "Kasteel Millen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Millen",
+        "wikidata": "Q3514531",
+        "start_date": "C15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9674645,
+          52.0960251
+        ]
+      },
+      "properties": {
+        "osm_id": 284092412,
+        "osm_type": "way",
+        "name": "Kasteel Huize Harmelen",
+        "historic": "castle",
+        "start_date": "1415"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7791788,
+          51.0218168
+        ]
+      },
+      "properties": {
+        "osm_id": 284452402,
+        "osm_type": "way",
+        "name": "Kasteel Obbicht",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Obbicht",
+        "wikidata": "Q2186210",
+        "start_date": "1780"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9652105,
+          52.2921308
+        ]
+      },
+      "properties": {
+        "osm_id": 284685097,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "castle_type": "stately",
+        "heritage": "2",
+        "start_date": "1543"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0094394,
+          52.1639842
+        ]
+      },
+      "properties": {
+        "osm_id": 284882713,
+        "osm_type": "way",
+        "name": "Kasteel Nijenrode",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Nijenrode",
+        "wikidata": "Q2281318",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9484962,
+          50.9279823
+        ]
+      },
+      "properties": {
+        "osm_id": 284885882,
+        "osm_type": "way",
+        "name": "Kasteel Passarts-Nieuwenhagen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Passarts-Nieuwenhagen",
+        "wikidata": "Q2427880",
+        "start_date": "1612"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8337571,
+          51.047083
+        ]
+      },
+      "properties": {
+        "osm_id": 285091718,
+        "osm_type": "way",
+        "name": "Kasteel Wolfrath",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Wolfrath",
+        "wikidata": "Q2660998",
+        "start_date": "1628"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8220827,
+          51.0507188
+        ]
+      },
+      "properties": {
+        "osm_id": 285110268,
+        "osm_type": "way",
+        "name": "Huize Holtum",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Huize Holtum",
+        "wikidata": "Q2928005",
+        "start_date": "1633"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.819412,
+          51.022698
+        ]
+      },
+      "properties": {
+        "osm_id": 285116022,
+        "osm_type": "way",
+        "name": "Kasteel Grasbroek",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Grasbroek",
+        "wikidata": "Q11024053",
+        "start_date": "1596"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7385595,
+          52.2854556
+        ]
+      },
+      "properties": {
+        "osm_id": 285537683,
+        "osm_type": "way",
+        "name": "Kasteel Staverden",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Staverden",
+        "wikidata": "Q2274005",
+        "start_date": "1905"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7397953,
+          52.2856618
+        ]
+      },
+      "properties": {
+        "osm_id": 285537686,
+        "osm_type": "way",
+        "name": "Staverden Koetshuis",
+        "historic": "castle",
+        "wikipedia": "nl:Koetshuis (kasteel Staverden)",
+        "wikidata": "Q2306792",
+        "start_date": "1835"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0144963,
+          51.6847841
+        ]
+      },
+      "properties": {
+        "osm_id": 285575093,
+        "osm_type": "way",
+        "name": "Kasteel Zuidewijn",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5648135,
+          52.2720705
+        ]
+      },
+      "properties": {
+        "osm_id": 286112224,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "start_date": "2006"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5239848,
+          52.2494933
+        ]
+      },
+      "properties": {
+        "osm_id": 286115008,
+        "osm_type": "way",
+        "name": "Kasteel Oldenaller",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Oldenaller",
+        "wikidata": "Q2301463",
+        "heritage": "2",
+        "start_date": "1900"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1697412,
+          51.6928815
+        ]
+      },
+      "properties": {
+        "osm_id": 286181796,
+        "osm_type": "way",
+        "name": "Kasteel d'Oultremont",
+        "historic": "castle",
+        "wikidata": "Q2115531",
+        "heritage": "yes",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.64254,
+          51.5339134
+        ]
+      },
+      "properties": {
+        "osm_id": 286268359,
+        "osm_type": "way",
+        "name": "Eyckenlust",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Eikenlust",
+        "wikidata": "Q3250002",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.624883,
+          51.5000479
+        ]
+      },
+      "properties": {
+        "osm_id": 286434119,
+        "osm_type": "way",
+        "name": "Kasteel Croy",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Croy",
+        "wikidata": "Q1918429",
+        "heritage": "2",
+        "start_date": "1430"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0113714,
+          51.1265316
+        ]
+      },
+      "properties": {
+        "osm_id": 286450974,
+        "osm_type": "way",
+        "name": "Kasteel Aerwinkel",
+        "historic": "castle",
+        "wikidata": "Q2485981",
+        "start_date": "1854"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6678087,
+          52.5209442
+        ]
+      },
+      "properties": {
+        "osm_id": 286842912,
+        "osm_type": "way",
+        "name": "Marquette",
+        "historic": "castle",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0735338,
+          51.1502028
+        ]
+      },
+      "properties": {
+        "osm_id": 286860887,
+        "osm_type": "way",
+        "name": "Kasteel Daelenbroeck",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Daelenbroeck",
+        "wikidata": "Q27915910",
+        "start_date": "1707"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8893321,
+          51.5034659
+        ]
+      },
+      "properties": {
+        "osm_id": 286906191,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "wikipedia": "nl:Slot Oostende",
+        "wikidata": "Q2034445",
+        "heritage": "2",
+        "start_date": "1930"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9695829,
+          51.733795
+        ]
+      },
+      "properties": {
+        "osm_id": 287230896,
+        "osm_type": "way",
+        "name": "Kasteel Dussen",
+        "historic": "castle",
+        "website": "https://www.kasteel-dussen.nl",
+        "start_date": "1387"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1617583,
+          52.186682
+        ]
+      },
+      "properties": {
+        "osm_id": 287942550,
+        "osm_type": "way",
+        "name": "Kasteel Nijenbeek",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Nijenbeek",
+        "wikidata": "Q17446446",
+        "website": "https://denijenbeek.nl/",
+        "heritage": "2",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6346602,
+          52.3959651
+        ]
+      },
+      "properties": {
+        "osm_id": 288102377,
+        "osm_type": "way",
+        "name": "Huis ter Kleef",
+        "historic": "castle",
+        "wikipedia": "nl:Huis ter Kleef",
+        "wikidata": "Q2482525",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0734631,
+          53.0597504
+        ]
+      },
+      "properties": {
+        "osm_id": 289236636,
+        "osm_type": "way",
+        "name": "Lyndenstein",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Lyndenstein",
+        "wikidata": "Q18770570",
+        "heritage": "2",
+        "start_date": "1821"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0848217,
+          53.0598132
+        ]
+      },
+      "properties": {
+        "osm_id": 289237191,
+        "osm_type": "way",
+        "name": "Harinxmastate",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Harinxmastate",
+        "wikidata": "Q1585364",
+        "start_date": "1843"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7907971,
+          52.9704591
+        ]
+      },
+      "properties": {
+        "osm_id": 289237620,
+        "osm_type": "way",
+        "name": "Heremastate",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Herema State",
+        "wikidata": "Q4850116",
+        "start_date": "1625"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8527172,
+          51.1880458
+        ]
+      },
+      "properties": {
+        "osm_id": 289244028,
+        "osm_type": "way",
+        "name": "Groot Buggenum",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Kasteel Groot Buggenum",
+        "wikidata": "Q2656074",
+        "start_date": "1889"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9850778,
+          51.2299434
+        ]
+      },
+      "properties": {
+        "osm_id": 289589578,
+        "osm_type": "way",
+        "name": "Huis Malborgh",
+        "historic": "castle",
+        "wikipedia": "nl:Huis Malborgh",
+        "wikidata": "Q17393187",
+        "start_date": "1903"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9542335,
+          51.2316341
+        ]
+      },
+      "properties": {
+        "osm_id": 289592075,
+        "osm_type": "way",
+        "name": "Kasteel Aldenghoor",
+        "historic": "castle",
+        "website": "https://www.kasteelaldenghoor.nl",
+        "start_date": "1400"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0255561,
+          51.2317941
+        ]
+      },
+      "properties": {
+        "osm_id": 290010441,
+        "osm_type": "way",
+        "name": "Kasteel Ouborg",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1300"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0111453,
+          51.1959353
+        ]
+      },
+      "properties": {
+        "osm_id": 290021928,
+        "osm_type": "way",
+        "name": "De Thooren",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Thooren",
+        "wikidata": "Q17439656",
+        "heritage": "2",
+        "start_date": "1400"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4840688,
+          52.2202662
+        ]
+      },
+      "properties": {
+        "osm_id": 290154131,
+        "osm_type": "way",
+        "name": "Boerhaavehuis",
+        "historic": "castle",
+        "castle_type": "stately",
+        "website": "https://www.boerhaavehuis.nl",
+        "heritage": "2",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0340076,
+          51.2215494
+        ]
+      },
+      "properties": {
+        "osm_id": 290214556,
+        "osm_type": "way",
+        "name": "Kasteel Hillenraad",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Hillenraad",
+        "wikidata": "Q1958173",
+        "heritage": "2",
+        "start_date": "1380"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5177671,
+          52.2259365
+        ]
+      },
+      "properties": {
+        "osm_id": 290425729,
+        "osm_type": "way",
+        "name": "Het Oude Koningshuys",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1628"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0231792,
+          51.2062561
+        ]
+      },
+      "properties": {
+        "osm_id": 290553372,
+        "osm_type": "way",
+        "name": "De Tegelarije",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Tegelarije",
+        "wikidata": "Q17439658",
+        "heritage": "2",
+        "start_date": "1652"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1363724,
+          51.3311614
+        ]
+      },
+      "properties": {
+        "osm_id": 290976715,
+        "osm_type": "way",
+        "name": "Kasteel Holtmühle",
+        "historic": "castle",
+        "start_date": "2005"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7210469,
+          52.9583789
+        ]
+      },
+      "properties": {
+        "osm_id": 291133002,
+        "osm_type": "way",
+        "name": "Osingastate",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Osinga State (Langweer)",
+        "wikidata": "Q1964675",
+        "start_date": "1939"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6325266,
+          53.0401805
+        ]
+      },
+      "properties": {
+        "osm_id": 293004395,
+        "osm_type": "way",
+        "name": "Epemastate",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Epemastate",
+        "wikidata": "Q2411780",
+        "start_date": "1625"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7276486,
+          51.8084985
+        ]
+      },
+      "properties": {
+        "osm_id": 294541950,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5127741,
+          52.2029572
+        ]
+      },
+      "properties": {
+        "osm_id": 295664926,
+        "osm_type": "way",
+        "name": "Huys te Warmont",
+        "historic": "castle",
+        "wikipedia": "nl:Huys te Warmont",
+        "wikidata": "Q15635996",
+        "heritage": "2",
+        "start_date": "1790"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6850147,
+          53.1791489
+        ]
+      },
+      "properties": {
+        "osm_id": 295709487,
+        "osm_type": "way",
+        "name": "Langwyck",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Langwijk",
+        "wikidata": "Q17405272",
+        "heritage": "2",
+        "start_date": "1850"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7972929,
+          53.1545772
+        ]
+      },
+      "properties": {
+        "osm_id": 295859689,
+        "osm_type": "way",
+        "name": "Welgelegen",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Welgelegen (veenborg)",
+        "wikidata": "Q2578332",
+        "start_date": "1655"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1116578,
+          51.3424213
+        ]
+      },
+      "properties": {
+        "osm_id": 296239549,
+        "osm_type": "way",
+        "name": "De Berckt",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Berckt",
+        "wikidata": "Q281462",
+        "heritage": "2",
+        "start_date": "1838"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0431515,
+          51.2669247
+        ]
+      },
+      "properties": {
+        "osm_id": 296258218,
+        "osm_type": "way",
+        "name": "Kasteel Nieuwenbroeck",
+        "historic": "castle",
+        "wikidata": "Q2264361",
+        "start_date": "1550"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0613746,
+          51.2561775
+        ]
+      },
+      "properties": {
+        "osm_id": 296263860,
+        "osm_type": "way",
+        "name": "Kasteel Waterloo",
+        "historic": "castle",
+        "wikidata": "Q17604728",
+        "start_date": "1922"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0824156,
+          51.3253502
+        ]
+      },
+      "properties": {
+        "osm_id": 296267659,
+        "osm_type": "way",
+        "name": "Kasteel De Raay",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel De Raay",
+        "wikidata": "Q11721424",
+        "heritage": "2",
+        "start_date": "1236"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0559738,
+          51.2906764
+        ]
+      },
+      "properties": {
+        "osm_id": 296286367,
+        "osm_type": "way",
+        "name": "Kasteel Keverberg",
+        "historic": "castle",
+        "wikidata": "Q2391765",
+        "heritage": "2",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9500533,
+          52.0444064
+        ]
+      },
+      "properties": {
+        "osm_id": 296345090,
+        "osm_type": "way",
+        "name": "Kasteel Montfoort",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Montfoort",
+        "wikidata": "Q4860624",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0973771,
+          52.0371107
+        ]
+      },
+      "properties": {
+        "osm_id": 296606382,
+        "osm_type": "way",
+        "name": "Rijnhuizen",
+        "historic": "castle",
+        "wikidata": "Q17599535",
+        "heritage": "2",
+        "start_date": "1640"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1736598,
+          52.1019777
+        ]
+      },
+      "properties": {
+        "osm_id": 296646350,
+        "osm_type": "way",
+        "name": "Sandwijck",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Sandwijck",
+        "wikidata": "Q17467720",
+        "heritage": "2",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0872762,
+          52.0221197
+        ]
+      },
+      "properties": {
+        "osm_id": 296698401,
+        "osm_type": "way",
+        "name": "Huis Oudegein",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikidata": "Q2697701",
+        "heritage": "2",
+        "start_date": "1875"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7801689,
+          51.7129552
+        ]
+      },
+      "properties": {
+        "osm_id": 296867800,
+        "osm_type": "way",
+        "name": "Kasteel Tongelaar",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Tongelaar",
+        "wikidata": "Q2661747",
+        "heritage": "2",
+        "start_date": "1858"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5002574,
+          51.9094156
+        ]
+      },
+      "properties": {
+        "osm_id": 297956077,
+        "osm_type": "way",
+        "name": "Wijenburg",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1178"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7290773,
+          53.2097085
+        ]
+      },
+      "properties": {
+        "osm_id": 302087773,
+        "osm_type": "way",
+        "name": "Poptaslot",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Poptaslot",
+        "wikidata": "Q2451046",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7290462,
+          53.2098722
+        ]
+      },
+      "properties": {
+        "osm_id": 302087952,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1525"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8858825,
+          50.9325784
+        ]
+      },
+      "properties": {
+        "osm_id": 307765003,
+        "osm_type": "way",
+        "name": "Kasteel Reijmersbeek",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Reijmersbeek",
+        "wikidata": "Q2309837",
+        "start_date": "1210"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1342325,
+          52.0612536
+        ]
+      },
+      "properties": {
+        "osm_id": 360938106,
+        "osm_type": "way",
+        "name": "Gelderse Toren",
+        "historic": "castle",
+        "wikipedia": "nl:Gelderse Toren",
+        "wikidata": "Q2659851"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.568972,
+          53.2208943
+        ]
+      },
+      "properties": {
+        "osm_id": 387662989,
+        "osm_type": "way",
+        "name": "Prinsenhof",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Prinsenhof (Groningen)",
+        "wikidata": "Q2187340",
+        "heritage": "2",
+        "start_date": "1577"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0150897,
+          51.5868189
+        ]
+      },
+      "properties": {
+        "osm_id": 427622524,
+        "osm_type": "way",
+        "name": "Het Bos",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikidata": "Q17443458",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8955792,
+          51.175245
+        ]
+      },
+      "properties": {
+        "osm_id": 448371357,
+        "osm_type": "way",
+        "name": "Kasteel Heel",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1910"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7369721,
+          50.8530494
+        ]
+      },
+      "properties": {
+        "osm_id": 460100966,
+        "osm_type": "way",
+        "name": "Withuishof",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Withuishof",
+        "wikidata": "Q16918260",
+        "start_date": "1750"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7578013,
+          50.9474187
+        ]
+      },
+      "properties": {
+        "osm_id": 476730784,
+        "osm_type": "way",
+        "name": "Kasteel Elsloo",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Elsloo",
+        "wikidata": "Q1735304",
+        "start_date": "1838"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6946486,
+          50.8227033
+        ]
+      },
+      "properties": {
+        "osm_id": 477560106,
+        "osm_type": "way",
+        "name": "Ruïne Lichtenberg",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteelruïne Lichtenberg",
+        "wikidata": "Q2075685",
+        "start_date": "1100"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.392675,
+          52.1312863
+        ]
+      },
+      "properties": {
+        "osm_id": 502612427,
+        "osm_type": "way",
+        "name": "Leusderend",
+        "historic": "castle",
+        "castle_type": "stately",
+        "start_date": "1916"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9182041,
+          50.9165682
+        ]
+      },
+      "properties": {
+        "osm_id": 532673154,
+        "osm_type": "way",
+        "name": "Kasteel Hoensbroek",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Hoensbroek",
+        "wikidata": "Q572230",
+        "website": "https://www.kasteelhoensbroek.nl/",
+        "start_date": "1360"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.999211,
+          51.8940247
+        ]
+      },
+      "properties": {
+        "osm_id": 604437614,
+        "osm_type": "way",
+        "name": "Kasteel Doornenburg",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Doornenburg",
+        "wikidata": "Q2012221",
+        "website": "https://www.kasteeldoornenburg.nl",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1032912,
+          51.9078573
+        ]
+      },
+      "properties": {
+        "osm_id": 635329065,
+        "osm_type": "way",
+        "name": "Camphuysen",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Havezate Camphuysen",
+        "wikidata": "Q2545461"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.730563,
+          50.876117
+        ]
+      },
+      "properties": {
+        "osm_id": 677302199,
+        "osm_type": "way",
+        "name": "Villa Kruisdonk",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Villa Kruisdonk",
+        "wikidata": "Q2189040",
+        "start_date": "1920"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0428128,
+          52.3072234
+        ]
+      },
+      "properties": {
+        "osm_id": 678260767,
+        "osm_type": "way",
+        "name": "Vesting Weesp",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3877534,
+          51.3107276
+        ]
+      },
+      "properties": {
+        "osm_id": 688481318,
+        "osm_type": "way",
+        "name": "Vesting Sluis",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.445335,
+          51.2735848
+        ]
+      },
+      "properties": {
+        "osm_id": 688489615,
+        "osm_type": "way",
+        "name": "Vesting Aardenburg",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0555395,
+          51.5550398
+        ]
+      },
+      "properties": {
+        "osm_id": 766803192,
+        "osm_type": "way",
+        "name": "Kasteel Geijsteren",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Geijsteren",
+        "wikidata": "Q4396005"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7971713,
+          52.7857016
+        ]
+      },
+      "properties": {
+        "osm_id": 834981525,
+        "osm_type": "way",
+        "name": "Slot Schagen",
+        "historic": "castle",
+        "website": "https://www.slothotelschagen.nl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0041799,
+          51.8167434
+        ]
+      },
+      "properties": {
+        "osm_id": 848578313,
+        "osm_type": "way",
+        "name": "Vesting Woudrichem",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.1295647,
+          51.8255703
+        ]
+      },
+      "properties": {
+        "osm_id": 951841757,
+        "osm_type": "way",
+        "name": "Vesting Hellevoetsluis",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8847848,
+          52.0863117
+        ]
+      },
+      "properties": {
+        "osm_id": 952158379,
+        "osm_type": "way",
+        "name": "Vestingwerken in Woerden",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "heritage": "2",
+        "start_date": "1702"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1386596,
+          51.7332431
+        ]
+      },
+      "properties": {
+        "osm_id": 952275900,
+        "osm_type": "way",
+        "name": "Vesting Heusden",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.1648263,
+          51.9038798
+        ]
+      },
+      "properties": {
+        "osm_id": 954217740,
+        "osm_type": "way",
+        "name": "vestingwerken van Brielle",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q17344566",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1165791,
+          52.7867204
+        ]
+      },
+      "properties": {
+        "osm_id": 954414259,
+        "osm_type": "way",
+        "name": "Vesting Steenwijk",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0940555,
+          52.5127123
+        ]
+      },
+      "properties": {
+        "osm_id": 954423940,
+        "osm_type": "way",
+        "name": "Vestingwerken Zwolle",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4383547,
+          51.6925155
+        ]
+      },
+      "properties": {
+        "osm_id": 957698058,
+        "osm_type": "way",
+        "name": "Vestingwerken van Willemstad",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikipedia": "nl:Vestingwerken van Willemstad",
+        "wikidata": "Q1941927",
+        "heritage": "2",
+        "start_date": "1584"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4932943,
+          52.159008
+        ]
+      },
+      "properties": {
+        "osm_id": 958919874,
+        "osm_type": "way",
+        "name": "Vestingwerken van Leiden",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8688368,
+          51.9348444
+        ]
+      },
+      "properties": {
+        "osm_id": 958939005,
+        "osm_type": "way",
+        "name": "Vesting Nieuwpoort",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2502157,
+          51.8123837
+        ]
+      },
+      "properties": {
+        "osm_id": 959119996,
+        "osm_type": "way",
+        "name": "Vesting Zaltbommel",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q17449383",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2202922,
+          51.5324052
+        ]
+      },
+      "properties": {
+        "osm_id": 960073274,
+        "osm_type": "way",
+        "name": "Vesting Tholen",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q17455515",
+        "heritage": "2",
+        "start_date": "1603"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.534802,
+          51.662937
+        ]
+      },
+      "properties": {
+        "osm_id": 960096657,
+        "osm_type": "way",
+        "name": "Vestingwerken van Klundert",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q2372569",
+        "heritage": "2",
+        "start_date": "1588"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9754806,
+          51.830458
+        ]
+      },
+      "properties": {
+        "osm_id": 972697617,
+        "osm_type": "way",
+        "name": "Vesting Gorinchem",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q18767413",
+        "heritage": "2",
+        "start_date": "1609"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0438824,
+          52.0195315
+        ]
+      },
+      "properties": {
+        "osm_id": 986490044,
+        "osm_type": "way",
+        "name": "Vesting IJsselstein",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "start_date": "C15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0542204,
+          51.2806388
+        ]
+      },
+      "properties": {
+        "osm_id": 989234168,
+        "osm_type": "way",
+        "name": "Vesting Hulst",
+        "historic": "castle",
+        "castle_type": "fortress",
+        "wikidata": "Q17406359",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.996778,
+          50.8987728
+        ]
+      },
+      "properties": {
+        "osm_id": 1002447157,
+        "osm_type": "way",
+        "name": "Kasteel",
+        "castle_type": "stately"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3435295,
+          51.96951
+        ]
+      },
+      "properties": {
+        "osm_id": 1101743561,
+        "osm_type": "way",
+        "name": "Kasteel Duurstede",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Duurstede",
+        "wikidata": "Q2478123",
+        "heritage": "2",
+        "start_date": "C13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7545641,
+          51.279896
+        ]
+      },
+      "properties": {
+        "osm_id": 1212991642,
+        "osm_type": "way",
+        "name": "Westbeer",
+        "historic": "castle",
+        "castle_type": "fortress"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4455652,
+          53.2065653
+        ]
+      },
+      "properties": {
+        "osm_id": 1258364328,
+        "osm_type": "way",
+        "name": "Roptastate",
+        "historic": "castle",
+        "castle_type": "manor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8319377,
+          51.9319168
+        ]
+      },
+      "properties": {
+        "osm_id": 1282503591,
+        "osm_type": "way",
+        "name": "Slotgracht voormalig kasteel Liesveld",
+        "historic": "castle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8309886,
+          50.8647227
+        ]
+      },
+      "properties": {
+        "osm_id": 1294976086,
+        "osm_type": "way",
+        "name": "Kasteel Den Halder",
+        "historic": "castle",
+        "wikidata": "Q2611044",
+        "heritage": "2",
+        "start_date": "1635"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7143229,
+          53.4152272
+        ]
+      },
+      "properties": {
+        "osm_id": 1307902405,
+        "osm_type": "way",
+        "name": "Rensumaborg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Rensumaborg",
+        "wikidata": "Q2701421"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2294019,
+          51.7515391
+        ]
+      },
+      "properties": {
+        "osm_id": 2125421,
+        "osm_type": "relation",
+        "name": "Kasteel Ammersoyen",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Kasteel Ammersoyen",
+        "wikidata": "Q2447969",
+        "website": "https://ammersoyen.glk.nl",
+        "start_date": "1305"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2272377,
+          51.9934899
+        ]
+      },
+      "properties": {
+        "osm_id": 3511194,
+        "osm_type": "relation",
+        "name": "Kasteel Keppel",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Kasteel Keppel",
+        "wikidata": "Q2769348",
+        "start_date": "1600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3158975,
+          52.0818819
+        ]
+      },
+      "properties": {
+        "osm_id": 3576907,
+        "osm_type": "relation",
+        "name": "Koninklijke Schouwburg",
+        "historic": "castle",
+        "wikidata": "Q2040000",
+        "start_date": "1804"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.891336,
+          52.3731449
+        ]
+      },
+      "properties": {
+        "osm_id": 3580875,
+        "osm_type": "relation",
+        "name": "Koninklijk Paleis",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Paleis op de Dam",
+        "wikidata": "Q1056152",
+        "website": "https://www.paleisamsterdam.nl/",
+        "start_date": "1655"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3062705,
+          52.0807462
+        ]
+      },
+      "properties": {
+        "osm_id": 3581478,
+        "osm_type": "relation",
+        "name": "Paleis Noordeinde",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Paleis Noordeinde",
+        "wikidata": "Q1889721",
+        "heritage": "2",
+        "start_date": "1512;1814"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.294657,
+          52.0863906
+        ]
+      },
+      "properties": {
+        "osm_id": 3590044,
+        "osm_type": "relation",
+        "name": "Vredespaleis",
+        "historic": "castle",
+        "castle_type": "palace",
+        "wikipedia": "nl:Vredespaleis",
+        "wikidata": "Q834448",
+        "website": "https://www.vredespaleis.nl/",
+        "heritage": "1",
+        "start_date": "1913"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8629182,
+          50.9449255
+        ]
+      },
+      "properties": {
+        "osm_id": 3630024,
+        "osm_type": "relation",
+        "name": "Kasteel Terborgh",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Terborgh",
+        "wikidata": "Q2490034",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8358318,
+          50.7971099
+        ]
+      },
+      "properties": {
+        "osm_id": 3654335,
+        "osm_type": "relation",
+        "name": "Huis De Puthof",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1734"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1657975,
+          51.4619215
+        ]
+      },
+      "properties": {
+        "osm_id": 3658461,
+        "osm_type": "relation",
+        "name": "De Borggraaf",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Borggraaf",
+        "wikidata": "Q2052592",
+        "start_date": "1551"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7287587,
+          50.8112708
+        ]
+      },
+      "properties": {
+        "osm_id": 3658622,
+        "osm_type": "relation",
+        "name": "Kasteel Gronsveld",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Gronsveld",
+        "wikidata": "Q2160483",
+        "start_date": "1594"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0887092,
+          51.5524842
+        ]
+      },
+      "properties": {
+        "osm_id": 3658717,
+        "osm_type": "relation",
+        "name": "Kasteel Well",
+        "historic": "castle",
+        "wikidata": "Q2402442",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2413378,
+          51.874105
+        ]
+      },
+      "properties": {
+        "osm_id": 3669950,
+        "osm_type": "relation",
+        "name": "Kasteel Huis Bergh",
+        "historic": "castle",
+        "wikipedia": "nl:Huis Bergh",
+        "wikidata": "Q17605261",
+        "website": "https://www.huisbergh.nl/",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7218029,
+          50.8713221
+        ]
+      },
+      "properties": {
+        "osm_id": 3678956,
+        "osm_type": "relation",
+        "name": "La Grande Suisse",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:La Grande Suisse",
+        "wikidata": "Q17627396",
+        "start_date": "1733"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.763317,
+          50.8447612
+        ]
+      },
+      "properties": {
+        "osm_id": 3684306,
+        "osm_type": "relation",
+        "name": "Hoeve Sint Antoniusbank",
+        "historic": "castle",
+        "castle_type": "manor",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9741164,
+          50.964341
+        ]
+      },
+      "properties": {
+        "osm_id": 3686740,
+        "osm_type": "relation",
+        "name": "Huis Heyenhoven",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Schinvelder Huuske",
+        "wikidata": "Q2198175",
+        "start_date": "1930"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9172599,
+          50.8847589
+        ]
+      },
+      "properties": {
+        "osm_id": 3699040,
+        "osm_type": "relation",
+        "name": "Hoenshuis",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Hoenshuis",
+        "wikidata": "Q31628874",
+        "start_date": "1812"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.071307,
+          52.3343742
+        ]
+      },
+      "properties": {
+        "osm_id": 3711947,
+        "osm_type": "relation",
+        "name": "Muiderslot",
+        "historic": "castle",
+        "castle_type": "defensive",
+        "wikipedia": "nl:Muiderslot",
+        "wikidata": "Q2426916",
+        "heritage": "2",
+        "start_date": "1285"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9676379,
+          50.8835777
+        ]
+      },
+      "properties": {
+        "osm_id": 3726643,
+        "osm_type": "relation",
+        "name": "Geleenhof",
+        "historic": "castle",
+        "castle_type": "manor",
+        "wikipedia": "nl:Geleenhof",
+        "wikidata": "Q4599486",
+        "start_date": "1688"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8386898,
+          51.0164259
+        ]
+      },
+      "properties": {
+        "osm_id": 3749293,
+        "osm_type": "relation",
+        "name": "Kasteel Limbricht",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Limbricht",
+        "wikidata": "Q2690018",
+        "start_date": "1650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0536154,
+          50.8695675
+        ]
+      },
+      "properties": {
+        "osm_id": 3759527,
+        "osm_type": "relation",
+        "name": "Fletcher Hotel Erenstein",
+        "historic": "castle",
+        "start_date": "1713"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2765508,
+          52.042434
+        ]
+      },
+      "properties": {
+        "osm_id": 3767977,
+        "osm_type": "relation",
+        "name": "Broekbergen",
+        "historic": "castle",
+        "start_date": "1755"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6851576,
+          52.505116
+        ]
+      },
+      "properties": {
+        "osm_id": 3810124,
+        "osm_type": "relation",
+        "name": "Slot Assumburg",
+        "historic": "castle",
+        "castle_type": "stately",
+        "wikipedia": "nl:Slot Assumburg",
+        "wikidata": "Q1967073",
+        "start_date": "1500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9516999,
+          51.2082156
+        ]
+      },
+      "properties": {
+        "osm_id": 3840059,
+        "osm_type": "relation",
+        "name": "Kasteel Horn",
+        "historic": "castle",
+        "wikidata": "Q2214405",
+        "start_date": "1200"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6762971,
+          51.8346339
+        ]
+      },
+      "properties": {
+        "osm_id": 3910740,
+        "osm_type": "relation",
+        "name": "Hernen",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Hernen",
+        "wikidata": "Q4322946",
+        "website": "https://www.glk.nl/82/locatie/?locatie=12",
+        "start_date": "1555"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0996833,
+          51.3294872
+        ]
+      },
+      "properties": {
+        "osm_id": 3940346,
+        "osm_type": "relation",
+        "name": "Kasteel D'Erp",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel d'Erp",
+        "wikidata": "Q2034347",
+        "heritage": "2",
+        "start_date": "1350"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0885889,
+          51.3294392
+        ]
+      },
+      "properties": {
+        "osm_id": 3940348,
+        "osm_type": "relation",
+        "name": "Kasteel Scheres",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Scheres",
+        "wikidata": "Q2235390",
+        "start_date": "1700"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5218972,
+          51.5711079
+        ]
+      },
+      "properties": {
+        "osm_id": 6761983,
+        "osm_type": "relation",
+        "name": "Westhove",
+        "historic": "castle",
+        "heritage": "2",
+        "start_date": "1250"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6531151,
+          51.4771035
+        ]
+      },
+      "properties": {
+        "osm_id": 7122608,
+        "osm_type": "relation",
+        "name": "Kasteel van Helmond",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Helmond",
+        "wikidata": "Q7476033",
+        "heritage": "2",
+        "start_date": "1325"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7905915,
+          50.7806181
+        ]
+      },
+      "properties": {
+        "osm_id": 7242319,
+        "osm_type": "relation",
+        "name": "Kasteel Mheer",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel van Mheer",
+        "wikidata": "Q18775704",
+        "website": "http://www.kasteelmheer.nl",
+        "start_date": "1800"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9538066,
+          52.6792325
+        ]
+      },
+      "properties": {
+        "osm_id": 12582072,
+        "osm_type": "relation",
+        "name": "De Toutenburg",
+        "historic": "castle",
+        "wikipedia": "nl:Kasteel Toutenburg",
+        "wikidata": "Q923705",
+        "website": "https://www.stadvollenhove.nl/index.php/gebouwen/kastelen/de-toutenburg",
+        "heritage": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6812171,
+          51.5540608
+        ]
+      },
+      "properties": {
+        "osm_id": 15045682,
+        "osm_type": "relation",
+        "name": "Kasteel Gemert",
+        "historic": "castle"
+      }
+    }
+  ]
+}

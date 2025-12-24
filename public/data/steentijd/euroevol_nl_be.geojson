@@ -1,0 +1,5123 @@
+{
+  "type": "FeatureCollection",
+  "name": "EUROEVOL Neolithische Sites NL/BE",
+  "source": "EUROEVOL Project (UCL)",
+  "description": "Neolithic archaeological sites from the EUROEVOL database",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aardhorst-Vessem",
+        "id": "S1004",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.29,
+          51.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Abri des Autours",
+        "id": "S1014",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9,
+          50.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "l'Abri sous roche du Chaveau",
+        "id": "S1016",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.88,
+          50.36
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Abri du Pape",
+        "id": "S1017",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.91,
+          50.26
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Abri Lechat",
+        "id": "S1018",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.53,
+          50.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Al Zèpe",
+        "id": "S1051",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.283,
+          50.717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Almere-Hout \\",
+        "id": "S1069",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3,
+          52.34
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Almere-Zenit ",
+        "id": "S1070",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.298,
+          52.398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Amersfoort",
+        "id": "S1078",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3888,
+          52.1566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Angelslo",
+        "id": "S1084",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.93,
+          52.78
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Anloo",
+        "id": "S1086",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.722,
+          53.035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Annertol",
+        "id": "S1088",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.69,
+          53.07
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aven Ackers",
+        "id": "S1168",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.19,
+          51.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bantega",
+        "id": "S1212",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7536,
+          52.8084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Be-45",
+        "id": "S1245",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Be-52",
+        "id": "S1246",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beerzer Belten II",
+        "id": "S1258",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.45,
+          52.52
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beerzer Belten I",
+        "id": "S1259",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.45,
+          52.52
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bennekom",
+        "id": "S1271",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6755,
+          51.9978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bergstoep",
+        "id": "S1275",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.78593,
+          51.9255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bergumermeer S-64A",
+        "id": "S1276",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0081,
+          53.1657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bergumermeer S64-B",
+        "id": "S1277",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0081,
+          53.1657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Best",
+        "id": "S1287",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4,
+          51.51
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Boomkwekerij",
+        "id": "S1336",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4789,
+          51.2544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Borger",
+        "id": "S1337",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.79136,
+          52.9264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Borkel-Achterste Brug",
+        "id": "S1339",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.42,
+          51.28
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bornwerd",
+        "id": "S1341",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.95555,
+          53.3318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bosse de la Tombe",
+        "id": "S1342",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.03,
+          50.38
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bosstraat",
+        "id": "S1343",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.67,
+          50.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brandwijk",
+        "id": "S1357",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.817,
+          51.883
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bronneger",
+        "id": "S1373",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8168,
+          52.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buinen",
+        "id": "S1392",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.83557,
+          52.9318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bunschoten",
+        "id": "S1397",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.36148,
+          52.2291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buurser Veen",
+        "id": "S1405",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.75,
+          52.16
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Canal nr Bronneger",
+        "id": "S1445",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8167,
+          52.9333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Couture de la Chaussée",
+        "id": "S1613",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6861,
+          50.5875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dalfsen-Welsum",
+        "id": "S1665",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2916,
+          52.5224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Eese",
+        "id": "S1674",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1261,
+          52.8494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Hel",
+        "id": "S1675",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.36,
+          50.72
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Leijen",
+        "id": "S1676",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.05,
+          53.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Waag",
+        "id": "S1677",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4667,
+          51.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Denekamp, Klokkenberg",
+        "id": "S1690",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.01,
+          52.37
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dertienhuizen A",
+        "id": "S1697",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.015,
+          52.9405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dertienhuizen B",
+        "id": "S1698",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.015,
+          52.9405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Deventer-Rielerenk",
+        "id": "S1701",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1919,
+          52.2597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Diever",
+        "id": "S1707",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.31774,
+          52.8547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dok",
+        "id": "S1723",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.21,
+          51.26
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dokkum-Jantjeszeepolder",
+        "id": "S1724",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0161,
+          53.3189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Donderen",
+        "id": "S1731",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.55,
+          53.0999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Donk",
+        "id": "S1733",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6039,
+          50.8428
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Donkerbroek",
+        "id": "S1734",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2161,
+          52.9906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Drachtsercompagnie",
+        "id": "S1744",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.14,
+          53.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Drouwenerzand",
+        "id": "S1752",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7894,
+          52.9552
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Duurswoude-Oud Leger",
+        "id": "S1767",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.23,
+          53.0519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Duurswoude",
+        "id": "S1768",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2367,
+          53.0636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ede-Maanderbuurt",
+        "id": "S1777",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6031,
+          52.0303
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ede, Hotel Bosbeek",
+        "id": "S1778",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.666,
+          52.04
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Een",
+        "id": "S1779",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4,
+          53.0667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eersel-Panberg",
+        "id": "S1780",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3167,
+          51.3667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eeserveld",
+        "id": "S1781",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.10492,
+          52.8273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext-Hooidijk",
+        "id": "S1782",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7333,
+          53.0167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext, Bergakkers",
+        "id": "S1783",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7336,
+          53.0161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext, Galgwandenveen",
+        "id": "S1784",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7337,
+          53.0162
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext, Kerkweg",
+        "id": "S1785",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.73,
+          53.02
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext, Ketenberg",
+        "id": "S1786",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7338,
+          53.0163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext, Schaapdijksweg",
+        "id": "S1787",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7339,
+          53.0164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eext",
+        "id": "S1788",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.34,
+          53.0165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eindegoorheide",
+        "id": "S1802",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.96,
+          51.41
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elderslo",
+        "id": "S1817",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.48055,
+          51.8744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elsloo-Tronde",
+        "id": "S1823",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.22,
+          52.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elsloo",
+        "id": "S1824",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.775,
+          50.9486
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Emmen-Angelslo",
+        "id": "S1827",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9309,
+          52.7805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Emmererfscheidenveen",
+        "id": "S1828",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.99986,
+          52.8058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engis",
+        "id": "S1833",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4047,
+          50.5827
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ermelo Romeins Marskamp",
+        "id": "S1844",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6226,
+          52.2981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ermelose Heide",
+        "id": "S1846",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6289,
+          52.3002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Europoort",
+        "id": "S1862",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.11662,
+          51.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Exloerveen",
+        "id": "S1868",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9,
+          52.8667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ferme de l' Hosté",
+        "id": "S1893",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.04,
+          50.51
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Flabaert",
+        "id": "S1910",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.41,
+          51.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fond Chenai",
+        "id": "S1926",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.46,
+          50.66
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gasselte, Boerveen",
+        "id": "S1982",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8533,
+          53.0022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geldrop 3-1",
+        "id": "S1994",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5666,
+          51.4333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geldrop 3-2 East",
+        "id": "S1995",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5666,
+          51.4333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geldrop-Aalsterhut",
+        "id": "S1996",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5,
+          51.39
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geldrop",
+        "id": "S1997",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.554,
+          51.4237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gennep",
+        "id": "S2001",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9728,
+          51.6936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gieten",
+        "id": "S2012",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7636,
+          53.0057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ginkelse Heide",
+        "id": "S2016",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.73333,
+          52.0333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glimmer   ",
+        "id": "S2028",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.63,
+          53.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glimmer Es",
+        "id": "S2029",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.63,
+          53.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gramsbergen I",
+        "id": "S2057",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6833,
+          52.6167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grognon",
+        "id": "S2080",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8667,
+          50.4667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Groningen",
+        "id": "S2082",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.569,
+          53.2147
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grootegast-Niekerk",
+        "id": "S2084",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3694,
+          53.217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grotte de la Martina",
+        "id": "S2133",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.92,
+          50.22
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grotte des Sarrazins",
+        "id": "S2136",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.46,
+          50.37
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grotte du Coléoptère",
+        "id": "S2137",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5333,
+          50.375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Haagakkers",
+        "id": "S2159",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.44,
+          51.56
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Haaksbergen-Hassinkbrink II",
+        "id": "S2160",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.72,
+          52.17
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Haamstede-Brabers",
+        "id": "S2161",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7167,
+          51.6833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Haarlem, Schoterweg",
+        "id": "S2162",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6408,
+          52.3941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Harderwijk, Beekhuizer Zand",
+        "id": "S2186",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.67,
+          52.34
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Harich ",
+        "id": "S2187",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5655,
+          52.9028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hasselt-Gasthuisstraat",
+        "id": "S2193",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0691,
+          52.5642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Haule",
+        "id": "S2196",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3053,
+          53.0364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte-DE-Doeze 1",
+        "id": "S2198",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2206,
+          52.7792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte-DE-Doeze 2",
+        "id": "S2199",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2207,
+          52.7791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte-De-Doeze 3",
+        "id": "S2200",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2208,
+          52.779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte-De-Douze",
+        "id": "S2201",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.22,
+          52.77
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte-Holtingerzand",
+        "id": "S2202",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.23,
+          52.76
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Havelte",
+        "id": "S2203",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.24017,
+          52.7721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hazeputten",
+        "id": "S2209",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.88,
+          51.94
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Heerjansdam",
+        "id": "S2217",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5634,
+          51.8364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hekelingen 1",
+        "id": "S2221",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3419,
+          51.8261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hempens-Waldwei",
+        "id": "S2226",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8307,
+          53.1645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hijken, De Utrecht",
+        "id": "S2235",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.49722,
+          52.8972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hijkerveld",
+        "id": "S2236",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.505,
+          52.912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hof-ten-Damme",
+        "id": "S2245",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.29,
+          51.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hoogeinds Voorhoofd",
+        "id": "S2253",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.97,
+          51.41
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hoogkerk-Ruskenveen",
+        "id": "S2254",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5211,
+          53.2065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HS-16",
+        "id": "S2270",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HS-17",
+        "id": "S2271",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HS-22",
+        "id": "S2272",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HS-30",
+        "id": "S2273",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Huizerhof",
+        "id": "S2276",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.46,
+          51.03
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hulshorst",
+        "id": "S2277",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7325,
+          52.3622
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jardinga",
+        "id": "S2324",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2599,
+          53.01
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jipsingboertange",
+        "id": "S2333",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1,
+          52.96
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kampen Rijksweg 50",
+        "id": "S2353",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9148,
+          52.5588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kapelberg",
+        "id": "S2354",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.35,
+          50.9833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kemmelberg",
+        "id": "S2371",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.81,
+          50.77
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kerkakkers",
+        "id": "S2377",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.52,
+          50.9
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Keuperheide",
+        "id": "S2384",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.99,
+          51.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kielsterachterweg",
+        "id": "S2389",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8103,
+          53.1159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kwadenoord",
+        "id": "S2450",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.73806,
+          51.9936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Irchonwelz \\",
+        "id": "S2474",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.74386,
+          50.6108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Laaghalerveld",
+        "id": "S2576",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5189,
+          52.9341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lageland I",
+        "id": "S2587",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7122,
+          53.2358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Laren, Het Bluk",
+        "id": "S2605",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.22,
+          52.26
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leek-AZC",
+        "id": "S2704",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3635,
+          53.1668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leek-Mensumaweg",
+        "id": "S2706",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.353,
+          53.1797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leffinge",
+        "id": "S2707",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8702,
+          51.1444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leidschendam-Prinsenhof",
+        "id": "S2708",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4003,
+          52.0781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lelystad",
+        "id": "S2710",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4775,
+          52.5097
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lommel-Fabriek",
+        "id": "S2843",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3,
+          51.2333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waremme-Longchamps",
+        "id": "S2846",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.26805,
+          50.7047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Luiksgestel  ",
+        "id": "S2866",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3201,
+          51.2897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Luiksgestel 2",
+        "id": "S2867",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3167,
+          51.2833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lunteren",
+        "id": "S2870",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6205,
+          52.0836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maarheeze",
+        "id": "S2883",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.64,
+          51.2878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maarn de Halm",
+        "id": "S2884",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3737,
+          52.053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mander 1957",
+        "id": "S2920",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.826,
+          52.445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marienberg Overijssel",
+        "id": "S2933",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5736,
+          52.509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marienberg",
+        "id": "S2934",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5743,
+          52.5304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Markelo-Friezenberg",
+        "id": "S2938",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5291,
+          52.2724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marrant",
+        "id": "S2942",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.75,
+          50.93
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mastellebrug",
+        "id": "S2952",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0483,
+          50.5153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meer I, Meirberg",
+        "id": "S2959",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7333,
+          51.4333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meer II, Meirberg",
+        "id": "S2960",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7333,
+          51.4333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meerberg",
+        "id": "S2961",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7358,
+          51.4425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Merselo",
+        "id": "S2975",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9297,
+          51.5297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Midlaren",
+        "id": "S2986",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.671,
+          53.108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Milheeze II",
+        "id": "S2995",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8166,
+          51.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moerkuilen",
+        "id": "S3003",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4926,
+          51.5645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Molenaarsgraaf",
+        "id": "S3006",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.825,
+          51.8767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mont-à-Henry",
+        "id": "S3017",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.25,
+          50.64
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mont-sur-March",
+        "id": "S3020",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.42,
+          50.4
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moordenaarsven",
+        "id": "S3044",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.57,
+          51.32
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nagele Flevoland",
+        "id": "S3086",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7222,
+          52.6444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nederweert -De Banen",
+        "id": "S3101",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.799,
+          51.269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nieuw Dordrecht",
+        "id": "S3127",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.97,
+          52.75
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nieuw-Schoonebeek",
+        "id": "S3128",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9869,
+          52.6462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nijnsel",
+        "id": "S3129",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4848,
+          51.5522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Noordbarge",
+        "id": "S3135",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8886,
+          52.775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "NP-16",
+        "id": "S3156",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Odoorn",
+        "id": "S3174",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.839,
+          52.857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oirschot",
+        "id": "S3186",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3081,
+          51.5019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oldeboorn",
+        "id": "S3191",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8886,
+          53.0569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oldeholtwolde",
+        "id": "S3192",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0097,
+          52.9058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Onstwedder Holte",
+        "id": "S3197",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.05134,
+          53.0583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oostwoud",
+        "id": "S3198",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.09154,
+          52.7258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ottoland, Kromme Ellebog",
+        "id": "S3226",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.87166,
+          51.8918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oudemolen",
+        "id": "S3228",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.64,
+          53.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ourlaine",
+        "id": "S3231",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8,
+          50.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paardsdrank",
+        "id": "S3243",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.96,
+          51.39
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Petit-Spiennes",
+        "id": "S3286",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.97,
+          50.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Place Saint-Lambert",
+        "id": "S3320",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.57,
+          50.64
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Porte Ouverte",
+        "id": "S3362",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6861,
+          50.5875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Posterholt",
+        "id": "S3368",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0321,
+          51.1212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Prinsenveld",
+        "id": "S3386",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.47,
+          51.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Putten, Zuiderveld",
+        "id": "S3397",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6064,
+          52.2725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Raalte-Raan",
+        "id": "S3417",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2876,
+          52.3931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rechteren",
+        "id": "S3443",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2888,
+          52.4965
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rekem",
+        "id": "S3454",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7,
+          50.925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rietveld",
+        "id": "S3472",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5,
+          51.87
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rijkholt ",
+        "id": "S3473",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7311,
+          50.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rotsterhaule",
+        "id": "S3544",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8482,
+          52.8633
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rotterdam-Ijsselmonde",
+        "id": "S3549",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.54594,
+          51.8836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S-51",
+        "id": "S3567",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S-6 ",
+        "id": "S3568",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Scheemda",
+        "id": "S3687",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9297,
+          53.1679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Schuilingsoord",
+        "id": "S3696",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.69875,
+          53.0736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Siegerswoude II",
+        "id": "S3764",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.23333,
+          53.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Siegerswoude I",
+        "id": "S3765",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.23,
+          53.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sint-Andries",
+        "id": "S3773",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.17,
+          51.19
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sint-Donaaskerk",
+        "id": "S3774",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.22,
+          51.2
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sippenfennen",
+        "id": "S3778",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.02,
+          53.24
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sittard",
+        "id": "S3783",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.86912,
+          50.9984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Slochteren",
+        "id": "S3794",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7675,
+          53.2135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Smalle Ee",
+        "id": "S3797",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.02,
+          53.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sonnisse Heide",
+        "id": "S3809",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.36667,
+          51.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "St. Walrick",
+        "id": "S3848",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7936,
+          51.7861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stadskanaal",
+        "id": "S3849",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9017,
+          53.036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Leduc",
+        "id": "S3864",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.67242,
+          50.4708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stein",
+        "id": "S3872",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.78,
+          52
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Strepy, Mons",
+        "id": "S3888",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.017,
+          50.48
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swifterbant-Klingenweg",
+        "id": "S3916",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5618,
+          52.5315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swifterbant",
+        "id": "S3917",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6424,
+          52.5713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Texel-Den-Burg",
+        "id": "S3962",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.79568,
+          53.0557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tietjerk-Lytse Geast",
+        "id": "S3982",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.91,
+          53.213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tilburg-Kraaiven",
+        "id": "S3983",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.06044,
+          51.5824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trou al 'Wesse",
+        "id": "S4034",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2703,
+          50.4522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trou de Frontal",
+        "id": "S4037",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9625,
+          50.2125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trou la Cauche",
+        "id": "S4041",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.76,
+          50.62
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ubbena",
+        "id": "S4065",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.57291,
+          53.045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nieuwe Pekela",
+        "id": "S4069",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.95,
+          53.06
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ulft",
+        "id": "S4070",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4813,
+          51.9258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Urk-E4",
+        "id": "S4084",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6069,
+          52.6302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaassen",
+        "id": "S4097",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.97,
+          52.28
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valkenburg, Geböske",
+        "id": "S4105",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.83,
+          50.86
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valkenburg, Sangen",
+        "id": "S4106",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.83167,
+          50.8644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valthermond-Exloerkijl",
+        "id": "S4110",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9414,
+          52.91
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vasse-De-Steenbrei",
+        "id": "S4120",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.83,
+          52.43
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaux-et-Borset \\",
+        "id": "S4127",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2319,
+          50.6137
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Velzen",
+        "id": "S4130",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.71,
+          52.46
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Verrebroeck",
+        "id": "S4135",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2117,
+          51.2667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vlaardingen",
+        "id": "S4164",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.34,
+          51.91
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vledder",
+        "id": "S4167",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.21,
+          52.8575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vlootbeekdal",
+        "id": "S4168",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.05,
+          51.11
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vm-24",
+        "id": "S4169",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vm-25",
+        "id": "S4170",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vm-38",
+        "id": "S4171",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.58,
+          53.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Voorschoten-Boschgeest",
+        "id": "S4176",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4167,
+          52.1333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wageningen",
+        "id": "S4181",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6622,
+          51.9644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Overhespen",
+        "id": "S4187",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.03,
+          50.79
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wange-Neerhespenveld",
+        "id": "S4188",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.03,
+          50.78
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Warns",
+        "id": "S4203",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4044,
+          52.8822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wartena",
+        "id": "S4204",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8667,
+          53.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waskemeer-West",
+        "id": "S4205",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2814,
+          53.0572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waubach",
+        "id": "S4206",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.05,
+          50.91
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Weerselo-Gammelke",
+        "id": "S4212",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.85,
+          52.32
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Westelbeers",
+        "id": "S4218",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2127,
+          51.4414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wijster",
+        "id": "S4229",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5167,
+          52.8166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wildervank Wv-42",
+        "id": "S4230",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8445,
+          53.0641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wildervank Wv-500",
+        "id": "S4231",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.827,
+          53.0734
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Witrijt",
+        "id": "S4236",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.26503,
+          51.313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Woudbloem",
+        "id": "S4242",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7386,
+          53.2175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wijchen, Het Vormer",
+        "id": "S4244",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.70527,
+          51.8002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zandwerven",
+        "id": "S4271",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9372,
+          52.6933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zonhoven Molenheide",
+        "id": "S4285",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.35,
+          50.9833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zutphen",
+        "id": "S4301",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1952,
+          52.1411
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zwolle",
+        "id": "S4303",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0912,
+          52.5126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zwolle-Hanzeland",
+        "id": "S4304",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0559,
+          52.4747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zwolle-Ittersumallee",
+        "id": "S4305",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0584,
+          52.4625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zwolle-Oude Deventerstraatweg",
+        "id": "S4306",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0712,
+          52.4625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beek",
+        "id": "S4320",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.797,
+          50.939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aubechies \\",
+        "id": "S4346",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.69084,
+          50.5667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Crisnée",
+        "id": "S4348",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.398,
+          50.718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Darion",
+        "id": "S4350",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.18,
+          50.65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geleen-Haesselderveld",
+        "id": "S4367",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.82,
+          50.97
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geleen-Urmonderbaan",
+        "id": "S4368",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.75,
+          50.967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hazendonk",
+        "id": "S4381",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.833,
+          51.867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hollogne-Douze Bonniers",
+        "id": "S4388",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.208,
+          50.667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maastricht-Randwijck",
+        "id": "S4417",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.67,
+          50.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swifterbant S3",
+        "id": "S4469",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.583,
+          52.58
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waremme-Vinâve",
+        "id": "S4499",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.283,
+          50.7
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Boitsfort",
+        "id": "S4553",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.41,
+          50.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barendrecht-Vrijenburg 20-125",
+        "id": "S4636",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.54,
+          51.86
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bergschenhoek",
+        "id": "S4646",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.51,
+          51.99
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Doel-Deurganckdok",
+        "id": "S4700",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.26,
+          51.29
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hardinxveld-Giessendam De Bruin",
+        "id": "S4786",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.85,
+          51.82
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hardinxveld-Giessendam Polderweg",
+        "id": "S4787",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.85,
+          51.82
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hoge Vaart - A27",
+        "id": "S4797",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.33,
+          52.31
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Neufvilles-Le Gué du Plantin",
+        "id": "S4895",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.04,
+          50.57
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oudenaarde",
+        "id": "S4910",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6,
+          50.84
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Schipluiden-Harnaschpolder",
+        "id": "S4982",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.19,
+          52.01
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spiennes \\",
+        "id": "S5002",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.98,
+          50.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Thieusis",
+        "id": "S5027",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.05,
+          50.52
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wateringen 4",
+        "id": "S5061",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.27,
+          52.02
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swifterbant S2",
+        "id": "S5109",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.58,
+          52.5845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zwyndrecht",
+        "id": "S5124",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6163,
+          51.8204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spiennes \\",
+        "id": "S5130",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.986,
+          50.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Avennes",
+        "id": "S7304",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.11782,
+          50.6288
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bosch St.Pietersvoeren",
+        "id": "S7306",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.76,
+          50.75
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Harmignies CBR",
+        "id": "S7307",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.02,
+          50.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jandrain-Jandrenouille",
+        "id": "S7308",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.97969,
+          50.6737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cadier en Keer",
+        "id": "S7314",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.76613,
+          50.8284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mesvin-sans-Pareil",
+        "id": "S7330",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.96079,
+          50.4279
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Obourg ",
+        "id": "S7331",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.00965,
+          50.4733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rullen",
+        "id": "S7336",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.81,
+          50.72
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valkenburg",
+        "id": "S7342",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.83167,
+          50.8644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ormeignies-Blicquy \\",
+        "id": "S7364",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7095,
+          50.5772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grotte Margaux",
+        "id": "S8385",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.88333,
+          50.2167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sclaigneaux",
+        "id": "S8432",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.01667,
+          50.4833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "trou de la Heid",
+        "id": "S8442",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.57475,
+          50.4754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Darion-Colia",
+        "id": "S8513",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.18291,
+          50.6702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hekelingen 3",
+        "id": "S8929",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3349,
+          51.8242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aartswoud",
+        "id": "S8934",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9685,
+          52.7457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Molenkolk I",
+        "id": "S8936",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9814,
+          52.7457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Molenkolk II",
+        "id": "S8937",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9831,
+          52.7474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mienakker",
+        "id": "S8939",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9358,
+          52.7342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Veken",
+        "id": "S8940",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.982,
+          52.713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Portelwoid",
+        "id": "S8941",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9561,
+          52.7395
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ewijk-Ewijkse Veld",
+        "id": "S8942",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.74,
+          51.87
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hellevoetsluis-Ossenhoek",
+        "id": "S8943",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.14,
+          51.83
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barendrecht-Zuidpolder",
+        "id": "S8945",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.66,
+          52.01
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rijswijk-de Schilp",
+        "id": "S8946",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3,
+          52.04
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zeewijk",
+        "id": "S8947",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9395,
+          52.7644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rijswijk-Ypenburg",
+        "id": "S8948",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3651,
+          52.04
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maantjesland",
+        "id": "S8949",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.964,
+          52.749
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kolhorn",
+        "id": "S8950",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.902,
+          52.795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bouwlust",
+        "id": "S8951",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9197,
+          52.8256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Keinsmerbrug",
+        "id": "S8952",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7995,
+          52.8106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Schagen Hoep-Noord",
+        "id": "S8953",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.806,
+          52.792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Deinze Aquafin",
+        "id": "S9076",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5168,
+          50.9832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Doel",
+        "id": "S9080",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2649,
+          51.3103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ename Stuw",
+        "id": "S9085",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6319,
+          50.857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hansbeke Voordestraat",
+        "id": "S9096",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5426,
+          51.0809
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hertsberge",
+        "id": "S9100",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.273,
+          51.1054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kruishoutem",
+        "id": "S9113",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5247,
+          50.9065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pont-de-Bonne \\",
+        "id": "S9144",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.29,
+          50.45
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saeftinge",
+        "id": "S9146",
+        "country": "Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.17,
+          51.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saint-Denijs-Westrem",
+        "id": "S9147",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.66,
+          51.03
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waardamme-Vijvers",
+        "id": "S9167",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.21,
+          51.11
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Place Saint-Hilaire",
+        "id": "S9178",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.87,
+          50.46
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alleur (zones 1-3)",
+        "id": "S9179",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.532,
+          50.6781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alleur \\",
+        "id": "S9180",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5325,
+          50.6812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fexhe-le Haut-Clocher-Podrî l'Cortri",
+        "id": "S9181",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4053,
+          50.6887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Remicourt - Fond de Momalle",
+        "id": "S9182",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3915,
+          50.6925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Remicourt - En Bia Flo II",
+        "id": "S9183",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3773,
+          50.6953
+        ]
+      }
+    }
+  ]
+}
