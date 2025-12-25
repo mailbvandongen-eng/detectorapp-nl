@@ -57,11 +57,13 @@ export function LayerControlPanel() {
               <LayerGroup title="Erfgoed & Monumenten" defaultExpanded={false}>
                 <LayerItem name="Rijksmonumenten" type="overlay" />
                 <LayerItem name="Werelderfgoed" type="overlay" />
-                <LayerItem name="WWII Bunkers" type="overlay" />
               </LayerGroup>
 
-              {/* Verdedigingswerken */}
-              <LayerGroup title="Verdedigingswerken" defaultExpanded={false}>
+              {/* WOII & Militair */}
+              <LayerGroup title="WOII & Militair" defaultExpanded={false}>
+                <LayerItem name="WWII Bunkers" type="overlay" />
+                <LayerItem name="Slagvelden" type="overlay" />
+                <LayerItem name="Militaire Vliegvelden" type="overlay" />
                 <LayerItem name="Verdedigingslinies" type="overlay" />
                 <LayerItem name="Militaire Objecten" type="overlay" />
                 <LayerItem name="Inundatiegebieden" type="overlay" />

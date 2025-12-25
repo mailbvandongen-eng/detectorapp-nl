@@ -407,6 +407,24 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     },
     immediateLoad: false
   },
+
+  // Military layers - WWII related
+  'Slagvelden': {
+    name: 'Slagvelden',
+    factory: async () => {
+      const { createSlagveldenLayerOL } = await import('./slagveldenOL')
+      return createSlagveldenLayerOL()
+    },
+    immediateLoad: false
+  },
+  'Militaire Vliegvelden': {
+    name: 'Militaire Vliegvelden',
+    factory: async () => {
+      const { createVliegveldenLayerOL } = await import('./vliegveldenOL')
+      return createVliegveldenLayerOL()
+    },
+    immediateLoad: false
+  },
 }
 
 // Helper to get all immediate load layers

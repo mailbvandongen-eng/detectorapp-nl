@@ -1,0 +1,160 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.002671,
+          53.1568691
+        ]
+      },
+      "properties": {
+        "id": 1586192471,
+        "type": "node",
+        "name": "Slag bij Heiligerlee (1568)",
+        "description": "",
+        "wikidata": "Q505699",
+        "wikipedia": "nl:Slag bij Heiligerlee (1568)",
+        "date": "",
+        "historic": "battlefield",
+        "name:pl": "Bitwa pod Heiligerlee"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7340235,
+          51.7689439
+        ]
+      },
+      "properties": {
+        "id": 1806164022,
+        "type": "node",
+        "name": "Onbekend",
+        "description": "",
+        "wikidata": "",
+        "wikipedia": "",
+        "date": "",
+        "historic": "battlefield"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7051034,
+          51.5030843
+        ]
+      },
+      "properties": {
+        "id": 2487922902,
+        "type": "node",
+        "name": "Slag om de Sloedam",
+        "description": "",
+        "wikidata": "Q2890604",
+        "wikipedia": "nl:Slag om de Sloedam",
+        "date": "1944-11-01",
+        "historic": "battlefield",
+        "name:en": "Battle of Walcheren Causeway",
+        "name:nl": "Slag om de Sloedam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9659301,
+          51.5683762
+        ]
+      },
+      "properties": {
+        "id": 3734584573,
+        "type": "node",
+        "name": "Overloon",
+        "description": "",
+        "wikidata": "",
+        "wikipedia": "",
+        "date": "",
+        "historic": "battlefield",
+        "source": "Survey"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6559594,
+          50.8728096
+        ]
+      },
+      "properties": {
+        "id": 7113161655,
+        "type": "node",
+        "name": "Slagveld Lanakerveld",
+        "description": "Nederlandse opstand tegen Spanje",
+        "wikidata": "",
+        "wikipedia": "",
+        "date": "1568",
+        "historic": "battlefield",
+        "start_date": "1568"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9116381,
+          51.9748278
+        ]
+      },
+      "properties": {
+        "id": 8770151021,
+        "type": "node",
+        "name": "Slag om Arnhem",
+        "description": "",
+        "wikidata": "Q387093",
+        "wikipedia": "nl:Slag om Arnhem",
+        "date": "",
+        "alt_name": "Operatie Market Garden",
+        "alt_name:de": "Operation Market Garden",
+        "alt_name:en": "Operation Market Garden",
+        "alt_name:nl": "Operatie Market Garden",
+        "historic": "battlefield",
+        "historic:period": "WWII",
+        "name:de": "Schlacht um Arnheim",
+        "name:en": "Battle of Arnhem",
+        "name:nl": "Slag om Arnhem",
+        "wikimedia_commons": "Category:Battle of Arnhem"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0247334,
+          52.8568548
+        ]
+      },
+      "properties": {
+        "id": 696865682,
+        "type": "way",
+        "name": "Blessebrugschans",
+        "description": "",
+        "wikidata": "",
+        "wikipedia": "",
+        "date": "",
+        "historic": "battlefield",
+        "tourism": "attraction"
+      }
+    }
+  ]
+}

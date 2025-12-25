@@ -1,0 +1,200 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3425703,
+          51.4434702
+        ]
+      },
+      "properties": {
+        "id": 46840963,
+        "type": "way",
+        "name": "Vliegbasis Woensdrecht",
+        "description": "",
+        "wikidata": "Q2334993",
+        "wikipedia": "nl:Vliegbasis Woensdrecht",
+        "date": "",
+        "aerodrome:type": "military/public",
+        "aeroway": "aerodrome",
+        "alt_name": "Woensdrecht",
+        "barrier": "fence",
+        "closest_town": "Woensdrecht",
+        "ele": "19.9",
+        "iata": "WOE",
+        "icao": "EHWO",
+        "int_name": "National Air Defence Airport Woensdrecht",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "name:en": "Woensdrecht Air Base",
+        "note": "Vliegbasis Woensdrecht is niet alleen een vliegbasis.Er zitten ook 3 onderdelen voor de hele luchtmacht en Defensie: opleidingen, meteo en logistiek.Naast lesvliegtuigen van de luchtmacht, landen op de vliegbasis geregeld andere vliegtuigen voor onderhoud",
+        "operator": "Ministerie van Defensie",
+        "operator:en": "Royal Netherlands Air Force"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.854684,
+          51.522787
+        ]
+      },
+      "properties": {
+        "id": 431535868,
+        "type": "way",
+        "name": "Luitenant-generaal Bestkazerne",
+        "description": "",
+        "wikidata": "Q2668774",
+        "wikipedia": "nl:Luitenant-generaal Bestkazerne",
+        "date": "",
+        "aeroway": "aerodrome",
+        "alt_name": "Vliegbasis de Peel;De Peel Air Base",
+        "closest_town": "Venray",
+        "disused:aeroway": "aerodrome",
+        "ele": "30",
+        "icao": "EHDP",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "name:en": "Lieutenant General Best Barracks",
+        "old_name": "luchtmachtbasis De Peel",
+        "operator": "Ministerie van Defensie",
+        "operator:en": "Royal Netherlands Army",
+        "source": "wikipedia",
+        "wikipedia:en": "Lieutenant General Best Barracks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7819209,
+          52.9225066
+        ]
+      },
+      "properties": {
+        "id": 940930198,
+        "type": "way",
+        "name": "Maritiem Vliegkamp De Kooy",
+        "description": "",
+        "wikidata": "Q1431193",
+        "wikipedia": "nl:Vliegveld De Kooy",
+        "date": "",
+        "aeroway": "aerodrome",
+        "fixme": "Outline is voor een groot deel nog een kopie van de wettelijke definitie van het militair areaal: deze komt niet overeen met ground-truth.",
+        "iata": "DHR",
+        "icao": "EHKD",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "military_service:-2008": "navy",
+        "old_name:-2008": "Marine Vliegkamp De Kooy",
+        "operator": "Ministerie van Defensie",
+        "short_name": "Vliegkamp De Kooy",
+        "website": "https://www.defensie.nl/organisatie/luchtmacht/vliegbases-en-luchtmachtonderdelen/maritiem-vliegkamp-de-kooy"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9240158,
+          51.5670002
+        ]
+      },
+      "properties": {
+        "id": 946527393,
+        "type": "way",
+        "name": "Vliegbasis Gilze-Rijen",
+        "description": "",
+        "wikidata": "Q1446578",
+        "wikipedia": "nl:Vliegbasis Gilze-Rijen",
+        "date": "",
+        "aeroway": "aerodrome",
+        "closest_town": "Gilze-Rijen",
+        "iata": "GLZ",
+        "icao": "EHGR",
+        "int_name": "ICAO: EHGR",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "name:en": "Gilze-Rijen Air Base",
+        "name:nl": "Vliegbasis Gilze-Rijen",
+        "operator": "Ministerie van Defensie",
+        "operator:en": "Royal Netherlands Air Force",
+        "ref": "N.A.",
+        "source": "wikipedia",
+        "website": "https://www.defensie.nl/organisatie/luchtmacht/vliegbases-en-luchtmachtonderdelen/gilze-rijen"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7043049,
+          51.6571439
+        ]
+      },
+      "properties": {
+        "id": 946556911,
+        "type": "way",
+        "name": "Vliegbasis Volkel",
+        "description": "",
+        "wikidata": "Q2271372",
+        "wikipedia": "nl:Vliegbasis Volkel",
+        "date": "",
+        "aeroway": "aerodrome",
+        "closest_town": "Uden",
+        "ele": "22",
+        "iata": "UDE",
+        "icao": "EHVK",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "name:en": "Volkel Air Base",
+        "operator": "Ministerie van Defensie",
+        "operator:en": "Royal Netherlands Air Force",
+        "source": "wikipedia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8792879,
+          52.0594417
+        ]
+      },
+      "properties": {
+        "id": 1108776260,
+        "type": "way",
+        "name": "Vliegbasis Deelen",
+        "description": "",
+        "wikidata": "Q3027840",
+        "wikipedia": "nl:Vliegbasis Deelen",
+        "date": "",
+        "aerodrome:type": "military",
+        "aeroway": "aerodrome",
+        "ele": "48",
+        "height": "2 m",
+        "icao": "EHDL",
+        "landuse": "military",
+        "military": "airfield",
+        "military_service": "air_force",
+        "name:en": "Deelen Air Base",
+        "operator": "Ministerie van Defensie",
+        "operator:en": "Royal Dutch Air Force"
+      }
+    }
+  ]
+}

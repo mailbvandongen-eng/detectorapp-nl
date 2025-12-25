@@ -53,6 +53,8 @@ export const useLayerStore = create<LayerState>()(
       'Rijksmonumenten': false,
       'Werelderfgoed': false,
       'WWII Bunkers': false,
+      'Slagvelden': false,
+      'Militaire Vliegvelden': false,
       // Verdedigingswerken
       'Verdedigingslinies': false,
       'Inundatiegebieden': false,

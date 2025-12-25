@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search } from 'lucide-react'
+import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLayerStore, useGPSStore } from '../../store'
 
@@ -38,6 +38,14 @@ const ANALYSE_LAYERS = [
   'AMK Monumenten'
 ]
 
+const WOII_LAYERS = [
+  'WWII Bunkers',
+  'Slagvelden',
+  'Militaire Vliegvelden',
+  'Verdedigingslinies',
+  'Militaire Objecten'
+]
+
 // All overlay layers - NL only
 const ALL_OVERLAYS = [
   // Steentijd layers
@@ -54,7 +62,10 @@ const ALL_OVERLAYS = [
   // Erfgoed & Monumenten
   'Rijksmonumenten',
   'Werelderfgoed',
+  // WOII & Militair
   'WWII Bunkers',
+  'Slagvelden',
+  'Militaire Vliegvelden',
   // Verdedigingswerken
   'Verdedigingslinies',
   'Inundatiegebieden',
@@ -202,6 +213,13 @@ export function PresetButtons() {
             >
               <Search size={14} className="text-amber-600" />
               <span className="text-xs text-gray-700">Analyse</span>
+            </button>
+            <button
+              onClick={() => applyPreset(WOII_LAYERS)}
+              className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-red-50 rounded text-left transition-colors border-0 outline-none bg-transparent"
+            >
+              <Target size={14} className="text-red-600" />
+              <span className="text-xs text-gray-700">WOII</span>
             </button>
           </motion.div>
         )}
