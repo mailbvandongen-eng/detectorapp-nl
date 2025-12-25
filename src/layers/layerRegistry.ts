@@ -354,12 +354,36 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: false
   },
 
-  // Fossil layer - NL only
+  // Fossil layers - PBDB data
   'Fossielen Nederland': {
     name: 'Fossielen Nederland',
     factory: async () => {
       const { createFossielenLayerOL } = await import('./fossielenOL')
       return createFossielenLayerOL()
+    },
+    immediateLoad: false
+  },
+  'Fossielen België': {
+    name: 'Fossielen België',
+    factory: async () => {
+      const { createFossielenBelgieLayerOL } = await import('./fossielenBelgieOL')
+      return createFossielenBelgieLayerOL()
+    },
+    immediateLoad: false
+  },
+  'Fossielen Duitsland': {
+    name: 'Fossielen Duitsland',
+    factory: async () => {
+      const { createFossielenDuitslandLayerOL } = await import('./fossielenDuitslandOL')
+      return createFossielenDuitslandLayerOL()
+    },
+    immediateLoad: false
+  },
+  'Fossielen Frankrijk': {
+    name: 'Fossielen Frankrijk',
+    factory: async () => {
+      const { createFossielenFrankrijkLayerOL } = await import('./fossielenFrankrijkOL')
+      return createFossielenFrankrijkLayerOL()
     },
     immediateLoad: false
   },

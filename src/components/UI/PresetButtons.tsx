@@ -87,6 +87,9 @@ const ALL_OVERLAYS = [
   'World Hillshade',
   // Fossil layers
   'Fossielen Nederland',
+  'Fossielen België',
+  'Fossielen Duitsland',
+  'Fossielen Frankrijk',
   // Recreation layers
   'Parken',
   'Speeltuinen',

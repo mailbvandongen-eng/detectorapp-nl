@@ -85,6 +85,9 @@ export const useLayerStore = create<LayerState>()(
       'Bodemkaart': false,
       // Fossielen
       'Fossielen Nederland': false,
+      'Fossielen België': false,
+      'Fossielen Duitsland': false,
+      'Fossielen Frankrijk': false,
       // Recreatie
       'Parken': false,
       'Speeltuinen': false,

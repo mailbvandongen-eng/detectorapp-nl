@@ -108,9 +108,12 @@ export function LayerControlPanel() {
                 <LayerItem name="Bodemkaart" type="overlay" />
               </LayerGroup>
 
-              {/* Fossils - NL only */}
+              {/* Fossils - PBDB data */}
               <LayerGroup title="Fossielen (vondsten)" defaultExpanded={false}>
                 <LayerItem name="Fossielen Nederland" type="overlay" />
+                <LayerItem name="Fossielen België" type="overlay" />
+                <LayerItem name="Fossielen Duitsland" type="overlay" />
+                <LayerItem name="Fossielen Frankrijk" type="overlay" />
               </LayerGroup>
 
               {/* Recreation */}
