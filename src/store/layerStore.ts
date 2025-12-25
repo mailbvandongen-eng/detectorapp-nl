@@ -49,7 +49,6 @@ export const useLayerStore = create<LayerState>()(
       'Kastelen': false,
       'IKAW': false,
       'Archeo Landschappen': false,
-      'Archeo Onderzoeken': false,
       // Erfgoed & Monumenten
       'Rijksmonumenten': false,
       'Werelderfgoed': false,

@@ -51,7 +51,6 @@ export function LayerControlPanel() {
                 <LayerItem name="Kastelen" type="overlay" />
                 <LayerItem name="IKAW" type="overlay" />
                 <LayerItem name="Archeo Landschappen" type="overlay" />
-                <LayerItem name="Archeo Onderzoeken" type="overlay" />
               </LayerGroup>
 
               {/* Erfgoed & Monumenten */}

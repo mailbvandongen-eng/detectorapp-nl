@@ -51,7 +51,6 @@ const ALL_OVERLAYS = [
   'Kastelen',
   'IKAW',
   'Archeo Landschappen',
-  'Archeo Onderzoeken',
   // Erfgoed & Monumenten
   'Rijksmonumenten',
   'Werelderfgoed',
