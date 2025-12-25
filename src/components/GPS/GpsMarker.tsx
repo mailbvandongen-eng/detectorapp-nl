@@ -3,25 +3,15 @@ import { Feature } from 'ol'
 import { Point } from 'ol/geom'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
-import { Style, Fill, Stroke, Icon } from 'ol/style'
+import { Style, Fill, Stroke, Icon, Circle as CircleStyle } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 import { useMapStore, useGPSStore } from '../../store'
 
 // Create arrow SVG for GPS marker - Google Maps style navigation arrow
 function createArrowSVG(color: string = '#4285F4'): string {
-  // Arrow pointing up (north), will be rotated by heading
+  // Simple arrow pointing up (north), will be rotated by heading
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-    <defs>
-      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3"/>
-      </filter>
-    </defs>
-    <polygon points="20,4 32,32 20,26 8,32"
-      fill="${color}"
-      stroke="white"
-      stroke-width="2"
-      stroke-linejoin="round"
-      filter="url(#shadow)"/>
+    <polygon points="20,4 32,32 20,26 8,32" fill="${color}" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
   </svg>`
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg)
 }
