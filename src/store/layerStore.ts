@@ -58,6 +58,10 @@ export const useLayerStore = create<LayerState>()(
       'Rijksmonumenten': false,
       'Werelderfgoed': false,
       'WWII Bunkers': false,
+      // Verdedigingswerken
+      'Verdedigingslinies': false,
+      'Inundatiegebieden': false,
+      'Militaire Objecten': false,
       // Uiterwaarden (UIKAV)
       'UIKAV Punten': false,
       'UIKAV Vlakken': false,
@@ -94,7 +98,10 @@ export const useLayerStore = create<LayerState>()(
       'AHN4 Multi-Hillshade NL': 0.7,
       'AHN4 Helling NL': 0.6,
       'World Hillshade': 0.7,
-      'Terpen': 0.7
+      'Terpen': 0.7,
+      'Verdedigingslinies': 0.7,
+      'Inundatiegebieden': 0.5,
+      'Militaire Objecten': 0.8
     },
 
     // Loading state for lazy-loaded layers

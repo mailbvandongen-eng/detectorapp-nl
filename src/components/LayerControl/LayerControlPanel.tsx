@@ -65,6 +65,13 @@ export function LayerControlPanel() {
                 <LayerItem name="WWII Bunkers" type="overlay" />
               </LayerGroup>
 
+              {/* Verdedigingswerken */}
+              <LayerGroup title="Verdedigingswerken" defaultExpanded={false}>
+                <LayerItem name="Verdedigingslinies" type="overlay" />
+                <LayerItem name="Militaire Objecten" type="overlay" />
+                <LayerItem name="Inundatiegebieden" type="overlay" />
+              </LayerGroup>
+
               {/* Uiterwaarden Layers - renamed */}
               <LayerGroup title="Uiterwaarden (UIKAV)" defaultExpanded={false}>
                 <LayerItem name="UIKAV Punten" type="overlay" />

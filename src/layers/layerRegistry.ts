@@ -102,6 +102,32 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: true
   },
 
+  // RCE Verdedigingswerken (Linies en Stellingen)
+  'Verdedigingslinies': {
+    name: 'Verdedigingslinies',
+    factory: async () => {
+      const { createLiniesLayerOL } = await import('./verdedigingswerkenOL')
+      return createLiniesLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Inundatiegebieden': {
+    name: 'Inundatiegebieden',
+    factory: async () => {
+      const { createInundatiesLayerOL } = await import('./verdedigingswerkenOL')
+      return createInundatiesLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Militaire Objecten': {
+    name: 'Militaire Objecten',
+    factory: async () => {
+      const { createMilitaireObjectenLayerOL } = await import('./verdedigingswerkenOL')
+      return createMilitaireObjectenLayerOL()
+    },
+    immediateLoad: true
+  },
+
   // Hillshade layers - NL only
   'AHN4 Hillshade NL': {
     name: 'AHN4 Hillshade NL',

@@ -61,6 +61,10 @@ const ALL_OVERLAYS = [
   'Rijksmonumenten',
   'Werelderfgoed',
   'WWII Bunkers',
+  // Verdedigingswerken
+  'Verdedigingslinies',
+  'Inundatiegebieden',
+  'Militaire Objecten',
   // UIKAV layers
   'UIKAV Punten',
   'UIKAV Vlakken',
