@@ -10,13 +10,13 @@ export function BackgroundsPanel() {
     <AnimatePresence>
       {backgroundsPanelOpen && (
         <motion.div
-          className="fixed top-2.5 left-12 z-[999] bg-white rounded-lg shadow-lg overflow-hidden w-[200px]"
+          className="fixed top-2.5 left-12 z-[999] bg-white rounded-lg shadow-lg overflow-hidden w-[180px]"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -10 }}
           transition={{ duration: 0.15 }}
         >
-          <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+          <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
             <div className="flex items-center gap-2">
               <Map size={14} />
               <span className="font-medium text-sm">Achtergronden</span>

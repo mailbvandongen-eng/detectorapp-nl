@@ -11,13 +11,13 @@ export function ThemesPanel() {
     <AnimatePresence>
       {themesPanelOpen && (
         <motion.div
-          className="fixed top-2.5 right-2.5 z-[999] bg-white rounded-lg shadow-lg overflow-hidden w-[280px] max-h-[calc(100vh-120px)] flex flex-col"
+          className="fixed top-2.5 right-2.5 z-[999] bg-white rounded-lg shadow-lg overflow-hidden w-[240px] max-h-[calc(100vh-120px)] flex flex-col"
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
           transition={{ duration: 0.15 }}
         >
-          <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+          <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
             <div className="flex items-center gap-2">
               <Sparkles size={14} />
               <span className="font-medium text-sm">Thema's</span>

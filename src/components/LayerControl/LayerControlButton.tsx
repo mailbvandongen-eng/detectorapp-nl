@@ -15,7 +15,7 @@ export function BackgroundsButton() {
         rounded-xl backdrop-blur-sm
         transition-all duration-200
         ${backgroundsPanelOpen
-          ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-lg shadow-emerald-500/30'
+          ? 'bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-lg shadow-blue-500/30'
           : 'bg-white/80 text-gray-500 hover:bg-white/90 shadow-sm'
         }
       `}
@@ -37,13 +37,13 @@ export function ThemesButton() {
   return (
     <motion.button
       className={`
-        fixed top-14 left-2.5 z-[1000]
+        fixed bottom-[85px] md:bottom-[95px] right-2.5 z-[1000]
         w-10 h-10 cursor-pointer border-0 outline-none
         flex items-center justify-center
         rounded-xl backdrop-blur-sm
         transition-all duration-200
         ${themesPanelOpen
-          ? 'bg-gradient-to-br from-purple-400 to-purple-600 text-white shadow-lg shadow-purple-500/30'
+          ? 'bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-lg shadow-blue-500/30'
           : 'bg-white/80 text-gray-500 hover:bg-white/90 shadow-sm'
         }
       `}

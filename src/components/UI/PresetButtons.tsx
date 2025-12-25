@@ -179,8 +179,12 @@ export function PresetButtons() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute bottom-0 left-14 bg-white/95 rounded-xl shadow-lg p-2 min-w-[140px] backdrop-blur-sm"
+            className="absolute bottom-0 left-14 bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[140px] backdrop-blur-sm"
           >
+            <div className="px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-medium">
+              Presets
+            </div>
+            <div className="p-2">
             <button
               onClick={() => applyPreset(DETECTIE_LAYERS)}
               className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-purple-50 rounded text-left transition-colors border-0 outline-none bg-transparent"
@@ -223,6 +227,7 @@ export function PresetButtons() {
               <Target size={14} className="text-red-600" />
               <span className="text-xs text-gray-700">WOII</span>
             </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
