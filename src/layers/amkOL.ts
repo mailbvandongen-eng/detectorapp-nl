@@ -1,6 +1,7 @@
 /**
  * AMK Monumenten Layer for OpenLayers
- * RCE Archeologische Monumentenkaart with 4 value levels
+ * RCE Archeologische Monumentenkaart with full local data (13,010 monumenten)
+ * Data includes: toponiem, kwaliteitswaarde, txt_label, omschrijving
  */
 
 import { Vector as VectorLayer } from 'ol/layer'
@@ -9,23 +10,24 @@ import { Style, Fill, Stroke } from 'ol/style'
 import { loadTopoJSON, parseGeoJSON } from '../utils/layerLoaderOL.js'
 
 // AMK color scheme (RCE official colors)
-const AMK_COLORS = {
-  'Terrein van archeologische waarde': '#c4b5fd',
-  'Terrein van hoge archeologische waarde': '#8b5cf6',
-  'Terrein van zeer hoge archeologische waarde': '#6d28d9',
-  'Terrein van zeer hoge archeologische waarde, beschermd': '#4c1d95'
+// New data uses shortened values without "Terrein van" prefix
+const AMK_COLORS: Record<string, string> = {
+  'archeologische waarde': '#c4b5fd',
+  'hoge archeologische waarde': '#8b5cf6',
+  'zeer hoge archeologische waarde': '#6d28d9'
 }
 
 export async function createAMKLayerOL() {
   try {
-    const geojson = await loadTopoJSON('/detectorapp-nl/data/amk_monumenten.topojson')
+    // Full dataset with all properties (toponiem, omschrijving, etc.)
+    const geojson = await loadTopoJSON('/detectorapp-nl/data/amk_monumenten_full.topojson')
     const features = parseGeoJSON(geojson)
 
     const layer = new VectorLayer({
       title: 'AMK Monumenten',
       source: new VectorSource({ features }),
       style: (feature) => {
-        const waarde = (feature.get('WAARDE') || '').trim()
+        const waarde = (feature.get('kwaliteitswaarde') || '').trim()
         const color = AMK_COLORS[waarde] || '#ddd'
 
         return new Style({

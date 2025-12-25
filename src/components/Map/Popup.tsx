@@ -32,47 +32,26 @@ export function Popup() {
   useEffect(() => {
     if (!map) return
 
-    // Query RCE AMK WMS for richer popup data
-    const queryAMKWMS = async (coordinate: number[]): Promise<string | null> => {
-      try {
-        // Convert to RD New (EPSG:28992)
-        const lonLat = toLonLat(coordinate)
-        const rd = proj4('EPSG:4326', 'EPSG:28992', lonLat)
+    // Format AMK popup from local data (no WMS query needed)
+    const formatAMKPopup = (props: Record<string, any>): string => {
+      let html = `<strong class="text-purple-800">AMK Monument</strong>`
 
-        // Create bbox around click point
-        const buffer = 50
-        const bbox = `${rd[0]-buffer},${rd[1]-buffer},${rd[0]+buffer},${rd[1]+buffer}`
-
-        const url = `https://data.geo.cultureelerfgoed.nl/openbaar/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=Archeologische_Monumentenkaart_2014&QUERY_LAYERS=Archeologische_Monumentenkaart_2014&INFO_FORMAT=application/json&I=50&J=50&WIDTH=100&HEIGHT=100&CRS=EPSG:28992&BBOX=${bbox}`
-
-        const response = await fetch(url)
-        const data = await response.json()
-
-        if (data.features && data.features.length > 0) {
-          const props = data.features[0].properties
-          let html = `<strong class="text-purple-800">AMK Monument</strong>`
-
-          if (props.toponiem) {
-            html += `<br/><span class="text-sm font-semibold">${props.toponiem}</span>`
-          }
-          if (props.kwaliteitswaarde) {
-            html += `<br/><span class="text-sm text-purple-700">${props.kwaliteitswaarde}</span>`
-          }
-          if (props.omschrijving) {
-            html += `<br/><span class="text-xs text-gray-600 mt-1 block">${props.omschrijving}</span>`
-          }
-          if (props.txt_label) {
-            // Shorten long labels
-            const labels = props.txt_label.split(', ').slice(0, 3).join(', ')
-            html += `<br/><span class="text-xs text-gray-500 italic">${labels}${props.txt_label.split(', ').length > 3 ? '...' : ''}</span>`
-          }
-
-          return html
-        }
-      } catch (error) {
-        console.warn('AMK WMS query failed:', error)
+      if (props.toponiem) {
+        html += `<br/><span class="text-sm font-semibold">${props.toponiem}</span>`
       }
-      return null
+      if (props.kwaliteitswaarde) {
+        html += `<br/><span class="text-sm text-purple-700">${props.kwaliteitswaarde}</span>`
+      }
+      if (props.omschrijving) {
+        html += `<br/><span class="text-xs text-gray-600 mt-1 block">${props.omschrijving}</span>`
+      }
+      if (props.txt_label) {
+        // Shorten long labels
+        const labels = props.txt_label.split(', ').slice(0, 3).join(', ')
+        html += `<br/><span class="text-xs text-gray-500 italic">${labels}${props.txt_label.split(', ').length > 3 ? '...' : ''}</span>`
+      }
+
+      return html
     }
 
     // Query WMS layers for feature info
@@ -303,14 +282,12 @@ export function Popup() {
         // Skip geometry property
         const { geometry, ...dataProps } = properties
 
-        // Check if this is an AMK feature - enrich with WMS data
-        if (dataProps.WAARDE && (dataProps.WAARDE.includes('archeologische waarde') || dataProps.WAARDE.includes('Terrein'))) {
-          const amkHtml = await queryAMKWMS(evt.coordinate)
-          if (amkHtml) {
-            setContent(amkHtml)
-            setVisible(true)
-            return
-          }
+        // Check if this is an AMK feature - use local data (no WMS needed)
+        if (dataProps.kwaliteitswaarde && dataProps.kwaliteitswaarde.includes('archeologische waarde')) {
+          const amkHtml = formatAMKPopup(dataProps)
+          setContent(amkHtml)
+          setVisible(true)
+          return
         }
 
         // Try to find a title/name
@@ -320,10 +297,6 @@ export function Popup() {
 
         let html = `<strong>${name}</strong>`
 
-        // AMK: Show WAARDE (archaeological value) - fallback if WMS fails
-        if (dataProps.WAARDE) {
-          html += `<br/><span class="text-sm text-gray-700">${dataProps.WAARDE}</span>`
-        }
 
         // Archis / Kromme Rijn Aardewerk: Show category
         if (dataProps.category) {
