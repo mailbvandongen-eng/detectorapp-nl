@@ -56,8 +56,8 @@ export const useGPSStore = create<GPSState>()(
     firstFix: true,
 
     config: {
-      smoothingFactor: 0.4, // Faster response (60% old, 40% new)
-      minRotationSpeed: 5, // GPS dead-zone: 5° (was 12°)
+      smoothingFactor: 0.2, // Smoother rotation (80% old, 20% new) - reduces jitter
+      minRotationSpeed: 8, // GPS dead-zone: 8° - larger to reduce noise
       centerOnUser: true,
       animationDuration: 100
     },
@@ -155,9 +155,9 @@ export const useGPSStore = create<GPSState>()(
         if (diff < -180) diff += 360
 
         // Dead-zone to prevent jitter
-        // Compass (outdoor stationary): 3° threshold (was 10°)
-        // GPS (outdoor moving): 5° threshold (was 12°)
-        const threshold = source === 'compass' ? 3 : config.minRotationSpeed
+        // Compass (outdoor stationary): 8° threshold (was 3°)
+        // GPS (outdoor moving): 8° threshold
+        const threshold = source === 'compass' ? 8 : config.minRotationSpeed
         if (Math.abs(diff) < threshold) return
 
         // Exponential smoothing

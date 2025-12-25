@@ -65,6 +65,16 @@ const ALL_OVERLAYS = [
   'Verdedigingslinies',
   'Inundatiegebieden',
   'Militaire Objecten',
+  // Paleokaarten
+  'Paleokaart 800 n.Chr.',
+  'Paleokaart 100 n.Chr.',
+  'Paleokaart 500 v.Chr.',
+  'Paleokaart 1500 v.Chr.',
+  'Paleokaart 2750 v.Chr.',
+  'Paleokaart 5500 v.Chr.',
+  'Paleokaart 9000 v.Chr.',
+  // Religieus erfgoed
+  'Religieus Erfgoed',
   // UIKAV layers
   'UIKAV Punten',
   'UIKAV Vlakken',

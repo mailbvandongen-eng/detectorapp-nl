@@ -128,6 +128,74 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: true
   },
 
+  // RCE Paleogeografische kaarten
+  'Paleokaart 800 n.Chr.': {
+    name: 'Paleokaart 800 n.Chr.',
+    factory: async () => {
+      const { createPaleo800ncLayerOL } = await import('./paleokaartOL')
+      return createPaleo800ncLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 100 n.Chr.': {
+    name: 'Paleokaart 100 n.Chr.',
+    factory: async () => {
+      const { createPaleo100ncLayerOL } = await import('./paleokaartOL')
+      return createPaleo100ncLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 500 v.Chr.': {
+    name: 'Paleokaart 500 v.Chr.',
+    factory: async () => {
+      const { createPaleo500vcLayerOL } = await import('./paleokaartOL')
+      return createPaleo500vcLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 1500 v.Chr.': {
+    name: 'Paleokaart 1500 v.Chr.',
+    factory: async () => {
+      const { createPaleo1500vcLayerOL } = await import('./paleokaartOL')
+      return createPaleo1500vcLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 2750 v.Chr.': {
+    name: 'Paleokaart 2750 v.Chr.',
+    factory: async () => {
+      const { createPaleo2750vcLayerOL } = await import('./paleokaartOL')
+      return createPaleo2750vcLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 5500 v.Chr.': {
+    name: 'Paleokaart 5500 v.Chr.',
+    factory: async () => {
+      const { createPaleo5500vcLayerOL } = await import('./paleokaartOL')
+      return createPaleo5500vcLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Paleokaart 9000 v.Chr.': {
+    name: 'Paleokaart 9000 v.Chr.',
+    factory: async () => {
+      const { createPaleo9000vcLayerOL } = await import('./paleokaartOL')
+      return createPaleo9000vcLayerOL()
+    },
+    immediateLoad: true
+  },
+
+  // RCE Religieus Erfgoed
+  'Religieus Erfgoed': {
+    name: 'Religieus Erfgoed',
+    factory: async () => {
+      const { createReligieusErfgoedLayerOL } = await import('./religieusErfgoedOL')
+      return createReligieusErfgoedLayerOL()
+    },
+    immediateLoad: true
+  },
+
   // Hillshade layers - NL only
   'AHN4 Hillshade NL': {
     name: 'AHN4 Hillshade NL',

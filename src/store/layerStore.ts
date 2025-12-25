@@ -62,6 +62,16 @@ export const useLayerStore = create<LayerState>()(
       'Verdedigingslinies': false,
       'Inundatiegebieden': false,
       'Militaire Objecten': false,
+      // Paleogeografische kaarten
+      'Paleokaart 800 n.Chr.': false,
+      'Paleokaart 100 n.Chr.': false,
+      'Paleokaart 500 v.Chr.': false,
+      'Paleokaart 1500 v.Chr.': false,
+      'Paleokaart 2750 v.Chr.': false,
+      'Paleokaart 5500 v.Chr.': false,
+      'Paleokaart 9000 v.Chr.': false,
+      // Religieus erfgoed
+      'Religieus Erfgoed': false,
       // Uiterwaarden (UIKAV)
       'UIKAV Punten': false,
       'UIKAV Vlakken': false,
@@ -101,7 +111,15 @@ export const useLayerStore = create<LayerState>()(
       'Terpen': 0.7,
       'Verdedigingslinies': 0.7,
       'Inundatiegebieden': 0.5,
-      'Militaire Objecten': 0.8
+      'Militaire Objecten': 0.8,
+      'Paleokaart 800 n.Chr.': 0.7,
+      'Paleokaart 100 n.Chr.': 0.7,
+      'Paleokaart 500 v.Chr.': 0.7,
+      'Paleokaart 1500 v.Chr.': 0.7,
+      'Paleokaart 2750 v.Chr.': 0.7,
+      'Paleokaart 5500 v.Chr.': 0.7,
+      'Paleokaart 9000 v.Chr.': 0.7,
+      'Religieus Erfgoed': 0.8
     },
 
     // Loading state for lazy-loaded layers

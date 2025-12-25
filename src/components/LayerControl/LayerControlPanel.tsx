@@ -72,6 +72,22 @@ export function LayerControlPanel() {
                 <LayerItem name="Inundatiegebieden" type="overlay" />
               </LayerGroup>
 
+              {/* Paleogeografische kaarten */}
+              <LayerGroup title="Paleokaarten (tijdreizen)" defaultExpanded={false}>
+                <LayerItem name="Paleokaart 800 n.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 100 n.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 500 v.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 1500 v.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 2750 v.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 5500 v.Chr." type="overlay" />
+                <LayerItem name="Paleokaart 9000 v.Chr." type="overlay" />
+              </LayerGroup>
+
+              {/* Religieus erfgoed */}
+              <LayerGroup title="Religieus Erfgoed" defaultExpanded={false}>
+                <LayerItem name="Religieus Erfgoed" type="overlay" />
+              </LayerGroup>
+
               {/* Uiterwaarden Layers - renamed */}
               <LayerGroup title="Uiterwaarden (UIKAV)" defaultExpanded={false}>
                 <LayerItem name="UIKAV Punten" type="overlay" />

@@ -1,20 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { Feature } from 'ol'
 import { Point } from 'ol/geom'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
-import { Style, Fill, Stroke, Icon, Circle as CircleStyle } from 'ol/style'
+import { Style, Fill, Icon, Circle as CircleStyle } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 import { useMapStore, useGPSStore } from '../../store'
 
-// Create arrow SVG for GPS marker - Google Maps style navigation arrow
-function createArrowSVG(color: string = '#4285F4'): string {
-  // Simple arrow pointing up (north), will be rotated by heading
+// Pre-create arrow SVG data URL (only once)
+const ARROW_SVG = (() => {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-    <polygon points="20,4 32,32 20,26 8,32" fill="${color}" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+    <polygon points="20,4 32,32 20,26 8,32" fill="#4285F4" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
   </svg>`
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg)
-}
+})()
 
 export function GpsMarker() {
   const map = useMapStore(state => state.map)
@@ -32,6 +31,18 @@ export function GpsMarker() {
   const markerRef = useRef<Feature | null>(null)
   const accuracyRef = useRef<Feature | null>(null)
   const layerRef = useRef<VectorLayer<VectorSource> | null>(null)
+  const lastRotationRef = useRef<number>(0) // Track last rotation to reduce jitter
+
+  // Create initial arrow style (memoized)
+  const initialArrowStyle = useMemo(() => new Style({
+    image: new Icon({
+      src: ARROW_SVG,
+      scale: 1,
+      rotation: 0,
+      rotateWithView: false,
+      anchor: [0.5, 0.5]
+    })
+  }), [])
 
   // Initialize GPS marker layer
   useEffect(() => {
@@ -46,9 +57,10 @@ export function GpsMarker() {
     markerRef.current = new Feature({
       geometry: new Point(defaultCoords)
     })
-    // Arrow style will be set in the heading update effect
+    // Set initial arrow style immediately to prevent flickering
+    markerRef.current.setStyle(initialArrowStyle)
 
-    // Accuracy circle
+    // Accuracy circle (no border, just fill)
     accuracyRef.current = new Feature({
       geometry: new Point(defaultCoords)
     })
@@ -69,7 +81,7 @@ export function GpsMarker() {
         map.removeLayer(layerRef.current)
       }
     }
-  }, [map, tracking, position])
+  }, [map, tracking, position, initialArrowStyle])
 
   // Update position
   useEffect(() => {
@@ -81,7 +93,7 @@ export function GpsMarker() {
     markerRef.current.getGeometry()?.setCoordinates(coords)
     accuracyRef.current.getGeometry()?.setCoordinates(coords)
 
-    // Update accuracy circle
+    // Update accuracy circle (transparent border - only soft fill)
     if (accuracy) {
       const metersPerPixel = map.getView().getResolution() || 1
       const accuracyRadius = accuracy / metersPerPixel
@@ -90,8 +102,8 @@ export function GpsMarker() {
         new Style({
           image: new CircleStyle({
             radius: Math.min(accuracyRadius, 100),
-            fill: new Fill({ color: 'rgba(66, 133, 244, 0.15)' }),
-            stroke: new Stroke({ color: '#4285f4', width: 2 })
+            fill: new Fill({ color: 'rgba(66, 133, 244, 0.1)' })
+            // No stroke - transparent border
           })
         })
       )
@@ -132,11 +144,24 @@ export function GpsMarker() {
       arrowRotation = -mapRotation
     }
 
+    // Dead-zone: only update if rotation changed more than 5 degrees (reduces jitter)
+    const ROTATION_THRESHOLD = (5 * Math.PI) / 180 // 5 degrees in radians
+    let diff = arrowRotation - lastRotationRef.current
+    // Handle wrap-around
+    if (diff > Math.PI) diff -= 2 * Math.PI
+    if (diff < -Math.PI) diff += 2 * Math.PI
+
+    if (Math.abs(diff) < ROTATION_THRESHOLD) {
+      return // Skip update if change is too small
+    }
+
+    lastRotationRef.current = arrowRotation
+
     // Set arrow style with rotation
     markerRef.current.setStyle(
       new Style({
         image: new Icon({
-          src: createArrowSVG('#4285F4'),
+          src: ARROW_SVG,
           scale: 1,
           rotation: arrowRotation,
           rotateWithView: false, // We handle rotation ourselves
