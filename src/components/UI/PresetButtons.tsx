@@ -48,6 +48,8 @@ const WOII_LAYERS = [
 
 // All overlay layers - NL only
 const ALL_OVERLAYS = [
+  // Labels overlay (for hybrid map)
+  'Labels Overlay',
   // Steentijd layers
   'Hunebedden',
   'FAMKE Steentijd',

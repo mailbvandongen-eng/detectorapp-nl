@@ -32,6 +32,7 @@ export function LayerControlPanel() {
                 <LayerItem name="CartoDB (licht)" type="base" />
                 <LayerItem name="OpenStreetMap" type="base" />
                 <LayerItem name="Luchtfoto (PDOK)" type="base" />
+                <LayerItem name="Labels Overlay" type="overlay" />
                 <LayerItem name="TMK 1850" type="base" />
                 <LayerItem name="Bonnebladen 1900" type="base" />
               </LayerGroup>

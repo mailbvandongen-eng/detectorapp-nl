@@ -36,6 +36,7 @@ export const useLayerStore = create<LayerState>()(
       'CartoDB (licht)': true,
       'OpenStreetMap': false,
       'Luchtfoto (PDOK)': false,
+      'Labels Overlay': false,
       'TMK 1850': false,
       'Bonnebladen 1900': false,
       // Steentijd

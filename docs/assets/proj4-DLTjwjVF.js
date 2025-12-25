@@ -1,0 +1,2 @@
+import{P as c,Q as m,R as g,U as j,W as P,Y as u,Z as l}from"./index-DTvnJoZQ.js";function C(n){const r=Object.keys(n.defs),d=r.length;let o,a;for(o=0;o<d;++o){const s=r[o];if(!c(s)){const e=n.defs(s);let t=e.units;!t&&e.projName==="longlat"&&(t="degrees"),m(new g({code:s,axisOrientation:e.axis,metersPerUnit:e.to_meter,units:t}))}}for(o=0;o<d;++o){const s=r[o],e=c(s);for(a=0;a<d;++a){const t=r[a],i=c(t);if(!j(s,t))if(n.defs[s]===n.defs[t])P([e,i]);else{const f=n(s,t);u(e,i,l(e,i,f.forward),l(i,e,f.inverse))}}}}export{C as r};
+//# sourceMappingURL=proj4-DLTjwjVF.js.map

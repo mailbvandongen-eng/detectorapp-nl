@@ -43,9 +43,22 @@ export function MapContainer() {
       properties: { title: 'Luchtfoto (PDOK)', type: 'base' },
       visible: false,
       source: new XYZ({
-        url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{z}/{x}/{y}.jpeg',
-        attributions: '© Kadaster / PDOK'
+        url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg',
+        attributions: '© Kadaster / PDOK',
+        maxZoom: 19
       })
+    })
+
+    // CartoDB labels overlay (for hybrid satellite + labels)
+    const labelsLayer = new TileLayer({
+      properties: { title: 'Labels Overlay', type: 'overlay' },
+      visible: false,
+      source: new XYZ({
+        url: 'https://{a-d}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png',
+        attributions: '© OpenStreetMap contributors © CARTO',
+        maxZoom: 20
+      }),
+      zIndex: 100 // Above satellite, below vector layers
     })
 
     // Historical map layers from Map5.nl (XYZ tiles in Web Mercator)
@@ -76,6 +89,7 @@ export function MapContainer() {
     map.addLayer(osmLayer)
     map.addLayer(cartoDBLayer)
     map.addLayer(satelliteLayer)
+    map.addLayer(labelsLayer) // Labels overlay for hybrid map
     map.addLayer(tmk1850Layer)
     map.addLayer(bonne1900Layer)
     console.log('✅ Base layers added:', {
@@ -88,6 +102,7 @@ export function MapContainer() {
     registerLayer('OpenStreetMap', osmLayer)
     registerLayer('CartoDB (licht)', cartoDBLayer)
     registerLayer('Luchtfoto (PDOK)', satelliteLayer)
+    registerLayer('Labels Overlay', labelsLayer)
     registerLayer('TMK 1850', tmk1850Layer)
     registerLayer('Bonnebladen 1900', bonne1900Layer)
 
