@@ -1,0 +1,6 @@
+name = "ahn-height"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+PDOK_WMS_URL = "https://service.pdok.nl/rws/ahn/wms/v1_0"

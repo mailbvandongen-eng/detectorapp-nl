@@ -234,3 +234,51 @@ export function createWerelderfgoedLayerOL() {
 
   return layer
 }
+
+// ============================================
+// Percelen - Kadaster & Landbouw
+// ============================================
+
+// BRP Gewaspercelen - 700.000 landbouwpercelen met gewastype
+export function createBRPGewaspercelenLayerOL() {
+  const layer = new TileLayer({
+    properties: { title: 'BRP Gewaspercelen', type: 'wms' },
+    visible: false,
+    opacity: 0.6,
+    source: new TileWMS({
+      url: 'https://service.pdok.nl/rvo/brpgewaspercelen/wms/v1_0',
+      params: {
+        'LAYERS': 'brpgewaspercelen',
+        'STYLES': '',
+        'TILED': true,
+        'FORMAT': 'image/png'
+      },
+      serverType: 'geoserver',
+      crossOrigin: 'anonymous'
+    })
+  })
+
+  return layer
+}
+
+// Kadastrale Kaart - perceelgrenzen
+export function createKadastraleKaartLayerOL() {
+  const layer = new TileLayer({
+    properties: { title: 'Kadastrale Grenzen', type: 'wms' },
+    visible: false,
+    opacity: 0.7,
+    source: new TileWMS({
+      url: 'https://service.pdok.nl/kadaster/kadastralekaart/wms/v5_0',
+      params: {
+        'LAYERS': 'Perceel,OpenbareRuimteNaam,Bebouwing',
+        'STYLES': '',
+        'TILED': true,
+        'FORMAT': 'image/png'
+      },
+      serverType: 'geoserver',
+      crossOrigin: 'anonymous'
+    })
+  })
+
+  return layer
+}

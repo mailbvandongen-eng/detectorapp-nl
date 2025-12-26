@@ -97,7 +97,10 @@ export const useLayerStore = create<LayerState>()(
       'Parken': false,
       'Speeltuinen': false,
       'Musea': false,
-      'Strandjes': false
+      'Strandjes': false,
+      // Percelen (Kadaster & Landbouw)
+      'BRP Gewaspercelen': false,
+      'Kadastrale Grenzen': false
     },
 
     // Initial opacity state
@@ -122,7 +125,10 @@ export const useLayerStore = create<LayerState>()(
       'Paleokaart 2750 v.Chr.': 0.7,
       'Paleokaart 5500 v.Chr.': 0.7,
       'Paleokaart 9000 v.Chr.': 0.7,
-      'Religieus Erfgoed': 0.8
+      'Religieus Erfgoed': 0.8,
+      // Percelen
+      'BRP Gewaspercelen': 0.6,
+      'Kadastrale Grenzen': 0.7
     },
 
     // Loading state for lazy-loaded layers

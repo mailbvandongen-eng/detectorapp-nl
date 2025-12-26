@@ -112,7 +112,10 @@ const ALL_OVERLAYS = [
   'Parken',
   'Speeltuinen',
   'Musea',
-  'Strandjes'
+  'Strandjes',
+  // Percelen
+  'BRP Gewaspercelen',
+  'Kadastrale Grenzen'
 ]
 
 // Base layers

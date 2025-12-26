@@ -118,6 +118,12 @@ export function ThemesPanel() {
                 <LayerItem name="Bodemkaart" type="overlay" />
               </LayerGroup>
 
+              {/* Percelen - Kadaster & Landbouw */}
+              <LayerGroup title="Percelen" defaultExpanded={false}>
+                <LayerItem name="BRP Gewaspercelen" type="overlay" />
+                <LayerItem name="Kadastrale Grenzen" type="overlay" />
+              </LayerGroup>
+
               {/* Fossils */}
               <LayerGroup title="Fossielen (vondsten)" defaultExpanded={false}>
                 <LayerItem name="Fossielen Nederland" type="overlay" />

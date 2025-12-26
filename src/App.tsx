@@ -18,12 +18,14 @@ import { NavigationBar } from './components/Navigation/NavigationBar'
 import { useDeviceOrientation } from './hooks/useDeviceOrientation'
 import { useMapRotation } from './hooks/useMapRotation'
 import { useNavigation } from './hooks/useNavigation'
+import { useDynamicAHN } from './hooks/useDynamicAHN'
 
 function App() {
   // Initialize hooks
   useDeviceOrientation()
   useMapRotation()
   useNavigation()
+  useDynamicAHN()
 
   return (
     <>

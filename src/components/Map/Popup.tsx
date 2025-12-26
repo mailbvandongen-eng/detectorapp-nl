@@ -11,6 +11,38 @@ import type { MapBrowserEvent } from 'ol'
 // Register RD New projection
 proj4.defs('EPSG:28992', '+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs')
 
+// AHN hoogte query - direct via WMS GetFeatureInfo
+async function queryAHNHeight(coordinate: number[]): Promise<number | null> {
+  try {
+    const lonLat = toLonLat(coordinate)
+    const rd = proj4('EPSG:4326', 'EPSG:28992', lonLat)
+
+    // Check if within Netherlands bounds
+    if (rd[0] < 7000 || rd[0] > 300000 || rd[1] < 289000 || rd[1] > 629000) {
+      return null
+    }
+
+    const buffer = 1 // 1m buffer
+    const bbox = `${rd[0]-buffer},${rd[1]-buffer},${rd[0]+buffer},${rd[1]+buffer}`
+
+    const url = `https://service.pdok.nl/rws/ahn/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=dtm_05m&QUERY_LAYERS=dtm_05m&INFO_FORMAT=application/json&CRS=EPSG:28992&BBOX=${bbox}&WIDTH=1&HEIGHT=1&I=0&J=0`
+
+    const response = await fetch(url)
+    const data = await response.json()
+
+    if (data.features && data.features.length > 0) {
+      // AHN returns GRAY_INDEX as elevation in meters NAP
+      const height = data.features[0].properties?.GRAY_INDEX
+      if (typeof height === 'number' && !isNaN(height)) {
+        return height
+      }
+    }
+  } catch (error) {
+    console.warn('AHN height query failed:', error)
+  }
+  return null
+}
+
 // IKAW trefkans waarden
 const IKAW_VALUES: Record<number, string> = {
   1: 'Zeer lage trefkans op archeologische resten',
@@ -274,6 +306,9 @@ export function Popup() {
 
     // Handle map clicks
     const handleClick = async (evt: MapBrowserEvent<any>) => {
+      // Query AHN height in parallel with feature lookup
+      const heightPromise = queryAHNHeight(evt.coordinate)
+
       const feature = map.forEachFeatureAtPixel(evt.pixel, f => f)
 
       if (feature) {
@@ -605,15 +640,39 @@ export function Popup() {
           html += `<br/><span class="text-sm text-gray-600">${description}</span>`
         }
 
+        // Add AHN height if available
+        const height = await heightPromise
+        if (height !== null) {
+          html += `<br/><div class="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1">
+            <span class="text-xs text-gray-400">Hoogte:</span>
+            <span class="text-sm font-medium text-blue-600">${height.toFixed(2)} m NAP</span>
+          </div>`
+        }
+
         setContent(html)
         setVisible(true)
       } else {
         // No vector feature found - try WMS GetFeatureInfo
         const viewResolution = map.getView().getResolution() || 1
         const wmsHtml = await queryWMSLayers(evt.coordinate, viewResolution)
+        const height = await heightPromise
 
-        if (wmsHtml) {
-          setContent(wmsHtml)
+        if (wmsHtml || height !== null) {
+          let html = wmsHtml || ''
+
+          // Add AHN height
+          if (height !== null) {
+            if (!html) {
+              // If no other info, show height as main content
+              html = `<strong class="text-blue-800">Terrein</strong>`
+            }
+            html += `<br/><div class="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1">
+              <span class="text-xs text-gray-400">Hoogte:</span>
+              <span class="text-sm font-medium text-blue-600">${height.toFixed(2)} m NAP</span>
+            </div>`
+          }
+
+          setContent(html)
           setVisible(true)
         }
       }

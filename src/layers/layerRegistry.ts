@@ -230,6 +230,24 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: true
   },
 
+  // Percelen - Kadaster & Landbouw
+  'BRP Gewaspercelen': {
+    name: 'BRP Gewaspercelen',
+    factory: async () => {
+      const { createBRPGewaspercelenLayerOL } = await import('./pdokWMSLayers')
+      return createBRPGewaspercelenLayerOL()
+    },
+    immediateLoad: true
+  },
+  'Kadastrale Grenzen': {
+    name: 'Kadastrale Grenzen',
+    factory: async () => {
+      const { createKadastraleKaartLayerOL } = await import('./pdokWMSLayers')
+      return createKadastraleKaartLayerOL()
+    },
+    immediateLoad: true
+  },
+
   // ============================================
   // LAZY LOAD - Vector layers
   // These are only loaded when first toggled on
