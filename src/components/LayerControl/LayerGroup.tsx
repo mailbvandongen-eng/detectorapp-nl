@@ -34,33 +34,7 @@ export function LayerGroup({ title, children, defaultExpanded = true, layerNames
 
   return (
     <div className="mb-0.5">
-      <div className="flex items-center gap-1 py-1 px-1 hover:bg-blue-100 transition-colors">
-        {/* Group checkbox - toggle all layers */}
-        {layerNames && layerNames.length > 0 && (
-          <button
-            onClick={toggleAllLayers}
-            className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-colors ${
-              allActive
-                ? 'bg-blue-500 border-blue-500'
-                : someActive
-                  ? 'bg-blue-200 border-blue-400'
-                  : 'bg-white border-gray-300'
-            }`}
-          >
-            {(allActive || someActive) && (
-              <svg width="10" height="10" viewBox="0 0 10 10" className="text-white">
-                <path
-                  d="M2 5 L4 7 L8 3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </button>
-        )}
+      <div className="flex items-center gap-1 py-1 px-1 hover:bg-blue-50 transition-colors">
         <button
           onClick={() => setExpanded(!expanded)}
           className="flex-1 flex items-center gap-1 bg-transparent border-0 outline-none text-left"
@@ -78,13 +52,38 @@ export function LayerGroup({ title, children, defaultExpanded = true, layerNames
             <Folder size={16} className="text-blue-500" />
           )}
           <span className="text-sm text-gray-700 font-medium">{title}</span>
-          {/* Active layers indicator - show when collapsed and has active layers */}
-          {!expanded && activeCount > 0 && (
-            <span className="ml-auto mr-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-500 text-white rounded-full">
+          {/* Active layers count - always visible when has active layers */}
+          {activeCount > 0 && (
+            <span className="ml-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-100 text-blue-600 rounded-full">
               {activeCount}
             </span>
           )}
         </button>
+        {/* Group checkbox - toggle all layers, right side, same style as LayerItem */}
+        {layerNames && layerNames.length > 0 && (
+          <button
+            onClick={toggleAllLayers}
+            className="w-4 h-4 rounded-sm flex items-center justify-center transition-all duration-100 flex-shrink-0"
+            style={{
+              backgroundColor: allActive ? '#3b82f6' : someActive ? '#93c5fd' : 'white',
+              border: allActive ? '2px solid #3b82f6' : someActive ? '2px solid #60a5fa' : '2px solid #60a5fa',
+              color: 'white'
+            }}
+          >
+            {(allActive || someActive) && (
+              <svg width="10" height="10" viewBox="0 0 10 10">
+                <path
+                  d="M2 5 L4 7 L8 3"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </button>
+        )}
       </div>
 
       <AnimatePresence initial={false}>

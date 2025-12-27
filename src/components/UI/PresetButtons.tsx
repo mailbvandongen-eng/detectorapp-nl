@@ -96,19 +96,19 @@ export function PresetButtons() {
 
   return (
     <>
-      {/* Settings button - above version label */}
+      {/* Settings button - same height as GPS button on right */}
       <button
         onClick={toggleSettingsPanel}
-        className="fixed bottom-[58px] md:bottom-[62px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className="fixed bottom-[30px] md:bottom-10 left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         title="Instellingen"
       >
         <Settings size={22} className="text-gray-600" />
       </button>
 
-      {/* Reset button - above settings */}
+      {/* Reset button - same height as Kaartlagen button on right */}
       <button
         onClick={resetAll}
-        className="fixed bottom-[108px] md:bottom-[112px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className="fixed bottom-[85px] md:bottom-[95px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         title="Reset - CartoDB, alle lagen uit, GPS uit"
       >
         <RotateCcw size={22} className="text-gray-600" />
@@ -117,7 +117,7 @@ export function PresetButtons() {
       {/* Presets button - above reset */}
       <button
         onClick={togglePresetsPanel}
-        className="fixed bottom-[158px] md:bottom-[162px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className="fixed bottom-[140px] md:bottom-[150px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         title="Presets"
       >
         {presetsPanelOpen ? (
@@ -144,7 +144,7 @@ export function PresetButtons() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="fixed bottom-[158px] md:bottom-[162px] left-14 bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[140px] backdrop-blur-sm z-[801]"
+              className="fixed bottom-[140px] md:bottom-[150px] left-14 bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[140px] backdrop-blur-sm z-[801]"
             >
               <div className="px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-medium">
                 Presets

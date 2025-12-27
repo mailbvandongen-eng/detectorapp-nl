@@ -97,7 +97,11 @@ const ALL_OVERLAYS = [
 export const usePresetStore = create<PresetState>()(
   persist(
     (set, get) => ({
-      presets: [...BUILT_IN_PRESETS],
+      presets: [...BUILT_IN_PRESETS].map(p => ({
+        ...p,
+        // Ensure only Detectie is protected (migration for existing users)
+        isBuiltIn: p.id === 'detectie'
+      })),
 
       applyPreset: (id: string) => {
         const preset = get().presets.find(p => p.id === id)
@@ -158,7 +162,22 @@ export const usePresetStore = create<PresetState>()(
       }
     }),
     {
-      name: 'detectorapp-presets'
+      name: 'detectorapp-presets',
+      version: 2,
+      migrate: (persistedState: unknown, version: number) => {
+        const state = persistedState as PresetState
+        if (version < 2) {
+          // Migration: ensure only Detectie is protected
+          return {
+            ...state,
+            presets: state.presets.map(p => ({
+              ...p,
+              isBuiltIn: p.id === 'detectie'
+            }))
+          }
+        }
+        return state
+      }
     }
   )
 )

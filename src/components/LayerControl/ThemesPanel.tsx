@@ -39,10 +39,10 @@ export function ThemesPanel() {
               </button>
             </div>
           <div className="p-2 overflow-y-auto flex-1">
-            {/* Persoonlijk */}
-            <LayerGroup title="Persoonlijk" defaultExpanded={true} layerNames={['Mijn Vondsten']}>
+            {/* Mijn Vondsten - direct weergeven, niet in groep */}
+            <div className="mb-2 pb-1 border-b border-gray-100">
               <LayerItem name="Mijn Vondsten" type="overlay" />
-            </LayerGroup>
+            </div>
 
             {/* Achtergronden */}
             <LayerGroup title="Achtergronden" defaultExpanded={true}>
