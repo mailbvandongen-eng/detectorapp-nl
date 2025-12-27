@@ -8,8 +8,8 @@ export function GpsButton() {
   return (
     <motion.button
       className={`
-        fixed bottom-[45px] md:bottom-[55px] right-2.5 z-[1000]
-        w-11 h-11 cursor-pointer border-0 outline-none
+        fixed bottom-[35px] md:bottom-[40px] right-2 z-[1000]
+        w-10 h-10 cursor-pointer border-0 outline-none
         flex items-center justify-center
         rounded-xl backdrop-blur-sm
         transition-all duration-200
@@ -34,7 +34,7 @@ export function GpsButton() {
       aria-label={tracking ? 'GPS tracking actief' : 'GPS tracking starten'}
       title={tracking ? 'GPS tracking actief' : 'GPS tracking starten'}
     >
-      <LocateFixed size={22} strokeWidth={2} />
+      <LocateFixed size={20} strokeWidth={2} />
     </motion.button>
   )
 }

@@ -1,11 +1,11 @@
 # Detectorapp-NL - Sessienotities
 
 ## 🚨 VERSIE REGEL (27 dec 2024) - LOCKED!
-**HUIDIGE VERSIE: 2.5.28** ✅ Gepusht naar GitHub
+**HUIDIGE VERSIE: 2.5.29** ✅ Gepusht naar GitHub
 
 ### DE REGEL (ALTIJD VOLGEN):
 1. **ELKE code wijziging = versie ophogen**
-2. Volgende versie wordt: **2.5.29**
+2. Volgende versie wordt: **2.5.30**
 3. **UPDATE ALLE 4 PLEKKEN:**
    - `npm pkg set version=X.X.X` (package.json)
    - `src/main.tsx` → VERSION const

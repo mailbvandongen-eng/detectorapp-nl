@@ -13,14 +13,14 @@ export function ThemesPanel() {
         <>
           {/* Invisible backdrop - click to close */}
           <motion.div
-            className="fixed inset-0 z-[998]"
+            className="fixed inset-0 z-[1100]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={toggleThemesPanel}
           />
           <motion.div
-            className="fixed top-2.5 right-2.5 z-[999] bg-white rounded-lg shadow-lg overflow-hidden w-[240px] max-h-[calc(100vh-200px)] flex flex-col"
+            className="fixed top-2.5 right-2 z-[1101] bg-white rounded-lg shadow-lg overflow-hidden w-[240px] max-h-[calc(100vh-200px)] flex flex-col"
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}

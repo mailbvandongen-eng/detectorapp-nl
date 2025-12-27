@@ -49,17 +49,17 @@ export function OpacitySliders() {
   const hasMore = activeSliders.length > 3
 
   return (
-    <div className="fixed bottom-[140px] md:bottom-[150px] right-2.5 z-[900]">
+    <div className="fixed bottom-[125px] md:bottom-[140px] right-2 z-[900]">
       {/* Toggle button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-11 h-11 bg-white/80 rounded-xl backdrop-blur-sm shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none hover:bg-white/90 transition-colors"
+        className="w-10 h-10 bg-white/80 rounded-xl backdrop-blur-sm shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none hover:bg-white/90 transition-colors"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Opacity sliders"
         title={isOpen ? 'Sluit opacity sliders' : 'Open opacity sliders'}
       >
-        <SlidersHorizontal size={22} strokeWidth={2} className="text-gray-500" />
+        <SlidersHorizontal size={20} strokeWidth={2} className="text-gray-500" />
         {activeSliders.length > 0 && (
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 text-white text-[10px] rounded-full flex items-center justify-center">
             {activeSliders.length}

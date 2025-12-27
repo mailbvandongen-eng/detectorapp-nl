@@ -35,13 +35,13 @@ export function AddVondstButton() {
     <>
       {/* Square button, same size as GPS button, positioned to its left */}
       <motion.button
-        className="fixed bottom-[45px] md:bottom-[55px] right-[60px] z-[1000] w-11 h-11 bg-orange-500 hover:bg-orange-600 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm"
+        className="fixed bottom-[35px] md:bottom-[40px] right-[52px] z-[1000] w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}
         title="Vondst toevoegen"
       >
-        <MapPin size={22} strokeWidth={2} />
+        <MapPin size={20} strokeWidth={2} />
       </motion.button>
 
       <AnimatePresence>
