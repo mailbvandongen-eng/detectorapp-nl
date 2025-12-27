@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Type, Download } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore, useSettingsStore, usePresetStore } from '../../store'
-import type { DefaultBackground } from '../../store/settingsStore'
+import { useLocalVondstenStore } from '../../store/localVondstenStore'
+import type { DefaultBackground, FontSize } from '../../store/settingsStore'
 
 export function SettingsPanel() {
   const { settingsPanelOpen, toggleSettingsPanel } = useUIStore()
@@ -103,6 +104,21 @@ export function SettingsPanel() {
                 />
               </Section>
 
+              {/* Weergave */}
+              <Section title="Weergave" icon={<Type size={16} />}>
+                <OptionRow label="Tekstgrootte">
+                  <select
+                    value={settings.fontSize}
+                    onChange={(e) => settings.setFontSize(e.target.value as FontSize)}
+                    className="px-2 py-1 text-sm bg-gray-100 rounded border-0 outline-none"
+                  >
+                    <option value="small">Klein</option>
+                    <option value="medium">Normaal</option>
+                    <option value="large">Groot</option>
+                  </select>
+                </OptionRow>
+              </Section>
+
               {/* Vondsten */}
               <Section title="Vondsten" icon={<MapPin size={16} />}>
                 <ToggleRow
@@ -110,16 +126,10 @@ export function SettingsPanel() {
                   checked={settings.showVondstButton}
                   onChange={settings.setShowVondstButton}
                 />
-                <ToggleRow
-                  label="Alleen lokaal opslaan"
-                  checked={settings.vondstenLocalOnly}
-                  onChange={settings.setVondstenLocalOnly}
-                />
-                <p className="text-xs text-gray-400 mt-1">
-                  {settings.vondstenLocalOnly
-                    ? 'Vondsten worden op dit apparaat opgeslagen (geen login nodig)'
-                    : 'Vondsten worden in de cloud opgeslagen (login vereist)'}
+                <p className="text-xs text-gray-500 mt-1 py-1">
+                  Vondsten worden altijd lokaal op dit apparaat opgeslagen.
                 </p>
+                <ExportButton />
               </Section>
 
               {/* Presets */}
@@ -237,6 +247,26 @@ function ToggleRow({ label, checked, onChange }: { label: string; checked: boole
         />
       </button>
     </div>
+  )
+}
+
+// Export button for vondsten
+function ExportButton() {
+  const { vondsten, exportAsGeoJSON } = useLocalVondstenStore()
+
+  return (
+    <button
+      onClick={exportAsGeoJSON}
+      disabled={vondsten.length === 0}
+      className={`flex items-center gap-2 mt-2 px-2 py-1.5 text-sm rounded transition-colors border-0 outline-none w-full ${
+        vondsten.length === 0
+          ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
+          : 'text-blue-600 hover:bg-blue-50'
+      }`}
+    >
+      <Download size={14} />
+      <span>Exporteer vondsten ({vondsten.length})</span>
+    </button>
   )
 }
 

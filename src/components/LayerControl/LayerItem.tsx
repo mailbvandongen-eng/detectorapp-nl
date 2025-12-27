@@ -37,8 +37,12 @@ export function LayerItem({ name, type }: Props) {
     <button
       onClick={handleChange}
       disabled={isLoading}
-      className={`w-full flex items-center justify-between py-1 pl-3 pr-2 bg-transparent border-0 outline-none transition-colors text-left ${
-        isLoading ? 'opacity-70 cursor-wait' : 'hover:bg-blue-100'
+      className={`w-full flex items-center justify-between py-1 pl-3 pr-2 border-0 outline-none transition-colors text-left ${
+        isLoading
+          ? 'opacity-70 cursor-wait bg-transparent'
+          : isChecked
+            ? 'bg-blue-50 hover:bg-blue-100'
+            : 'bg-transparent hover:bg-blue-50'
       }`}
     >
       <span className={`text-sm ${hasError ? 'text-red-500' : 'text-gray-600'}`}>

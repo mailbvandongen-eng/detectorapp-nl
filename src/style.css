@@ -314,10 +314,19 @@ html, body {
   top: auto !important;
   background: transparent !important;
   padding: 0 !important;
+  z-index: 100 !important;
+  pointer-events: none !important;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .ol-scale-line {
+    bottom: 8px !important;
+  }
 }
 
 .ol-scale-line-inner {
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   border: 1px solid #555 !important;
   border-top: none !important;
   color: #333 !important;
@@ -326,6 +335,7 @@ html, body {
   text-align: center !important;
   padding: 2px 6px !important;
   border-radius: 0 0 3px 3px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* ============================================================

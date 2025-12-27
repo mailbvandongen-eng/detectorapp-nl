@@ -21,6 +21,14 @@ import { useDeviceOrientation } from './hooks/useDeviceOrientation'
 import { useMapRotation } from './hooks/useMapRotation'
 import { useNavigation } from './hooks/useNavigation'
 import { useDynamicAHN } from './hooks/useDynamicAHN'
+import { useSettingsStore } from './store'
+
+// Font size classes
+const FONT_SIZE_CLASSES = {
+  small: 'text-sm',   // 14px
+  medium: 'text-base', // 16px
+  large: 'text-lg'    // 18px
+} as const
 
 function App() {
   // Initialize hooks
@@ -29,8 +37,12 @@ function App() {
   useNavigation()
   useDynamicAHN()
 
+  // Get font size setting
+  const fontSize = useSettingsStore(state => state.fontSize)
+  const fontSizeClass = FONT_SIZE_CLASSES[fontSize] || FONT_SIZE_CLASSES.small
+
   return (
-    <>
+    <div className={fontSizeClass}>
       <MapContainer />
       <GpsMarker />
       <RouteLayer />
@@ -49,7 +61,7 @@ function App() {
       <AddVondstButton />
       <InfoButton />
       <SettingsPanel />
-    </>
+    </div>
   )
 }
 

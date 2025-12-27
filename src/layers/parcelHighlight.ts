@@ -12,7 +12,7 @@ import ImageArcGISRest from 'ol/source/ImageArcGISRest'
 import type { RenderEvent } from 'ol/render/Event'
 
 // Version for debugging
-console.log('📦 parcelHighlight.ts v3.0 loaded - with polygon clipping')
+console.log('📦 parcelHighlight.ts v3.1 loaded - fixed pixelRatio for Android')
 
 // Register RD projection with both proj4 and OpenLayers
 proj4.defs('EPSG:28992', '+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs')
@@ -176,36 +176,17 @@ export async function showParcelHeightMap(
         ? (clipGeometry as Polygon).getCoordinates()[0]
         : (clipGeometry as MultiPolygon).getCoordinates()[0][0]
 
-      // Get the pixel ratio and view state for correct transformation
-      const pixelRatio = frameState.pixelRatio
-      const viewState = frameState.viewState
-      const center = viewState.center
-      const resolution = viewState.resolution
-      const rotation = viewState.rotation
-
-      // Canvas is already transformed, so we need to apply the same transform
-      const size = frameState.size
-      if (!size) return
-
+      // Use map's getPixelFromCoordinate for accurate conversion
+      // This handles all transforms including pixelRatio correctly
       coords.forEach((coord, i) => {
-        // Convert map coordinate to pixel coordinate
-        // Taking into account center, resolution, rotation
-        let x = (coord[0] - center[0]) / resolution
-        let y = (center[1] - coord[1]) / resolution
+        const pixel = map.getPixelFromCoordinate(coord)
+        if (!pixel) return
 
-        // Apply rotation if any
-        if (rotation !== 0) {
-          const cos = Math.cos(rotation)
-          const sin = Math.sin(rotation)
-          const newX = x * cos - y * sin
-          const newY = x * sin + y * cos
-          x = newX
-          y = newY
-        }
-
-        // Translate to canvas center and apply pixel ratio
-        const px = (x + size[0] / 2) * pixelRatio
-        const py = (y + size[1] / 2) * pixelRatio
+        // Apply pixelRatio to convert CSS pixels to device pixels
+        // The canvas is scaled by pixelRatio, so we need to scale the coordinates
+        const pixelRatio = frameState.pixelRatio
+        const px = pixel[0] * pixelRatio
+        const py = pixel[1] * pixelRatio
 
         if (i === 0) {
           ctx.moveTo(px, py)

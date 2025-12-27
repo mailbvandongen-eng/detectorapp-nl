@@ -3,7 +3,7 @@ import 'ol/ol.css'
 import { Tile as TileLayer } from 'ol/layer'
 import { OSM, XYZ } from 'ol/source'
 import { useMap } from '../../hooks/useMap'
-import { useLayerStore, useMapStore, useSettingsStore } from '../../store'
+import { useLayerStore, useMapStore, useSettingsStore, useGPSStore } from '../../store'
 import { layerRegistry, getImmediateLoadLayers } from '../../layers/layerRegistry'
 
 // Base layer names
@@ -197,6 +197,25 @@ export function MapContainer() {
 
     return () => clearTimeout(timer)
   }, [map, defaultBackground, setLayerVisibility])
+
+  // GPS autostart on app load
+  const gpsAutoStart = useSettingsStore(state => state.gpsAutoStart)
+  const startTracking = useGPSStore(state => state.startTracking)
+  const gpsStarted = useRef(false)
+
+  useEffect(() => {
+    if (!map || gpsStarted.current) return
+
+    if (gpsAutoStart) {
+      // Wait for map to be ready before starting GPS
+      const timer = setTimeout(() => {
+        startTracking()
+        gpsStarted.current = true
+        console.log('📍 GPS autostart enabled - tracking started')
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [map, gpsAutoStart, startTracking])
 
   const mapStyle: React.CSSProperties = {
     width: '100%',

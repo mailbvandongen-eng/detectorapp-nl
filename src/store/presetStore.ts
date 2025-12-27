@@ -10,56 +10,56 @@ export interface Preset {
   isBuiltIn: boolean
 }
 
-// Built-in presets
+// Built-in presets - only Detectie is protected (isBuiltIn: true)
 const BUILT_IN_PRESETS: Preset[] = [
   {
     id: 'detectie',
     name: 'Detectie',
     icon: 'Compass',
     layers: ['AHN4 Multi-Hillshade NL', 'AHN 0.5m', 'Geomorfologie', 'AMK Monumenten'],
-    isBuiltIn: true
+    isBuiltIn: true  // Protected - cannot be deleted
   },
   {
     id: 'uiterwaarden',
     name: 'Uiterwaarden',
     icon: 'Waves',
     layers: ['UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling'],
-    isBuiltIn: true
+    isBuiltIn: false
   },
   {
     id: 'recreatie',
     name: 'Recreatie',
     icon: 'TreePalm',
     layers: ['Parken', 'Speeltuinen', 'Strandjes'],
-    isBuiltIn: true
+    isBuiltIn: false
   },
   {
     id: 'hillshade',
     name: 'Hillshade',
     icon: 'Mountain',
     layers: ['AHN 0.5m', 'Geomorfologie', 'AHN4 Multi-Hillshade NL'],
-    isBuiltIn: true
+    isBuiltIn: false
   },
   {
     id: 'analyse',
     name: 'Analyse',
     icon: 'Search',
     layers: ['IKAW', 'Geomorfologie', 'Bodemkaart', 'AHN4 Multi-Hillshade NL', 'AMK Monumenten'],
-    isBuiltIn: true
+    isBuiltIn: false
   },
   {
     id: 'woii',
     name: 'WOII',
     icon: 'Target',
     layers: ['WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden', 'Verdedigingslinies', 'Militaire Objecten'],
-    isBuiltIn: true
+    isBuiltIn: false
   },
   {
     id: 'percelen',
     name: 'Percelen',
     icon: 'Grid',
     layers: ['Gewaspercelen', 'Kadastrale Grenzen', 'AMK Monumenten'],
-    isBuiltIn: true
+    isBuiltIn: false
   }
 ]
 
