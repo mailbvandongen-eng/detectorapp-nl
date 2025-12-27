@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { MapPin, Navigation, Crosshair } from 'lucide-react'
+import { toLonLat } from 'ol/proj'
 import { useVondstenStore } from '../../store/vondstenStore'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { useAuthStore } from '../../store/authStore'
 import { useGPSStore } from '../../store/gpsStore'
+import { useMapStore } from '../../store/mapStore'
 import { useSettingsStore } from '../../store/settingsStore'
 import type { VondstObjectType, VondstMaterial, VondstPeriod } from '../../types/vondst'
 
@@ -11,9 +14,12 @@ interface Props {
   onClose: () => void
 }
 
+type LocationSource = 'gps' | 'map-center' | 'map-pick'
+
 export function AddVondstForm({ onClose }: Props) {
   const user = useAuthStore(state => state.user)
-  const position = useGPSStore(state => state.position)
+  const gpsPosition = useGPSStore(state => state.position)
+  const map = useMapStore(state => state.map)
   const addCloudVondst = useVondstenStore(state => state.addVondst)
   const addLocalVondst = useLocalVondstenStore(state => state.addVondst)
   const vondstenLocalOnly = useSettingsStore(state => state.vondstenLocalOnly)
@@ -26,9 +32,66 @@ export function AddVondstForm({ onClose }: Props) {
   const [isPrivate, setIsPrivate] = useState(true)
   const [saving, setSaving] = useState(false)
 
+  // Location state
+  const [locationSource, setLocationSource] = useState<LocationSource>(gpsPosition ? 'gps' : 'map-center')
+  const [customLocation, setCustomLocation] = useState<{lat: number, lng: number} | null>(null)
+  const [pickingLocation, setPickingLocation] = useState(false)
+
+  // Get the effective location
+  const getEffectiveLocation = () => {
+    if (locationSource === 'gps' && gpsPosition) {
+      return { lat: gpsPosition.lat, lng: gpsPosition.lng }
+    }
+    if (locationSource === 'map-pick' && customLocation) {
+      return customLocation
+    }
+    // Fallback: map center
+    if (map) {
+      const center = map.getView().getCenter()
+      if (center) {
+        const [lng, lat] = toLonLat(center)
+        return { lat, lng }
+      }
+    }
+    return null
+  }
+
+  const effectiveLocation = getEffectiveLocation()
+
+  // Handle map click when picking location
+  useEffect(() => {
+    if (!pickingLocation || !map) return
+
+    const handleMapClick = (evt: any) => {
+      const [lng, lat] = toLonLat(evt.coordinate)
+      setCustomLocation({ lat, lng })
+      setLocationSource('map-pick')
+      setPickingLocation(false)
+    }
+
+    map.on('click', handleMapClick)
+    return () => map.un('click', handleMapClick)
+  }, [pickingLocation, map])
+
+  const handlePickLocation = () => {
+    setPickingLocation(true)
+  }
+
+  const handleUseGPS = () => {
+    if (gpsPosition) {
+      setLocationSource('gps')
+      setCustomLocation(null)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!position) return
+
+    const location = getEffectiveLocation()
+    if (!location) {
+      alert('Geen locatie beschikbaar')
+      return
+    }
 
     // For cloud storage, require user
     if (!vondstenLocalOnly && !user) {
@@ -42,8 +105,8 @@ export function AddVondstForm({ onClose }: Props) {
         // Save locally (no login needed)
         addLocalVondst({
           location: {
-            lat: position.lat,
-            lng: position.lng
+            lat: location.lat,
+            lng: location.lng
           },
           notes,
           objectType,
@@ -57,9 +120,9 @@ export function AddVondstForm({ onClose }: Props) {
         await addCloudVondst({
           userId: user!.uid,
           location: {
-            lat: position.lat,
-            lng: position.lng,
-            accuracy: 5
+            lat: location.lat,
+            lng: location.lng,
+            accuracy: locationSource === 'gps' ? 5 : 50 // Manual location has lower accuracy
           },
           timestamp: new Date().toISOString(),
           photos: [],
@@ -100,17 +163,63 @@ export function AddVondstForm({ onClose }: Props) {
         </div>
 
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
-          {/* GPS Location */}
+          {/* Location */}
           <div>
-            <label className="block text-sm font-medium mb-1">Locatie (GPS)</label>
-            <div className="text-sm text-gray-600">
-              {position ? (
-                <>
-                  Lat: {position.lat.toFixed(6)}, Lng: {position.lng.toFixed(6)}
-                </>
-              ) : (
-                <span className="text-red-600">⚠️ GPS niet actief</span>
+            <label className="block text-sm font-medium mb-1">Locatie</label>
+
+            {/* Picking mode indicator */}
+            {pickingLocation && (
+              <div className="mb-2 p-2 bg-orange-100 border border-orange-300 rounded text-sm text-orange-800 flex items-center gap-2">
+                <Crosshair size={16} className="animate-pulse" />
+                <span>Tik op de kaart om locatie te kiezen...</span>
+              </div>
+            )}
+
+            {/* Location display */}
+            {!pickingLocation && effectiveLocation && (
+              <div className={`p-2 rounded text-sm flex items-center gap-2 ${
+                locationSource === 'gps'
+                  ? 'bg-green-50 border border-green-200 text-green-800'
+                  : 'bg-orange-50 border border-orange-200 text-orange-800'
+              }`}>
+                {locationSource === 'gps' ? (
+                  <Navigation size={16} className="text-green-600" />
+                ) : (
+                  <MapPin size={16} className="text-orange-600" />
+                )}
+                <div className="flex-1">
+                  <div className="font-medium">
+                    {locationSource === 'gps' && 'GPS locatie'}
+                    {locationSource === 'map-center' && 'Kaart centrum'}
+                    {locationSource === 'map-pick' && 'Gekozen locatie'}
+                  </div>
+                  <div className="text-xs opacity-75">
+                    {effectiveLocation.lat.toFixed(6)}, {effectiveLocation.lng.toFixed(6)}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Location buttons */}
+            <div className="flex gap-2 mt-2">
+              {gpsPosition && locationSource !== 'gps' && (
+                <button
+                  type="button"
+                  onClick={handleUseGPS}
+                  className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors"
+                >
+                  <Navigation size={14} />
+                  <span>GPS gebruiken</span>
+                </button>
               )}
+              <button
+                type="button"
+                onClick={handlePickLocation}
+                className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
+              >
+                <Crosshair size={14} />
+                <span>Kies op kaart</span>
+              </button>
             </div>
           </div>
 
@@ -219,7 +328,7 @@ export function AddVondstForm({ onClose }: Props) {
             </button>
             <button
               type="submit"
-              disabled={saving || !position}
+              disabled={saving || !effectiveLocation || pickingLocation}
               className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
             >
               {saving ? 'Opslaan...' : 'Opslaan'}
