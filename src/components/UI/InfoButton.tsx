@@ -10,7 +10,7 @@ export function InfoButton() {
       {/* Info Button - top right corner */}
       <button
         onClick={toggleInfoPanel}
-        className="fixed top-2.5 right-2.5 z-[800] w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-lg shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className="fixed top-3 right-2.5 z-[800] w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-lg shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         title="Info & Attributies"
       >
         <Info size={16} className="text-gray-600" />
@@ -131,7 +131,7 @@ export function InfoButton() {
                 {/* Version */}
                 <section className="pt-2 border-t border-gray-200">
                   <p className="text-xs text-gray-400 text-center">
-                    Detectorapp NL v2.5.21
+                    Detectorapp NL v2.5.22
                   </p>
                 </section>
               </div>
