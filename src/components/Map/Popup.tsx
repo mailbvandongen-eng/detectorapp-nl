@@ -33,10 +33,14 @@ async function queryAHNHeight(coordinate: number[]): Promise<number | null> {
     const data = await response.json()
 
     if (data.features && data.features.length > 0) {
-      // AHN returns GRAY_INDEX as elevation in meters NAP
-      const height = data.features[0].properties?.GRAY_INDEX
-      if (typeof height === 'number' && !isNaN(height)) {
-        return height
+      // AHN returns value_list as elevation in meters NAP (can be string or number)
+      const props = data.features[0].properties
+      const heightRaw = props?.value_list ?? props?.GRAY_INDEX ?? props?.value ?? props?.gray_index
+      if (heightRaw !== undefined && heightRaw !== null) {
+        const height = typeof heightRaw === 'number' ? heightRaw : parseFloat(heightRaw)
+        if (!isNaN(height)) {
+          return height
+        }
       }
     }
   } catch (error) {
@@ -1066,16 +1070,15 @@ export function Popup() {
 
             // AHN 0.5m specific handling - show height in meters NAP
             if (title === 'AHN 0.5m') {
-              console.log('📏 AHN props:', props) // DEBUG
               let html = `<strong class="text-blue-800">AHN Hoogtekaart</strong>`
 
-              // Try various property name patterns for height value
-              const height = props.GRAY_INDEX ?? props.value ?? props.gray_index ??
+              // Try various property name patterns for height value (value_list is most common)
+              const heightRaw = props.value_list ?? props.GRAY_INDEX ?? props.value ?? props.gray_index ??
                              props.dtm_05m ?? props.DTM_05M ?? props.hoogte ?? props.HOOGTE ??
                              props.elevation ?? props.ELEVATION
 
-              if (height !== undefined && height !== null && !isNaN(Number(height))) {
-                const heightValue = typeof height === 'number' ? height.toFixed(2) : Number(height).toFixed(2)
+              if (heightRaw !== undefined && heightRaw !== null && !isNaN(Number(heightRaw))) {
+                const heightValue = typeof heightRaw === 'number' ? heightRaw.toFixed(2) : Number(heightRaw).toFixed(2)
                 html += `<br/><span class="text-sm text-blue-700">Hoogte: ${heightValue} m NAP</span>`
                 results.push(html)
               } else {
@@ -1097,42 +1100,45 @@ export function Popup() {
 
             // Geomorfologie specific handling - clean output
             if (title === 'Geomorfologie') {
-              console.log('🏔️ Geomorfologie props:', props) // DEBUG
               let html = `<strong class="text-green-800">Geomorfologie</strong>`
               let hasContent = false
 
-              // Try various property name patterns
-              const areaName = props.geomorphological_area_name ?? props.gm_ar_naam ?? props.gea_name ?? props.GEA_NAME
-              const unitName = props.geomorphological_unit_name ?? props.gm_en_naam ?? props.gee_name ?? props.GEE_NAME
-              const relief = props.relief ?? props.relieftype ?? props.RELIEFTYPE
-              const genesis = props.genesis_name ?? props.gn_naam ?? props.genesis ?? props.GENESIS
+              // Actual property names from PDOK BRO Geomorfologie WMS
+              const landformType = props.landform_subgroup_description
+              const reliefKlasse = props.relief_klasse
+              const reliefSubklasse = props.relief_subklasse
+              const genese = props.genese_description
+              const activeProcess = props.active_process
 
-              // Main landform type
-              if (areaName) {
-                html += `<br/><span class="text-sm text-green-700">${areaName}</span>`
-                hasContent = true
-              }
-              // Detailed description
-              if (unitName && unitName !== areaName) {
-                html += `<br/><span class="text-xs text-green-600">${unitName}</span>`
+              // Main landform type (e.g. "Dekzandruggen en -koppen")
+              if (landformType) {
+                html += `<br/><span class="text-sm text-green-700">${landformType}</span>`
                 hasContent = true
               }
               // Relief info
-              if (relief && relief !== 'Niet opgenomen') {
-                html += `<br/><span class="text-xs text-gray-600">Relief: ${relief}</span>`
+              if (reliefKlasse) {
+                const reliefText = reliefSubklasse && reliefSubklasse !== reliefKlasse
+                  ? `${reliefKlasse} (${reliefSubklasse})`
+                  : reliefKlasse
+                html += `<br/><span class="text-xs text-gray-600">Relief: ${reliefText}</span>`
                 hasContent = true
               }
-              // Genesis (origin)
-              if (genesis && genesis !== 'Niet opgenomen') {
-                html += `<br/><span class="text-xs text-gray-500">Ontstaan: ${genesis}</span>`
+              // Genesis (origin, e.g. "eolisch")
+              if (genese) {
+                html += `<br/><span class="text-xs text-gray-500">Ontstaan: ${genese}</span>`
+                hasContent = true
+              }
+              // Active process
+              if (activeProcess && activeProcess !== 'onbekend') {
+                html += `<br/><span class="text-xs text-gray-500">Actief proces: ${activeProcess}</span>`
                 hasContent = true
               }
 
               // Fallback: show all properties if no specific ones found
               if (!hasContent) {
-                const skipKeys = ['geometry', 'id', 'fid', 'gml_id', 'bbox']
+                const skipKeys = ['geometry', 'id', 'fid', 'gml_id', 'bbox', 'fuuid', 'geom', 'collection_id']
                 for (const [key, value] of Object.entries(props)) {
-                  if (!skipKeys.includes(key.toLowerCase()) && value !== null && value !== '') {
+                  if (!skipKeys.includes(key.toLowerCase()) && value !== null && value !== '' && !key.includes('validfrom') && !key.includes('validto')) {
                     html += `<br/><span class="text-xs text-gray-600">${key}: ${value}</span>`
                   }
                 }
