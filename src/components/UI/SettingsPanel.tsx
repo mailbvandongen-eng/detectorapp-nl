@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Type, Download, LogOut, BarChart3 } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore, useSettingsStore, usePresetStore } from '../../store'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { clearPasswordAuth } from '../Auth/PasswordGate'
 import { VondstenDashboard } from '../Vondst/VondstenDashboard'
-import type { DefaultBackground, FontSize } from '../../store/settingsStore'
+import type { DefaultBackground } from '../../store/settingsStore'
 
 export function SettingsPanel() {
   const { settingsPanelOpen, toggleSettingsPanel, vondstDashboardOpen, toggleVondstDashboard } = useUIStore()
@@ -106,64 +106,6 @@ export function SettingsPanel() {
                   checked={settings.hapticFeedback}
                   onChange={settings.setHapticFeedback}
                 />
-              </Section>
-
-              {/* Weergave */}
-              <Section title="Weergave" icon={<Type size={16} />}>
-                <div className="space-y-3">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-600">Popup tekstgrootte</span>
-                      <span className="text-xs text-gray-400">
-                        {settings.fontSize === 'xs' ? 'Standaard' :
-                         settings.fontSize === 'small' ? 'Klein' :
-                         settings.fontSize === 'medium' ? 'Normaal' :
-                         settings.fontSize === 'large' ? 'Groot' : 'Extra groot'}
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="4"
-                      value={settings.fontSize === 'xs' ? 0 : settings.fontSize === 'small' ? 1 : settings.fontSize === 'medium' ? 2 : settings.fontSize === 'large' ? 3 : 4}
-                      onChange={(e) => {
-                        const val = parseInt(e.target.value)
-                        const sizes: FontSize[] = ['xs', 'small', 'medium', 'large', 'xl']
-                        settings.setFontSize(sizes[val])
-                      }}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                    />
-                    <div className="flex justify-between text-[10px] text-gray-400 mt-1">
-                      <span>Std</span>
-                      <span>Klein</span>
-                      <span>Normaal</span>
-                      <span>Groot</span>
-                      <span>XL</span>
-                    </div>
-                  </div>
-
-                  {/* Preview */}
-                  <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="text-[10px] text-gray-400 mb-2">Voorbeeld popup:</div>
-                    <div className={`bg-white rounded shadow-sm p-2 border ${
-                      settings.fontSize === 'xs' ? 'text-xs' :
-                      settings.fontSize === 'small' ? 'text-sm' :
-                      settings.fontSize === 'medium' ? 'text-base' :
-                      settings.fontSize === 'large' ? 'text-lg' : 'text-xl'
-                    }`}>
-                      <div className="font-semibold text-gray-800">Kasteel Doorwerth</div>
-                      <div className="text-gray-600 mt-1">
-                        <strong>Type:</strong> Rijksmonument
-                      </div>
-                      <div className="text-gray-600">
-                        <strong>Periode:</strong> 13e eeuw
-                      </div>
-                      <div className="text-gray-500 mt-1">
-                        Middeleeuws kasteel aan de Rijn, herbouwd na WOII.
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </Section>
 
               {/* Vondsten */}

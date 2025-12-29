@@ -4,9 +4,8 @@ import TileWMS from 'ol/source/TileWMS'
 import TileLayer from 'ol/layer/Tile'
 import { toLonLat } from 'ol/proj'
 import proj4 from 'proj4'
-import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2 } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type } from 'lucide-react'
 import { useMapStore } from '../../store'
-import { useSettingsStore } from '../../store/settingsStore'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
 import type { MapBrowserEvent } from 'ol'
@@ -87,7 +86,6 @@ const IKAW_VALUES: Record<number, string> = {
 export function Popup() {
   const map = useMapStore(state => state.map)
   const removeVondst = useLocalVondstenStore(state => state.removeVondst)
-  const fontSize = useSettingsStore(state => state.fontSize)
   const [allContents, setAllContents] = useState<string[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(false)
@@ -95,6 +93,17 @@ export function Popup() {
   const [showingHeightMap, setShowingHeightMap] = useState(false)
   const [loadingHeightMap, setLoadingHeightMap] = useState(false)
   const [currentVondstId, setCurrentVondstId] = useState<string | null>(null)
+  // Popup text scale: 100 = normal, 120 = 20% bigger, etc
+  const [textScale, setTextScale] = useState(() => {
+    const saved = localStorage.getItem('popupTextScale')
+    return saved ? parseInt(saved) : 100
+  })
+
+  // Save text scale to localStorage
+  const handleTextScaleChange = (value: number) => {
+    setTextScale(value)
+    localStorage.setItem('popupTextScale', value.toString())
+  }
 
   // Current content based on index
   const content = allContents[currentIndex] || ''
@@ -1700,14 +1709,24 @@ export function Popup() {
 
             {/* Content - scrollable, without title */}
             <div
-              className={`px-4 py-3 max-h-[50vh] overflow-y-auto ${
-                fontSize === 'xs' ? 'text-xs' :
-                fontSize === 'small' ? 'text-sm' :
-                fontSize === 'medium' ? 'text-base' :
-                fontSize === 'large' ? 'text-lg' : 'text-xl'
-              }`}
+              className="px-4 py-3 max-h-[45vh] overflow-y-auto text-sm"
+              style={{ fontSize: `${textScale}%` }}
               dangerouslySetInnerHTML={{ __html: contentWithoutTitle }}
             />
+
+            {/* Font size slider */}
+            <div className="px-4 py-2 border-t border-gray-100 flex items-center gap-2">
+              <Type size={14} className="text-gray-400 flex-shrink-0" />
+              <input
+                type="range"
+                min="80"
+                max="150"
+                value={textScale}
+                onChange={(e) => handleTextScaleChange(parseInt(e.target.value))}
+                className="flex-1 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+              />
+              <span className="text-xs text-gray-400 w-8 text-right">{textScale}%</span>
+            </div>
 
             {/* Delete button for vondsten */}
             {isVondst && currentVondstId && (

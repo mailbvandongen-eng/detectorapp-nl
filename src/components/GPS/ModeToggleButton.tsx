@@ -11,7 +11,7 @@ export function ModeToggleButton() {
   return (
     <motion.button
       className={`
-        fixed bottom-[85px] md:bottom-[110px] right-2.5 z-[1000]
+        fixed bottom-[122px] md:bottom-[128px] right-2 z-[1000]
         w-11 h-11 cursor-pointer border-0 outline-none
         flex items-center justify-center
         rounded-xl backdrop-blur-sm
