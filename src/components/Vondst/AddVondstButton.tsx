@@ -38,7 +38,7 @@ export function AddVondstButton() {
     <>
       {/* Square button, same size as GPS button, positioned to its left */}
       <motion.button
-        className="fixed bottom-[28px] md:bottom-[32px] right-[56px] z-[1000] w-11 h-11 bg-orange-500 hover:bg-orange-600 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm"
+        className="fixed bottom-2 right-[56px] z-[1000] w-11 h-11 bg-orange-500 hover:bg-orange-600 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}

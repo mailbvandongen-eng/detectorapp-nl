@@ -9,7 +9,7 @@ export function KaartlagenButton() {
   return (
     <motion.button
       className={`
-        fixed bottom-[75px] md:bottom-[80px] right-2 z-[1000]
+        fixed bottom-[60px] right-2 z-[1000]
         w-11 h-11 cursor-pointer border-0 outline-none
         flex items-center justify-center
         rounded-xl backdrop-blur-sm

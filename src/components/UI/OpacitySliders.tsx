@@ -49,7 +49,7 @@ export function OpacitySliders() {
   const hasMore = activeSliders.length > 3
 
   return (
-    <div className="fixed bottom-[122px] md:bottom-[128px] right-2 z-[900]">
+    <div className="fixed bottom-[112px] right-2 z-[900]">
       {/* Toggle button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
