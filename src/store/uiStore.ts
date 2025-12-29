@@ -11,6 +11,11 @@ interface UIState {
   infoPanelOpen: boolean
   presetsPanelOpen: boolean
 
+  // Vondst form state
+  vondstFormOpen: boolean
+  vondstFormLocation: { lat: number; lng: number } | null
+  vondstDashboardOpen: boolean
+
   // Collapsed categories
   collapsedCategories: Set<string>
 
@@ -26,6 +31,9 @@ interface UIState {
   toggleCategory: (category: string) => void
   setLayerControlOpen: (open: boolean) => void
   setLegendOpen: (open: boolean) => void
+  openVondstForm: (location?: { lat: number; lng: number }) => void
+  closeVondstForm: () => void
+  toggleVondstDashboard: () => void
 }
 
 export const useUIStore = create<UIState>()(
@@ -37,6 +45,9 @@ export const useUIStore = create<UIState>()(
     settingsPanelOpen: false,
     infoPanelOpen: false,
     presetsPanelOpen: false,
+    vondstFormOpen: false,
+    vondstFormLocation: null,
+    vondstDashboardOpen: false,
     collapsedCategories: new Set<string>(),
 
     closeAllPanels: () => {
@@ -150,6 +161,41 @@ export const useUIStore = create<UIState>()(
     setLegendOpen: (open: boolean) => {
       set(state => {
         state.legendOpen = open
+      })
+    },
+
+    openVondstForm: (location) => {
+      set(state => {
+        // Close all panels first
+        state.backgroundsPanelOpen = false
+        state.themesPanelOpen = false
+        state.settingsPanelOpen = false
+        state.infoPanelOpen = false
+        state.presetsPanelOpen = false
+        // Open vondst form
+        state.vondstFormOpen = true
+        state.vondstFormLocation = location || null
+      })
+    },
+
+    closeVondstForm: () => {
+      set(state => {
+        state.vondstFormOpen = false
+        state.vondstFormLocation = null
+      })
+    },
+
+    toggleVondstDashboard: () => {
+      set(state => {
+        const wasOpen = state.vondstDashboardOpen
+        // Close all panels first
+        state.backgroundsPanelOpen = false
+        state.themesPanelOpen = false
+        state.settingsPanelOpen = false
+        state.infoPanelOpen = false
+        state.presetsPanelOpen = false
+        // Toggle dashboard
+        state.vondstDashboardOpen = !wasOpen
       })
     }
   }))

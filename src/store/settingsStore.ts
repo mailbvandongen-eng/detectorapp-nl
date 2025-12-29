@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 export type DefaultBackground = 'CartoDB (licht)' | 'Luchtfoto' | 'OpenStreetMap'
-export type FontSize = 'small' | 'medium' | 'large'
+export type FontSize = 'xs' | 'small' | 'medium' | 'large' | 'xl'
 
 interface SettingsState {
   // Kaart
@@ -47,8 +47,8 @@ export const useSettingsStore = create<SettingsState>()(
       showAccuracyCircle: true,
       hapticFeedback: true,
       vondstenLocalOnly: true,  // Default to local storage (no login needed)
-      showVondstButton: false,  // Hidden by default
-      fontSize: 'small',        // Default font size (current)
+      showVondstButton: true,   // Shown by default
+      fontSize: 'xs',           // Default font size (current = xs)
 
       // Actions
       setDefaultBackground: (defaultBackground) => set({ defaultBackground }),

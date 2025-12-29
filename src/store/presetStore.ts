@@ -16,7 +16,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     id: 'detectie',
     name: 'Detectie',
     icon: 'Compass',
-    layers: ['AHN4 Multi-Hillshade NL', 'AHN 0.5m', 'Geomorfologie', 'AMK Monumenten'],
+    layers: ['AMK Monumenten', 'Romeinse wegen', 'Gewaspercelen', 'Kadastrale Grenzen'],
     isBuiltIn: true  // Protected - cannot be deleted
   },
   {

@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Type, Download, LogOut } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Type, Download, LogOut, BarChart3 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore, useSettingsStore, usePresetStore } from '../../store'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { clearPasswordAuth } from '../Auth/PasswordGate'
+import { VondstenDashboard } from '../Vondst/VondstenDashboard'
 import type { DefaultBackground, FontSize } from '../../store/settingsStore'
 
 export function SettingsPanel() {
-  const { settingsPanelOpen, toggleSettingsPanel } = useUIStore()
+  const { settingsPanelOpen, toggleSettingsPanel, vondstDashboardOpen, toggleVondstDashboard } = useUIStore()
   const settings = useSettingsStore()
   const { presets, createPreset, deletePreset } = usePresetStore()
+  const vondsten = useLocalVondstenStore(state => state.vondsten)
   const [newPresetName, setNewPresetName] = useState('')
   const [showNewPresetInput, setShowNewPresetInput] = useState(false)
 
@@ -22,6 +24,7 @@ export function SettingsPanel() {
   }
 
   return (
+    <>
     <AnimatePresence>
       {settingsPanelOpen && (
         <>
@@ -107,17 +110,60 @@ export function SettingsPanel() {
 
               {/* Weergave */}
               <Section title="Weergave" icon={<Type size={16} />}>
-                <OptionRow label="Tekstgrootte">
-                  <select
-                    value={settings.fontSize}
-                    onChange={(e) => settings.setFontSize(e.target.value as FontSize)}
-                    className="px-2 py-1 text-sm bg-gray-100 rounded border-0 outline-none"
-                  >
-                    <option value="small">Klein</option>
-                    <option value="medium">Normaal</option>
-                    <option value="large">Groot</option>
-                  </select>
-                </OptionRow>
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-gray-600">Popup tekstgrootte</span>
+                      <span className="text-xs text-gray-400">
+                        {settings.fontSize === 'xs' ? 'Standaard' :
+                         settings.fontSize === 'small' ? 'Klein' :
+                         settings.fontSize === 'medium' ? 'Normaal' :
+                         settings.fontSize === 'large' ? 'Groot' : 'Extra groot'}
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="4"
+                      value={settings.fontSize === 'xs' ? 0 : settings.fontSize === 'small' ? 1 : settings.fontSize === 'medium' ? 2 : settings.fontSize === 'large' ? 3 : 4}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value)
+                        const sizes: FontSize[] = ['xs', 'small', 'medium', 'large', 'xl']
+                        settings.setFontSize(sizes[val])
+                      }}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                    />
+                    <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+                      <span>Std</span>
+                      <span>Klein</span>
+                      <span>Normaal</span>
+                      <span>Groot</span>
+                      <span>XL</span>
+                    </div>
+                  </div>
+
+                  {/* Preview */}
+                  <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="text-[10px] text-gray-400 mb-2">Voorbeeld popup:</div>
+                    <div className={`bg-white rounded shadow-sm p-2 border ${
+                      settings.fontSize === 'xs' ? 'text-xs' :
+                      settings.fontSize === 'small' ? 'text-sm' :
+                      settings.fontSize === 'medium' ? 'text-base' :
+                      settings.fontSize === 'large' ? 'text-lg' : 'text-xl'
+                    }`}>
+                      <div className="font-semibold text-gray-800">Kasteel Doorwerth</div>
+                      <div className="text-gray-600 mt-1">
+                        <strong>Type:</strong> Rijksmonument
+                      </div>
+                      <div className="text-gray-600">
+                        <strong>Periode:</strong> 13e eeuw
+                      </div>
+                      <div className="text-gray-500 mt-1">
+                        Middeleeuws kasteel aan de Rijn, herbouwd na WOII.
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Section>
 
               {/* Vondsten */}
@@ -130,6 +176,14 @@ export function SettingsPanel() {
                 <p className="text-xs text-gray-500 mt-1 py-1">
                   Vondsten worden altijd lokaal op dit apparaat opgeslagen.
                 </p>
+                {/* Dashboard button */}
+                <button
+                  onClick={toggleVondstDashboard}
+                  className="flex items-center gap-2 mt-2 px-2 py-1.5 text-sm text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none w-full"
+                >
+                  <BarChart3 size={14} />
+                  <span>Dashboard ({vondsten.length} vondsten)</span>
+                </button>
                 <ExportButton />
               </Section>
 
@@ -211,6 +265,13 @@ export function SettingsPanel() {
         </>
       )}
     </AnimatePresence>
+
+    {/* Vondsten Dashboard */}
+    <VondstenDashboard
+      isOpen={vondstDashboardOpen}
+      onClose={toggleVondstDashboard}
+    />
+    </>
   )
 }
 
@@ -260,23 +321,68 @@ function ToggleRow({ label, checked, onChange }: { label: string; checked: boole
   )
 }
 
-// Export button for vondsten
+// Export dropdown for vondsten
 function ExportButton() {
-  const { vondsten, exportAsGeoJSON } = useLocalVondstenStore()
+  const [showDropdown, setShowDropdown] = useState(false)
+  const {
+    vondsten,
+    exportAsGeoJSON,
+    exportAsCSV,
+    exportAsExcel,
+    exportAsGPX,
+    exportAsKML
+  } = useLocalVondstenStore()
+
+  const exportOptions = [
+    { label: 'Excel (.xlsx)', action: exportAsExcel, desc: 'Spreadsheet' },
+    { label: 'CSV', action: exportAsCSV, desc: 'Comma-separated' },
+    { label: 'GeoJSON', action: exportAsGeoJSON, desc: 'GIS software' },
+    { label: 'GPX', action: exportAsGPX, desc: 'GPS apparaten' },
+    { label: 'KML', action: exportAsKML, desc: 'Google Earth' }
+  ]
+
+  const handleExport = (action: () => void) => {
+    action()
+    setShowDropdown(false)
+  }
+
+  if (vondsten.length === 0) {
+    return (
+      <div className="flex items-center gap-2 mt-2 px-2 py-1.5 text-sm text-gray-400 bg-gray-100 rounded w-full cursor-not-allowed">
+        <Download size={14} />
+        <span>Geen vondsten om te exporteren</span>
+      </div>
+    )
+  }
 
   return (
-    <button
-      onClick={exportAsGeoJSON}
-      disabled={vondsten.length === 0}
-      className={`flex items-center gap-2 mt-2 px-2 py-1.5 text-sm rounded transition-colors border-0 outline-none w-full ${
-        vondsten.length === 0
-          ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
-          : 'text-blue-600 hover:bg-blue-50'
-      }`}
-    >
-      <Download size={14} />
-      <span>Exporteer vondsten ({vondsten.length})</span>
-    </button>
+    <div className="relative mt-2">
+      <button
+        onClick={() => setShowDropdown(!showDropdown)}
+        className="flex items-center justify-between gap-2 px-2 py-1.5 text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none w-full"
+      >
+        <div className="flex items-center gap-2">
+          <Download size={14} />
+          <span>Exporteer vondsten ({vondsten.length})</span>
+        </div>
+        <span className="text-xs">▼</span>
+      </button>
+
+      {showDropdown && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden">
+          {exportOptions.map((option, i) => (
+            <button
+              key={i}
+              onClick={() => handleExport(option.action)}
+              className="w-full px-3 py-2 text-left text-sm hover:bg-blue-50 transition-colors border-0 outline-none flex justify-between items-center"
+            >
+              <span className="text-gray-700">{option.label}</span>
+              <span className="text-xs text-gray-400">{option.desc}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 

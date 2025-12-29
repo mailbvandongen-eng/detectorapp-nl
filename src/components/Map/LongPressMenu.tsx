@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Navigation, X, MapPin } from 'lucide-react'
+import { Navigation, X, MapPin, Plus } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useMapStore } from '../../store'
 import { useGPSStore } from '../../store/gpsStore'
 import { useNavigationStore } from '../../store/navigationStore'
+import { useUIStore } from '../../store/uiStore'
 
 interface LongPressLocation {
   pixel: [number, number]
@@ -16,6 +17,7 @@ export function LongPressMenu() {
   const position = useGPSStore(state => state.position)
   const startNavigation = useNavigationStore(state => state.startNavigation)
   const isNavigating = useNavigationStore(state => state.isNavigating)
+  const openVondstForm = useUIStore(state => state.openVondstForm)
 
   const [menuLocation, setMenuLocation] = useState<LongPressLocation | null>(null)
   const [visible, setVisible] = useState(false)
@@ -267,6 +269,20 @@ export function LongPressMenu() {
     setCanClose(false)
   }
 
+  const handleAddVondst = () => {
+    if (!menuLocation) return
+
+    const [lng, lat] = menuLocation.coordinate
+
+    // Open vondst form with this location
+    openVondstForm({ lat, lng })
+
+    // Close menu
+    setVisible(false)
+    setMenuLocation(null)
+    setCanClose(false)
+  }
+
   // Format coordinate for display
   const formatCoordinate = (coord: [number, number]) => {
     const [lng, lat] = coord
@@ -311,6 +327,18 @@ export function LongPressMenu() {
 
             {/* Menu items */}
             <div className="py-1">
+              {/* Add vondst */}
+              <button
+                onClick={handleAddVondst}
+                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-orange-50 text-gray-700"
+              >
+                <Plus size={20} className="text-orange-500" />
+                <span className="font-medium">Vondst toevoegen</span>
+              </button>
+
+              {/* Divider */}
+              <div className="border-t border-gray-100 my-1" />
+
               {/* Navigate to... */}
               <button
                 onClick={handleNavigate}

@@ -15,7 +15,13 @@
       "Bash(git push:*)",
       "Bash(npm run build:*)",
       "Bash(npm pkg:*)",
-      "WebFetch(domain:service.pdok.nl)"
+      "WebFetch(domain:service.pdok.nl)",
+      "WebFetch(domain:www.esri.nl)",
+      "WebFetch(domain:www.ahn.nl)",
+      "WebFetch(domain:www.pdok.nl)",
+      "WebFetch(domain:www.arcgis.com)",
+      "WebFetch(domain:community.openstreetmap.org)",
+      "Bash(npm install:*)"
     ]
   }
 }

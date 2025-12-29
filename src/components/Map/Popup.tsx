@@ -6,6 +6,7 @@ import { toLonLat } from 'ol/proj'
 import proj4 from 'proj4'
 import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2 } from 'lucide-react'
 import { useMapStore } from '../../store'
+import { useSettingsStore } from '../../store/settingsStore'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
 import type { MapBrowserEvent } from 'ol'
@@ -86,6 +87,7 @@ const IKAW_VALUES: Record<number, string> = {
 export function Popup() {
   const map = useMapStore(state => state.map)
   const removeVondst = useLocalVondstenStore(state => state.removeVondst)
+  const fontSize = useSettingsStore(state => state.fontSize)
   const [allContents, setAllContents] = useState<string[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(false)
@@ -1209,7 +1211,10 @@ export function Popup() {
             <br/><span class="text-sm text-gray-600"><strong>Materiaal:</strong> ${v.material}</span>
             <br/><span class="text-sm text-gray-600"><strong>Periode:</strong> ${v.period}</span>
             ${v.depth ? `<br/><span class="text-sm text-gray-600"><strong>Diepte:</strong> ${v.depth} cm</span>` : ''}
+            ${v.condition && v.condition !== 'Onbekend' ? `<br/><span class="text-sm text-gray-600"><strong>Conditie:</strong> ${v.condition}</span>` : ''}
+            ${v.weight ? `<br/><span class="text-sm text-gray-600"><strong>Gewicht:</strong> ${v.weight} gram</span>` : ''}
             ${v.notes ? `<br/><span class="text-sm text-gray-600"><strong>Notities:</strong> ${v.notes}</span>` : ''}
+            ${v.photoUrl ? `<br/><a href="${v.photoUrl}" target="_blank" rel="noopener" class="text-blue-600 hover:underline text-sm">📷 Bekijk foto</a>` : ''}
             <br/><span class="text-xs text-gray-400">${new Date(v.timestamp).toLocaleDateString('nl-NL')}</span>`
           collectedContents.push(vondstHtml)
           setCurrentVondstId(v.id)
@@ -1695,7 +1700,12 @@ export function Popup() {
 
             {/* Content - scrollable, without title */}
             <div
-              className="px-4 py-3 max-h-[50vh] overflow-y-auto"
+              className={`px-4 py-3 max-h-[50vh] overflow-y-auto ${
+                fontSize === 'xs' ? 'text-xs' :
+                fontSize === 'small' ? 'text-sm' :
+                fontSize === 'medium' ? 'text-base' :
+                fontSize === 'large' ? 'text-lg' : 'text-xl'
+              }`}
               dangerouslySetInnerHTML={{ __html: contentWithoutTitle }}
             />
 

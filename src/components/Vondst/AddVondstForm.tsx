@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Navigation, Crosshair } from 'lucide-react'
+import { MapPin, Navigation, Crosshair, Link, Scale } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useVondstenStore } from '../../store/vondstenStore'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
@@ -12,11 +12,12 @@ import type { VondstObjectType, VondstMaterial, VondstPeriod } from '../../types
 
 interface Props {
   onClose: () => void
+  initialLocation?: { lat: number; lng: number }
 }
 
 type LocationSource = 'gps' | 'map-center' | 'map-pick'
 
-export function AddVondstForm({ onClose }: Props) {
+export function AddVondstForm({ onClose, initialLocation }: Props) {
   const user = useAuthStore(state => state.user)
   const gpsPosition = useGPSStore(state => state.position)
   const map = useMapStore(state => state.map)
@@ -28,13 +29,19 @@ export function AddVondstForm({ onClose }: Props) {
   const [objectType, setObjectType] = useState<VondstObjectType>('Munt')
   const [material, setMaterial] = useState<VondstMaterial>('Brons')
   const [period, setPeriod] = useState<VondstPeriod>('Romeins (12 v.Chr.-450 n.Chr.)')
-  const [depth, setDepth] = useState<number>(20)
   const [isPrivate, setIsPrivate] = useState(true)
   const [saving, setSaving] = useState(false)
+  // New fields v2.6.0
+  const [photoUrl, setPhotoUrl] = useState('')
+  const [weight, setWeight] = useState<number | undefined>(undefined)
 
-  // Location state
-  const [locationSource, setLocationSource] = useState<LocationSource>(gpsPosition ? 'gps' : 'map-center')
-  const [customLocation, setCustomLocation] = useState<{lat: number, lng: number} | null>(null)
+  // Location state - use initialLocation if provided
+  const [locationSource, setLocationSource] = useState<LocationSource>(
+    initialLocation ? 'map-pick' : (gpsPosition ? 'gps' : 'map-center')
+  )
+  const [customLocation, setCustomLocation] = useState<{lat: number, lng: number} | null>(
+    initialLocation || null
+  )
   const [pickingLocation, setPickingLocation] = useState(false)
 
   // Get the effective location
@@ -112,7 +119,8 @@ export function AddVondstForm({ onClose }: Props) {
           objectType,
           material,
           period,
-          depth
+          photoUrl: photoUrl || undefined,
+          weight
         })
         alert('Vondst lokaal opgeslagen! ✅')
       } else {
@@ -130,7 +138,6 @@ export function AddVondstForm({ onClose }: Props) {
           objectType,
           material,
           period,
-          depth,
           tags: [period.toLowerCase(), objectType.toLowerCase()],
           private: isPrivate
         })
@@ -142,6 +149,34 @@ export function AddVondstForm({ onClose }: Props) {
     } finally {
       setSaving(false)
     }
+  }
+
+  // When picking location, show minimal UI so user can see the map
+  if (pickingLocation) {
+    return (
+      <motion.div
+        className="fixed bottom-0 left-0 right-0 z-[2000] p-4"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        exit={{ y: 100 }}
+      >
+        <div className="bg-orange-500 text-white rounded-lg shadow-xl p-4 flex items-center justify-between max-w-md mx-auto">
+          <div className="flex items-center gap-3">
+            <Crosshair size={24} className="animate-pulse" />
+            <div>
+              <div className="font-medium">Tik op de kaart</div>
+              <div className="text-sm opacity-90">om locatie te kiezen</div>
+            </div>
+          </div>
+          <button
+            onClick={() => setPickingLocation(false)}
+            className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+          >
+            Annuleren
+          </button>
+        </div>
+      </motion.div>
+    )
   }
 
   return (
@@ -157,7 +192,7 @@ export function AddVondstForm({ onClose }: Props) {
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
       >
-        <div className="sticky top-0 bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
+        <div className="sticky top-0 z-10 bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
           <h2 className="text-lg font-semibold">Nieuwe Vondst</h2>
           <button onClick={onClose} className="text-2xl">&times;</button>
         </div>
@@ -167,16 +202,8 @@ export function AddVondstForm({ onClose }: Props) {
           <div>
             <label className="block text-sm font-medium mb-1">Locatie</label>
 
-            {/* Picking mode indicator */}
-            {pickingLocation && (
-              <div className="mb-2 p-2 bg-orange-100 border border-orange-300 rounded text-sm text-orange-800 flex items-center gap-2">
-                <Crosshair size={16} className="animate-pulse" />
-                <span>Tik op de kaart om locatie te kiezen...</span>
-              </div>
-            )}
-
             {/* Location display */}
-            {!pickingLocation && effectiveLocation && (
+            {effectiveLocation && (
               <div className={`p-2 rounded text-sm flex items-center gap-2 ${
                 locationSource === 'gps'
                   ? 'bg-green-50 border border-green-200 text-green-800'
@@ -280,17 +307,39 @@ export function AddVondstForm({ onClose }: Props) {
             </select>
           </div>
 
-          {/* Depth */}
+          {/* Weight */}
           <div>
-            <label className="block text-sm font-medium mb-1">Diepte (cm)</label>
+            <label className="block text-sm font-medium mb-1 flex items-center gap-1">
+              <Scale size={14} className="text-gray-500" />
+              Gewicht (gram, optioneel)
+            </label>
             <input
               type="number"
-              value={depth}
-              onChange={(e) => setDepth(parseInt(e.target.value))}
+              value={weight ?? ''}
+              onChange={(e) => setWeight(e.target.value ? parseFloat(e.target.value) : undefined)}
               className="w-full border rounded px-3 py-2"
               min="0"
-              max="200"
+              step="0.1"
+              placeholder="bijv. 12.5"
             />
+          </div>
+
+          {/* Photo URL */}
+          <div>
+            <label className="block text-sm font-medium mb-1 flex items-center gap-1">
+              <Link size={14} className="text-blue-500" />
+              Foto link (optioneel)
+            </label>
+            <input
+              type="url"
+              value={photoUrl}
+              onChange={(e) => setPhotoUrl(e.target.value)}
+              className="w-full border rounded px-3 py-2"
+              placeholder="https://photos.google.com/..."
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Plak een deelbare link naar je foto (Google Photos, iCloud, Dropbox, etc.)
+            </p>
           </div>
 
           {/* Notes */}

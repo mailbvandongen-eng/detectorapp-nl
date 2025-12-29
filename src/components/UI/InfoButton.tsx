@@ -131,7 +131,7 @@ export function InfoButton() {
                 {/* Version */}
                 <section className="pt-2 border-t border-gray-200">
                   <p className="text-xs text-gray-400 text-center">
-                    Detectorapp NL v2.5.32
+                    Detectorapp NL v2.6.3
                   </p>
                 </section>
               </div>

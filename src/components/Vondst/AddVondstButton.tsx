@@ -1,15 +1,18 @@
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin } from 'lucide-react'
 import { AddVondstForm } from './AddVondstForm'
 import { useAuth } from '../../hooks/useAuth'
 import { useSettingsStore } from '../../store/settingsStore'
+import { useUIStore } from '../../store/uiStore'
 
 export function AddVondstButton() {
-  const [showForm, setShowForm] = useState(false)
   const { isAuthenticated, loginAnonymous } = useAuth()
   const vondstenLocalOnly = useSettingsStore(state => state.vondstenLocalOnly)
   const showVondstButton = useSettingsStore(state => state.showVondstButton)
+  const vondstFormOpen = useUIStore(state => state.vondstFormOpen)
+  const vondstFormLocation = useUIStore(state => state.vondstFormLocation)
+  const openVondstForm = useUIStore(state => state.openVondstForm)
+  const closeVondstForm = useUIStore(state => state.closeVondstForm)
 
   // Don't render if disabled in settings
   if (!showVondstButton) return null
@@ -17,7 +20,7 @@ export function AddVondstButton() {
   const handleClick = () => {
     // If using local storage, no auth needed
     if (vondstenLocalOnly) {
-      setShowForm(true)
+      openVondstForm()
       return
     }
 
@@ -28,7 +31,7 @@ export function AddVondstButton() {
       }
       return
     }
-    setShowForm(true)
+    openVondstForm()
   }
 
   return (
@@ -45,7 +48,12 @@ export function AddVondstButton() {
       </motion.button>
 
       <AnimatePresence>
-        {showForm && <AddVondstForm onClose={() => setShowForm(false)} />}
+        {vondstFormOpen && (
+          <AddVondstForm
+            onClose={closeVondstForm}
+            initialLocation={vondstFormLocation || undefined}
+          />
+        )}
       </AnimatePresence>
     </>
   )
