@@ -202,7 +202,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           {/* Location */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600">Locatie</label>
+            <label className="block text-sm text-gray-600 mb-1">Locatie</label>
 
             {/* Location display */}
             {effectiveLocation && (
@@ -254,11 +254,12 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
 
           {/* Object Type */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600">Object type</label>
+            <label className="block text-sm text-gray-600 mb-1">Object type</label>
             <select
               value={objectType}
               onChange={(e) => setObjectType(e.target.value as VondstObjectType)}
-              className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
+              style={{ border: 'none' }}
             >
               <option>Munt</option>
               <option>Aardewerk</option>
@@ -275,11 +276,12 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
 
           {/* Material */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600">Materiaal</label>
+            <label className="block text-sm text-gray-600 mb-1">Materiaal</label>
             <select
               value={material}
               onChange={(e) => setMaterial(e.target.value as VondstMaterial)}
-              className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
+              style={{ border: 'none' }}
             >
               <option>Brons</option>
               <option>IJzer</option>
@@ -294,11 +296,12 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
 
           {/* Period */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600">Periode</label>
+            <label className="block text-sm text-gray-600 mb-1">Periode</label>
             <select
               value={period}
               onChange={(e) => setPeriod(e.target.value as VondstPeriod)}
-              className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
+              style={{ border: 'none' }}
             >
               <option>Romeins (12 v.Chr.-450 n.Chr.)</option>
               <option>IJzertijd</option>
@@ -312,24 +315,26 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
           {/* Weight & Length */}
           <div className="flex gap-3">
             <div className="flex-1">
-              <label className="block text-xs font-medium mb-1 text-gray-600">Gewicht (g)</label>
+              <label className="block text-sm text-gray-600 mb-1">Gewicht (g)</label>
               <input
                 type="number"
                 value={weight ?? ''}
                 onChange={(e) => setWeight(e.target.value ? parseFloat(e.target.value) : undefined)}
-                className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+                className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
+                style={{ border: 'none' }}
                 min="0"
                 step="0.1"
                 placeholder="12.5"
               />
             </div>
             <div className="flex-1">
-              <label className="block text-xs font-medium mb-1 text-gray-600">Lengte (mm)</label>
+              <label className="block text-sm text-gray-600 mb-1">Lengte (mm)</label>
               <input
                 type="number"
                 value={length ?? ''}
                 onChange={(e) => setLength(e.target.value ? parseFloat(e.target.value) : undefined)}
-                className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+                className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
+                style={{ border: 'none' }}
                 min="0"
                 step="0.1"
                 placeholder="25"
@@ -339,30 +344,29 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
 
           {/* Photo URL */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600 flex items-center gap-1">
+            <label className="block text-sm text-gray-600 mb-1 flex items-center gap-1">
               <Link size={12} className="text-blue-500" />
-              Foto link (optioneel)
+              Foto link
             </label>
             <input
               type="url"
               value={photoUrl}
               onChange={(e) => setPhotoUrl(e.target.value)}
-              className="w-full rounded px-3 py-2 bg-gray-50 outline-none border-0 text-sm text-gray-700"
+              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
+              style={{ border: 'none' }}
               placeholder="https://photos.google.com/..."
             />
-            <p className="text-xs text-gray-400 mt-1">
-              Google Photos, iCloud, Dropbox, etc.
-            </p>
           </div>
 
           {/* Notes */}
           <div>
-            <label className="block text-xs font-medium mb-1 text-gray-600">Notities</label>
+            <label className="block text-sm text-gray-600 mb-1">Notities</label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full rounded px-3 py-2 h-20 bg-gray-50 outline-none border-0 text-sm text-gray-700 resize-none"
-              placeholder="Beschrijving, omstandigheden, etc..."
+              className="w-full rounded px-3 py-1.5 h-16 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors resize-none"
+              style={{ border: 'none' }}
+              placeholder="Beschrijving..."
             />
           </div>
 
@@ -376,14 +380,16 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 rounded hover:bg-blue-50 transition-colors bg-gray-100 outline-none border-0 text-sm text-gray-700"
+              className="flex-1 px-4 py-1.5 rounded hover:bg-blue-50 transition-colors bg-gray-100 outline-none text-sm text-gray-600"
+              style={{ border: 'none' }}
             >
               Annuleren
             </button>
             <button
               type="submit"
               disabled={saving || !effectiveLocation || pickingLocation}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 border-0 outline-none text-sm"
+              className="flex-1 px-4 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 outline-none text-sm"
+              style={{ border: 'none' }}
             >
               {saving ? 'Opslaan...' : 'Opslaan'}
             </button>

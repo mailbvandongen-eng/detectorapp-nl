@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { useRef, useEffect } from 'react'
 import { X, Layers } from 'lucide-react'
 import { useUIStore } from '../../store'
 import { LayerGroup } from './LayerGroup'
@@ -6,11 +7,34 @@ import { LayerItem } from './LayerItem'
 
 export function ThemesPanel() {
   const { themesPanelOpen, toggleThemesPanel } = useUIStore()
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  // Close on click outside
+  useEffect(() => {
+    if (!themesPanelOpen) return
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        toggleThemesPanel()
+      }
+    }
+
+    // Small delay to prevent immediate close
+    const timer = setTimeout(() => {
+      document.addEventListener('click', handleClickOutside)
+    }, 100)
+
+    return () => {
+      clearTimeout(timer)
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [themesPanelOpen, toggleThemesPanel])
 
   return (
     <AnimatePresence>
       {themesPanelOpen && (
           <motion.div
+            ref={panelRef}
             className="fixed top-2.5 right-2 z-[1101] bg-white rounded-lg shadow-lg overflow-hidden w-[240px] max-h-[calc(100vh-200px)] flex flex-col"
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
