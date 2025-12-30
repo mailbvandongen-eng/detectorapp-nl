@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Navigation, Crosshair, Link } from 'lucide-react'
+import { CustomSelect } from '../UI/CustomSelect'
 import { toLonLat } from 'ol/proj'
 import { useVondstenStore } from '../../store/vondstenStore'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
@@ -253,64 +254,28 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
           </div>
 
           {/* Object Type */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Object type</label>
-            <select
-              value={objectType}
-              onChange={(e) => setObjectType(e.target.value as VondstObjectType)}
-              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
-              style={{ border: 'none' }}
-            >
-              <option>Munt</option>
-              <option>Aardewerk</option>
-              <option>Gesp</option>
-              <option>Fibula</option>
-              <option>Ring</option>
-              <option>Speld</option>
-              <option>Sieraad</option>
-              <option>Gereedschap</option>
-              <option>Wapen</option>
-              <option>Anders</option>
-            </select>
-          </div>
+          <CustomSelect
+            label="Object type"
+            value={objectType}
+            onChange={(v) => setObjectType(v as VondstObjectType)}
+            options={['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders']}
+          />
 
           {/* Material */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Materiaal</label>
-            <select
-              value={material}
-              onChange={(e) => setMaterial(e.target.value as VondstMaterial)}
-              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
-              style={{ border: 'none' }}
-            >
-              <option>Brons</option>
-              <option>IJzer</option>
-              <option>Zilver</option>
-              <option>Goud</option>
-              <option>Keramiek</option>
-              <option>Steen</option>
-              <option>Glas</option>
-              <option>Onbekend</option>
-            </select>
-          </div>
+          <CustomSelect
+            label="Materiaal"
+            value={material}
+            onChange={(v) => setMaterial(v as VondstMaterial)}
+            options={['Brons', 'IJzer', 'Zilver', 'Goud', 'Keramiek', 'Steen', 'Glas', 'Onbekend']}
+          />
 
           {/* Period */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Periode</label>
-            <select
-              value={period}
-              onChange={(e) => setPeriod(e.target.value as VondstPeriod)}
-              className="w-full rounded px-3 py-1.5 bg-gray-50 outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors cursor-pointer appearance-none"
-              style={{ border: 'none' }}
-            >
-              <option>Romeins (12 v.Chr.-450 n.Chr.)</option>
-              <option>IJzertijd</option>
-              <option>Middeleeuws (450-1500)</option>
-              <option>Nieuwetijd (1500-1800)</option>
-              <option>Modern (1800+)</option>
-              <option>Onbekend</option>
-            </select>
-          </div>
+          <CustomSelect
+            label="Periode"
+            value={period}
+            onChange={(v) => setPeriod(v as VondstPeriod)}
+            options={['Romeins (12 v.Chr.-450 n.Chr.)', 'IJzertijd', 'Middeleeuws (450-1500)', 'Nieuwetijd (1500-1800)', 'Modern (1800+)', 'Onbekend']}
+          />
 
           {/* Weight & Length */}
           <div className="flex gap-3">
