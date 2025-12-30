@@ -20,45 +20,38 @@ const BUILT_IN_PRESETS: Preset[] = [
     isBuiltIn: true  // Protected - cannot be deleted
   },
   {
-    id: 'uiterwaarden',
-    name: 'Uiterwaarden',
-    icon: 'Waves',
-    layers: ['UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling'],
-    isBuiltIn: false
-  },
-  {
-    id: 'recreatie',
-    name: 'Recreatie',
-    icon: 'TreePalm',
-    layers: ['Parken', 'Speeltuinen', 'Strandjes'],
-    isBuiltIn: false
-  },
-  {
-    id: 'hillshade',
-    name: 'Hillshade',
+    id: 'steentijd',
+    name: 'Steentijd',
     icon: 'Mountain',
-    layers: ['AHN 0.5m', 'Geomorfologie', 'AHN4 Multi-Hillshade NL'],
+    layers: ['Hunebedden', 'Grafheuvels', 'Terpen', 'AMK Steentijd'],
+    isBuiltIn: false
+  },
+  {
+    id: 'romeins-midvroeg',
+    name: 'Romeins - Mid vroeg',
+    icon: 'Layers',
+    layers: ['Romeinse wegen', 'AMK Romeins', 'AMK Vroege ME'],
+    isBuiltIn: false
+  },
+  {
+    id: 'midlaat-nieuwetijd',
+    name: 'Mid laat - Nieuwe tijd',
+    icon: 'Grid',
+    layers: ['Kadastrale Grenzen', 'AMK Late ME'],
+    isBuiltIn: false
+  },
+  {
+    id: 'woii-militair',
+    name: 'WOII en Militair',
+    icon: 'Target',
+    layers: ['WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden', 'Verdedigingslinies', 'Inundatiegebieden', 'Militaire Objecten'],
     isBuiltIn: false
   },
   {
     id: 'analyse',
     name: 'Analyse',
     icon: 'Search',
-    layers: ['IKAW', 'Geomorfologie', 'Bodemkaart', 'AHN4 Multi-Hillshade NL', 'AMK Monumenten'],
-    isBuiltIn: false
-  },
-  {
-    id: 'woii',
-    name: 'WOII',
-    icon: 'Target',
-    layers: ['WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden', 'Verdedigingslinies', 'Militaire Objecten'],
-    isBuiltIn: false
-  },
-  {
-    id: 'percelen',
-    name: 'Percelen',
-    icon: 'Grid',
-    layers: ['Gewaspercelen', 'Kadastrale Grenzen', 'AMK Monumenten'],
+    layers: ['IKAW', 'Geomorfologie', 'Bodemkaart', 'AHN4 Multi-Hillshade NL', 'AHN4 Hoogtekaart Kleur', 'AMK Monumenten'],
     isBuiltIn: false
   }
 ]
@@ -164,31 +157,16 @@ export const usePresetStore = create<PresetState>()(
     }),
     {
       name: 'detectorapp-presets',
-      version: 3,
+      version: 4,
       migrate: (persistedState: unknown, version: number) => {
-        const state = persistedState as PresetState
-
-        // v2.7.0: Reset Detectie preset to new layers (AMK Monumenten + Gewaspercelen)
-        if (version < 3) {
+        // v2.7.2: Complete preset overhaul - reset to new defaults
+        if (version < 4) {
+          // Force reset all presets to new defaults
           return {
-            ...state,
-            presets: state.presets.map(p => {
-              if (p.id === 'detectie') {
-                // Force update Detectie to new layers
-                return {
-                  ...p,
-                  layers: ['AMK Monumenten', 'Gewaspercelen'],
-                  isBuiltIn: true
-                }
-              }
-              return {
-                ...p,
-                isBuiltIn: p.id === 'detectie'
-              }
-            })
+            presets: [...BUILT_IN_PRESETS]
           }
         }
-        return state
+        return persistedState as PresetState
       }
     }
   )
