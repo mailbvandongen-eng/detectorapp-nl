@@ -15,7 +15,7 @@ const ALL_OVERLAYS = [
   'Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen',
   // Archeologie
   'AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig',
-  'Romeinse wegen', 'Kastelen', 'IKAW', 'Archeo Landschappen',
+  'Romeinse wegen', 'Romeinse wegen (Wereld)', 'Kastelen', 'IKAW', 'Archeo Landschappen',
   // Erfgoed
   'Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed',
   // Militair

@@ -398,6 +398,14 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     },
     immediateLoad: false
   },
+  'Romeinse wegen (Wereld)': {
+    name: 'Romeinse wegen (Wereld)',
+    factory: async () => {
+      const { createRomeinseWegenWereldLayerOL } = await import('./romeinsOL')
+      return createRomeinseWegenWereldLayerOL()
+    },
+    immediateLoad: false
+  },
   'Kastelen': {
     name: 'Kastelen',
     factory: async () => {
