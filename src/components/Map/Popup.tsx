@@ -120,7 +120,21 @@ export function Popup() {
     return { title: '', contentWithoutTitle: html }
   }
 
-  const { title: extractedTitle, contentWithoutTitle } = extractTitleAndContent(content)
+  // Transform HTML to use em-based font sizes instead of rem-based Tailwind classes
+  // This allows the font size slider to actually scale the text
+  const transformForScaling = (html: string): string => {
+    return html
+      // Remove text-sm class (will inherit from container)
+      .replace(/\btext-sm\b/g, '')
+      // Replace text-xs with inline em-based style (0.857em = 12/14)
+      .replace(/class="([^"]*)\btext-xs\b([^"]*)"/g, 'style="font-size:0.857em" class="$1$2"')
+      // Clean up empty class attributes
+      .replace(/class="\s*"/g, '')
+      .replace(/class="(\s+)"/g, '')
+  }
+
+  const { title: extractedTitle, contentWithoutTitle: rawContent } = extractTitleAndContent(content)
+  const contentWithoutTitle = transformForScaling(rawContent)
 
   // Check if current content is a parcel
   const isParcel = content.includes('Landbouwperceel')
@@ -1709,8 +1723,8 @@ export function Popup() {
 
             {/* Content - scrollable, without title */}
             <div
-              className="px-4 py-3 max-h-[45vh] overflow-y-auto text-sm"
-              style={{ fontSize: `${textScale}%` }}
+              className="px-4 py-3 max-h-[45vh] overflow-y-auto"
+              style={{ fontSize: `${14 * textScale / 100}px` }}
               dangerouslySetInnerHTML={{ __html: contentWithoutTitle }}
             />
 
