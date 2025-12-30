@@ -1,6 +1,26 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.6.0
+## Huidige versie: 2.7.0
+
+---
+
+## v2.7.0 - AMK Periode Filtering
+
+### Nieuwe features:
+1. **AMK per periode** - Filter monumenten op tijdperk:
+   - AMK Romeins (rood): Romeinse tijd
+   - AMK Steentijd (amber): Paleolithicum, Mesolithicum, Neolithicum
+   - AMK Vroege ME (groen): Vroege middeleeuwen
+   - AMK Late ME (blauw): Late middeleeuwen (excl. vroege)
+   - AMK Overig (paars): Overige perioden
+
+2. **Detectie preset update** - Nu standaard met AMK Monumenten + Gewaspercelen
+
+3. **UI verbeteringen (v2.6.5-2.6.7)**:
+   - Font size slider nu IN de popup zelf
+   - Grotere bottom buttons (44px)
+   - Consistente spacing (8px gaps)
+   - BuildLabel verplaatst naar rechts
 
 ---
 
