@@ -17,6 +17,7 @@ import { RouteLayer } from './components/Navigation/RouteLayer'
 import { NavigationBar } from './components/Navigation/NavigationBar'
 import { AddVondstButton } from './components/Vondst/AddVondstButton'
 import { LocalVondstMarkers } from './components/Vondst/LocalVondstMarkers'
+import { CustomLayerMarkers } from './components/CustomLayers'
 import { PasswordGate } from './components/Auth/PasswordGate'
 import { useDeviceOrientation } from './hooks/useDeviceOrientation'
 import { useMapRotation } from './hooks/useMapRotation'
@@ -49,6 +50,7 @@ function App() {
         <GpsMarker />
         <RouteLayer />
         <LocalVondstMarkers />
+        <CustomLayerMarkers />
         <Popup />
         <LongPressMenu />
         <SearchBox />

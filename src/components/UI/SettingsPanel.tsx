@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore, useSettingsStore, usePresetStore, useLayerStore } from '../../store'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
+import { useCustomLayerStore } from '../../store/customLayerStore'
 import { clearPasswordAuth } from '../Auth/PasswordGate'
 import { VondstenDashboard } from '../Vondst/VondstenDashboard'
+import { ImportLayerModal, CustomLayerItem } from '../CustomLayers'
 import type { DefaultBackground } from '../../store/settingsStore'
 
 // All overlay layer names for updating presets - must match PresetButtons.tsx and presetStore.ts
@@ -50,8 +52,10 @@ export function SettingsPanel() {
   const { presets, createPreset, deletePreset, updatePreset } = usePresetStore()
   const visibleLayers = useLayerStore(state => state.visible)
   const vondsten = useLocalVondstenStore(state => state.vondsten)
+  const customLayers = useCustomLayerStore(state => state.layers)
   const [newPresetName, setNewPresetName] = useState('')
   const [showNewPresetInput, setShowNewPresetInput] = useState(false)
+  const [importModalOpen, setImportModalOpen] = useState(false)
 
   const handleCreatePreset = () => {
     if (newPresetName.trim()) {
@@ -182,6 +186,31 @@ export function SettingsPanel() {
                 <ExportButton />
               </Section>
 
+              {/* Eigen Lagen */}
+              <Section title="Eigen Lagen" icon={<Upload size={16} />}>
+                <div className="space-y-1">
+                  {customLayers.length === 0 ? (
+                    <p className="text-xs text-gray-500 py-1">
+                      Nog geen eigen lagen geïmporteerd.
+                    </p>
+                  ) : (
+                    customLayers.map(layer => (
+                      <CustomLayerItem key={layer.id} layer={layer} />
+                    ))
+                  )}
+                  <button
+                    onClick={() => setImportModalOpen(true)}
+                    className="flex items-center gap-2 mt-2 px-2 py-1.5 text-sm text-purple-600 hover:bg-purple-50 rounded transition-colors border-0 outline-none w-full"
+                  >
+                    <Plus size={14} />
+                    <span>Laag importeren</span>
+                  </button>
+                  <p className="text-[10px] text-gray-400 mt-1">
+                    GeoJSON, KML (Google My Maps), GPX
+                  </p>
+                </div>
+              </Section>
+
               {/* Presets */}
               <Section title="Presets" icon={<Layers size={16} />}>
                 <div className="space-y-2">
@@ -279,6 +308,12 @@ export function SettingsPanel() {
     <VondstenDashboard
       isOpen={vondstDashboardOpen}
       onClose={toggleVondstDashboard}
+    />
+
+    {/* Import Layer Modal */}
+    <ImportLayerModal
+      isOpen={importModalOpen}
+      onClose={() => setImportModalOpen(false)}
     />
     </>
   )
