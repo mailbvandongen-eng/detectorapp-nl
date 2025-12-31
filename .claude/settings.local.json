@@ -21,7 +21,11 @@
       "WebFetch(domain:www.pdok.nl)",
       "WebFetch(domain:www.arcgis.com)",
       "WebFetch(domain:community.openstreetmap.org)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebFetch(domain:www.pari-daeza.nl)",
+      "WebFetch(domain:www.cultureelerfgoed.nl)",
+      "WebFetch(domain:services.rce.geovoorziening.nl)",
+      "WebFetch(domain:legendageomorfologie.wur.nl)"
     ]
   }
 }

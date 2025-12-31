@@ -14,7 +14,7 @@ const ALL_OVERLAYS = [
   // Base layer overlays
   'Labels Overlay', 'TMK 1850', 'Bonnebladen 1900',
   // Steentijd
-  'Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen',
+  'Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen', 'Essen',
   // Archeologie
   'AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig',
   'Romeinse wegen', 'Romeinse wegen (Wereld)', 'Kastelen', 'IKAW', 'Archeo Landschappen',

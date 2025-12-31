@@ -100,6 +100,29 @@ export function createFAMKESteentijdLayerOL() {
   return layer
 }
 
+// Essen - Historische akkercomplexen op hogere gronden (RCE Landschapsatlas)
+// Vaak locaties van prehistorische bewoning, plaggenbodems met artefacten
+export function createEssenLayerOL() {
+  const layer = new TileLayer({
+    properties: { title: 'Essen', type: 'wms' },
+    visible: false,
+    opacity: 0.6,
+    source: new TileWMS({
+      url: 'https://services.rce.geovoorziening.nl/landschapsatlas/wms',
+      params: {
+        'LAYERS': 'essen',
+        'STYLES': '',
+        'TILED': true,
+        'FORMAT': 'image/png'
+      },
+      serverType: 'geoserver',
+      crossOrigin: 'anonymous'
+    })
+  })
+
+  return layer
+}
+
 // Archeologische Landschappenkaart van Nederland (RCE)
 // 26 landschappen met zones - zeer relevant voor steentijdarcheologie
 export function createArcheoLandschappenLayerOL() {

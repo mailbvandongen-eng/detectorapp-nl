@@ -22,6 +22,7 @@ const OPACITY_LAYERS = [
   { name: 'IKAW', color: 'orange', default: 0.5 },
   { name: 'Archeo Landschappen', color: 'green', default: 0.5 },
   { name: 'Terpen', color: 'orange', default: 0.7 },
+  { name: 'Essen', color: 'amber', default: 0.6 },
   // Paleokaarten
   { name: 'Paleokaart 9000 v.Chr.', color: 'indigo', default: 0.7 },
   { name: 'Paleokaart 5500 v.Chr.', color: 'indigo', default: 0.7 },

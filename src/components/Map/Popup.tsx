@@ -260,6 +260,39 @@ export function Popup() {
           continue
         }
 
+        // Essen - Historische akkercomplexen
+        if (title === 'Essen') {
+          try {
+            const lonLat = toLonLat(coordinate)
+            const rd = proj4('EPSG:4326', 'EPSG:28992', lonLat)
+            const buffer = 100
+            const bbox = `${rd[0]-buffer},${rd[1]-buffer},${rd[0]+buffer},${rd[1]+buffer}`
+
+            const url = `https://services.rce.geovoorziening.nl/landschapsatlas/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=essen&QUERY_LAYERS=essen&STYLES=&INFO_FORMAT=application/json&I=50&J=50&WIDTH=100&HEIGHT=100&CRS=EPSG:28992&BBOX=${bbox}`
+
+            const response = await fetch(url)
+            const data = await response.json()
+
+            if (data.features && data.features.length > 0) {
+              const props = data.features[0].properties
+              let html = `<strong class="text-amber-800">Es (historisch akkercomplex)</strong>`
+              if (props.naam || props.Naam || props.NAME) {
+                html += `<br/><span class="text-sm font-semibold text-amber-700">${props.naam || props.Naam || props.NAME}</span>`
+              }
+              if (props.type || props.Type || props.TYPE) {
+                html += `<br/><span class="text-xs text-gray-600">${props.type || props.Type || props.TYPE}</span>`
+              }
+              if (props.omschrijving || props.Omschrijving) {
+                html += `<br/><span class="text-xs text-gray-500">${props.omschrijving || props.Omschrijving}</span>`
+              }
+              results.push(html)
+            }
+          } catch (error) {
+            console.warn('Essen WMS query failed:', error)
+          }
+          continue
+        }
+
         // FAMKE Steentijd
         if (title === 'FAMKE Steentijd') {
           try {

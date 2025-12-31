@@ -65,6 +65,14 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     },
     immediateLoad: true
   },
+  'Essen': {
+    name: 'Essen',
+    factory: async () => {
+      const { createEssenLayerOL } = await import('./pdokWMSLayers')
+      return createEssenLayerOL()
+    },
+    immediateLoad: true
+  },
 
   // RCE WMS layers - Erfgoed & Monumenten
   'Rijksmonumenten': {

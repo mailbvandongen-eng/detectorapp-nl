@@ -72,11 +72,12 @@ export function ThemesPanel() {
             {/* Thema's - alle overlay lagen */}
             <LayerGroup title="Thema's" defaultExpanded={true}>
               {/* Steentijd (Stone Age) */}
-              <LayerGroup title="Steentijd & Prehistorie" defaultExpanded={false} layerNames={['Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen']}>
+              <LayerGroup title="Steentijd & Prehistorie" defaultExpanded={false} layerNames={['Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen', 'Essen']}>
                 <LayerItem name="Hunebedden" type="overlay" />
                 <LayerItem name="FAMKE Steentijd" type="overlay" />
                 <LayerItem name="Grafheuvels" type="overlay" />
                 <LayerItem name="Terpen" type="overlay" />
+                <LayerItem name="Essen" type="overlay" />
               </LayerGroup>
 
               {/* Archaeological Layers */}

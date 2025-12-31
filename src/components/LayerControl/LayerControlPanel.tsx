@@ -43,6 +43,7 @@ export function LayerControlPanel() {
                 <LayerItem name="FAMKE Steentijd" type="overlay" />
                 <LayerItem name="Grafheuvels" type="overlay" />
                 <LayerItem name="Terpen" type="overlay" />
+                <LayerItem name="Essen" type="overlay" />
               </LayerGroup>
 
               {/* Archaeological Layers */}

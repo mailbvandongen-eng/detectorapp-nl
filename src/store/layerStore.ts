@@ -56,6 +56,7 @@ export const useLayerStore = create<LayerState>()(
       'Kastelen': false,
       'IKAW': false,
       'Archeo Landschappen': false,
+      'Essen': false,
       // Erfgoed & Monumenten
       'Rijksmonumenten': false,
       'Werelderfgoed': false,
@@ -140,6 +141,7 @@ export const useLayerStore = create<LayerState>()(
       // Archeologie
       'IKAW': 0.5,
       'Archeo Landschappen': 0.5,
+      'Essen': 0.6,
       'Terpen': 0.7,
       // Paleokaarten
       'Paleokaart 9000 v.Chr.': 0.7,
