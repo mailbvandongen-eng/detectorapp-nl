@@ -1,6 +1,30 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.7.3
+## Huidige versie: 2.8.7
+
+---
+
+## v2.8.7 - Kompas button & slider fixes
+
+### Wijzigingen:
+1. **CompassButton** - Nieuwe component (`src/components/UI/CompassButton.tsx`)
+   - Verschijnt rechtsboven onder info-knop bij rotatie >5°
+   - Google Maps stijl: rood-wit kompasnaald
+   - Klik om noorden te herstellen (smooth animatie)
+   - Luistert naar OpenLayers `change:rotation` event
+
+2. **Tekstgrootte sliders gefixed**
+   - CSS styling voor range input thumb toegevoegd (`src/style.css`)
+   - Webkit en Firefox ondersteuning
+   - Sliders staan nu NAAST de titel (niet eronder)
+   - T/t iconen verwijderd voor cleaner look
+
+3. **ThemesPanel** - Slider inline naast "Kaartlagen"
+4. **PresetButtons** - Slider inline naast "Presets"
+
+---
+
+## v2.8.6 - Font scaling & panel UI
 
 ---
 
@@ -129,10 +153,11 @@
 
 **ELKE code wijziging = versie ophogen**
 
-Update alle plekken:
-1. `npm version patch`
-2. `src/components/UI/BuildLabel.tsx`
-3. `src/components/UI/InfoButton.tsx`
+Update ALLE 4 plekken:
+1. `npm version patch` (package.json)
+2. `src/main.tsx` - VERSION constant
+3. `src/components/UI/BuildLabel.tsx` - linksboven label
+4. `src/components/UI/InfoButton.tsx` - in info modal onderaan
 
 ---
 
