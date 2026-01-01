@@ -52,7 +52,7 @@ export function ThemesPanel() {
                 <span className="font-medium text-sm">Kaartlagen</span>
               </div>
               <div className="flex items-center gap-2">
-                {/* Subtle font size slider - inline next to title */}
+                {/* Font size slider */}
                 <input
                   type="range"
                   min="80"
@@ -60,12 +60,7 @@ export function ThemesPanel() {
                   step="10"
                   value={layerPanelFontScale}
                   onChange={(e) => setLayerPanelFontScale(parseInt(e.target.value))}
-                  className="w-14 h-1 rounded-full cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
-                  style={{
-                    WebkitAppearance: 'none',
-                    appearance: 'none',
-                    background: 'rgba(255,255,255,0.4)',
-                  }}
+                  className="header-slider w-14 opacity-70 hover:opacity-100 transition-opacity"
                   title={`Tekstgrootte: ${layerPanelFontScale}%`}
                 />
                 <button

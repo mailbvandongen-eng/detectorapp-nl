@@ -37,6 +37,7 @@ interface GPSState {
   toggleMode: () => void
   updatePosition: (pos: GeolocationPosition) => void
   updateHeading: (raw: number, source?: 'gps' | 'compass') => void
+  setSmoothedHeading: (heading: number) => void
   setWatchId: (id: number) => void
   resetFirstFix: () => void
 }
@@ -154,16 +155,22 @@ export const useGPSStore = create<GPSState>()(
         if (diff > 180) diff -= 360
         if (diff < -180) diff += 360
 
-        // Dead-zone to prevent jitter
-        // Compass (outdoor stationary): 8° threshold (was 3°)
-        // GPS (outdoor moving): 8° threshold
-        const threshold = source === 'compass' ? 8 : config.minRotationSpeed
+        // Dead-zone to prevent jitter - reduced for smoother response
+        const threshold = source === 'compass' ? 5 : 3
         if (Math.abs(diff) < threshold) return
 
-        // Exponential smoothing
-        const newSmooth = current + diff * config.smoothingFactor
+        // Faster smoothing for more responsive feel
+        const smoothingFactor = source === 'gps' ? 0.5 : 0.35
+        const newSmooth = current + diff * smoothingFactor
         state.smoothHeading = (newSmooth + 360) % 360
         state.heading = raw
+      })
+    },
+
+    setSmoothedHeading: (heading: number) => {
+      set(state => {
+        state.smoothHeading = heading
+        state.heading = heading
       })
     },
 

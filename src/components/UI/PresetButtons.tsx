@@ -171,7 +171,7 @@ export function PresetButtons() {
               {/* Header with title and font size slider inline */}
               <div className="flex items-center justify-between gap-3 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
                 <span className="text-xs font-medium">Presets</span>
-                {/* Subtle font size slider - inline next to title */}
+                {/* Font size slider */}
                 <input
                   type="range"
                   min="80"
@@ -179,12 +179,7 @@ export function PresetButtons() {
                   step="10"
                   value={presetPanelFontScale}
                   onChange={(e) => setPresetPanelFontScale(parseInt(e.target.value))}
-                  className="w-12 h-1 rounded-full cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
-                  style={{
-                    WebkitAppearance: 'none',
-                    appearance: 'none',
-                    background: 'rgba(255,255,255,0.4)',
-                  }}
+                  className="header-slider w-12 opacity-70 hover:opacity-100 transition-opacity"
                   title={`Tekstgrootte: ${presetPanelFontScale}%`}
                 />
               </div>

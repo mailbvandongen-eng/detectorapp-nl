@@ -1,6 +1,101 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.8.7
+## Huidige versie: 2.9.0
+
+---
+
+# 🧭 NAVIGATIE ANALYSE & VOORSTEL
+
+## Huidige Problemen
+
+### 1. Wiebelig gedrag (jitter)
+**Oorzaak:** Meerdere conflicterende systemen:
+- `useMapRotation.ts` - animatie van 250ms met easing
+- `GpsMarker.tsx` - eigen rotatie logica met 5° dead-zone
+- `useDeviceOrientation.ts` - 100ms throttle op compass events
+- Exponential smoothing (20% new, 80% old) is te traag
+- Dead-zone van 8° is te groot - zorgt voor plotselinge sprongen
+
+### 2. GPS marker in centrum
+Google Maps plaatst de marker **onderaan** het scherm (25%) zodat je vooruit kijkt.
+Wij hebben marker in het **centrum**.
+
+### 3. Conflicterende heading bronnen
+- **Compass** (deviceorientation) - 60Hz, ruis, magnetische interferentie
+- **GPS bearing** (coords.heading) - alleen bij beweging >0.5 m/s
+- Geen goede transitie tussen bronnen
+
+---
+
+## Google Maps Aanpak
+
+1. **View offset** - GPS positie zit niet in centrum, maar op 25% van onderkant
+2. **Smooth rotation** - Geen discrete animaties, maar requestAnimationFrame
+3. **Heading filtering** - Circular buffer met gewogen gemiddelde (laatste 5-10 samples)
+4. **GPS-priority** - Bij beweging altijd GPS bearing, compass alleen bij stilstand
+5. **Animatie-vrij** - Directe setRotation, geen overlappende animaties
+
+---
+
+## Voorgestelde Oplossing
+
+### Fase 1: Unified Heading System
+**Nieuwe `useHeading.ts` hook:**
+```typescript
+- Circular buffer van laatste 8 headings
+- Weighted moving average (recente samples zwaarder)
+- Smooth transitie GPS ↔ compass
+- Geen discrete thresholds, continue updates
+```
+
+### Fase 2: View Offset bij Navigatie
+**`GpsMarker.tsx` aanpassen:**
+```typescript
+- Bereken offset: GPS positie + 35% schermhoogte naar boven
+- Bij tracking: map centreert op offset punt, niet GPS
+- Marker blijft op werkelijke GPS locatie
+```
+
+### Fase 3: Animatie-vrije Rotatie
+**`useMapRotation.ts` aanpassen:**
+```typescript
+- Geen animate() calls meer
+- Direct view.setRotation() via requestAnimationFrame
+- Rotation rate limiting (max 45°/sec)
+- Geen conflicten tussen animaties
+```
+
+### Fase 4: Marker altijd naar boven
+**`GpsMarker.tsx` aanpassen:**
+- In heading-up mode: marker wijst ALTIJD omhoog (0°)
+- Kaart draait, marker niet
+- Geen counter-rotatie logica nodig
+
+---
+
+## Implementatie Impact
+
+| Bestand | Wijziging |
+|---------|-----------|
+| `src/hooks/useHeading.ts` | NIEUW - Unified heading met circular buffer |
+| `src/hooks/useMapRotation.ts` | Herschrijven - animatie-vrij, direct rotation |
+| `src/components/GPS/GpsMarker.tsx` | View offset + vaste marker rotatie |
+| `src/store/gpsStore.ts` | Vereenvoudigen heading state |
+| `src/hooks/useDeviceOrientation.ts` | Koppelen aan nieuwe useHeading |
+
+---
+
+## Alternatief: Simpelere Quick-Fix
+
+Als volledige herstructurering te groot is:
+1. **Hogere smoothingFactor** (0.4 ipv 0.2) - snellere response
+2. **Kleinere dead-zone** (3° ipv 8°) - minder sprongen
+3. **Langere animatie** (400ms ipv 250ms) - soepeler
+4. **Disable compass indoor** - alleen GPS bearing
+
+---
+
+**Wil je dat ik de volledige herstructurering (Fase 1-4) implementeer, of eerst de quick-fix proberen?**
 
 ---
 

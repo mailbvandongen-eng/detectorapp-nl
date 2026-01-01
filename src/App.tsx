@@ -20,7 +20,7 @@ import { AddVondstButton } from './components/Vondst/AddVondstButton'
 import { LocalVondstMarkers } from './components/Vondst/LocalVondstMarkers'
 import { CustomLayerMarkers } from './components/CustomLayers'
 import { PasswordGate } from './components/Auth/PasswordGate'
-import { useDeviceOrientation } from './hooks/useDeviceOrientation'
+import { useHeading } from './hooks/useHeading'
 import { useMapRotation } from './hooks/useMapRotation'
 import { useNavigation } from './hooks/useNavigation'
 import { useDynamicAHN } from './hooks/useDynamicAHN'
@@ -28,7 +28,7 @@ import { useSettingsStore } from './store'
 
 function App() {
   // Initialize hooks
-  useDeviceOrientation()
+  useHeading()
   useMapRotation()
   useNavigation()
   useDynamicAHN()

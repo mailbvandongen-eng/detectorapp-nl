@@ -3,64 +3,115 @@ import { useMapStore } from '../store/mapStore'
 import { useGPSStore } from '../store/gpsStore'
 import { useSettingsStore } from '../store/settingsStore'
 
-// Original smooth easing (worked well before)
-const easeInOutQuad = (t: number): number => {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-}
-
+/**
+ * Animation-free map rotation hook
+ * - Uses requestAnimationFrame for smooth updates
+ * - Rate-limited rotation (max 60°/sec)
+ * - No conflicting animate() calls
+ */
 export function useMapRotation() {
   const map = useMapStore(state => state.map)
-  const rotationEnabled = useMapStore(state => state.rotationEnabled)
   const setRotation = useMapStore(state => state.setRotation)
   const smoothHeading = useGPSStore(state => state.smoothHeading)
   const tracking = useGPSStore(state => state.tracking)
   const headingUpMode = useSettingsStore(state => state.headingUpMode)
-  const lastRotationRef = useRef<number | null>(null)
 
-  // Handle map rotation based on headingUpMode setting
+  const currentRotationRef = useRef(0)
+  const targetRotationRef = useRef(0)
+  const animationFrameRef = useRef<number | null>(null)
+  const lastTimeRef = useRef(0)
+
+  // Max rotation speed: 90 degrees per second
+  const MAX_ROTATION_SPEED = (90 * Math.PI) / 180 // radians per second
+
   useEffect(() => {
-    // headingUpMode OFF: keep map north-up (rotation = 0)
+    if (!map) return
+
+    // Heading-up mode OFF: reset to north
     if (!headingUpMode) {
-      if (map && map.getView().getRotation() !== 0) {
-        map.getView().animate({ rotation: 0, duration: 500 })
-        setRotation(0)
-        lastRotationRef.current = null
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = null
+      }
+
+      const currentRot = map.getView().getRotation()
+      if (Math.abs(currentRot) > 0.01) {
+        // Smooth reset to north
+        map.getView().animate({ rotation: 0, duration: 400 })
+      }
+      currentRotationRef.current = 0
+      targetRotationRef.current = 0
+      setRotation(0)
+      return
+    }
+
+    // Not tracking: stop animation
+    if (!tracking || smoothHeading === null) {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = null
       }
       return
     }
 
-    // headingUpMode ON: rotate map with movement direction
-    if (!map || !tracking || !rotationEnabled || smoothHeading === null) {
-      // Reset rotation if disabled or not tracking
-      if (map && !tracking) {
-        map.getView().animate({ rotation: 0, duration: 500 })
-        setRotation(0)
-        lastRotationRef.current = null
+    // Convert heading to map rotation (negative because map rotates opposite)
+    targetRotationRef.current = -(smoothHeading * Math.PI) / 180
+
+    // Animation loop
+    const animate = (timestamp: number) => {
+      if (!map) return
+
+      const deltaTime = lastTimeRef.current ? (timestamp - lastTimeRef.current) / 1000 : 0.016
+      lastTimeRef.current = timestamp
+
+      const current = currentRotationRef.current
+      const target = targetRotationRef.current
+
+      // Calculate shortest path (handle wrap-around)
+      let diff = target - current
+      while (diff > Math.PI) diff -= 2 * Math.PI
+      while (diff < -Math.PI) diff += 2 * Math.PI
+
+      // Rate limiting: max rotation speed
+      const maxDelta = MAX_ROTATION_SPEED * deltaTime
+      const clampedDiff = Math.max(-maxDelta, Math.min(maxDelta, diff))
+
+      // Apply if significant change
+      if (Math.abs(diff) > 0.001) {
+        const newRotation = current + clampedDiff
+        currentRotationRef.current = newRotation
+
+        // Direct rotation - no animation
+        map.getView().setRotation(newRotation)
+
+        // Update store (in degrees for display)
+        const degrees = ((-newRotation * 180) / Math.PI + 360) % 360
+        setRotation(degrees)
       }
-      return
+
+      animationFrameRef.current = requestAnimationFrame(animate)
     }
 
-    // Convert heading to radians for OpenLayers (negative because map rotates opposite)
-    const targetRotation = -(smoothHeading * Math.PI) / 180
-    const currentRotation = lastRotationRef.current ?? map.getView().getRotation()
+    // Start animation loop
+    if (!animationFrameRef.current) {
+      lastTimeRef.current = 0
+      animationFrameRef.current = requestAnimationFrame(animate)
+    }
 
-    // Calculate angular difference (handle wrap-around)
-    let diff = targetRotation - currentRotation
-    while (diff > Math.PI) diff -= 2 * Math.PI
-    while (diff < -Math.PI) diff += 2 * Math.PI
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = null
+      }
+    }
+  }, [map, tracking, smoothHeading, headingUpMode, setRotation])
 
-    // Threshold: Only rotate if change exceeds 5 degrees
-    const ROTATION_THRESHOLD = 0.087 // ~5 degrees
-    if (Math.abs(diff) < ROTATION_THRESHOLD) return
-
-    // Smooth animation
-    map.getView().animate({
-      rotation: targetRotation,
-      duration: 250,
-      easing: easeInOutQuad
-    })
-
-    lastRotationRef.current = targetRotation
-    setRotation(smoothHeading)
-  }, [map, tracking, rotationEnabled, smoothHeading, setRotation, headingUpMode])
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
+    }
+  }, [])
 }

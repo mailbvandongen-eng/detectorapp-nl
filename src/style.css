@@ -552,56 +552,90 @@ html, body {
 /* ============================================================
    RANGE SLIDER STYLING - for font size sliders in panels
    ============================================================ */
-input[type="range"] {
+
+/* Header sliders (white on blue background) */
+.header-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  cursor: pointer;
+  height: 16px;
+}
+
+.header-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4) !important;
+  border-radius: 2px;
+}
+
+.header-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 14px;
+  height: 14px;
+  background: white !important;
+  border-radius: 50%;
+  border: none !important;
+  margin-top: -5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.header-slider::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4) !important;
+  border-radius: 2px;
+}
+
+.header-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white !important;
+  border-radius: 50%;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* Standard sliders (gray background in settings) */
+input[type="range"]:not(.header-slider) {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
 }
 
-/* Track styling - Webkit (Chrome, Safari, Edge) */
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 2px;
+input[type="range"]:not(.header-slider)::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
 }
 
-/* Thumb styling - Webkit */
-input[type="range"]::-webkit-slider-thumb {
+input[type="range"]:not(.header-slider)::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
-  background: white;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
   border-radius: 50%;
-  border: none;
-  margin-top: -4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  margin-top: -5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
+input[type="range"]:not(.header-slider)::-moz-range-track {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
 }
 
-/* Track styling - Firefox */
-input[type="range"]::-moz-range-track {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 2px;
-}
-
-/* Thumb styling - Firefox */
-input[type="range"]::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: white;
+input[type="range"]:not(.header-slider)::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
   border-radius: 50%;
-  border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-}
-
-input[type="range"]::-moz-range-thumb:hover {
-  transform: scale(1.1);
 }
