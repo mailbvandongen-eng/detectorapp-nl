@@ -36,7 +36,7 @@ export function LayerGroup({ title, children, defaultExpanded = true, layerNames
     <div className="mb-0.5">
       <div className="flex items-center gap-1 py-1 px-1 hover:bg-blue-50 transition-colors">
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => { e.stopPropagation(); setExpanded(!expanded) }}
           className="flex-1 flex items-center gap-1 bg-transparent border-0 outline-none text-left"
           style={{ fontSize: 'inherit' }}
         >

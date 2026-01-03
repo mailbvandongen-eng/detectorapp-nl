@@ -9,9 +9,8 @@
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import { Style, Stroke } from 'ol/style'
-import type { Feature } from 'ol'
-import type { Geometry, LineString, MultiLineString } from 'ol/geom'
-import { loadGeoJSON, parseGeoJSON } from '../utils/layerLoaderOL.js'
+import GeoJSON from 'ol/format/GeoJSON'
+import { loadGeoJSON } from '../utils/layerLoaderOL.js'
 
 // Bounding box for Benelux + relevant Germany (Rheinland-Westfalen to Saarland/Frankfurt)
 // West: Belgium west, East: past Frankfurt, South: Saarland, North: North Netherlands
@@ -53,24 +52,23 @@ function createStyle(resolution: number): Style {
   return style
 }
 
-// Check if a feature intersects the bounding box
-function featureIntersectsBounds(feature: Feature<Geometry>): boolean {
-  const geometry = feature.getGeometry()
-  if (!geometry) return false
+// Check if GeoJSON feature coordinates intersect the bounding box (WGS84)
+function geojsonFeatureIntersectsBounds(feature: any): boolean {
+  const geometry = feature.geometry
+  if (!geometry || !geometry.coordinates) return false
 
   // Get coordinates based on geometry type
   let coordinates: number[][] = []
 
-  if (geometry.getType() === 'LineString') {
-    coordinates = (geometry as LineString).getCoordinates()
-  } else if (geometry.getType() === 'MultiLineString') {
+  if (geometry.type === 'LineString') {
+    coordinates = geometry.coordinates
+  } else if (geometry.type === 'MultiLineString') {
     // Flatten all line coordinates
-    const lines = (geometry as MultiLineString).getCoordinates()
-    coordinates = lines.flat()
+    coordinates = geometry.coordinates.flat()
   }
 
-  // Check if any coordinate is within bounds
-  return coordinates.some(coord => {
+  // Check if any coordinate is within bounds (GeoJSON is [lon, lat])
+  return coordinates.some((coord: number[]) => {
     const [lon, lat] = coord
     return lon >= BENELUX_BOUNDS.minLon &&
            lon <= BENELUX_BOUNDS.maxLon &&
@@ -86,20 +84,26 @@ function featureIntersectsBounds(feature: Feature<Geometry>): boolean {
 export async function createRomeinseWegenLayerOL() {
   try {
     const geojson = await loadGeoJSON('/detectorapp-nl/data/romeinse_wegen_itiner_e.geojson')
-    const allFeatures = parseGeoJSON(geojson)
 
-    // Filter to only features that intersect the Benelux bounds
-    const filteredFeatures = allFeatures.filter(featureIntersectsBounds)
+    // Filter GeoJSON features BEFORE converting to OpenLayers (coordinates are still WGS84)
+    const filteredGeojson = {
+      type: 'FeatureCollection',
+      features: geojson.features.filter(geojsonFeatureIntersectsBounds)
+    }
+
+    // Now parse filtered features to OpenLayers format
+    const format = new GeoJSON({ featureProjection: 'EPSG:3857' })
+    const features = format.readFeatures(filteredGeojson)
 
     const layer = new VectorLayer({
       properties: { title: 'Romeinse wegen' },
-      source: new VectorSource({ features: filteredFeatures }),
+      source: new VectorSource({ features }),
       style: (feature, resolution) => createStyle(resolution),
       opacity: 0.8,
       zIndex: 20
     })
 
-    console.log(`✓ Romeinse wegen loaded (${filteredFeatures.length}/${allFeatures.length} features in Benelux region)`)
+    console.log(`✓ Romeinse wegen loaded (${features.length}/${geojson.features.length} features in Benelux region)`)
     return layer
 
   } catch (error) {
@@ -115,7 +119,9 @@ export async function createRomeinseWegenLayerOL() {
 export async function createRomeinseWegenWereldLayerOL() {
   try {
     const geojson = await loadGeoJSON('/detectorapp-nl/data/romeinse_wegen_itiner_e.geojson')
-    const features = parseGeoJSON(geojson)
+
+    const format = new GeoJSON({ featureProjection: 'EPSG:3857' })
+    const features = format.readFeatures(geojson)
 
     const layer = new VectorLayer({
       properties: { title: 'Romeinse wegen (Wereld)' },

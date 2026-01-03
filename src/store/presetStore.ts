@@ -24,7 +24,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     name: 'Detectie',
     icon: 'Compass',
     layers: ['AMK Monumenten', 'Gewaspercelen', 'IKAW'],
-    isBuiltIn: true  // Protected - cannot be deleted
+    isBuiltIn: false  // Now editable like other presets
   },
   {
     id: 'steentijd',
@@ -136,11 +136,7 @@ const ALL_OVERLAYS = [
 export const usePresetStore = create<PresetState>()(
   persist(
     (set, get) => ({
-      presets: [...BUILT_IN_PRESETS].map(p => ({
-        ...p,
-        // Ensure only Detectie is protected (migration for existing users)
-        isBuiltIn: p.id === 'detectie'
-      })),
+      presets: [...BUILT_IN_PRESETS],
 
       applyPreset: (id: string) => {
         const preset = get().presets.find(p => p.id === id)
@@ -191,9 +187,7 @@ export const usePresetStore = create<PresetState>()(
       updatePreset: (id: string, changes: Partial<Pick<Preset, 'name' | 'icon' | 'layers'>>) => {
         set(state => ({
           presets: state.presets.map(p =>
-            p.id === id && !p.isBuiltIn
-              ? { ...p, ...changes }
-              : p
+            p.id === id ? { ...p, ...changes } : p
           )
         }))
       },
@@ -210,10 +204,10 @@ export const usePresetStore = create<PresetState>()(
     }),
     {
       name: 'detectorapp-presets',
-      version: 5,
+      version: 6,
       migrate: (persistedState: unknown, version: number) => {
-        // v2.10.3: Logische presets met baseLayer ondersteuning
-        if (version < 5) {
+        // v2.10.4: Alle presets zijn nu aanpasbaar (geen isBuiltIn meer)
+        if (version < 6) {
           // Force reset all presets to new defaults
           return {
             presets: [...BUILT_IN_PRESETS]

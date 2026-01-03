@@ -13,6 +13,34 @@ import type { MapBrowserEvent } from 'ol'
 // Register RD New projection
 proj4.defs('EPSG:28992', '+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs')
 
+// Translate opening hours from English to Dutch
+function translateOpeningHours(hours: string): string {
+  if (!hours) return hours
+
+  // Day abbreviations: English to Dutch
+  const dayMap: Record<string, string> = {
+    'Mo': 'ma', 'Tu': 'di', 'We': 'wo', 'Th': 'do',
+    'Fr': 'vr', 'Sa': 'za', 'Su': 'zo',
+    'Mon': 'ma', 'Tue': 'di', 'Wed': 'wo', 'Thu': 'do',
+    'Fri': 'vr', 'Sat': 'za', 'Sun': 'zo',
+    'PH': 'feestdagen', 'SH': 'schoolvakantie'
+  }
+
+  let result = hours
+  // Replace day abbreviations (case-insensitive, whole word)
+  Object.entries(dayMap).forEach(([en, nl]) => {
+    result = result.replace(new RegExp(`\\b${en}\\b`, 'gi'), nl)
+  })
+
+  // Replace common words
+  result = result
+    .replace(/\boff\b/gi, 'gesloten')
+    .replace(/\bclosed\b/gi, 'gesloten')
+    .replace(/\bopen\b/gi, 'open')
+
+  return result
+}
+
 // AHN hoogte query - direct via WMS GetFeatureInfo
 async function queryAHNHeight(coordinate: number[]): Promise<number | null> {
   try {
@@ -1642,7 +1670,8 @@ export function Popup() {
           html += `<br/><span class="text-sm text-gray-600">${dataProps.operator}</span>`
         }
         if (dataProps.opening_hours) {
-          html += `<br/><span class="text-xs text-green-600">Open: ${dataProps.opening_hours}</span>`
+          const dutchHours = translateOpeningHours(String(dataProps.opening_hours))
+          html += `<br/><span class="text-xs text-green-600">Open: ${dutchHours}</span>`
         }
         if (dataProps.website) {
           html += `<br/><a href="${dataProps.website}" target="_blank" class="text-xs text-blue-600 underline">Website</a>`

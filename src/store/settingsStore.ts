@@ -69,7 +69,18 @@ export const useSettingsStore = create<SettingsState>()(
       setPresetPanelFontScale: (presetPanelFontScale) => set({ presetPanelFontScale })
     }),
     {
-      name: 'detectorapp-settings'
+      name: 'detectorapp-settings',
+      version: 2,
+      migrate: (persistedState: any, version: number) => {
+        // Migrate from older versions without showScaleBar
+        if (version < 2) {
+          return {
+            ...persistedState,
+            showScaleBar: true  // Ensure scale bar is visible by default
+          }
+        }
+        return persistedState
+      }
     }
   )
 )

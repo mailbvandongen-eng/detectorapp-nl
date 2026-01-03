@@ -219,15 +219,13 @@ export function PresetButtons() {
                     >
                       <IconComponent size={14} className={`${iconColor} flex-shrink-0`} />
                       <span className="text-gray-700 truncate">{preset.name}</span>
-                      {!preset.isBuiltIn && (
-                        <span
-                          onClick={(e) => handleSaveToPreset(e, preset.id)}
-                          className="ml-auto p-1 hover:bg-gray-200 rounded transition-colors flex-shrink-0"
-                          title="Huidige lagen opslaan naar deze preset"
-                        >
-                          <Save size={12} className="text-gray-400 hover:text-blue-500" />
-                        </span>
-                      )}
+                      <span
+                        onClick={(e) => handleSaveToPreset(e, preset.id)}
+                        className="ml-auto p-1 hover:bg-gray-200 rounded transition-colors flex-shrink-0"
+                        title="Huidige lagen opslaan naar deze preset"
+                      >
+                        <Save size={12} className="text-gray-400 hover:text-blue-500" />
+                      </span>
                     </button>
                   )
                 })}

@@ -23,10 +23,10 @@ export function InfoButton() {
       {/* Info Button - top right corner */}
       <button
         onClick={toggleInfoPanel}
-        className="fixed top-3 right-2.5 z-[800] w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-lg shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className="fixed top-2 right-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         title="Info & Help"
       >
-        <Info size={16} className="text-gray-600" />
+        <Info size={22} className="text-gray-600" />
       </button>
 
       {/* Modal */}
@@ -96,7 +96,7 @@ export function InfoButton() {
                     <span className="text-sm">Meld een bug</span>
                   </a>
                   <p className="text-xs text-gray-400 text-center">
-                    DetectorApp NL v2.10.3
+                    DetectorApp NL v2.10.4
                   </p>
                 </section>
               </div>
@@ -115,7 +115,7 @@ function InfoTab() {
         <h3 className="font-semibold text-gray-800 mb-2">Over deze app</h3>
         <p className="text-gray-600">
           DetectorApp NL is dé kaartapplicatie voor metaaldetectie en archeologische verkenning in Nederland.
-          Met 50+ kaartlagen, GPS tracking en vondstenbeheer.
+          Met 60+ kaartlagen, GPS tracking, Google Maps-style navigatie en vondstenbeheer.
         </p>
       </section>
 
@@ -125,17 +125,17 @@ function InfoTab() {
           <li>
             <strong>RCE / Cultureelerfgoed.nl</strong> (CC0/CC-BY)
             <br />
-            <span className="text-xs">AMK, Rijksmonumenten, Werelderfgoed, Paleokaarten, Religieus Erfgoed</span>
+            <span className="text-xs">AMK, Rijksmonumenten, Werelderfgoed, Paleokaarten, Religieus Erfgoed, Essen</span>
           </li>
           <li>
             <strong>PDOK / Kadaster</strong> (CC0/CC-BY)
             <br />
-            <span className="text-xs">Luchtfoto, AHN, IKAW, Bodemkaart, Geomorfologie</span>
+            <span className="text-xs">Luchtfoto, AHN, IKAW, Bodemkaart, Geomorfologie, Kadastrale Grenzen</span>
           </li>
           <li>
             <strong>OpenStreetMap</strong> (ODbL)
             <br />
-            <span className="text-xs">Hunebedden, Grafheuvels, Bunkers, Kastelen, Parken, etc.</span>
+            <span className="text-xs">Hunebedden, Grafheuvels, Bunkers, Kastelen, Parken, Kringloopwinkels, Musea</span>
           </li>
           <li>
             <strong>Itiner-E</strong> (CC BY 4.0)
@@ -153,9 +153,9 @@ function InfoTab() {
             <span className="text-xs">Historische kaarten (TMK 1850, Bonnebladen 1900)</span>
           </li>
           <li>
-            <strong>Friesland Geoportal</strong>
+            <strong>Provinciale data</strong>
             <br />
-            <span className="text-xs">FAMKE Steentijd, Terpen</span>
+            <span className="text-xs">Relictenkaart (Gelderland), Scheepswrakken (Zuid-Holland), Verdronken Dorpen (Zeeland)</span>
           </li>
           <li>
             <strong>UIKAV / Rijkswaterstaat</strong>
@@ -189,17 +189,18 @@ function FunctiesTab() {
       <section>
         <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
           <Map size={16} className="text-blue-600" />
-          Kaartlagen (50+)
+          Kaartlagen (60+)
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
           <li><strong>Basis:</strong> CartoDB, OpenStreetMap, PDOK Luchtfoto</li>
           <li><strong>Historisch:</strong> TMK 1850, Bonnebladen 1900</li>
           <li><strong>Hoogtekaarten:</strong> AHN4 Hillshade, Multi-Hillshade, Hoogtekaart Kleur, AHN 0.5m</li>
           <li><strong>Archeologie:</strong> AMK Monumenten (per periode), Romeinse wegen, Kastelen, IKAW</li>
-          <li><strong>Prehistorie:</strong> Hunebedden, Grafheuvels, Terpen, Paleokaarten</li>
+          <li><strong>Prehistorie:</strong> Hunebedden, Grafheuvels, Terpen, Paleokaarten (7 periodes)</li>
           <li><strong>Militair:</strong> WWII Bunkers, Slagvelden, Vliegvelden, Verdedigingslinies</li>
           <li><strong>Terrein:</strong> Veengebieden, Geomorfologie, Bodemkaart</li>
           <li><strong>Percelen:</strong> Gewaspercelen, Kadastrale Grenzen</li>
+          <li><strong>Recreatie:</strong> Parken, Musea, Kringloopwinkels, Strandjes</li>
           <li><strong>Provinciaal:</strong> Relictenkaart, Scheepswrakken, Verdronken Dorpen</li>
         </ul>
       </section>
@@ -211,9 +212,10 @@ function FunctiesTab() {
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
           <li>Live GPS tracking met nauwkeurigheidscirkel</li>
-          <li>Heading-up mode (kaart draait mee)</li>
-          <li>Route navigatie naar locatie</li>
-          <li>Adres zoeken</li>
+          <li>Google Maps-style navigatieknop (tik 1× = locatie, 2× = volgen, 3× = kompas)</li>
+          <li>Heading-up mode met kompasknop om terug te draaien</li>
+          <li>Route navigatie naar locatie (long-press → "Navigeer")</li>
+          <li>Schaalbalk onderaan (instelbaar in Instellingen)</li>
         </ul>
       </section>
 
@@ -237,9 +239,10 @@ function FunctiesTab() {
           Presets
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
-          <li>Detectie, Steentijd, Romeins, Middeleeuwen, WOII, Analyse</li>
-          <li>Eigen presets aanmaken en bewerken</li>
-          <li>Snel wisselen tussen configuraties</li>
+          <li>Detectie, Steentijd, Romeins, Middeleeuwen, WOII, Analyse, Fossielen</li>
+          <li>Alle presets zijn aanpasbaar - klik op het diskette-icoon om huidige lagen op te slaan</li>
+          <li>Eigen presets aanmaken via Instellingen</li>
+          <li>Tekstgrootte per panel instelbaar via slider in header</li>
         </ul>
       </section>
 
@@ -249,9 +252,9 @@ function FunctiesTab() {
           Perceelinformatie
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
-          <li>Klik op kaart voor perceelinfo (Kadaster)</li>
+          <li>Tik op kaart voor perceelinfo (Kadaster)</li>
           <li>Hoogtekaart per perceel (AHN4)</li>
-          <li>Eigenaar lookup</li>
+          <li>Eigenaar lookup link naar Kadaster</li>
         </ul>
       </section>
     </>
@@ -271,6 +274,16 @@ function HandleidingTab() {
       </section>
 
       <section>
+        <h3 className="font-semibold text-gray-800 mb-2">GPS knop (Google Maps-style)</h3>
+        <div className="text-gray-600 space-y-2 text-xs">
+          <p><strong>1× tikken:</strong> Laat je huidige locatie zien (grijs icoon)</p>
+          <p><strong>2× tikken:</strong> Volg je locatie - kaart schuift mee (blauw icoon)</p>
+          <p><strong>3× tikken:</strong> Kompas-modus - kaart draait mee met je richting</p>
+          <p><strong>Kompasknop:</strong> Verschijnt rechtsboven als de kaart gedraaid is. Tik om terug naar noorden te draaien.</p>
+        </div>
+      </section>
+
+      <section>
         <h3 className="font-semibold text-gray-800 mb-2">Vondst toevoegen</h3>
         <div className="text-gray-600 space-y-2 text-xs">
           <p><strong>Methode 1 - GPS:</strong> Tik op de oranje + knop rechtsonder. Je huidige locatie wordt automatisch ingevuld.</p>
@@ -280,33 +293,21 @@ function HandleidingTab() {
       </section>
 
       <section>
-        <h3 className="font-semibold text-gray-800 mb-2">Perceelinformatie</h3>
-        <div className="text-gray-600 space-y-2 text-xs">
-          <p>Tik op een willekeurige plek op de kaart om perceelinfo te zien. Je krijgt:</p>
-          <ul className="list-disc list-inside ml-2">
-            <li>Kadastrale gegevens</li>
-            <li>Oppervlakte</li>
-            <li>Hoogtekaart van het perceel (AHN4)</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
         <h3 className="font-semibold text-gray-800 mb-2">Presets gebruiken</h3>
         <div className="text-gray-600 space-y-2 text-xs">
           <p><strong>Toepassen:</strong> Tik op het laagjes-icoon links en kies een preset.</p>
-          <p><strong>Nieuw aanmaken:</strong> Zet de gewenste lagen aan, ga naar Instellingen → Presets → "Huidige lagen als preset opslaan".</p>
-          <p><strong>Bewerken:</strong> Zet de gewenste lagen aan, ga naar Instellingen → Presets → tik op het potlood-icoon naast de preset.</p>
-          <p><strong>Verwijderen:</strong> Ga naar Instellingen → Presets → tik op het prullenbak-icoon.</p>
+          <p><strong>Snel opslaan:</strong> Zet de gewenste lagen aan en tik op het diskette-icoon naast een preset om die te overschrijven.</p>
+          <p><strong>Nieuw aanmaken:</strong> Ga naar Instellingen → Presets → "Huidige lagen als preset opslaan".</p>
+          <p><strong>Tekstgrootte:</strong> Gebruik de slider in de header van het Presets/Kaartlagen panel.</p>
         </div>
       </section>
 
       <section>
         <h3 className="font-semibold text-gray-800 mb-2">Navigatie</h3>
         <div className="text-gray-600 space-y-2 text-xs">
-          <p><strong>Heading-up:</strong> Tik op het kompas-icoon om de kaart mee te laten draaien met je looprichting.</p>
           <p><strong>Route:</strong> Long-press op een locatie en kies "Navigeer hierheen".</p>
           <p><strong>Zoeken:</strong> Gebruik de zoekbalk bovenaan om een adres te vinden.</p>
+          <p><strong>Schaalbalk:</strong> Onderaan de kaart - aan/uit in Instellingen.</p>
         </div>
       </section>
 
@@ -318,6 +319,7 @@ function HandleidingTab() {
           <li>Check de <strong>IKAW</strong> voor archeologische verwachting</li>
           <li>Gebruik <strong>historische kaarten</strong> om oude structuren te vinden</li>
           <li>Zet <strong>GPS tracking</strong> aan om je route te volgen</li>
+          <li>Tik op objecten (bunkers, musea, etc.) voor openingstijden en info</li>
         </ul>
       </section>
     </>

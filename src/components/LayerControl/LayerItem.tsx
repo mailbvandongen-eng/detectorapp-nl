@@ -16,7 +16,10 @@ export function LayerItem({ name, type }: Props) {
   const isLoading = loadingState === 'loading'
   const hasError = loadingState === 'error'
 
-  const handleChange = () => {
+  const handleChange = (e: React.MouseEvent) => {
+    // Stop event propagation to prevent panel close-on-click-outside from triggering
+    e.stopPropagation()
+
     // Disable during loading
     if (isLoading) return
 
