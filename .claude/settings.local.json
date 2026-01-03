@@ -34,7 +34,9 @@
       "WebFetch(domain:geogap.nl)",
       "WebFetch(domain:api.pdok.nl)",
       "WebFetch(domain:huizenbalie.nl)",
-      "WebFetch(domain:www.kadaster.nl)"
+      "WebFetch(domain:www.kadaster.nl)",
+      "WebFetch(domain:www.oervondstchecker.nl)",
+      "WebFetch(domain:www.paleontica.org)"
     ]
   }
 }

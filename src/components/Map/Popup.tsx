@@ -111,6 +111,49 @@ const IKAW_VALUES: Record<number, string> = {
   9: 'Niet gekarteerd'
 }
 
+// Bodem uitleg - praktische info voor detectoristen
+function getSoilExplanation(soilName: string, soilCode?: string): string[] {
+  const tips: string[] = []
+  const nameLower = soilName.toLowerCase()
+  const codeLower = (soilCode || '').toLowerCase()
+
+  // Kalk check - belangrijk voor conservering
+  if (nameLower.includes('kalkhoudend') || codeLower.endsWith('a')) {
+    tips.push('Kalkhoudend = goede metaalconservering')
+  } else if (nameLower.includes('kalkarm') || nameLower.includes('kalkloos')) {
+    tips.push('Kalkarm = meer corrosie op metalen')
+  }
+
+  // Grondsoort - wat betekent het voor graven/conservering
+  if (nameLower.includes('poldervaag')) {
+    tips.push('Poldervaaggrond = jonge rivierklei, ingepolderd gebied')
+  } else if (nameLower.includes('enkeerdgrond') || nameLower.includes('enk')) {
+    tips.push('Enkeerdgrond = oude akkers met plaggenbemesting - archeologisch interessant!')
+  } else if (nameLower.includes('podzol')) {
+    tips.push('Podzolgrond = uitgeloogde zandgrond, vaak zuur')
+  } else if (nameLower.includes('veengrond') || nameLower.includes('veen')) {
+    tips.push('Veengrond = zuur, slechte metaalconservering (tenzij waterverzadigd)')
+  }
+
+  // Textuur - graven
+  if (nameLower.includes('zware klei')) {
+    tips.push('Zware klei = moeilijk graven, goede conservering')
+  } else if (nameLower.includes('lichte klei') || nameLower.includes('zavel')) {
+    tips.push('Zavel/lichte klei = redelijk te graven')
+  } else if (nameLower.includes('zand') && !nameLower.includes('zavel')) {
+    tips.push('Zandgrond = makkelijk graven')
+  }
+
+  // Rivier vs zee
+  if (nameLower.includes('rivierklei') || codeLower.startsWith('r')) {
+    tips.push('Rivierafzetting')
+  } else if (nameLower.includes('zeeklei') || codeLower.startsWith('m')) {
+    tips.push('Zeekleiafzetting')
+  }
+
+  return tips
+}
+
 export function Popup() {
   const map = useMapStore(state => state.map)
   const removeVondst = useLocalVondstenStore(state => state.removeVondst)
@@ -428,7 +471,6 @@ export function Popup() {
 
               let html = `<strong class="text-orange-800">IKAW (2008)</strong>`
               html += `<br/><span class="text-sm text-orange-700">${label}</span>`
-              html += `<br/><a href="https://www.cultureelerfgoed.nl/onderwerpen/bronnen-en-kaarten/overzicht/archeologie-in-nederland-amk-en-ikaw" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Wat betekent dit?</a>`
 
               results.push(html)
             }
@@ -739,13 +781,14 @@ export function Popup() {
                   if (bodemData.features && bodemData.features.length > 0) {
                     const bodemProps = bodemData.features[0].properties
                     const soilName = bodemProps.first_soilname || bodemProps.soilname || bodemProps.bodemtype
+                    const soilCode = bodemProps.first_soilcode || bodemProps.soilcode || bodemProps.maparea_soilcode
                     if (soilName) {
                       html += `<br/><span class="text-xs text-amber-700 font-medium">Grondsoort: ${soilName}</span>`
-                    }
-                    // Show soil code if available
-                    const soilCode = bodemProps.first_soilcode || bodemProps.soilcode || bodemProps.maparea_soilcode
-                    if (soilCode) {
-                      html += `<br/><span class="text-xs text-gray-400">Bodemcode: ${soilCode}</span>`
+                      // Praktische uitleg toevoegen
+                      const tips = getSoilExplanation(soilName, soilCode)
+                      if (tips.length > 0) {
+                        html += `<br/><span class="text-xs text-gray-500 italic">${tips.join(' · ')}</span>`
+                      }
                     }
                   }
                 } catch {
@@ -1296,7 +1339,7 @@ export function Popup() {
               }
 
               // Link naar WUR legenda
-              html += `<br/><a href="https://legendageomorfologie.wur.nl/" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Wat betekent dit?</a>`
+              html += `<br/><a href="https://legendageomorfologie.wur.nl/" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Meer over geomorfologie</a>`
 
               results.push(html)
               continue
@@ -1305,23 +1348,24 @@ export function Popup() {
             let html = `<strong>${title}</strong>`
 
             // Bodemkaart specific fields
-            if (props.first_soilname || props.soilname) {
-              html += `<br/><span class="text-sm text-amber-700">${props.first_soilname || props.soilname}</span>`
-            }
-            if (props.soilcode || props.first_soilcode) {
-              html += `<br/><span class="text-xs text-gray-500">Code: ${props.soilcode || props.first_soilcode}</span>`
+            const soilName = props.first_soilname || props.soilname
+            const soilCode = props.soilcode || props.first_soilcode
+            if (soilName) {
+              html += `<br/><span class="text-sm text-amber-700">${soilName}</span>`
+              // Praktische uitleg toevoegen (geen externe links meer nodig)
+              if (title === 'Bodemkaart') {
+                const tips = getSoilExplanation(soilName, soilCode)
+                if (tips.length > 0) {
+                  html += `<br/><span class="text-xs text-gray-500 italic">${tips.join(' · ')}</span>`
+                }
+              }
             }
             if (props.soilslope && props.soilslope !== 'Niet opgenomen') {
               html += `<br/><span class="text-xs text-gray-500">Helling: ${props.soilslope}</span>`
             }
 
-            // Link naar bodemkaart legenda voor Bodemkaart laag
-            if (title === 'Bodemkaart' && (props.first_soilname || props.soilname || props.soilcode)) {
-              html += `<br/><a href="https://legenda-bodemkaart.bodemdata.nl/" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Wat betekent dit?</a>`
-            }
-
             // Generic fallback for other properties
-            if (!props.first_soilname && !props.soilname) {
+            if (!soilName) {
               const skipKeys = ['geometry', 'id', 'fid', 'gml_id', 'GRAY_INDEX', 'gray_index', 'value']
               for (const [key, value] of Object.entries(props)) {
                 if (!skipKeys.includes(key) && value && value !== 'Niet opgenomen') {
