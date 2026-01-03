@@ -775,22 +775,34 @@ export function Popup() {
 
             if (data.features && data.features.length > 0) {
               const props = data.features[0].properties
+
+              // Extract parcel info
+              const gemeente = props.kadastraleGemeenteWaarde || KADASTRALE_GEMEENTEN[String(props.kadastraleGemeenteCode)] || props.kadastraleGemeenteCode
+              const sectie = props.sectie || ''
+              const perceelnummer = props.perceelnummer || props.perceelNummer || ''
+              const oppervlakte = props.kadastraleGrootteWaarde || props.oppervlakte
+
+              // Build kadastrale aanduiding (e.g., "Amersfoort E 7797")
+              const aanduiding = [gemeente, sectie, perceelnummer].filter(Boolean).join(' ')
+
               let html = `<strong class="text-indigo-800">Kadastraal Perceel</strong>`
 
-              if (props.perceelNummer || props.perceelnummer) {
-                html += `<br/><span class="text-sm font-semibold text-indigo-700">${props.perceelNummer || props.perceelnummer}</span>`
+              if (aanduiding) {
+                html += `<br/><span class="text-sm font-semibold text-indigo-700">${aanduiding}</span>`
               }
-              if (props.kadastraleGemeenteCode || props.gemeentecode) {
-                const code = String(props.kadastraleGemeenteCode || props.gemeentecode)
-                const naam = KADASTRALE_GEMEENTEN[code] || code
-                html += `<br/><span class="text-xs text-gray-600">Gemeente: ${naam}</span>`
+
+              if (oppervlakte) {
+                const opp = typeof oppervlakte === 'number' ? oppervlakte : parseFloat(oppervlakte)
+                if (!isNaN(opp)) {
+                  html += `<br/><span class="text-xs text-gray-600">${opp.toLocaleString('nl-NL')} m²</span>`
+                }
               }
-              if (props.sectie) {
-                html += `<br/><span class="text-xs text-gray-500">Sectie: ${props.sectie}</span>`
-              }
-              if (props.oppervlakte) {
-                html += `<br/><span class="text-xs text-gray-500">${props.oppervlakte} m²</span>`
-              }
+
+              // Add link to kadastralekaart.com for owner lookup
+              // Build URL with coordinates for the parcel center
+              const kadasterUrl = `https://kadastralekaart.com/kaart/@${lonLat[0].toFixed(6)},${lonLat[1].toFixed(6)},18`
+              html += `<br/><a href="${kadasterUrl}" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Eigenaar opzoeken →</a>`
+              html += `<br/><span class="text-[10px] text-gray-400">(betaalde dienst, €2,45)</span>`
 
               results.push(html)
             }

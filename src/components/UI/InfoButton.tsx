@@ -252,9 +252,10 @@ function FunctiesTab() {
           Perceelinformatie
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
-          <li>Tik op kaart voor perceelinfo (Kadaster)</li>
+          <li>Zet "Kadastrale Grenzen" aan en tik op een perceel</li>
+          <li>Toont: kadastrale aanduiding (gemeente, sectie, nummer) + oppervlakte</li>
+          <li>Link naar eigenaar opzoeken (betaalde dienst via kadastralekaart.com)</li>
           <li>Hoogtekaart per perceel (AHN4)</li>
-          <li>Eigenaar lookup link naar Kadaster</li>
         </ul>
       </section>
     </>
