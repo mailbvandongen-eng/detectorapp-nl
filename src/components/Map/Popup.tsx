@@ -820,12 +820,8 @@ export function Popup() {
                 }
               }
 
-              // Build URL to kadastralekaart.com for owner lookup
-              // Direct link if we have AKR code, otherwise link to homepage
-              let kadasterUrl = 'https://kadastralekaart.com/'
-              if (akrGemeenteCode && sectie && perceelnummer) {
-                kadasterUrl = `https://kadastralekaart.com/kaart/perceel/${akrGemeenteCode}/${sectie}/${perceelnummer}`
-              }
+              // Link to official Kadaster.nl for owner lookup (€3,70)
+              const kadasterUrl = 'https://www.kadaster.nl/producten/woning/eigendomsinformatie'
               html += `<br/><a href="${kadasterUrl}" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Eigenaar opzoeken</a> <span class="text-[10px] text-gray-400">(betaalde dienst)</span>`
 
               results.push(html)
