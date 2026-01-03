@@ -1,4 +1,4 @@
-import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Settings, Grid3X3, LucideIcon } from 'lucide-react'
+import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Settings, Grid3X3, Save, LucideIcon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore } from '../../store'
 
@@ -87,8 +87,12 @@ export function PresetButtons() {
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
   const stopTracking = useGPSStore(state => state.stopTracking)
   const { presetsPanelOpen, togglePresetsPanel, toggleSettingsPanel, closeAllPanels } = useUIStore()
-  const { presets, applyPreset } = usePresetStore()
-  const { presetPanelFontScale, setPresetPanelFontScale } = useSettingsStore()
+  const { presets, applyPreset, updatePreset } = usePresetStore()
+  const visible = useLayerStore(state => state.visible)
+
+  // Explicit selectors to ensure re-render on state change
+  const presetPanelFontScale = useSettingsStore(state => state.presetPanelFontScale)
+  const setPresetPanelFontScale = useSettingsStore(state => state.setPresetPanelFontScale)
 
   // Calculate font size based on panel-specific fontScale
   const baseFontSize = 12 * presetPanelFontScale / 100
@@ -114,6 +118,16 @@ export function PresetButtons() {
   const handleApplyPreset = (id: string) => {
     applyPreset(id)
     closeAllPanels()
+  }
+
+  // Save current visible layers to a preset
+  const handleSaveToPreset = (e: React.MouseEvent, presetId: string) => {
+    e.stopPropagation()
+    const currentLayers = Object.entries(visible)
+      .filter(([layerName, isVisible]) => isVisible && ALL_OVERLAYS.includes(layerName))
+      .map(([layerName]) => layerName)
+    updatePreset(presetId, { layers: currentLayers })
+    console.log(`💾 Lagen opgeslagen naar preset`)
   }
 
   return (
@@ -155,7 +169,7 @@ export function PresetButtons() {
           <>
             {/* Invisible backdrop - click to close */}
             <motion.div
-              className="fixed inset-0 z-[-1]"
+              className="fixed inset-0 z-[800]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -166,7 +180,7 @@ export function PresetButtons() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="fixed bottom-[112px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[160px] backdrop-blur-sm z-[801]"
+              className="fixed bottom-[112px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden w-[220px] backdrop-blur-sm z-[801]"
             >
               {/* Header with title and font size slider inline */}
               <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
@@ -180,20 +194,17 @@ export function PresetButtons() {
                     max="130"
                     step="10"
                     value={presetPanelFontScale}
-                    onChange={(e) => {
-                      e.stopPropagation()
-                      setPresetPanelFontScale(parseInt(e.target.value))
+                    onInput={(e) => {
+                      setPresetPanelFontScale(parseInt((e.target as HTMLInputElement).value))
                     }}
-                    onClick={(e) => e.stopPropagation()}
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onTouchStart={(e) => e.stopPropagation()}
+                    onChange={(e) => setPresetPanelFontScale(parseInt(e.target.value))}
                     className="header-slider w-16 opacity-70 hover:opacity-100 transition-opacity"
                     title={`Tekstgrootte: ${presetPanelFontScale}%`}
                   />
                   <span className="text-[11px] opacity-70">T</span>
                 </div>
               </div>
-              <div className="p-2" style={{ fontSize: `${baseFontSize}px` }}>
+              <div className="p-2">
                 {presets.map(preset => {
                   const IconComponent = ICON_MAP[preset.icon] || Layers
                   const iconColor = ICON_COLORS[preset.icon] || 'text-blue-600'
@@ -203,12 +214,19 @@ export function PresetButtons() {
                     <button
                       key={preset.id}
                       onClick={() => handleApplyPreset(preset.id)}
-                      className={`w-full flex items-center gap-2 px-2 py-1.5 ${hoverColor} rounded text-left transition-colors border-0 outline-none bg-transparent`}
+                      className={`w-full h-8 flex items-center gap-2 px-2 ${hoverColor} rounded text-left transition-colors border-0 outline-none bg-transparent overflow-hidden`}
+                      style={{ fontSize: `${baseFontSize}px` }}
                     >
-                      <IconComponent size={14} className={iconColor} />
-                      <span className="text-gray-700" style={{ fontSize: '1em' }}>{preset.name}</span>
+                      <IconComponent size={14} className={`${iconColor} flex-shrink-0`} />
+                      <span className="text-gray-700 truncate">{preset.name}</span>
                       {!preset.isBuiltIn && (
-                        <span className="ml-auto text-gray-400" style={{ fontSize: '0.8em' }}>custom</span>
+                        <span
+                          onClick={(e) => handleSaveToPreset(e, preset.id)}
+                          className="ml-auto p-1 hover:bg-gray-200 rounded transition-colors flex-shrink-0"
+                          title="Huidige lagen opslaan naar deze preset"
+                        >
+                          <Save size={12} className="text-gray-400 hover:text-blue-500" />
+                        </span>
                       )}
                     </button>
                   )

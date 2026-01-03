@@ -8,7 +8,10 @@ import { LayerItem } from './LayerItem'
 export function ThemesPanel() {
   const { themesPanelOpen, toggleThemesPanel } = useUIStore()
   const panelRef = useRef<HTMLDivElement>(null)
-  const { layerPanelFontScale, setLayerPanelFontScale } = useSettingsStore()
+
+  // Explicit selectors to ensure re-render on state change
+  const layerPanelFontScale = useSettingsStore(state => state.layerPanelFontScale)
+  const setLayerPanelFontScale = useSettingsStore(state => state.setLayerPanelFontScale)
 
   // Calculate font size based on panel-specific fontScale
   const baseFontSize = 13 * layerPanelFontScale / 100
@@ -60,13 +63,10 @@ export function ThemesPanel() {
                   max="130"
                   step="10"
                   value={layerPanelFontScale}
-                  onChange={(e) => {
-                    e.stopPropagation()
-                    setLayerPanelFontScale(parseInt(e.target.value))
+                  onInput={(e) => {
+                    setLayerPanelFontScale(parseInt((e.target as HTMLInputElement).value))
                   }}
-                  onClick={(e) => e.stopPropagation()}
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onTouchStart={(e) => e.stopPropagation()}
+                  onChange={(e) => setLayerPanelFontScale(parseInt(e.target.value))}
                   className="header-slider w-20 opacity-70 hover:opacity-100 transition-opacity"
                   title={`Tekstgrootte: ${layerPanelFontScale}%`}
                 />

@@ -1,6 +1,15 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.10.1
+## Huidige versie: 2.10.2
+
+---
+
+## v2.10.2 - Tekstgrootte sliders verbeterd
+
+### Wijzigingen:
+1. **SettingsPanel** - Slider verplaatst naar header naast "Instellingen"
+2. **ThemesPanel** - Slider breder (w-20), T/T iconen, stopPropagation
+3. **PresetButtons** - Slider breder (w-16), T/T iconen, stopPropagation
 
 ---
 

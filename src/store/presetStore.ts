@@ -7,51 +7,80 @@ export interface Preset {
   name: string
   icon: string  // lucide icon name
   layers: string[]
+  baseLayer?: string  // Optional base layer to activate (e.g., 'Luchtfoto')
   isBuiltIn: boolean
 }
 
 // Built-in presets - only Detectie is protected (isBuiltIn: true)
+// Logisch ontworpen presets per periode/gebruik:
+// - Steentijd: luchtfoto + reliëf om zandverstuivingen te zien
+// - Romeins/Vroege ME: percelen zijn belangrijk voor nederzettingspatronen
+// - Late ME/Nieuw: kadaster en historische structuren
+// - WOII: militaire objecten en linies
+// - Analyse: bodem en terrein voor onderzoek
 const BUILT_IN_PRESETS: Preset[] = [
   {
     id: 'detectie',
     name: 'Detectie',
     icon: 'Compass',
-    layers: ['AMK Monumenten', 'Gewaspercelen'],
+    layers: ['AMK Monumenten', 'Gewaspercelen', 'IKAW'],
     isBuiltIn: true  // Protected - cannot be deleted
   },
   {
     id: 'steentijd',
     name: 'Steentijd',
     icon: 'Mountain',
-    layers: ['Hunebedden', 'Grafheuvels', 'Terpen', 'AMK Steentijd'],
+    // Luchtfoto achtergrond om zandverstuivingen/heide te herkennen
+    // Reliëfkaart voor grafheuvels en oude structuren
+    layers: [
+      'Hunebedden', 'Grafheuvels', 'Terpen', 'FAMKE Steentijd', 'AMK Steentijd',
+      'AHN4 Multi-Hillshade NL'
+    ],
+    baseLayer: 'Luchtfoto',
     isBuiltIn: false
   },
   {
     id: 'romeins-midvroeg',
-    name: 'Romeins - Mid vroeg',
+    name: 'Romeins - Vroege ME',
     icon: 'Layers',
-    layers: ['Romeinse wegen', 'AMK Romeins', 'AMK Vroege ME'],
+    // Percelen belangrijk voor nederzettingspatronen
+    // Romeinse wegen en forten
+    layers: [
+      'Romeinse wegen', 'Romeinse Forten', 'AMK Romeins', 'AMK Vroege ME',
+      'Gewaspercelen', 'Kadastrale Grenzen'
+    ],
     isBuiltIn: false
   },
   {
     id: 'midlaat-nieuwetijd',
-    name: 'Mid laat - Nieuwe tijd',
+    name: 'Late ME - Nieuw',
     icon: 'Grid',
-    layers: ['Kadastrale Grenzen', 'AMK Late ME', 'Essen'],
+    // Historische structuren en erfgoed
+    layers: [
+      'AMK Late ME', 'Kastelen', 'Essen', 'Rijksmonumenten',
+      'Kadastrale Grenzen', 'Oude Kernen'
+    ],
     isBuiltIn: false
   },
   {
     id: 'woii-militair',
-    name: 'WOII en Militair',
+    name: 'WOII & Militair',
     icon: 'Target',
-    layers: ['WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden', 'Verdedigingslinies', 'Inundatiegebieden', 'Militaire Objecten'],
+    layers: [
+      'WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden',
+      'Verdedigingslinies', 'Inundatiegebieden', 'Militaire Objecten'
+    ],
     isBuiltIn: false
   },
   {
     id: 'analyse',
-    name: 'Analyse',
+    name: 'Terrein Analyse',
     icon: 'Search',
-    layers: ['IKAW', 'Geomorfologie', 'Bodemkaart', 'AHN4 Multi-Hillshade NL', 'AHN4 Hoogtekaart Kleur', 'AMK Monumenten'],
+    // Bodem en terrein voor onderzoek, reliëf en hoogtekaart
+    layers: [
+      'IKAW', 'Geomorfologie', 'Bodemkaart', 'Archeo Landschappen',
+      'AHN4 Multi-Hillshade NL', 'AHN4 Hoogtekaart Kleur'
+    ],
     isBuiltIn: false
   }
 ]
@@ -93,7 +122,7 @@ const ALL_OVERLAYS = [
   // Fossielen
   'Fossielen Nederland', 'Fossielen België', 'Fossielen Duitsland', 'Fossielen Frankrijk',
   // Recreatie
-  'Parken', 'Speeltuinen', 'Musea', 'Strandjes',
+  'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels',
   // Percelen
   'Gewaspercelen', 'Kadastrale Grenzen',
   // Provinciale Waardenkaarten - Zuid-Holland
@@ -125,7 +154,15 @@ export const usePresetStore = create<PresetState>()(
         // Turn on preset layers
         preset.layers.forEach(layer => layerStore.setLayerVisibility(layer, true))
 
-        console.log(`🎨 Preset toegepast: ${preset.name}`)
+        // Set base layer if specified
+        if (preset.baseLayer) {
+          const baseLayerNames = ['CartoDB (licht)', 'OpenStreetMap', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
+          baseLayerNames.forEach(layerName => {
+            layerStore.setLayerVisibility(layerName, layerName === preset.baseLayer)
+          })
+        }
+
+        console.log(`🎨 Preset toegepast: ${preset.name}${preset.baseLayer ? ` (${preset.baseLayer})` : ''}`)
       },
 
       createPreset: (name: string, icon: string) => {
@@ -173,10 +210,10 @@ export const usePresetStore = create<PresetState>()(
     }),
     {
       name: 'detectorapp-presets',
-      version: 4,
+      version: 5,
       migrate: (persistedState: unknown, version: number) => {
-        // v2.7.2: Complete preset overhaul - reset to new defaults
-        if (version < 4) {
+        // v2.10.3: Logische presets met baseLayer ondersteuning
+        if (version < 5) {
           // Force reset all presets to new defaults
           return {
             presets: [...BUILT_IN_PRESETS]

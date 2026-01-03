@@ -38,6 +38,7 @@ export function LayerGroup({ title, children, defaultExpanded = true, layerNames
         <button
           onClick={() => setExpanded(!expanded)}
           className="flex-1 flex items-center gap-1 bg-transparent border-0 outline-none text-left"
+          style={{ fontSize: 'inherit' }}
         >
           <motion.span
             animate={{ rotate: expanded ? 90 : 0 }}

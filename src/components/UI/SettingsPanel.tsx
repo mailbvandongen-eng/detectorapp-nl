@@ -4,7 +4,7 @@ import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin,
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useUIStore, useSettingsStore, usePresetStore, useLayerStore } from '../../store'
+import { useUIStore, useSettingsStore, usePresetStore } from '../../store'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { useCustomLayerStore } from '../../store/customLayerStore'
 import { clearPasswordAuth } from '../Auth/PasswordGate'
@@ -12,53 +12,17 @@ import { VondstenDashboard } from '../Vondst/VondstenDashboard'
 import { ImportLayerModal, CustomLayerItem } from '../CustomLayers'
 import type { DefaultBackground } from '../../store/settingsStore'
 
-// All overlay layer names for updating presets - must match PresetButtons.tsx and presetStore.ts
-const ALL_OVERLAYS = [
-  // Base layer overlays
-  'Labels Overlay', 'TMK 1850', 'Bonnebladen 1900',
-  // Steentijd
-  'Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen',
-  // Archeologie
-  'AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig',
-  'Romeinse wegen', 'Romeinse wegen (Wereld)', 'Kastelen', 'IKAW', 'Archeo Landschappen',
-  // Erfgoed
-  'Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed', 'Essen',
-  // Militair
-  'WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden',
-  'Verdedigingslinies', 'Inundatiegebieden', 'Militaire Objecten',
-  // Paleokaarten
-  'Paleokaart 800 n.Chr.', 'Paleokaart 100 n.Chr.', 'Paleokaart 500 v.Chr.',
-  'Paleokaart 1500 v.Chr.', 'Paleokaart 2750 v.Chr.', 'Paleokaart 5500 v.Chr.', 'Paleokaart 9000 v.Chr.',
-  // UIKAV
-  'UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling',
-  // Hoogtekaarten
-  'AHN4 Hoogtekaart Kleur', 'AHN4 Hillshade NL', 'AHN4 Multi-Hillshade NL', 'AHN 0.5m', 'World Hillshade',
-  // Terrein
-  'Veengebieden', 'Geomorfologie', 'Bodemkaart',
-  // Fossielen
-  'Fossielen Nederland', 'Fossielen België', 'Fossielen Duitsland', 'Fossielen Frankrijk',
-  // Recreatie
-  'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels',
-  // Percelen
-  'Gewaspercelen', 'Kadastrale Grenzen',
-  // Provinciale Waardenkaarten - Zuid-Holland
-  'Scheepswrakken', 'Woonheuvels ZH', 'Romeinse Forten', 'Windmolens', 'Erfgoedlijnen', 'Oude Kernen',
-  // Provinciale Waardenkaarten - Gelderland
-  'Relictenkaart Punten', 'Relictenkaart Lijnen', 'Relictenkaart Vlakken',
-  // Provinciale Waardenkaarten - Zeeland
-  'Verdronken Dorpen'
-]
-
 export function SettingsPanel() {
   const { settingsPanelOpen, toggleSettingsPanel, vondstDashboardOpen, toggleVondstDashboard } = useUIStore()
   const settings = useSettingsStore()
   const { presets, createPreset, deletePreset, updatePreset } = usePresetStore()
-  const visibleLayers = useLayerStore(state => state.visible)
   const vondsten = useLocalVondstenStore(state => state.vondsten)
   const customLayers = useCustomLayerStore(state => state.layers)
   const [newPresetName, setNewPresetName] = useState('')
   const [showNewPresetInput, setShowNewPresetInput] = useState(false)
   const [importModalOpen, setImportModalOpen] = useState(false)
+  const [renamingPresetId, setRenamingPresetId] = useState<string | null>(null)
+  const [renameValue, setRenameValue] = useState('')
 
   // Calculate font size based on fontScale setting
   const baseFontSize = 14 * settings.fontScale / 100
@@ -71,19 +35,23 @@ export function SettingsPanel() {
     }
   }
 
-  const handleUpdatePreset = (id: string, name: string) => {
-    // Get currently visible overlay layers
-    const currentLayers = Object.entries(visibleLayers)
-      .filter(([layerName, isVisible]) => isVisible && ALL_OVERLAYS.includes(layerName))
-      .map(([layerName]) => layerName)
+  const startRenamePreset = (id: string, currentName: string) => {
+    setRenamingPresetId(id)
+    setRenameValue(currentName)
+  }
 
-    if (currentLayers.length === 0) {
-      alert('Zet eerst minimaal één kaartlaag aan voordat je de preset bijwerkt.')
-      return
+  const handleRenamePreset = (id: string) => {
+    if (renameValue.trim()) {
+      updatePreset(id, { name: renameValue.trim() })
+      console.log(`✏️ Preset hernoemd naar "${renameValue.trim()}"`)
     }
+    setRenamingPresetId(null)
+    setRenameValue('')
+  }
 
-    updatePreset(id, { layers: currentLayers })
-    console.log(`✏️ Preset "${name}" bijgewerkt met ${currentLayers.length} lagen`)
+  const cancelRename = () => {
+    setRenamingPresetId(null)
+    setRenameValue('')
   }
 
   return (
@@ -122,11 +90,10 @@ export function SettingsPanel() {
                   max="150"
                   step="10"
                   value={settings.fontScale}
-                  onChange={(e) => {
-                    e.stopPropagation()
-                    settings.setFontScale(parseInt(e.target.value))
+                  onInput={(e) => {
+                    settings.setFontScale(parseInt((e.target as HTMLInputElement).value))
                   }}
-                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => settings.setFontScale(parseInt(e.target.value))}
                   className="header-slider w-20 opacity-70 hover:opacity-100 transition-opacity"
                   title={`Tekstgrootte: ${settings.fontScale}%`}
                 />
@@ -244,34 +211,69 @@ export function SettingsPanel() {
                 <div className="space-y-2">
                   {presets.map(preset => (
                     <div key={preset.id} className="flex items-center justify-between py-1">
-                      <div className="flex-1 min-w-0">
-                        <span className="text-gray-600" style={{ fontSize: '0.9em' }}>
-                          {preset.name}
-                          {preset.isBuiltIn && (
-                            <span className="ml-1 text-gray-400" style={{ fontSize: '0.7em' }}>(standaard)</span>
-                          )}
-                        </span>
-                        <span className="ml-1 text-gray-400" style={{ fontSize: '0.7em' }}>
-                          ({preset.layers.length} lagen)
-                        </span>
-                      </div>
-                      {!preset.isBuiltIn && (
-                        <div className="flex items-center gap-1">
+                      {renamingPresetId === preset.id ? (
+                        // Inline rename mode
+                        <div className="flex-1 flex items-center gap-1">
+                          <input
+                            type="text"
+                            value={renameValue}
+                            onChange={(e) => setRenameValue(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') handleRenamePreset(preset.id)
+                              if (e.key === 'Escape') cancelRename()
+                            }}
+                            className="flex-1 px-2 py-0.5 bg-blue-50 rounded border border-blue-300 outline-none"
+                            style={{ fontSize: '0.9em' }}
+                            autoFocus
+                          />
                           <button
-                            onClick={() => handleUpdatePreset(preset.id, preset.name)}
-                            className="p-1 text-blue-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none"
-                            title="Bijwerken met huidige lagen"
+                            onClick={() => handleRenamePreset(preset.id)}
+                            className="px-2 py-0.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors border-0 outline-none"
+                            style={{ fontSize: '0.7em' }}
                           >
-                            <Pencil size={14} />
+                            OK
                           </button>
                           <button
-                            onClick={() => deletePreset(preset.id)}
-                            className="p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors border-0 outline-none"
-                            title="Verwijderen"
+                            onClick={cancelRename}
+                            className="px-2 py-0.5 bg-gray-200 text-gray-600 rounded hover:bg-gray-300 transition-colors border-0 outline-none"
+                            style={{ fontSize: '0.7em' }}
                           >
-                            <Trash2 size={14} />
+                            ✕
                           </button>
                         </div>
+                      ) : (
+                        // Normal display mode
+                        <>
+                          <div className="flex-1 min-w-0">
+                            <span className="text-gray-600" style={{ fontSize: '0.9em' }}>
+                              {preset.name}
+                              {preset.isBuiltIn && (
+                                <span className="ml-1 text-gray-400" style={{ fontSize: '0.7em' }}>(standaard)</span>
+                              )}
+                            </span>
+                            <span className="ml-1 text-gray-400" style={{ fontSize: '0.7em' }}>
+                              ({preset.layers.length} lagen)
+                            </span>
+                          </div>
+                          {!preset.isBuiltIn && (
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => startRenamePreset(preset.id, preset.name)}
+                                className="p-1 text-blue-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none"
+                                title="Naam wijzigen"
+                              >
+                                <Pencil size={14} />
+                              </button>
+                              <button
+                                onClick={() => deletePreset(preset.id)}
+                                className="p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors border-0 outline-none"
+                                title="Verwijderen"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   ))}
