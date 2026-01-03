@@ -92,13 +92,22 @@ export function OpacitySliders() {
       {/* Sliders panel */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-0 right-14 bg-white/95 rounded-lg shadow-lg p-3 min-w-[220px] max-h-[60vh] overflow-y-auto"
-          >
+          <>
+            {/* Invisible backdrop - click to close */}
+            <motion.div
+              className="fixed inset-0 z-[-1]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, x: 20, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 20, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="absolute bottom-0 right-14 bg-white/95 rounded-lg shadow-lg p-3 min-w-[220px] max-h-[60vh] overflow-y-auto"
+            >
             <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">
               Transparantie
             </div>
@@ -148,6 +157,7 @@ export function OpacitySliders() {
               </button>
             )}
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>

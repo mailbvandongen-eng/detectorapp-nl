@@ -24,6 +24,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     name: 'Detectie',
     icon: 'Compass',
     layers: ['AMK Monumenten', 'Gewaspercelen', 'IKAW'],
+    baseLayer: 'CartoDB (licht)',  // Explicit default base layer
     isBuiltIn: false  // Now editable like other presets
   },
   {
@@ -32,9 +33,10 @@ const BUILT_IN_PRESETS: Preset[] = [
     icon: 'Mountain',
     // Luchtfoto achtergrond om zandverstuivingen/heide te herkennen
     // Reliëfkaart voor grafheuvels en oude structuren
+    // Labels overlay voor plaatsnamen
     layers: [
       'Hunebedden', 'Grafheuvels', 'Terpen', 'FAMKE Steentijd', 'AMK Steentijd',
-      'AHN4 Multi-Hillshade NL'
+      'AHN4 Multi-Hillshade NL', 'Labels Overlay'
     ],
     baseLayer: 'Luchtfoto',
     isBuiltIn: false
@@ -204,10 +206,10 @@ export const usePresetStore = create<PresetState>()(
     }),
     {
       name: 'detectorapp-presets',
-      version: 6,
+      version: 7,
       migrate: (persistedState: unknown, version: number) => {
-        // v2.10.4: Alle presets zijn nu aanpasbaar (geen isBuiltIn meer)
-        if (version < 6) {
+        // v2.10.5: Detectie heeft baseLayer, Steentijd heeft Labels Overlay
+        if (version < 7) {
           // Force reset all presets to new defaults
           return {
             presets: [...BUILT_IN_PRESETS]
