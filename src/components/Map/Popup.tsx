@@ -776,9 +776,6 @@ export function Popup() {
             if (data.features && data.features.length > 0) {
               const props = data.features[0].properties
 
-              // Debug: log all properties to see what fields we get from PDOK WMS
-              console.log('Kadastrale Grenzen WMS properties:', props)
-
               // Extract parcel info - try multiple field name variations
               const gemeente = props.kadastraleGemeenteWaarde || props.kadastrale_gemeente_waarde ||
                                props.kadastraleGemeente || KADASTRALE_GEMEENTEN[String(props.kadastraleGemeenteCode)] ||
@@ -805,12 +802,12 @@ export function Popup() {
               let html = `<strong class="text-indigo-800">Kadastraal Perceel</strong>`
 
               if (aanduiding) {
-                html += `<br/><span class="text-sm font-semibold text-indigo-700">${aanduiding}</span>`
+                html += `<br/><span class="text-sm text-indigo-700">${aanduiding}</span>`
               }
 
-              // Show perceelId if available (for easy searching on kadastralekaart.com)
+              // Show perceelId prominently - this is what users need to copy for Kadaster search
               if (perceelId) {
-                html += `<br/><span class="text-xs text-gray-500 font-mono">${perceelId}</span>`
+                html += `<br/><span class="text-sm font-bold text-gray-800 font-mono">${perceelId}</span>`
               }
 
               if (oppervlakte) {
@@ -820,9 +817,8 @@ export function Popup() {
                 }
               }
 
-              // Link to official Kadaster.nl for owner lookup (€3,70)
-              const kadasterUrl = 'https://www.kadaster.nl/producten/woning/eigendomsinformatie'
-              html += `<br/><a href="${kadasterUrl}" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">Eigenaar opzoeken</a> <span class="text-[10px] text-gray-400">(betaalde dienst)</span>`
+              // Eigenaar opzoeken uitleg met link naar Kadaster winkel
+              html += `<br/><br/><span class="text-xs text-gray-600">Eigenaar opzoeken? Kopieer bovenstaande code en zoek op </span><a href="https://www.kadaster.nl/winkel" target="_blank" rel="noopener" class="text-xs text-blue-600 hover:underline">kadaster.nl/winkel</a><span class="text-xs text-gray-400"> (€3,70)</span>`
 
               results.push(html)
             }
@@ -1854,7 +1850,8 @@ export function Popup() {
 
             {/* Content - scrollable, without title */}
             <div
-              className="px-4 py-3 max-h-[45vh] overflow-y-auto"
+              className="px-4 py-3 max-h-[45vh] overflow-y-auto select-text"
+              style={{ userSelect: 'text', WebkitUserSelect: 'text' }}
               dangerouslySetInnerHTML={{ __html: contentWithoutTitle }}
             />
 

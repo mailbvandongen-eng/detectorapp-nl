@@ -329,7 +329,7 @@ export function LongPressMenu() {
                 onClick={handleOpenGoogleMaps}
                 className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-blue-50 text-gray-700 bg-white border-0 outline-none"
               >
-                <ExternalLink size={20} className="text-green-600" />
+                <ExternalLink size={20} className="text-blue-600" />
                 <span className="font-medium">Open in Google Maps</span>
               </button>
             </div>

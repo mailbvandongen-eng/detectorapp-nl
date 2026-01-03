@@ -515,7 +515,7 @@ html, body {
   border: none;
   border-radius: 6px;
   background: transparent;
-  color: #16a34a; /* green-600 */
+  color: #2563eb; /* blue-600 */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -524,7 +524,7 @@ html, body {
 }
 
 .search-navigate-btn:hover {
-  background: rgba(22, 163, 74, 0.1); /* green-600 with opacity */
+  background: rgba(37, 99, 235, 0.1); /* blue-600 with opacity */
 }
 
 .search-loading {
