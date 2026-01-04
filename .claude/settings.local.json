@@ -48,7 +48,10 @@
       "Bash(grep:*)",
       "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -c 500 {}')",
       "WebFetch(domain:www.flaticon.com)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebFetch(domain:www.svgrepo.com)",
+      "WebFetch(domain:game-icons.net)",
+      "WebFetch(domain:freesvg.org)"
     ]
   }
 }

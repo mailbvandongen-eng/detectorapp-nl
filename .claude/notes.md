@@ -6,16 +6,36 @@
 
 ## 🎯 PRODUCT VISIE - ONTHOUDEN!
 
-**Dit is geen gewone app. Dit wordt DE killer app voor:**
-- Metaaldetectie zoekers
-- Natuurliefhebbers
-- Geschiedenisgeïnteresseerden
-- Mensen die graag buiten zijn
-- Mensen die nieuwe dingen willen leren
-- Fossielen zoekers
-- Haaientanden zoekers
-- Mineralen verzamelaars
-- Iedereen die info op één plek wil hebben
+**Dit is geen gewone app. Dit wordt DE killer app voor AMATEURS en LIEFHEBBERS.**
+(Professionals hebben hun eigen specialistische tools - wij richten ons op de hobbyisten!)
+
+### Voor wie is de DetectorApp interessant?
+
+🔍 **Metaaldetectoristen** (primaire doelgroep)
+Zoeken naar munten, sieraden, militaria. Gebruiken de app om kansrijke locaties te vinden via historische kaarten, AHN-hoogtedata en archeologische lagen.
+
+🏛️ **Amateur-archeologen**
+Geïnteresseerd in de geschiedenis onder hun voeten. Willen weten waar nederzettingen, grafheuvels, hunebedden of Romeinse wegen lagen.
+
+🦈 **Fossielen- en mineraalzoekers**
+Zoeken naar haaientanden, schelpen, ammonieten en bijzondere stenen. Actief in riviergebieden, groeves en aan de kust.
+
+🎖️ **Militaria-verzamelaars & WOII-onderzoekers**
+Onderzoeken bunkers, slagvelden, vliegveldlocaties en verdedigingslinies uit de Tweede Wereldoorlog.
+
+🚶 **Wandelaars & natuurliefhebbers**
+Willen het landschap beter begrijpen tijdens een wandeling. Wat zijn die bulten in het bos? Waarom ligt hier een dijk?
+
+📚 **Historici & heemkundigen**
+Lokale geschiedenisvorsers die oude kaarten, verdwenen dorpen, kloosters en historische infrastructuur onderzoeken.
+
+🎓 **Studenten**
+Archeologie-, geschiedenis- en aardrijkskundestudenten die de app als leerinstrument gebruiken.
+
+👨‍👩‍👧 **Gezinnen & educatie**
+Ouders die met kinderen op ontdekking gaan. De app maakt geschiedenis tastbaar en leuk.
+
+**Kort gezegd:** Iedereen die nieuwsgierig is naar wat er onder en op de Nederlandse bodem te vinden is – van amateur-onderzoeker tot zondagse schatzoeker.
 
 ---
 

@@ -9,6 +9,16 @@ export const LUCIDE_ICONS = {
   castle: 'M22 20v-9H2v9M2 14h20M12 11V2M10 2h4M6 11V5M4 5h4M18 11V5M16 5h4M7 14v6M12 14v6M17 14v6',
   mapPin: 'M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0ZM12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
 
+  // Custom icons - Archeologie & Erfgoed
+  dolmen: 'M4 20V12M20 20V12M2 12h20M4 12l2-2M20 12l-2-2M8 20V14M16 20V14',  // Hunebed: 3 staande stenen met deksteen
+  church: 'M12 2v4M10 4h4M4 22V12l8-6 8 6v10M4 22h16M9 22v-6h6v6',  // Kerk met toren en kruis
+  crossedSwords: 'M6 4l12 16M18 4L6 20M4 6l4-2M20 6l-4-2M4 18l4 2M20 18l-4 2',  // Gekruiste zwaarden voor slagvelden
+
+  // Fossielen & Mineralen
+  ammonite: 'M12 12a2 2 0 1 0 0-4M12 8a4 4 0 1 0 0 8M12 16a6 6 0 1 0 0-12M12 4a8 8 0 1 0 8 8',  // Ammonieten spiraal
+  sharkTooth: 'M12 3L6 21M12 3l6 18M6 21h12M9 15l3-8M15 15l-3-8',  // Haaientand driehoek
+  crystal: 'M12 2L8 7v10l4 5 4-5V7l-4-5M8 7h8M8 17h8',  // Kristalvorm voor mineralen
+
   // Approval / Permission
   thumbsUp: 'M7 10v12M15 5.88L14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z',
   checkCircle: 'M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4L12 14.01l-3-3',
@@ -208,17 +218,52 @@ export const LAYER_STYLES = {
   }),
 
   fossil: () => createIconStyle({
-    icon: 'bone',
+    icon: 'ammonite',
     color: 'white',
-    bgColor: '#a16207',  // amber-700
+    bgColor: '#92400e',  // amber-800 (fossil brown)
     baseSize: 26
   }),
 
   hunebed: () => createIconStyle({
-    icon: 'landmark',
+    icon: 'dolmen',
     color: 'white',
     bgColor: '#78716c',  // stone-500 (greyish-brown for megalithic)
     baseSize: 28
+  }),
+
+  church: () => createIconStyle({
+    icon: 'church',
+    color: 'white',
+    bgColor: '#7c3aed',  // purple-600 (religious heritage)
+    baseSize: 26
+  }),
+
+  slagveld: () => createIconStyle({
+    icon: 'crossedSwords',
+    color: 'white',
+    bgColor: '#b91c1c',  // red-700 (battle/war)
+    baseSize: 26
+  }),
+
+  ammonite: () => createIconStyle({
+    icon: 'ammonite',
+    color: 'white',
+    bgColor: '#92400e',  // amber-800 (fossil brown)
+    baseSize: 26
+  }),
+
+  sharkTooth: () => createIconStyle({
+    icon: 'sharkTooth',
+    color: 'white',
+    bgColor: '#475569',  // slate-600 (shark grey)
+    baseSize: 26
+  }),
+
+  mineral: () => createIconStyle({
+    icon: 'crystal',
+    color: 'white',
+    bgColor: '#7c3aed',  // purple-600 (crystal/gem)
+    baseSize: 26
   }),
 
   neolithic: () => createIconStyle({
