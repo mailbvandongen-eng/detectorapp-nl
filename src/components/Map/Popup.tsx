@@ -1737,6 +1737,76 @@ export function Popup() {
             html += `<br/><span class="text-xs text-gray-600">${dataProps.phone}</span>`
           }
         }
+
+        // Grafheuvels (tumuli) - B1 stijl informatief
+        if (dataProps.site_type === 'tumulus') {
+          // Bepaal regio op basis van coördinaten (Web Mercator -> WGS84)
+          const coords = feature.getGeometry()?.getCoordinates()
+          let regio = ''
+          let regioInfo = ''
+
+          if (coords) {
+            // Convert Web Mercator to WGS84
+            const lonLat = toLonLat(coords)
+            const lon = lonLat[0]
+            const lat = lonLat[1]
+
+            // Veluwe: roughly 5.5-6.2 lon, 52.0-52.4 lat
+            if (lon > 5.5 && lon < 6.3 && lat > 52.0 && lat < 52.5) {
+              regio = 'Veluwe'
+              regioInfo = 'De Veluwe heeft de grootste concentratie grafheuvels van Nederland. Veel heuvels liggen in grafvelden met tientallen heuvels bij elkaar.'
+            }
+            // Drenthe: roughly 6.2-7.0 lon, 52.6-53.2 lat
+            else if (lon > 6.2 && lon < 7.1 && lat > 52.6 && lat < 53.3) {
+              regio = 'Drenthe'
+              regioInfo = 'Drenthe is beroemd om zijn prehistorische monumenten. Naast hunebedden liggen hier honderden grafheuvels uit de Bronstijd.'
+            }
+            // Noord-Brabant: roughly 4.5-6.0 lon, 51.3-51.8 lat
+            else if (lon > 4.5 && lon < 6.0 && lat > 51.3 && lat < 51.9) {
+              regio = 'Noord-Brabant'
+              regioInfo = 'Op de Brabantse zandgronden liggen veel grafheuvels, vaak in kleine groepjes op hogere gronden.'
+            }
+            // Limburg: roughly 5.5-6.2 lon, 50.7-51.5 lat
+            else if (lon > 5.5 && lon < 6.3 && lat > 50.7 && lat < 51.6) {
+              regio = 'Limburg'
+              regioInfo = 'De Limburgse heuvels en plateaus herbergen grafheuvels uit verschillende periodes, van Bronstijd tot Romeinse tijd.'
+            }
+            // Utrecht/Gooi: roughly 5.0-5.5 lon, 52.0-52.4 lat
+            else if (lon > 5.0 && lon < 5.6 && lat > 52.0 && lat < 52.4) {
+              regio = 'Utrechtse Heuvelrug'
+              regioInfo = 'De stuwwallen van de Utrechtse Heuvelrug en het Gooi waren al in de prehistorie bewoond. Grafheuvels markeren de laatste rustplaats van de vroege bewoners.'
+            }
+          }
+
+          html += `<br/><span class="text-sm text-amber-700">Grafheuvel uit de Bronstijd of IJzertijd</span>`
+          if (regio) {
+            html += `<br/><span class="text-sm text-gray-500">${regio}</span>`
+          }
+
+          // Wat zie je hier
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">Een grafheuvel is een kunstmatige heuvel over een of meerdere graven. De meeste Nederlandse grafheuvels zijn 3000 tot 4000 jaar oud, uit de Bronstijd (2000-800 v.Chr.) of vroege IJzertijd.</div>`
+
+          // Regionale context
+          if (regioInfo) {
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Over deze regio</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">${regioInfo}</div>`
+          }
+
+          // Hoe herken je een grafheuvel
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Hoe herken je een grafheuvel?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">Grafheuvels zijn vaak ronde, lage heuvels van 10-30 meter doorsnee en 1-3 meter hoog. Ze liggen meestal op zandgronden, vaak in groepjes (grafvelden). Let op de kenmerkende ronde vorm in het landschap.</div>`
+
+          // Wikipedia link via wikidata
+          if (dataProps.wikidata) {
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer informatie</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1"><a href="https://www.wikidata.org/wiki/${dataProps.wikidata}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Bekijk op Wikidata</a></div>`
+          } else {
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer informatie</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Grafheuvel" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Lees meer over grafheuvels op Wikipedia</a></div>`
+          }
+        }
+
         // Kastelen (OSM data) - B1 stijl
         if (dataProps.historic === 'castle' || dataProps.castle_type) {
           // Type vertalingen en uitleg
@@ -1808,25 +1878,18 @@ export function Popup() {
             html += `<div class="text-sm text-gray-700 mt-1">Munten, sieraden, gespen, aardewerk en andere voorwerpen van de vroegere bewoners.</div>`
           }
 
-          // Bezoeken
-          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bezoeken</span></div>`
-          html += `<div class="text-sm text-gray-700 mt-1">Veel kastelen zijn privébezit of museum. Vraag altijd toestemming voordat je gaat detecteren op het terrein.</div>`
-
-          // Wikipedia link
-          if (dataProps.wikipedia) {
-            const wikiUrl = dataProps.wikipedia.startsWith('http')
-              ? dataProps.wikipedia
-              : `https://nl.wikipedia.org/wiki/${dataProps.wikipedia.replace(/^nl:/, '')}`
+          // Meer weten - Wikipedia en website links
+          if (dataProps.wikipedia || dataProps.website) {
             html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
-            html += `<div class="text-sm text-gray-700 mt-1">Lees meer op <a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
-          }
-
-          // Website
-          if (dataProps.website) {
-            if (!dataProps.wikipedia) {
-              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+            if (dataProps.wikipedia) {
+              const wikiUrl = dataProps.wikipedia.startsWith('http')
+                ? dataProps.wikipedia
+                : `https://nl.wikipedia.org/wiki/${dataProps.wikipedia.replace(/^nl:/, '')}`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
             }
-            html += `<div class="text-sm text-gray-700 mt-1"><a href="${dataProps.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Website bezoeken</a></div>`
+            if (dataProps.website) {
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="${dataProps.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Website bezoeken</a></div>`
+            }
           }
         }
 
@@ -1872,11 +1935,7 @@ export function Popup() {
             html += `<div class="text-sm text-gray-700 mt-1">${dataProps.description}</div>`
           }
 
-          // Bezoeken
-          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bezoeken</span></div>`
-          html += `<div class="text-sm text-gray-700 mt-1">Ruïnes liggen vaak op privéterrein of zijn beschermd monument. Vraag altijd toestemming voordat je gaat detecteren.</div>`
-
-          // Wikipedia link
+          // Meer weten - Wikipedia link
           if (dataProps.wikipedia) {
             const wikiUrl = dataProps.wikipedia.startsWith('http')
               ? dataProps.wikipedia
