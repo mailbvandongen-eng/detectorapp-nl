@@ -32,6 +32,7 @@ export const LUCIDE_ICONS = {
   // Burial / Mounds
   tumulus: 'M2 20h20M4 20c0-6 3.5-12 8-12s8 6 8 12',  // Simple burial mound shape
   terp: 'M2 20h20M4 20c0-5 3-10 8-10s8 5 8 10M10 10v-3h4v3',  // Mound with house
+  ruins: 'M3 22h4V14h2v8h6v-8h2v8h4M5 14l7-10l7 10M9 10h6',  // Ruined building/arch
 
   // Default
   circle: 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z',
@@ -245,6 +246,13 @@ export const LAYER_STYLES = {
     icon: 'terp',
     color: 'white',
     bgColor: '#0d9488',  // teal-600 (Frisian green-blue)
+    baseSize: 26
+  }),
+
+  ruins: () => createIconStyle({
+    icon: 'ruins',
+    color: 'white',
+    bgColor: '#6b7280',  // gray-500 (weathered stone)
     baseSize: 26
   }),
 }

@@ -141,11 +141,12 @@ export function ThemesPanel() {
               </LayerGroup>
 
               {/* Erfgoed & Monumenten */}
-              <LayerGroup title="Erfgoed & Monumenten" defaultExpanded={false} layerNames={['Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed', 'Kastelen']}>
+              <LayerGroup title="Erfgoed & Monumenten" defaultExpanded={false} layerNames={['Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed', 'Kastelen', 'Ruïnes']}>
                 <LayerItem name="Rijksmonumenten" type="overlay" />
                 <LayerItem name="Werelderfgoed" type="overlay" />
                 <LayerItem name="Religieus Erfgoed" type="overlay" />
                 <LayerItem name="Kastelen" type="overlay" />
+                <LayerItem name="Ruïnes" type="overlay" />
               </LayerGroup>
 
               {/* WOII & Militair */}

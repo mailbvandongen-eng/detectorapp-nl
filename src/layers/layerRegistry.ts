@@ -455,6 +455,14 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     },
     immediateLoad: false
   },
+  'Ruïnes': {
+    name: 'Ruïnes',
+    factory: async () => {
+      const { createRuinesLayerOL } = await import('./ruinesOL')
+      return createRuinesLayerOL()
+    },
+    immediateLoad: false
+  },
   'Veengebieden': {
     name: 'Veengebieden',
     factory: async () => {

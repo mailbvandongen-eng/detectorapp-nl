@@ -783,7 +783,7 @@ export function Popup() {
           continue
         }
 
-        // Terpen (Friesland)
+        // Terpen (Friesland) - B1 stijl
         if (title === 'Terpen') {
           try {
             const lonLat = toLonLat(coordinate)
@@ -798,14 +798,35 @@ export function Popup() {
 
             if (data.features && data.features.length > 0) {
               const props = data.features[0].properties
-              let html = `<strong class="text-orange-800">Terp</strong>`
+              const naam = props.naam || props.NAAM || props.Naam || 'Terp'
+              const plaats = props.plaats || props.PLAATS || props.Plaats || ''
 
-              if (props.naam || props.NAAM) {
-                html += `<br/><span class="text-sm font-semibold text-orange-700">${props.naam || props.NAAM}</span>`
+              let html = `<strong class="text-orange-800">${naam}</strong>`
+              if (plaats) {
+                html += `<br/><span class="text-sm text-gray-500">${plaats}</span>`
               }
-              if (props.plaats || props.PLAATS) {
-                html += `<br/><span class="text-xs text-gray-600">${props.plaats || props.PLAATS}</span>`
-              }
+
+              // Wat zie je hier
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Een terp is een kunstmatige heuvel. Mensen bouwden deze heuvels om droog te wonen in het vlakke, natte land. Terpen zijn vaak meer dan 2000 jaar oud.</div>`
+
+              // Wat kun je hier vinden
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Op en rond terpen worden vaak vondsten gedaan:</div>`
+              html += `<ul class="list-disc list-inside text-sm text-gray-700 mt-1 space-y-0.5">`
+              html += `<li>Middeleeuws aardewerk en botten</li>`
+              html += `<li>Munten uit verschillende periodes</li>`
+              html += `<li>Metalen voorwerpen (gespen, fibulae, sieraden)</li>`
+              html += `<li>Soms Romeinse of zelfs prehistorische vondsten</li>`
+              html += `</ul>`
+
+              // Waarom zijn terpen interessant
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Waarom zijn terpen interessant?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Terpen waren vaak dorpskernen waar mensen eeuwenlang woonden. Door de ophoging bleven veel voorwerpen goed bewaard. Let op: sommige terpen zijn beschermd monument!</div>`
+
+              // Bezoeken
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bezoeken</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Veel terpen zijn nog zichtbaar in het landschap. Vraag altijd toestemming aan de grondeigenaar voordat je gaat detecteren.</div>`
 
               results.push(html)
             }
@@ -1664,19 +1685,152 @@ export function Popup() {
             html += `<br/><span class="text-xs text-gray-600">${dataProps.phone}</span>`
           }
         }
-        // Kastelen (OSM data) - only show "Kasteel" type if we have a real name
+        // Kastelen (OSM data) - B1 stijl
         if (dataProps.historic === 'castle' || dataProps.castle_type) {
-          if (dataProps.name) {
-            html += `<br/><span class="text-xs text-purple-600">Kasteel</span>`
+          // Type vertalingen en uitleg
+          const castleTypes: Record<string, { label: string; uitleg: string; vondsten: string }> = {
+            'manor': {
+              label: 'Landhuis',
+              uitleg: 'Een landhuis of havezate was het woonhuis van een adellijke familie. Vaak met een landgoed eromheen.',
+              vondsten: 'Sieraden, gespen, munten, aardewerk van rijke bewoners'
+            },
+            'stately': {
+              label: 'Statig huis',
+              uitleg: 'Een groot en deftig woonhuis, vaak van welgestelde families. Soms met kasteelachtige kenmerken.',
+              vondsten: 'Huishoudelijke voorwerpen, munten, knopen, aardewerk'
+            },
+            'fortress': {
+              label: 'Fort/Vesting',
+              uitleg: 'Een versterkte militaire bouwwerk, gebouwd om een gebied te verdedigen.',
+              vondsten: 'Militaire voorwerpen, kogels, gespen, uniformonderdelen'
+            },
+            'defensive': {
+              label: 'Verdedigingskasteel',
+              uitleg: 'Een kasteel gebouwd voor verdediging, met dikke muren, een gracht en torens.',
+              vondsten: 'Wapens, harnasonderdelen, pijlpunten, middeleeuwse munten'
+            },
+            'palace': {
+              label: 'Paleis',
+              uitleg: 'Een groot en luxueus gebouw voor koningen, prinsen of zeer rijke families.',
+              vondsten: 'Luxe voorwerpen, sieraden, zegels, zeldzame munten'
+            },
+            'castrum': {
+              label: 'Romeins fort',
+              uitleg: 'Een Romeins legerkamp of fort. Deze zijn bijna 2000 jaar oud!',
+              vondsten: 'Romeinse munten, fibulae, militaria, aardewerk'
+            },
+            'citadel': {
+              label: 'Citadel',
+              uitleg: 'Een sterk versterkte kern binnen een stad, als laatste verdedigingslinie.',
+              vondsten: 'Militaire voorwerpen uit verschillende periodes'
+            }
           }
-          if (dataProps.castle_type) {
-            html += `<br/><span class="text-xs text-gray-500">Type: ${dataProps.castle_type}</span>`
-          }
+
+          const typeInfo = dataProps.castle_type ? castleTypes[dataProps.castle_type] : null
+          const typeLabel = typeInfo?.label || 'Kasteel'
+
+          // Type onder naam
+          html += `<br/><span class="text-sm text-purple-600">${typeLabel}</span>`
+
           if (dataProps.start_date) {
-            html += `<br/><span class="text-xs text-gray-500">Bouwjaar: ${dataProps.start_date}</span>`
+            html += `<br/><span class="text-sm text-gray-500">Bouwjaar: ${dataProps.start_date}</span>`
           }
+
           if (dataProps.heritage) {
-            html += `<br/><span class="text-xs text-amber-600">Rijksmonument</span>`
+            html += `<br/><span class="text-sm text-amber-600">Rijksmonument</span>`
+          }
+
+          // Wat zie je hier
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+          if (typeInfo) {
+            html += `<div class="text-sm text-gray-700 mt-1">${typeInfo.uitleg}</div>`
+          } else {
+            html += `<div class="text-sm text-gray-700 mt-1">Een historisch kasteel of adellijk huis. Kastelen waren vaak het middelpunt van macht en rijkdom in een gebied.</div>`
+          }
+
+          // Wat kun je hier vinden
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+          if (typeInfo) {
+            html += `<div class="text-sm text-gray-700 mt-1">${typeInfo.vondsten}</div>`
+          } else {
+            html += `<div class="text-sm text-gray-700 mt-1">Munten, sieraden, gespen, aardewerk en andere voorwerpen van de vroegere bewoners.</div>`
+          }
+
+          // Bezoeken
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bezoeken</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">Veel kastelen zijn privébezit of museum. Vraag altijd toestemming voordat je gaat detecteren op het terrein.</div>`
+
+          // Wikipedia link
+          if (dataProps.wikipedia) {
+            const wikiUrl = dataProps.wikipedia.startsWith('http')
+              ? dataProps.wikipedia
+              : `https://nl.wikipedia.org/wiki/${dataProps.wikipedia.replace(/^nl:/, '')}`
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">Lees meer op <a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
+          }
+
+          // Website
+          if (dataProps.website) {
+            if (!dataProps.wikipedia) {
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+            }
+            html += `<div class="text-sm text-gray-700 mt-1"><a href="${dataProps.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Website bezoeken</a></div>`
+          }
+        }
+
+        // Ruïnes (OSM data) - B1 stijl
+        if (dataProps.historic === 'ruins') {
+          // Type tonen
+          const ruinsType = dataProps.ruins_type || ''
+          let typeLabel = 'Ruïne'
+          let typeUitleg = 'Een ruïne is wat overblijft van een oud gebouw. Het kan een kerk, kasteel, molen of ander bouwwerk zijn geweest.'
+          let typeVondsten = 'Baksteenfragmenten, aardewerk, metalen voorwerpen van vroegere bewoners of gebruikers'
+
+          if (ruinsType.toLowerCase().includes('church') || ruinsType.toLowerCase().includes('kerk')) {
+            typeLabel = 'Kerkruïne'
+            typeUitleg = 'De overblijfselen van een oude kerk. Vaak nog te herkennen aan de fundering of een paar muren.'
+            typeVondsten = 'Religieuze voorwerpen, munten van kerkgangers, knopen, gespen'
+          } else if (ruinsType.toLowerCase().includes('castle') || ruinsType.toLowerCase().includes('kasteel')) {
+            typeLabel = 'Kasteelruïne'
+            typeUitleg = 'De resten van een middeleeuws kasteel. Soms is alleen de gracht of fundering nog zichtbaar.'
+            typeVondsten = 'Middeleeuwse munten, sieraden, harnasonderdelen, pijlpunten'
+          } else if (ruinsType.toLowerCase().includes('mill') || ruinsType.toLowerCase().includes('molen')) {
+            typeLabel = 'Molenruïne'
+            typeUitleg = 'Wat rest van een oude molen. Vaak nog te zien aan de stenen fundering of de molenberg.'
+            typeVondsten = 'Gereedschap, munten, huishoudelijke voorwerpen'
+          } else if (ruinsType.toLowerCase().includes('fort')) {
+            typeLabel = 'Fortruïne'
+            typeUitleg = 'De overblijfselen van een militair fort of verdedigingswerk.'
+            typeVondsten = 'Militaire voorwerpen, kogels, gespen, uniformonderdelen'
+          }
+
+          html += `<br/><span class="text-sm text-gray-600">${typeLabel}</span>`
+
+          // Wat zie je hier
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">${typeUitleg}</div>`
+
+          // Wat kun je hier vinden
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">${typeVondsten}</div>`
+
+          // Extra info als beschikbaar
+          if (dataProps.description) {
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Beschrijving</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">${dataProps.description}</div>`
+          }
+
+          // Bezoeken
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bezoeken</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">Ruïnes liggen vaak op privéterrein of zijn beschermd monument. Vraag altijd toestemming voordat je gaat detecteren.</div>`
+
+          // Wikipedia link
+          if (dataProps.wikipedia) {
+            const wikiUrl = dataProps.wikipedia.startsWith('http')
+              ? dataProps.wikipedia
+              : `https://${dataProps.wikipedia.split(':')[0] || 'nl'}.wikipedia.org/wiki/${dataProps.wikipedia.replace(/^[a-z]{2}:/, '')}`
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">Lees meer op <a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
           }
         }
 

@@ -1,0 +1,7845 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0964436,
+          50.9286842
+        ]
+      },
+      "properties": {
+        "name": "Übach-Palenberg römisches Badehaus",
+        "osm_id": 263874779,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5014218,
+          52.2007222
+        ]
+      },
+      "properties": {
+        "name": "Ruine Oude Matthiaskerk",
+        "osm_id": 290377394,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6098284,
+          51.4416081
+        ]
+      },
+      "properties": {
+        "name": "Fort de Ruyter",
+        "osm_id": 369019062,
+        "osm_type": "node",
+        "wikipedia": "nl:Fort de Ruyter",
+        "wikidata": "Q1905032",
+        "description": "",
+        "ruins_type": "fort",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6241225,
+          51.584935
+        ]
+      },
+      "properties": {
+        "name": "Fort den Haak",
+        "osm_id": 376318390,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8112985,
+          51.0310579
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Born",
+        "osm_id": 380595811,
+        "osm_type": "node",
+        "wikipedia": "nl:Kasteel Born",
+        "wikidata": "Q2202724",
+        "description": "",
+        "ruins_type": "yes",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.924815,
+          52.6751798
+        ]
+      },
+      "properties": {
+        "name": "Inlaatsluis Volkerakdam",
+        "osm_id": 428313032,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "resten van waterloopkundig studiemodel Waterloopkundig Laboratorium",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.641921,
+          51.9582109
+        ]
+      },
+      "properties": {
+        "name": "Steenovens",
+        "osm_id": 429175178,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2843278,
+          52.704094
+        ]
+      },
+      "properties": {
+        "name": "Spijtbroekstoren",
+        "osm_id": 672466649,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7727917,
+          52.6392828
+        ]
+      },
+      "properties": {
+        "name": "Contouren kasteel Nieuwburg",
+        "osm_id": 703647033,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9930974,
+          52.0379912
+        ]
+      },
+      "properties": {
+        "name": "Voormalig Teerose II",
+        "osm_id": 707269590,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "fundament restanten van een WO II navigatiesysteem voor vliegtuigen",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9592569,
+          51.7420015
+        ]
+      },
+      "properties": {
+        "name": "Alte Schmiede",
+        "osm_id": 925331889,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.630757,
+          52.339657
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1189575415,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4579439,
+          52.1591777
+        ]
+      },
+      "properties": {
+        "name": "Nettelhorst",
+        "osm_id": 1341647615,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9271225,
+          50.9435427
+        ]
+      },
+      "properties": {
+        "name": "De Kloes",
+        "osm_id": 1363520195,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "bunker",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2912777,
+          52.0138323
+        ]
+      },
+      "properties": {
+        "name": "Middenmolen, 1843-1846",
+        "osm_id": 1407116773,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6341156,
+          51.9571516
+        ]
+      },
+      "properties": {
+        "name": "Fundering molen",
+        "osm_id": 1427378765,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2457431,
+          52.2099615
+        ]
+      },
+      "properties": {
+        "name": "V1lanceringsplaats WOII",
+        "osm_id": 1499236098,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8044027,
+          53.3170335
+        ]
+      },
+      "properties": {
+        "name": "Voormalige steenfabriek Rusthoven",
+        "osm_id": 1587523485,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9363775,
+          51.2481407
+        ]
+      },
+      "properties": {
+        "name": "St. Elizabethsmolen",
+        "osm_id": 1620257126,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2058101,
+          51.9966144
+        ]
+      },
+      "properties": {
+        "name": "Marckenburg",
+        "osm_id": 1714195718,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1910472,
+          51.9877881
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Schalkwijk",
+        "osm_id": 1714197884,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1484288,
+          52.0484382
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1716923382,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Luisterpost",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7231717,
+          51.8061698
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1805036857,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6310056,
+          51.8238168
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Batenburg",
+        "osm_id": 1805052345,
+        "osm_type": "node",
+        "wikipedia": "nl:Kasteel Batenburg",
+        "wikidata": "Q2587780",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5869088,
+          52.8701253
+        ]
+      },
+      "properties": {
+        "name": "German World War II ruins",
+        "osm_id": 1876735914,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5054947,
+          50.8519558
+        ]
+      },
+      "properties": {
+        "name": "Motmolen ruïne",
+        "osm_id": 2235790608,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8871863,
+          52.609368
+        ]
+      },
+      "properties": {
+        "name": "Luftschutzbunker",
+        "osm_id": 2312087274,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.87278,
+          52.6211444
+        ]
+      },
+      "properties": {
+        "name": "Vom Hören sagen",
+        "osm_id": 2312087327,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4320442,
+          52.2789011
+        ]
+      },
+      "properties": {
+        "name": "De Waerdenborch",
+        "osm_id": 2317644283,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9763732,
+          51.9569066
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2328511742,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7078975,
+          51.6409931
+        ]
+      },
+      "properties": {
+        "name": "Bunker 222",
+        "osm_id": 2533914342,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6745399,
+          52.4922187
+        ]
+      },
+      "properties": {
+        "name": "Kasteel ter Wijc",
+        "osm_id": 2535642746,
+        "osm_type": "node",
+        "wikipedia": "nl:Kasteel Ter Wijc",
+        "wikidata": "Q2558898",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2837184,
+          51.8257409
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2620079713,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1651033,
+          52.9339136
+        ]
+      },
+      "properties": {
+        "name": "Bekhofschans",
+        "osm_id": 2640825431,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1749978,
+          50.8853428
+        ]
+      },
+      "properties": {
+        "name": "Alter Wetterschacht Anna III",
+        "osm_id": 2692498032,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9073413,
+          52.6755321
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2822623182,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4096853,
+          52.0765923
+        ]
+      },
+      "properties": {
+        "name": "Kasteel De Lichtenberg",
+        "osm_id": 2836565587,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "Q2053886",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1019333,
+          50.9295333
+        ]
+      },
+      "properties": {
+        "name": "Gesprengter Heidberg-Bunker (1)",
+        "osm_id": 2934898798,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1014333,
+          50.9292
+        ]
+      },
+      "properties": {
+        "name": "Gesprengter Heidberg-Bunker (2)",
+        "osm_id": 2934898799,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1075334,
+          50.9302875
+        ]
+      },
+      "properties": {
+        "name": "Versiegelter Luftschutzbunker-Eingang",
+        "osm_id": 2934898800,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.10195,
+          50.9290833
+        ]
+      },
+      "properties": {
+        "name": "Kieswerk-Ruine",
+        "osm_id": 2934907141,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6944837,
+          52.3475669
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2955655488,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6814933,
+          52.3314508
+        ]
+      },
+      "properties": {
+        "name": "V1-lanceerinrichting",
+        "osm_id": 2955656155,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6844491,
+          52.3279627
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2955656610,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6962454,
+          52.3141453
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 2955656611,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1365039,
+          52.0265396
+        ]
+      },
+      "properties": {
+        "name": "Mottekasteel Het Rondeel",
+        "osm_id": 2974987952,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1379274,
+          52.0319797
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Wulven",
+        "osm_id": 2977285866,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2995418,
+          52.07288
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 3221122383,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8212679,
+          51.0203298
+        ]
+      },
+      "properties": {
+        "name": "Stoel van Swentibold",
+        "osm_id": 3325363361,
+        "osm_type": "node",
+        "wikipedia": "nl:Stoel van Swentibold",
+        "wikidata": "Q17454323",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9193602,
+          52.674271
+        ]
+      },
+      "properties": {
+        "name": "Model koelwatervijver Maasvlaktecentrale",
+        "osm_id": 3588506552,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9222982,
+          52.6745238
+        ]
+      },
+      "properties": {
+        "name": "Model interactie duwvaart - overige vaart",
+        "osm_id": 3588506554,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9227029,
+          52.6728674
+        ]
+      },
+      "properties": {
+        "name": "Model Willemstunnel",
+        "osm_id": 3588511519,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9231088,
+          52.671105
+        ]
+      },
+      "properties": {
+        "name": "Model Nieuwe Waterweg",
+        "osm_id": 3588512549,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9213148,
+          52.6691133
+        ]
+      },
+      "properties": {
+        "name": "Model Marsa El Brega",
+        "osm_id": 3588512550,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.919987,
+          52.6697013
+        ]
+      },
+      "properties": {
+        "name": "Model Harbour Bangkok",
+        "osm_id": 3588514094,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9259692,
+          52.6687674
+        ]
+      },
+      "properties": {
+        "name": "Model ontgronding bij stuwcomplexen Maas",
+        "osm_id": 3588514574,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9274175,
+          52.6719126
+        ]
+      },
+      "properties": {
+        "name": "Model Keta Lagoon Outfall, Ghana",
+        "osm_id": 3588514910,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9178363,
+          52.6747749
+        ]
+      },
+      "properties": {
+        "name": "Model IJmuiden",
+        "osm_id": 3588522484,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.179928,
+          51.5741913
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Durendael",
+        "osm_id": 3673780904,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "locatie van voormalig kasteel",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6847707,
+          52.325337
+        ]
+      },
+      "properties": {
+        "name": "Hoeve Beekhuizen",
+        "osm_id": 3783240333,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0698258,
+          50.8017963
+        ]
+      },
+      "properties": {
+        "name": "Gut Groß-Beulardstein (Baudenkmal)",
+        "osm_id": 3783333761,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "Wehrbau",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3312442,
+          52.0362398
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 4404307705,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4092592,
+          51.6637124
+        ]
+      },
+      "properties": {
+        "name": "Landgoed Seldensate",
+        "osm_id": 4827730215,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.999836,
+          51.3188813
+        ]
+      },
+      "properties": {
+        "name": "Rochuskapel",
+        "osm_id": 5215768307,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2552217,
+          51.8124735
+        ]
+      },
+      "properties": {
+        "name": "IJskelder",
+        "osm_id": 5237836482,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7896764,
+          53.1331979
+        ]
+      },
+      "properties": {
+        "name": "Bunker",
+        "osm_id": 5240578666,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "WOII Bunker",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5051622,
+          51.1285181
+        ]
+      },
+      "properties": {
+        "name": "de oude duif",
+        "osm_id": 5303424162,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5109476,
+          51.1007639
+        ]
+      },
+      "properties": {
+        "name": "Old Factory silo",
+        "osm_id": 5307061616,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9012268,
+          53.2571632
+        ]
+      },
+      "properties": {
+        "name": "IJskelder",
+        "osm_id": 5329923986,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3631372,
+          52.1327526
+        ]
+      },
+      "properties": {
+        "name": "Het Lijkenhuisje",
+        "osm_id": 5341178981,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "Q17608180",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6345845,
+          52.0757881
+        ]
+      },
+      "properties": {
+        "name": "WW2 geschutsplek",
+        "osm_id": 5356259806,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7443841,
+          52.3259145
+        ]
+      },
+      "properties": {
+        "name": "De plek waar havezate Weleveld heeft gestaan",
+        "osm_id": 5484557152,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7783614,
+          51.590757
+        ]
+      },
+      "properties": {
+        "name": "Restant Verdedigingstoren",
+        "osm_id": 5540563502,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3369788,
+          52.1244045
+        ]
+      },
+      "properties": {
+        "name": "Villa Zeedennen",
+        "osm_id": 5604762644,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Er is alleen een aarden wal te zien en enkele bakstenen steken uit de aarden wal aan de oostkant. In de winter kun je ze zien. In de zomer wordt dit moeilijker gemaakt door hoog gras.",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8537645,
+          51.8762424
+        ]
+      },
+      "properties": {
+        "name": "De Groote Boel",
+        "osm_id": 5659068472,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6827991,
+          51.8392242
+        ]
+      },
+      "properties": {
+        "name": "Fundering Watermolen",
+        "osm_id": 5836726635,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6488703,
+          51.7977465
+        ]
+      },
+      "properties": {
+        "name": "Philips van Kleefbolwerck",
+        "osm_id": 5887079916,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.233642,
+          51.7367979
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Bokhoven",
+        "osm_id": 5950677851,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2634999,
+          52.0673262
+        ]
+      },
+      "properties": {
+        "name": "Kerk van Eikenduinen",
+        "osm_id": 6297997585,
+        "osm_type": "node",
+        "wikipedia": "nl:Kerk van Eikenduinen",
+        "wikidata": "Q17342251",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0430586,
+          52.0278851
+        ]
+      },
+      "properties": {
+        "name": "Kelder Rouwenberg",
+        "osm_id": 6356666852,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4085772,
+          53.4236777
+        ]
+      },
+      "properties": {
+        "name": "WW2 Bunker",
+        "osm_id": 6680116581,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8385178,
+          51.7186691
+        ]
+      },
+      "properties": {
+        "name": "Witte Keet",
+        "osm_id": 6699356869,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4088639,
+          53.4233209
+        ]
+      },
+      "properties": {
+        "name": "TS 311",
+        "osm_id": 7058015184,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4911737,
+          52.1412456
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Cronesteyn",
+        "osm_id": 7298681670,
+        "osm_type": "node",
+        "wikipedia": "nl:Kasteel Cronesteyn",
+        "wikidata": "Q2095468",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0405517,
+          50.7523734
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 7366409354,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7363923,
+          51.0547129
+        ]
+      },
+      "properties": {
+        "name": "Voormalige brouwerij Sint-Baafsabdij",
+        "osm_id": 7592038288,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7409352,
+          51.4508742
+        ]
+      },
+      "properties": {
+        "name": "Kavirondo Ruïne",
+        "osm_id": 8044964389,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Speeltuin voor en onderduikingsplek tijdens de Tweede Wereldoorlog.",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8402097,
+          52.7801654
+        ]
+      },
+      "properties": {
+        "name": "Kuinderburcht",
+        "osm_id": 8238239432,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8947577,
+          51.2837088
+        ]
+      },
+      "properties": {
+        "name": "Schuilplaats WOII",
+        "osm_id": 8244940677,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "dugout",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9019762,
+          51.2783717
+        ]
+      },
+      "properties": {
+        "name": "Schuilkelder WOII",
+        "osm_id": 8244943667,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "dugout",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6684334,
+          52.1212487
+        ]
+      },
+      "properties": {
+        "name": "Huis Berendrecht",
+        "osm_id": 8419407012,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.862795,
+          51.8456581
+        ]
+      },
+      "properties": {
+        "name": "Verloren toren",
+        "osm_id": 8612007511,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8721679,
+          51.8470755
+        ]
+      },
+      "properties": {
+        "name": "Sint Geertruidenkapel",
+        "osm_id": 8613324097,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7130041,
+          51.9741043
+        ]
+      },
+      "properties": {
+        "name": "IJskelder",
+        "osm_id": 8630278452,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6666197,
+          51.965091
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 8667700643,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6656326,
+          51.9649841
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 8667700644,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8675168,
+          51.8487761
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 8769443812,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Restant Romeinse muur, te zien vanaf de Vleeshouwerstraat",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9147529,
+          52.6716302
+        ]
+      },
+      "properties": {
+        "name": "Detailmodel Brouwershavense Gat",
+        "osm_id": 9048390321,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9172958,
+          52.6720786
+        ]
+      },
+      "properties": {
+        "name": "Model afsluiting Grevelingen",
+        "osm_id": 9048390322,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.916579,
+          52.6707746
+        ]
+      },
+      "properties": {
+        "name": "Detailmodel sluitgat Lauwerszee",
+        "osm_id": 9048390323,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9187484,
+          52.6702849
+        ]
+      },
+      "properties": {
+        "name": "Model Canal du Vridi, de toegang tot de haven van Abidjan, Ivoorkust",
+        "osm_id": 9048390324,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.925053,
+          52.6685415
+        ]
+      },
+      "properties": {
+        "name": "Model splitsingspunt van de Rijn bij Westervoort",
+        "osm_id": 9048390325,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9248123,
+          52.6709313
+        ]
+      },
+      "properties": {
+        "name": "Model Bajibo Rapids",
+        "osm_id": 9048390327,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9249964,
+          52.6718956
+        ]
+      },
+      "properties": {
+        "name": "Model bochtverbetering Bonnyrivier bij Port Harcourt, Nigeria",
+        "osm_id": 9048390328,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9263056,
+          52.6727673
+        ]
+      },
+      "properties": {
+        "name": "Model Lagos Harbour, Nigeria",
+        "osm_id": 9048390329,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9269847,
+          52.6736252
+        ]
+      },
+      "properties": {
+        "name": "Model Haven van Lagos",
+        "osm_id": 9048390330,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9240343,
+          52.6739283
+        ]
+      },
+      "properties": {
+        "name": "Model bocht in de Waal bij Nijmegen",
+        "osm_id": 9048390331,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9253888,
+          52.6745883
+        ]
+      },
+      "properties": {
+        "name": "Model Nederrijn",
+        "osm_id": 9048390332,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.921514,
+          52.6714838
+        ]
+      },
+      "properties": {
+        "name": "Model Noordzeekanaal",
+        "osm_id": 9048390386,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.920318,
+          52.6725019
+        ]
+      },
+      "properties": {
+        "name": "Model onderzoek Waalbocht bij Nijmegen",
+        "osm_id": 9048390387,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9273828,
+          52.6728073
+        ]
+      },
+      "properties": {
+        "name": "Gebruik van isotopen als tracers",
+        "osm_id": 9048390388,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9193144,
+          52.6712276
+        ]
+      },
+      "properties": {
+        "name": "Model vormgeving splitsingspunt Oude Maas - Hartelkanaal",
+        "osm_id": 9048406651,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9154839,
+          52.6723472
+        ]
+      },
+      "properties": {
+        "name": "Pentagoot",
+        "osm_id": 9048406668,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9168884,
+          52.6739043
+        ]
+      },
+      "properties": {
+        "name": "Modellen Turkse havens",
+        "osm_id": 9048406669,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9181938,
+          52.6732019
+        ]
+      },
+      "properties": {
+        "name": "Model havenuitbreiding Licata, Sicilië",
+        "osm_id": 9048406670,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.9601485,
+          51.1533976
+        ]
+      },
+      "properties": {
+        "name": "Kasteel van Eksaarde",
+        "osm_id": 9312642078,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7789393,
+          51.1845936
+        ]
+      },
+      "properties": {
+        "name": "Ruïne Priorij Onze Lieve Vrouw Ten Troon",
+        "osm_id": 9312700680,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6326759,
+          51.3742998
+        ]
+      },
+      "properties": {
+        "name": "Buitenhuis De Hut",
+        "osm_id": 9604105629,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.2315392,
+          52.0738906
+        ]
+      },
+      "properties": {
+        "name": "Bunker",
+        "osm_id": 9609206047,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2105641,
+          52.0036853
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Ten Goye",
+        "osm_id": 9993008171,
+        "osm_type": "node",
+        "wikipedia": "nl:Kasteel Ten Goye",
+        "wikidata": "Q2660724",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8397625,
+          52.0289703
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 10195532150,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Restanten luchtafweer",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3481746,
+          51.4094206
+        ]
+      },
+      "properties": {
+        "name": "Molenberg",
+        "osm_id": 11071608246,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "windmill",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7245378,
+          53.5724645
+        ]
+      },
+      "properties": {
+        "name": "Mittelhaus",
+        "osm_id": 11096830921,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4211952,
+          52.3279588
+        ]
+      },
+      "properties": {
+        "name": "Voormalige Lanceerplaats V1",
+        "osm_id": 11226582960,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2979118,
+          52.2830042
+        ]
+      },
+      "properties": {
+        "name": "V1-lanceerinrichting",
+        "osm_id": 11226661759,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4485487,
+          52.3753707
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 11229115820,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3926554,
+          52.5111321
+        ]
+      },
+      "properties": {
+        "name": "Motteheuvel",
+        "osm_id": 11241503547,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Aarden heuvel waar een houten mottekasteel op heeft gestaan.",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5433623,
+          51.0374056
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 11327971090,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.443872,
+          52.4360567
+        ]
+      },
+      "properties": {
+        "name": "Voormalige scheepsreparatiewerf",
+        "osm_id": 11709293396,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8584084,
+          50.7825766
+        ]
+      },
+      "properties": {
+        "name": "Cementfabriek Beutenaken",
+        "osm_id": 11786480745,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4767853,
+          52.3685448
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 11799298517,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "house",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.26514,
+          51.640122
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 11821236896,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6413775,
+          52.4811975
+        ]
+      },
+      "properties": {
+        "name": "Cisterciënzerklooster Galilaea Maior (Groot Galilea)",
+        "osm_id": 12118351185,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5614006,
+          52.4510718
+        ]
+      },
+      "properties": {
+        "name": "Voormalige Sluis V",
+        "osm_id": 12231361152,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "De vijfde in een serie sluizen tussen Zwolle en Vroomshoop.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4567348,
+          52.4358476
+        ]
+      },
+      "properties": {
+        "name": "Sluis IV",
+        "osm_id": 12231617573,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6424686,
+          52.7285446
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 12437101525,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "military",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9349131,
+          51.7790566
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 12478765540,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.572969,
+          51.2227377
+        ]
+      },
+      "properties": {
+        "name": "Venustempel",
+        "osm_id": 12492568498,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6658635,
+          52.7179779
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 12512659994,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "bunker",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4220858,
+          53.0099191
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 12514795882,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "tower",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7982834,
+          52.2629987
+        ]
+      },
+      "properties": {
+        "name": "Molen van Trip",
+        "osm_id": 12741960649,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "windmill",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6840915,
+          50.8500953
+        ]
+      },
+      "properties": {
+        "name": "ruïne van de gotische kloosterkerk",
+        "osm_id": 12758371825,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6425636,
+          51.485871
+        ]
+      },
+      "properties": {
+        "name": "Peapark",
+        "osm_id": 12804373911,
+        "osm_type": "node",
+        "wikipedia": "nl:Peapark",
+        "wikidata": "Q2929144",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7835708,
+          50.8681723
+        ]
+      },
+      "properties": {
+        "name": "Grotwoning Geulhem",
+        "osm_id": 12847147101,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0060492,
+          50.7772516
+        ]
+      },
+      "properties": {
+        "name": "Alte Polizeistation",
+        "osm_id": 13084791301,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9985754,
+          52.0362575
+        ]
+      },
+      "properties": {
+        "name": "Voormalig Teerose II",
+        "osm_id": 13379176133,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "fundament restanten van een WO II navigatiesysteem voor vliegtuigen. Dit is een van de plekken met restanten van Teerose II.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9758894,
+          52.0618997
+        ]
+      },
+      "properties": {
+        "name": "Voormalig Teerose III",
+        "osm_id": 13388168618,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Oude locatie van een WO II navigatiesysteem voor vliegtuigen",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7569532,
+          50.9502421
+        ]
+      },
+      "properties": {
+        "name": "Burcht van Elsloo",
+        "osm_id": 13408699626,
+        "osm_type": "node",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5190721,
+          52.2312364
+        ]
+      },
+      "properties": {
+        "name": "Ruïne van Teylingen",
+        "osm_id": 8165216,
+        "osm_type": "way",
+        "wikipedia": "nl:Slot Teylingen",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7998902,
+          51.2296499
+        ]
+      },
+      "properties": {
+        "name": "Waterkorenmolen",
+        "osm_id": 26533876,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Als onderdeel van de oude verdedigingswerken is een restant metselwerk van de fortificatie bewaard gebleven, waarin overblijfselen van een voormalige getij-watermolen",
+        "ruins_type": "watermill",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5703097,
+          51.22344
+        ]
+      },
+      "properties": {
+        "name": "Hof ten Broecke",
+        "osm_id": 29355516,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q110774776",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3057586,
+          51.7396535
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 34273299,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "yes",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3052443,
+          51.7396332
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 34273303,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "yes",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.995063,
+          50.7903992
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 47023255,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "yes",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8309896,
+          50.8619371
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 47099672,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8306443,
+          50.8617346
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 47099677,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8308065,
+          50.8617837
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 47099678,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9577298,
+          50.8837388
+        ]
+      },
+      "properties": {
+        "name": "Onderste Douvenrade",
+        "osm_id": 47162298,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "wall",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1128396,
+          52.0607007
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 48367408,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Oude steenbakkerij",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1967013,
+          52.1454598
+        ]
+      },
+      "properties": {
+        "name": "Kruittoren",
+        "osm_id": 50398761,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5945017,
+          52.132968
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Groot Poelgeest",
+        "osm_id": 53030572,
+        "osm_type": "way",
+        "wikipedia": "nl:Groot Poelgeest",
+        "wikidata": "Q11721992",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6816506,
+          51.9782686
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 54130901,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8522692,
+          53.1315502
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 54188235,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.258615,
+          52.1891559
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 54497457,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Verblijf Vleermuizen",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2330485,
+          52.0122675
+        ]
+      },
+      "properties": {
+        "name": "Enghuizen",
+        "osm_id": 54535709,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.907618,
+          52.8554723
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 54598482,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8736937,
+          52.3612818
+        ]
+      },
+      "properties": {
+        "name": "Vondelkerk",
+        "osm_id": 57861238,
+        "osm_type": "way",
+        "wikipedia": "nl:Vondelkerk",
+        "wikidata": "Q2142834",
+        "description": "former church",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8612991,
+          51.9765923
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Rosande",
+        "osm_id": 59353559,
+        "osm_type": "way",
+        "wikipedia": "nl:Kasteel Rosande",
+        "wikidata": "Q2497546",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0723557,
+          52.0850778
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Huis te Voorn",
+        "osm_id": 71940812,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0580251,
+          52.0985617
+        ]
+      },
+      "properties": {
+        "name": "Ridderhofstad Den Hoet",
+        "osm_id": 72292687,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3891912,
+          51.3110652
+        ]
+      },
+      "properties": {
+        "name": "Sint-Janskerk",
+        "osm_id": 74549009,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q55076325",
+        "description": "Afgebrand in 1811. De fundamenten werden na 1948 verhoogd zodat de vorm van het gebouw weer zichtbaar is.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7735005,
+          52.6202813
+        ]
+      },
+      "properties": {
+        "name": "Kerk Zuidpunt",
+        "osm_id": 89007279,
+        "osm_type": "way",
+        "wikipedia": "nl:Ensenerkerk",
+        "wikidata": "Q17189294",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7722609,
+          52.6201358
+        ]
+      },
+      "properties": {
+        "name": "Ronde Vuurtoren",
+        "osm_id": 89007658,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.516984,
+          51.1425982
+        ]
+      },
+      "properties": {
+        "name": "Ooievaartsnest",
+        "osm_id": 97974355,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5169918,
+          51.1427784
+        ]
+      },
+      "properties": {
+        "name": "Ooievaartsnest",
+        "osm_id": 97974356,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8676143,
+          51.8434108
+        ]
+      },
+      "properties": {
+        "name": "Giessenburg",
+        "osm_id": 103354045,
+        "osm_type": "way",
+        "wikipedia": "nl:Giessenburg (kasteel)",
+        "wikidata": "Q17373653",
+        "description": "Kasteelheuvel en -ruïnes van het voormalig kasteel Giessenburg",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7108591,
+          52.7356785
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Nuwendoorn",
+        "osm_id": 108744174,
+        "osm_type": "way",
+        "wikipedia": "nl:Nuwendoorn",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.732829,
+          51.1732568
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 110965989,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.363623,
+          51.3494104
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 120924661,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.363037,
+          51.3530754
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 120924664,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3620261,
+          51.353511
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 120924665,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3632652,
+          51.3529591
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 120924668,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3569543,
+          51.3555705
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 121273115,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3566516,
+          51.3555724
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 121273116,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.360361,
+          51.3541628
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 121273122,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4931221,
+          51.0412935
+        ]
+      },
+      "properties": {
+        "name": "TPM14",
+        "osm_id": 128804103,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q92480615",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1253087,
+          50.9038115
+        ]
+      },
+      "properties": {
+        "name": "Bunker-Ruine",
+        "osm_id": 153197216,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9863966,
+          52.0454923
+        ]
+      },
+      "properties": {
+        "name": "De Hoeksche Molen",
+        "osm_id": 162791268,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3178623,
+          51.9767834
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Keenenburg",
+        "osm_id": 166907081,
+        "osm_type": "way",
+        "wikipedia": "nl:Keenenburg",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.388595,
+          51.0896207
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 168763027,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0354436,
+          52.0276905
+        ]
+      },
+      "properties": {
+        "name": "Kerkje van Eiteren",
+        "osm_id": 170084339,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0985167,
+          51.8162537
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 174967373,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0836368,
+          50.7853791
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189917,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0833971,
+          50.7851364
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189918,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0833645,
+          50.7851491
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189921,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0834329,
+          50.785122
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189922,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0835037,
+          50.785094
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189923,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0837069,
+          50.7853513
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189924,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0834672,
+          50.7851086
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189925,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.083671,
+          50.7853659
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189926,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0835667,
+          50.7854053
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189927,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0836016,
+          50.7853924
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189928,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0832973,
+          50.7851741
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189929,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.08333,
+          50.7851629
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189932,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0837233,
+          50.7853429
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189933,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0837407,
+          50.7853375
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184189935,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8010455,
+          51.5326355
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 184594687,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Fundament Kerk",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8796445,
+          50.8207294
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 203288637,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1957401,
+          52.1214024
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 208043593,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0312743,
+          51.8232975
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 225928105,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0943634,
+          51.0590213
+        ]
+      },
+      "properties": {
+        "name": "Wehrturm",
+        "osm_id": 226852029,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0943748,
+          51.0591833
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 226852030,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0942783,
+          51.0593337
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 226852032,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0935792,
+          51.060105
+        ]
+      },
+      "properties": {
+        "name": "Herrenhaus (Burg)",
+        "osm_id": 226854301,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7362591,
+          51.0538474
+        ]
+      },
+      "properties": {
+        "name": "Sint-Baafsabdij",
+        "osm_id": 227919456,
+        "osm_type": "way",
+        "wikipedia": "nl:Sint-Baafsabdij",
+        "wikidata": "Q1635891",
+        "description": "Ruïnes van de Sint-Baafsabdij",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9586076,
+          50.8867729
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Eyckholt",
+        "osm_id": 234693765,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8204354,
+          51.1233693
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Walburg",
+        "osm_id": 237856959,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9504257,
+          51.7138537
+        ]
+      },
+      "properties": {
+        "name": "Genneperhuis",
+        "osm_id": 240170644,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q2017353",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3473309,
+          51.9699231
+        ]
+      },
+      "properties": {
+        "name": "Molen van Ruysdael (molenromp)",
+        "osm_id": 241550505,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0045253,
+          52.0192483
+        ]
+      },
+      "properties": {
+        "name": "Ruïne Herikhuizen",
+        "osm_id": 255070395,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q2293748",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.4657583,
+          51.334845
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 259720523,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7136571,
+          52.5362932
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 261921591,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9538106,
+          52.6791994
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 267007174,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9538017,
+          52.6792669
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 267009869,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.104492,
+          51.0385142
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 267060158,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7199818,
+          52.0225717
+        ]
+      },
+      "properties": {
+        "name": "Oude/Molenstomp Reeuwijkse Molen",
+        "osm_id": 268755194,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9031329,
+          51.5248993
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 269231453,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0529822,
+          51.8116122
+        ]
+      },
+      "properties": {
+        "name": "'t Rechthuis",
+        "osm_id": 270938371,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3704227,
+          51.3117688
+        ]
+      },
+      "properties": {
+        "name": "Het Hoompje",
+        "osm_id": 270941618,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Villa, in 1909 gebouwd in overgangsarchitectuur en in 1912 uitgebreid en in gebruik genomen als klooster voor de zusters Franciscanessen. Aan de westzijde werd de kapel aangebouwd. De voorgevel van de villa en de kapel ligt evenwijdig aan de straat.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4029294,
+          51.9181796
+        ]
+      },
+      "properties": {
+        "name": "Huis te Riviere",
+        "osm_id": 273851165,
+        "osm_type": "way",
+        "wikipedia": "nl:Huis te Riviere",
+        "wikidata": "Q1918868",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7040245,
+          52.0096304
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 274018891,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8386248,
+          51.4580689
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 275290618,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8388209,
+          51.4579904
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 275290847,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1387435,
+          51.9909935
+        ]
+      },
+      "properties": {
+        "name": "Steenfabriek \"De Ossenwaard\"",
+        "osm_id": 277086636,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8948476,
+          52.3315847
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 277316780,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Ruïnes van voormalig Frans paviljoen.",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.4455544,
+          51.5433532
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 277884753,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9419839,
+          51.1243296
+        ]
+      },
+      "properties": {
+        "name": "Kasteelruïne Montfort",
+        "osm_id": 278454219,
+        "osm_type": "way",
+        "wikipedia": "nl:Kasteel Montfort (Limburg)",
+        "wikidata": "Q3917569",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3386574,
+          52.9042729
+        ]
+      },
+      "properties": {
+        "name": "De Uilenhorst",
+        "osm_id": 279902005,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8575946,
+          51.8474608
+        ]
+      },
+      "properties": {
+        "name": "Kruittoren",
+        "osm_id": 280666888,
+        "osm_type": "way",
+        "wikipedia": "nl:Kruittoren (Nijmegen)",
+        "wikidata": "Q2413638",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8588718,
+          51.8452984
+        ]
+      },
+      "properties": {
+        "name": "Sint Jacobstoren",
+        "osm_id": 280666937,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8582387,
+          51.8464554
+        ]
+      },
+      "properties": {
+        "name": "Roomsche Voet",
+        "osm_id": 280667045,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q17438165",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8720804,
+          51.8466487
+        ]
+      },
+      "properties": {
+        "name": "Keuperstoren",
+        "osm_id": 280669013,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6357896,
+          51.2323022
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 280966756,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "house",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.081439,
+          52.0761425
+        ]
+      },
+      "properties": {
+        "name": "Hotel Dullemond",
+        "osm_id": 281438260,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q52220517",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7183768,
+          52.2998263
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Leuvenum",
+        "osm_id": 285548090,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7788029,
+          51.1845991
+        ]
+      },
+      "properties": {
+        "name": "OLV-Ten-Troon",
+        "osm_id": 288075728,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.651518,
+          51.8953348
+        ]
+      },
+      "properties": {
+        "name": "Vlamoven Deest",
+        "osm_id": 293778578,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3215905,
+          51.1333179
+        ]
+      },
+      "properties": {
+        "name": "Zweeds Paviljoen",
+        "osm_id": 308029311,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3732759,
+          51.2853498
+        ]
+      },
+      "properties": {
+        "name": "Oude Kerk",
+        "osm_id": 323781722,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3547071,
+          51.1575755
+        ]
+      },
+      "properties": {
+        "name": "Schans 16",
+        "osm_id": 332822147,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3336911,
+          53.2244211
+        ]
+      },
+      "properties": {
+        "name": "ruïne",
+        "osm_id": 347902176,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3337148,
+          53.22439
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347903354,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3337262,
+          53.2243623
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347903595,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3338446,
+          53.224358
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904185,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3339527,
+          53.2243666
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904234,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3340433,
+          53.224378
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904319,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3340417,
+          53.2244156
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904385,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3340399,
+          53.2244464
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904655,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3339474,
+          53.2244539
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347904902,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.3338415,
+          53.2244618
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 347905060,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "church",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4894513,
+          52.1610427
+        ]
+      },
+      "properties": {
+        "name": "Vrouwekerk",
+        "osm_id": 361230397,
+        "osm_type": "way",
+        "wikipedia": "nl:Vrouwekerk",
+        "wikidata": "Q4854653",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8748818,
+          51.5065074
+        ]
+      },
+      "properties": {
+        "name": "Pelicaenhoeve",
+        "osm_id": 361861553,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "schuilkerk",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4216683,
+          51.4592351
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 367013471,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "house",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.777934,
+          52.6280258
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 369929255,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7327609,
+          51.1730776
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 384018031,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7358902,
+          51.7428838
+        ]
+      },
+      "properties": {
+        "name": "Stekelvarken",
+        "osm_id": 398975831,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7675211,
+          51.6800133
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 400461779,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7679666,
+          51.6800957
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 400461780,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7793929,
+          51.6962939
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 400872525,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "yes",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3780383,
+          51.5271063
+        ]
+      },
+      "properties": {
+        "name": "Kasteel van Wouw",
+        "osm_id": 403467761,
+        "osm_type": "way",
+        "wikipedia": "nl:Kasteel van Wouw",
+        "wikidata": "Q1913792",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7942858,
+          51.001187
+        ]
+      },
+      "properties": {
+        "name": "Lindemolen",
+        "osm_id": 408696066,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5585482,
+          50.7861245
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 425510131,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0771857,
+          51.5523211
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 427608705,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Omgracht terrein van het voormalige kasteel.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.004636,
+          52.0196025
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 446479254,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6140479,
+          51.2248829
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 453949825,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9423874,
+          51.3314886
+        ]
+      },
+      "properties": {
+        "name": "Restanten oude spoorbrug",
+        "osm_id": 461381787,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9422134,
+          51.3312392
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 461381788,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Restanten oude spoorbrug",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6807279,
+          50.8436293
+        ]
+      },
+      "properties": {
+        "name": "Kazematten",
+        "osm_id": 463465727,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "bunker",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.834378,
+          50.8528376
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Biebosch",
+        "osm_id": 490751248,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q66736283",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1419447,
+          51.7356245
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 491910223,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "citywalls",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9416802,
+          51.1242996
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 497717976,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8857019,
+          50.7651777
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 506284466,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5872883,
+          52.4893634
+        ]
+      },
+      "properties": {
+        "name": "Vuurboet",
+        "osm_id": 509579656,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "lighthouse",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6099222,
+          51.8800357
+        ]
+      },
+      "properties": {
+        "name": "Huys te Woude",
+        "osm_id": 525063065,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7279766,
+          51.0420663
+        ]
+      },
+      "properties": {
+        "name": "Ruïnetuin",
+        "osm_id": 528518958,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6046576,
+          52.9163603
+        ]
+      },
+      "properties": {
+        "name": "Grote zaal",
+        "osm_id": 529267208,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6054483,
+          52.9167908
+        ]
+      },
+      "properties": {
+        "name": "Keuken",
+        "osm_id": 529267304,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.606611,
+          52.9166751
+        ]
+      },
+      "properties": {
+        "name": "Badhuis",
+        "osm_id": 529267638,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6077053,
+          52.9166132
+        ]
+      },
+      "properties": {
+        "name": "Ketelhuis",
+        "osm_id": 529269482,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6077229,
+          52.9160721
+        ]
+      },
+      "properties": {
+        "name": "Kazerne",
+        "osm_id": 529269483,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6046354,
+          52.9157903
+        ]
+      },
+      "properties": {
+        "name": "Ziekenhuis",
+        "osm_id": 529269484,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6046038,
+          52.9175154
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 529269486,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6029461,
+          52.9167721
+        ]
+      },
+      "properties": {
+        "name": "kampbewaking",
+        "osm_id": 529269487,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6065525,
+          52.9181553
+        ]
+      },
+      "properties": {
+        "name": "woonbarak",
+        "osm_id": 529269488,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6064733,
+          52.9178696
+        ]
+      },
+      "properties": {
+        "name": "Meisjesbarak",
+        "osm_id": 529269489,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6091228,
+          52.9179581
+        ]
+      },
+      "properties": {
+        "name": "strafbarak 65",
+        "osm_id": 529269490,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6092155,
+          52.9181468
+        ]
+      },
+      "properties": {
+        "name": "strafbarak 66",
+        "osm_id": 529269491,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6110641,
+          52.917622
+        ]
+      },
+      "properties": {
+        "name": "school",
+        "osm_id": 529269493,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6112539,
+          52.9163872
+        ]
+      },
+      "properties": {
+        "name": "vliegtuigdemontagehal",
+        "osm_id": 529269495,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6099609,
+          52.9163628
+        ]
+      },
+      "properties": {
+        "name": "Barak 57",
+        "osm_id": 529272128,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6095266,
+          52.9183237
+        ]
+      },
+      "properties": {
+        "name": "strafbarak 67",
+        "osm_id": 529272129,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "barrack",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6698983,
+          51.5474355
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 531976735,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Restanten van de omstreeks 1500 aangelegd en later herhaaldelijk vernieuwde zee fortificatie.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6690992,
+          51.5471036
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 531976736,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Restanten van de omstreeks 1500 aangelegd en later herhaaldelijk vernieuwde zee fortificatie.",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2967533,
+          51.5122669
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 546351057,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9069576,
+          51.8701863
+        ]
+      },
+      "properties": {
+        "name": "Veldoven",
+        "osm_id": 571343376,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.646396,
+          52.095961
+        ]
+      },
+      "properties": {
+        "name": "Muur van Mussert",
+        "osm_id": 572541352,
+        "osm_type": "way",
+        "wikipedia": "nl:Nationaal Tehuis",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8561086,
+          52.0184808
+        ]
+      },
+      "properties": {
+        "name": "Huis te Vliet",
+        "osm_id": 574616272,
+        "osm_type": "way",
+        "wikipedia": "nl:Huis te Vliet (Oudewater)",
+        "wikidata": "Q2805412",
+        "description": "Ruïne van het Huis te Vliet. Muurfragment, bestaande uit middeleeuwse moppen.",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7241571,
+          52.1898909
+        ]
+      },
+      "properties": {
+        "name": "Ottinkmolen",
+        "osm_id": 582371587,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8144371,
+          51.8659289
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 591363878,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0925157,
+          50.8686018
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 637163144,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Originaler Stadtmauerrest aus Bruch- und Werksteinen",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3473309,
+          51.9699231
+        ]
+      },
+      "properties": {
+        "name": "overblijfselen van de 'Molen van Ruisdael'",
+        "osm_id": 645436114,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7332962,
+          51.0680069
+        ]
+      },
+      "properties": {
+        "name": "De oude grindbakken.",
+        "osm_id": 656281696,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "https://photos.app.goo.gl/fveDYXEebpsc8BJB6",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8307967,
+          50.8623362
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 656755283,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6826262,
+          52.4543445
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662523989,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6825911,
+          52.4543436
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662523999,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6825693,
+          52.4543386
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662524020,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6827663,
+          52.455451
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662524033,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6827482,
+          52.4554547
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662524041,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6827257,
+          52.4554663
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662524051,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598155,
+          50.7902061
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945870,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598406,
+          50.790217
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945872,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598831,
+          50.7902103
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945875,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9599322,
+          50.7902113
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945877,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598493,
+          50.7901385
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945880,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598199,
+          50.7900451
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945883,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9598229,
+          50.7900146
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945885,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9597383,
+          50.7899725
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945887,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9597157,
+          50.7899874
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945890,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9597245,
+          50.7900448
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945893,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9597281,
+          50.790024
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 662945896,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.62422,
+          51.45102
+        ]
+      },
+      "properties": {
+        "name": "Trambrug",
+        "osm_id": 693126279,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q127421157",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6240765,
+          51.4511685
+        ]
+      },
+      "properties": {
+        "name": "Trambrug",
+        "osm_id": 693126280,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q127421157",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9601232,
+          50.7899828
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 746415415,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9601185,
+          50.790015
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 746415416,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9601129,
+          50.7900544
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 746415417,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9601082,
+          50.7900854
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 746415418,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4611226,
+          51.2145465
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 759263186,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6474331,
+          51.0821127
+        ]
+      },
+      "properties": {
+        "name": "Kamp van Hoorn",
+        "osm_id": 787885820,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7591406,
+          51.027804
+        ]
+      },
+      "properties": {
+        "name": "Textielfabriek De Porre",
+        "osm_id": 800660866,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.933029,
+          51.1420135
+        ]
+      },
+      "properties": {
+        "name": "Obervatietoren Montfort",
+        "osm_id": 807333174,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9973101,
+          50.8982291
+        ]
+      },
+      "properties": {
+        "name": "Kasteelruïne Schaesberg",
+        "osm_id": 842170369,
+        "osm_type": "way",
+        "wikipedia": "nl:Kasteel Schaesberg",
+        "wikidata": "Q2243348",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4229679,
+          51.3192373
+        ]
+      },
+      "properties": {
+        "name": "Fontein Irishof",
+        "osm_id": 848502651,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8401924,
+          52.7801782
+        ]
+      },
+      "properties": {
+        "name": "de eerste burcht van Kuinre",
+        "osm_id": 865750134,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3208551,
+          51.439092
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 867334081,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7737629,
+          50.8715955
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven bij Curfsgroeve",
+        "osm_id": 900583603,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q66629475",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7757706,
+          50.870848
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven bij ingang Curfsgroeve",
+        "osm_id": 900583888,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q95248039",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8565952,
+          50.858918
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Schaelsberg",
+        "osm_id": 900584276,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q69523856",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8742779,
+          50.8468919
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Engwegen",
+        "osm_id": 900584726,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q90079332",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9023033,
+          50.8312927
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Dikkebuiksweg-noord",
+        "osm_id": 900586374,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q66737856",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9021446,
+          50.8311932
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Dikkebuiksweg-zuid",
+        "osm_id": 900586375,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q66737856",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9134283,
+          50.8728451
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Kasteel Haren",
+        "osm_id": 900586728,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q17457714",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9168732,
+          50.8728876
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Amerikaanse Branderij",
+        "osm_id": 900587347,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q67070938",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.933339,
+          50.8624247
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Winthagen",
+        "osm_id": 900589161,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q69505716",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9574501,
+          50.8694953
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Koffiepotje",
+        "osm_id": 900589777,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Koffiepotje",
+        "wikidata": "Q67060015",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9590134,
+          50.8539525
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Sieben",
+        "osm_id": 900590337,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Sieben",
+        "wikidata": "Q67044596",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9631117,
+          50.8561511
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Kurvers",
+        "osm_id": 900591058,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Kurvers",
+        "wikidata": "Q17457715",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9651803,
+          50.8584077
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Daelsweg",
+        "osm_id": 900591480,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Daelsweg",
+        "wikidata": "Q17457716",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.96462,
+          50.8598944
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Dalberg",
+        "osm_id": 900592361,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Dalberg",
+        "wikidata": "Q67059901",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9662247,
+          50.8557593
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Bosrand",
+        "osm_id": 900593027,
+        "osm_type": "way",
+        "wikipedia": "nl:Kalkoven Bosrand",
+        "wikidata": "Q67051233",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9686791,
+          50.8586813
+        ]
+      },
+      "properties": {
+        "name": "Kalkoven Putberg",
+        "osm_id": 900594831,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "Q92048602",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9893159,
+          52.6650657
+        ]
+      },
+      "properties": {
+        "name": "Stilteplaats Weiteveen",
+        "osm_id": 909144783,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "De stilteplaats ligt op een voormalige huisplaats in het Schoonebeekerveld en is geopend door stichting Pleidooi voor de Eenheid. Elementen van het huis van de laatste bewoners, zijn blijven staan en drukken het thema 'eenheid in verbondenheid' uit",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.197185,
+          51.0525652
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 937324162,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "aanmeerplaats",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6230843,
+          52.4254851
+        ]
+      },
+      "properties": {
+        "name": "Ruïne van Brederode",
+        "osm_id": 964933551,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7098622,
+          51.2569299
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 968152447,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Old gate part of castle Nijenborgh",
+        "ruins_type": "castle",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1399751,
+          52.1795238
+        ]
+      },
+      "properties": {
+        "name": "Korenmolen",
+        "osm_id": 968259691,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6893346,
+          50.8091294
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 993171753,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1785311,
+          51.2196378
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1009639392,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9646709,
+          52.2112652
+        ]
+      },
+      "properties": {
+        "name": "Voormalige wachtpost 49",
+        "osm_id": 1042227500,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0293843,
+          50.7720013
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1050228119,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "2022 mittlerweile ohne Dach",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.214904,
+          51.5972699
+        ]
+      },
+      "properties": {
+        "name": "Voormalige H. Lambertuskerk van Haaren",
+        "osm_id": 1072930964,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8705381,
+          51.847559
+        ]
+      },
+      "properties": {
+        "name": "Barbarossakapel",
+        "osm_id": 1086081766,
+        "osm_type": "way",
+        "wikipedia": "nl:Barbarossa-ruïne",
+        "wikidata": "Q2804229",
+        "description": "",
+        "ruins_type": "chapel",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9036289,
+          53.1212321
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1095635164,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7086846,
+          51.2568616
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1098350610,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "wall",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0159904,
+          50.9624525
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1138267810,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7431626,
+          51.051672
+        ]
+      },
+      "properties": {
+        "name": "Malmarfabriek",
+        "osm_id": 1170044562,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Dakstructuur en enkele muren van de voormalige Malmar-metaalfabriek",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8488914,
+          53.4215322
+        ]
+      },
+      "properties": {
+        "name": "Dam Holwerd-Ameland",
+        "osm_id": 1174234588,
+        "osm_type": "way",
+        "wikipedia": "nl:Dam Holwerd-Ameland",
+        "wikidata": "Q13134580",
+        "description": "",
+        "ruins_type": "dyke",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8514013,
+          53.419893
+        ]
+      },
+      "properties": {
+        "name": "Dam Holwerd-Ameland",
+        "osm_id": 1174234589,
+        "osm_type": "way",
+        "wikipedia": "nl:Dam Holwerd-Ameland",
+        "wikidata": "Q13134580",
+        "description": "",
+        "ruins_type": "dyke",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8288304,
+          53.4332839
+        ]
+      },
+      "properties": {
+        "name": "Dam Holwerd-Ameland",
+        "osm_id": 1174234590,
+        "osm_type": "way",
+        "wikipedia": "nl:Dam Holwerd-Ameland",
+        "wikidata": "Q13134580",
+        "description": "",
+        "ruins_type": "dyke",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8706655,
+          53.4033734
+        ]
+      },
+      "properties": {
+        "name": "Dam Holwerd-Ameland",
+        "osm_id": 1174234591,
+        "osm_type": "way",
+        "wikipedia": "nl:Dam Holwerd-Ameland",
+        "wikidata": "Q13134580",
+        "description": "",
+        "ruins_type": "dyke",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8659536,
+          53.4094669
+        ]
+      },
+      "properties": {
+        "name": "Dam Holwerd-Ameland",
+        "osm_id": 1174234592,
+        "osm_type": "way",
+        "wikipedia": "nl:Dam Holwerd-Ameland",
+        "wikidata": "Q13134580",
+        "description": "",
+        "ruins_type": "dyke",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2126539,
+          51.8145183
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Goudenstein",
+        "osm_id": 1198265435,
+        "osm_type": "way",
+        "wikipedia": "nl:Kasteel Goudenstein",
+        "wikidata": "Q2101694",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0537737,
+          51.7839371
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1231052977,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.4767113,
+          52.3685959
+        ]
+      },
+      "properties": {
+        "name": "Eversberg",
+        "osm_id": 1234411772,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "house",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3983772,
+          52.0053426
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1273151206,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "vormalig zwembad landgoed Broekhuizen",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7276676,
+          51.044381
+        ]
+      },
+      "properties": {
+        "name": "Kelders en ondergrondse tunnel",
+        "osm_id": 1296358417,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0342261,
+          50.7619641
+        ]
+      },
+      "properties": {
+        "name": "Onbekende ruïne",
+        "osm_id": 1304295392,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5759223,
+          51.2212726
+        ]
+      },
+      "properties": {
+        "name": "Badhuis Bobine-les-bains",
+        "osm_id": 1350387265,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "building",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1081832,
+          51.2324646
+        ]
+      },
+      "properties": {
+        "name": "Ruine Diergardtshof",
+        "osm_id": 1376942648,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.751958,
+          52.7210466
+        ]
+      },
+      "properties": {
+        "name": "Luchtwachttoren 6K2 Emmeloord",
+        "osm_id": 1428664290,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Luchtwachttoren, fundament",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8306103,
+          52.6414123
+        ]
+      },
+      "properties": {
+        "name": "Luchtwachttoren 6K3 Ens",
+        "osm_id": 1428664291,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Luchtwachttoren, fundament",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5937406,
+          52.6618536
+        ]
+      },
+      "properties": {
+        "name": "Luchtwachttoren 6K1 Urk",
+        "osm_id": 1428664292,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "Luchtwachttoren, fundament",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7516855,
+          51.3910952
+        ]
+      },
+      "properties": {
+        "name": "Kasteel Asten",
+        "osm_id": 1429476789,
+        "osm_type": "way",
+        "wikipedia": "",
+        "wikidata": "",
+        "description": "",
+        "ruins_type": "",
+        "historic": "ruins"
+      }
+    }
+  ]
+}
