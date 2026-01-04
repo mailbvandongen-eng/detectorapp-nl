@@ -365,7 +365,7 @@ export function Popup() {
           continue
         }
 
-        // FAMKE Steentijd (Friese Archeologische Monumentenkaart Extra)
+        // FAMKE Steentijd (Friese Archeologische Monumentenkaart Extra) - B1 stijl
         if (title === 'FAMKE Steentijd') {
           try {
             const lonLat = toLonLat(coordinate)
@@ -381,23 +381,51 @@ export function Popup() {
             if (data.features && data.features.length > 0) {
               const props = data.features[0].properties
               let html = `<strong class="text-amber-800">FAMKE Steentijd-Bronstijd</strong>`
-              html += `<br/><span class="text-xs text-gray-500">Friese Archeologische Monumentenkaart Extra</span>`
+              html += `<br/><span class="text-sm text-gray-500">Friese verwachtingskaart voor oude vondsten</span>`
 
               const advies = props.advies || props.Advies || ''
               if (advies) {
-                html += `<br/><span class="text-sm text-amber-700">${advies}</span>`
+                // Wat zie je hier sectie
+                html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat betekent dit?</span></div>`
+                html += `<div class="text-sm text-amber-700 mt-1">${advies}</div>`
 
-                // Uitleg per adviestype
+                // Uitleg per adviestype in B1 taal
                 const adviesLower = advies.toLowerCase()
+                let uitleg = ''
+                let kleur = 'text-gray-600'
+                let vondstKans = ''
+
                 if (adviesLower.includes('karterend')) {
-                  html += `<br/><span class="text-xs text-gray-600">Dit betekent: veldonderzoek aanbevolen bij bodemingrepen</span>`
+                  uitleg = 'Op deze plek verwachten archeologen vondsten uit de steentijd of bronstijd. Bij graafwerk moet er eerst onderzoek komen.'
+                  vondstKans = 'Goede kans op oude vondsten (vuursteen, bijlen, aardewerk)'
+                  kleur = 'text-amber-600'
                 } else if (adviesLower.includes('waarderend')) {
-                  html += `<br/><span class="text-xs text-gray-600">Dit betekent: proefsleuven nodig om waarde te bepalen</span>`
+                  uitleg = 'Hier zijn mogelijk belangrijke vindplaatsen. Proefsleuven zijn nodig om te kijken wat er precies zit.'
+                  vondstKans = 'Mogelijk interessante vondsten uit de prehistorie'
+                  kleur = 'text-orange-600'
                 } else if (adviesLower.includes('geen')) {
-                  html += `<br/><span class="text-xs text-green-600">Dit betekent: geen archeologisch onderzoek nodig</span>`
+                  uitleg = 'De kans op prehistorische vondsten is hier klein. De grond is waarschijnlijk te jong of te veel verstoord.'
+                  vondstKans = 'Weinig kans op steentijd-vondsten'
+                  kleur = 'text-green-600'
                 } else if (adviesLower.includes('quickscan')) {
-                  html += `<br/><span class="text-xs text-gray-600">Dit betekent: bureau-onderzoek aanbevolen</span>`
+                  uitleg = 'Hier is eerst bureau-onderzoek nodig. Er kunnen vondsten zitten, maar dat is nog niet zeker.'
+                  vondstKans = 'Onbekend, nader onderzoek nodig'
+                  kleur = 'text-blue-600'
                 }
+
+                if (uitleg) {
+                  html += `<div class="text-sm ${kleur} mt-1">${uitleg}</div>`
+                }
+
+                // Wat kun je hier vinden
+                if (vondstKans) {
+                  html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+                  html += `<div class="text-sm text-gray-700 mt-1">${vondstKans}</div>`
+                }
+
+                // Wat is FAMKE uitleg
+                html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat is FAMKE?</span></div>`
+                html += `<div class="text-sm text-gray-700 mt-1">FAMKE is de Friese Archeologische Monumentenkaart Extra. Deze kaart toont waar in Friesland vondsten uit de steentijd en bronstijd te verwachten zijn.</div>`
               }
               results.push(html)
             }
@@ -467,7 +495,7 @@ export function Popup() {
           continue
         }
 
-        // Special handling for IKAW (Indicatieve Kaart Archeologische Waarden)
+        // Special handling for IKAW (Indicatieve Kaart Archeologische Waarden) - B1 stijl
         if (title === 'IKAW') {
           try {
             const lonLat = toLonLat(coordinate)
@@ -485,23 +513,63 @@ export function Popup() {
               const value = Math.round(props.PALETTE_INDEX || props.palette_index || 0)
               const label = IKAW_VALUES[value] || `Trefkans onbekend (${value})`
 
-              let html = `<strong class="text-orange-800">IKAW</strong>`
-              html += `<br/><span class="text-xs text-gray-500">Indicatieve Kaart Archeologische Waarden (2008)</span>`
-              html += `<br/><span class="text-sm text-orange-700">${label}</span>`
+              let html = `<strong class="text-orange-800">IKAW Verwachtingskaart</strong>`
+              html += `<br/><span class="text-sm text-gray-500">Kaart met kansen op archeologische vondsten</span>`
 
-              // Extra uitleg per trefkans categorie
-              const tips: Record<number, string> = {
-                1: 'Weinig kans op vondsten, maar nooit uitgesloten',
-                2: 'Occasionele vondsten mogelijk',
-                3: 'Goede kans op vondsten, interessant gebied',
-                4: 'Zeer goede kans op vondsten! Let op vergunningsplicht bij graven',
-                5: 'Waterbodem - speciale omstandigheden',
-                6: 'Waterbodem met archeologische potentie',
-                7: 'Waterbodem met hoge archeologische waarde'
+              // Wat betekent dit sectie
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat betekent dit?</span></div>`
+              html += `<div class="text-sm text-orange-700 mt-1">${label}</div>`
+
+              // Uitgebreide uitleg per trefkans categorie in B1 taal
+              const uitleg: Record<number, { tekst: string; vondsten: string; kleur: string }> = {
+                1: {
+                  tekst: 'De kans op archeologische vondsten is hier zeer klein. De grond is waarschijnlijk verstoord of te jong.',
+                  vondsten: 'Niet veel te verwachten, maar verrassingen zijn altijd mogelijk.',
+                  kleur: 'text-gray-600'
+                },
+                2: {
+                  tekst: 'De kans op vondsten is laag, maar niet uitgesloten. Soms worden hier toch interessante objecten gevonden.',
+                  vondsten: 'Af en toe losse vondsten uit verschillende periodes.',
+                  kleur: 'text-yellow-600'
+                },
+                3: {
+                  tekst: 'Dit is een interessant gebied met een redelijke kans op vondsten. Hier woonden of werkten mensen in het verleden.',
+                  vondsten: 'Aardewerk, munten, metalen voorwerpen uit verschillende tijdperken.',
+                  kleur: 'text-amber-600'
+                },
+                4: {
+                  tekst: 'Dit is een zeer kansrijk gebied! Hier zijn waarschijnlijk resten van oude bewoning of activiteit. Let op: bij graafwerk kan een vergunning nodig zijn.',
+                  vondsten: 'Grote kans op interessante vondsten: aardewerk, munten, sieraden, gereedschap.',
+                  kleur: 'text-orange-600'
+                },
+                5: {
+                  tekst: 'Dit is een waterbodem. Vondsten zijn hier moeilijker te bereiken maar kunnen goed bewaard zijn gebleven.',
+                  vondsten: 'Scheepswrakken, verloren lading, gedumpte voorwerpen.',
+                  kleur: 'text-blue-600'
+                },
+                6: {
+                  tekst: 'Waterbodem met archeologische potentie. Hier kunnen interessante vondsten liggen die door het water goed bewaard zijn.',
+                  vondsten: 'Scheepsresten, ankers, aardewerk, metalen voorwerpen.',
+                  kleur: 'text-blue-600'
+                },
+                7: {
+                  tekst: 'Waterbodem met hoge archeologische waarde. Hier zijn bekende vindplaatsen of scheepswrakken.',
+                  vondsten: 'Belangrijke maritieme vondsten, beschermd gebied.',
+                  kleur: 'text-blue-700'
+                }
               }
-              if (tips[value]) {
-                html += `<br/><span class="text-xs text-gray-600">Tip: ${tips[value]}</span>`
+
+              const info = uitleg[value]
+              if (info) {
+                html += `<div class="text-sm ${info.kleur} mt-1">${info.tekst}</div>`
+
+                html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+                html += `<div class="text-sm text-gray-700 mt-1">${info.vondsten}</div>`
               }
+
+              // Wat is IKAW
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat is de IKAW?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">De IKAW (Indicatieve Kaart Archeologische Waarden) toont de kans op archeologische vondsten in heel Nederland. De kaart is gemaakt door de Rijksdienst voor het Cultureel Erfgoed.</div>`
 
               results.push(html)
             }

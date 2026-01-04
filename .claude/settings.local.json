@@ -45,7 +45,8 @@
       "WebFetch(domain:api.mindat.org)",
       "WebFetch(domain:www.goldlineorpaillage.fr)",
       "Bash(ls:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -c 500 {}')"
     ]
   }
 }

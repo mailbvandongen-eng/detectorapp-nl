@@ -1,6 +1,25 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.16.1
+## Huidige versie: 2.16.2
+
+---
+
+## v2.16.2 - FAMKE & IKAW popup B1 redesign
+
+### Wijzigingen:
+
+1. **FAMKE Steentijd popup verbeterd (B1 stijl)**
+   - "Wat betekent dit?" sectie met uitleg per adviestype
+   - "Wat kun je hier vinden?" sectie met vondstverwachtingen
+   - "Wat is FAMKE?" algemene uitleg
+   - Kleurcodering per adviestype
+
+2. **IKAW popup verbeterd (B1 stijl)**
+   - "Wat betekent dit?" sectie met trefkansuitleg
+   - "Wat kun je hier vinden?" per categorie
+   - "Wat is de IKAW?" algemene uitleg
+   - Uitgebreide info voor alle 7 trefkanscategorieën
+   - Waterbodem categorieën toegevoegd
 
 ---
 
