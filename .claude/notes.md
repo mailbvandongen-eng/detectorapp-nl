@@ -1,6 +1,6 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.16.2
+## Huidige versie: 2.16.5
 
 ---
 
@@ -164,32 +164,33 @@
 
 ### 1. Steentijd & Prehistorie
 - [x] **Hunebedden** - Meer popup info (grootste bij Borger, vondsten, ouderdom) + Google Maps navigatie icoon ✅ v2.14.0
-- [ ] **Grafheuvels** - Per grafheuvel info opzoeken (locatie-based) + gestructureerde popup (1815 items - groot project)
-- [ ] **FAMKE Steentijd** - Legenda/betekenis kleuren en punten uitleggen in popup
-- [ ] **Terpen** - Naam, ouderdom, vondsten, archeologisch belang toevoegen
+- [x] **Grafheuvels** - B1 popup met regionale context (Veluwe, Drenthe, Brabant, Limburg, Utrecht) + Wikidata links ✅ v2.16.5
+- [x] **FAMKE Steentijd** - B1 popup met uitleg per adviestype en vondstverwachtingen ✅ v2.16.2
+- [x] **Terpen** - B1 popup met naam, uitleg, vondsten en archeologisch belang ✅ v2.16.x
 - [x] **Paleokaarten** - Verplaatsen naar dit thema, sortering oud→jong ✅ v2.14.0
 
 ### 2. Archeologische lagen
 - [x] **Romeinse wegen** - Hernoemen naar "Romeinse wegen (regio)" ✅ v2.14.0
 - [x] **UIKAV** - Verplaatsen naar dit thema, hernoemen naar "Verwachtingen uiterwaarden" ✅ v2.14.0
-- [ ] **Archeo Landschappen** - Controleren of info beschikbaar is, zo ja popup aanvullen, zo nee verwijderen
-- [ ] **IKAW** - Meer info toevoegen dan alleen hoog/laag verwachting
+- [x] **Archeo Landschappen** - B1 popup met landschapstype uitleg ✅ v2.16.4
+- [x] **IKAW** - B1 popup met uitleg per trefkanscategorie en vondstverwachtingen ✅ v2.16.2
 - [ ] **Alle thema's** - Legenda + uitleg toevoegen aan InfoButton (zoals Geomorfologie/Bodem)
 
 ### 3. Erfgoed & Monumenten
 - [ ] **Werelderfgoed** - Toevoegen aan transparency slider, checken overlap met Rijksmonumenten
-- [ ] **Religieus Erfgoed** - Links, openingstijden, geschiedenis toevoegen + ander icoon (kerk)
-- [ ] **Kastelen** - Geschiedenis toevoegen + icoon/kleur aanpassen (kasteel-passend)
+- [x] **Religieus Erfgoed** - B1 popup per type (kerk, kapel, synagoge, klooster) met geschiedenis ✅ v2.16.4
+- [x] **Kastelen** - B1 popup met geschiedenis en Wikipedia links ✅ v2.16.4
+- [x] **Ruïnes** - Nieuwe laag van OSM (392 items) + B1 popup ✅ v2.16.3
 - [x] **Essen** - Verplaatsen naar thema "Terrein & Bodem" ✅ v2.14.0
 
 ### 4. WOII & Militair
-- [ ] **WWII Bunkers/Kazematten** - Meer info toevoegen (type, bouwjaar, staat, toegankelijkheid)
-- [ ] **Militaire Objecten** - Info uitbreiden (te beperkt nu)
-- [ ] **Slagvelden** - Wikipedia/betrouwbare links toevoegen (Slag om Arnhem etc.)
-- [ ] **Verdedigingslinies** - Uitleg per linie (Hollandse Waterlinie, Grebbelinie, etc.)
+- [x] **WWII Bunkers/Kazematten** - B1 popup met 12 bunkertypen + info ✅ v2.16.4
+- [x] **Militaire Objecten** - B1 popup met type-specifieke uitleg (fort, schans, batterij, bunker, sluis, kazerne) ✅ v2.16.6
+- [x] **Slagvelden** - B1 popup met historisch label en Wikipedia links ✅ v2.15.0
+- [x] **Verdedigingslinies** - B1 popup met uitleg per linie ✅ v2.15.0
 
 ### 5. Hillshade & LiDAR
-- [ ] **World Hillshade** - Zoom limiet instellen om "Map data not yet available" te voorkomen
+- [x] **World Hillshade** - minZoom: 8 ingesteld ✅ v2.15.0
 - [ ] **Esri licentie** - Later uitzoeken voor commercieel gebruik
 
 ### 6. Provinciale Thema's

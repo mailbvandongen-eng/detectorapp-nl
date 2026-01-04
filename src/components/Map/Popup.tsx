@@ -631,7 +631,7 @@ export function Popup() {
           continue
         }
 
-        // Militaire Objecten (RCE Linies en Stellingen)
+        // Militaire Objecten (RCE Linies en Stellingen) - B1 stijl
         if (title === 'Militaire Objecten') {
           try {
             const lonLat = toLonLat(coordinate)
@@ -646,17 +646,69 @@ export function Popup() {
 
             if (data.features && data.features.length > 0) {
               const props = data.features[0].properties
-              let html = `<strong class="text-stone-800">Militair Object</strong>`
+              const soort = props.obj_soort || ''
+              const naam = props.obj_naam || ''
+              const periode = props.lin_period || ''
+              const linie = props['linie-naam'] || props.linie_naam || ''
 
-              if (props.obj_soort) {
-                html += `<br/><span class="text-sm font-semibold text-stone-700">${props.obj_soort}</span>`
+              // Bepaal type en beschrijving op basis van obj_soort
+              let typeTitel = soort || 'Militair Object'
+              let uitleg = 'Dit is een historisch militair object uit de Nederlandse verdedigingsgeschiedenis.'
+              let vondsten = ''
+
+              const soortLower = soort.toLowerCase()
+
+              if (soortLower.includes('fort')) {
+                uitleg = 'Een fort is een versterkte verdedigingspost, vaak met dikke muren en geschutsopstellingen. Forten maakten deel uit van grotere verdedigingslinies.'
+                vondsten = 'Rond forten worden soms kogels, knopen van uniformen, muntjes of andere militaire voorwerpen gevonden.'
+              } else if (soortLower.includes('schans')) {
+                uitleg = 'Een schans is een kleinere versterking, vaak gemaakt van aarde en palissaden. Schansen werden gebruikt om strategische punten te verdedigen.'
+                vondsten = 'Bij schansen kun je musketkogels, knopen en soms munten uit de 17e-18e eeuw tegenkomen.'
+              } else if (soortLower.includes('batterij') || soortLower.includes('battery')) {
+                uitleg = 'Een batterij is een geschutsopstelling, vaak op een strategische plek om vijanden onder vuur te nemen.'
+                vondsten = 'Bij batterijen worden soms kanonkogels of onderdelen van geschut gevonden.'
+              } else if (soortLower.includes('bunker') || soortLower.includes('kazemat')) {
+                uitleg = 'Een bunker of kazemat is een versterkte betonnen schuilplaats. Veel werden gebouwd rond 1940 als onderdeel van verdedigingslinies.'
+                vondsten = 'Bij bunkers worden soms militaire voorwerpen uit WOII gevonden, zoals knopen, gespen of munitieresten.'
+              } else if (soortLower.includes('sluis') || soortLower.includes('inlaatwerk')) {
+                uitleg = 'Militaire sluizen en inlaatwerken werden gebruikt om land onder water te zetten (inunderen). Dit was een belangrijke verdedigingstactiek.'
+                vondsten = 'Bij historische sluizen worden soms voorwerpen gevonden van soldaten die deze bewaakten.'
+              } else if (soortLower.includes('toren') || soortLower.includes('wachttoren')) {
+                uitleg = 'Wachttorens werden gebruikt om de omgeving in de gaten te houden en vijandelijke bewegingen te signaleren.'
+                vondsten = 'Bij torens worden soms persoonlijke voorwerpen van soldaten gevonden.'
+              } else if (soortLower.includes('kazerne')) {
+                uitleg = 'Een kazerne is een gebouw waar soldaten gelegerd waren. Hier woonden, aten en oefenden de troepen.'
+                vondsten = 'Rond kazernes worden regelmatig knopen, gespen en andere persoonlijke voorwerpen gevonden.'
               }
-              if (props.obj_naam) {
-                html += `<br/><span class="text-sm text-gray-700">${props.obj_naam}</span>`
+
+              // Bouw popup HTML
+              let html = `<strong class="text-stone-800">${typeTitel}</strong>`
+
+              if (naam) {
+                html += `<br/><span class="text-sm font-semibold text-stone-700">${naam}</span>`
               }
-              if (props.lin_period) {
-                html += `<br/><span class="text-xs text-gray-500">${props.lin_period}</span>`
+              if (linie) {
+                html += `<br/><span class="text-sm text-blue-600">${linie}</span>`
               }
+              if (periode) {
+                html += `<br/><span class="text-xs text-gray-500">${periode}</span>`
+              }
+
+              // Wat zie je hier
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">${uitleg}</div>`
+
+              // Wat kun je hier vinden (als er specifieke info is)
+              if (vondsten) {
+                html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+                html += `<div class="text-sm text-gray-700 mt-1">${vondsten}</div>`
+              }
+
+              // Meer weten
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">`
+              html += `<a href="https://erfgoedenlocatie.nl/linies-en-stellingen" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">RCE Linies en Stellingen</a>`
+              html += `</div>`
 
               results.push(html)
             }
