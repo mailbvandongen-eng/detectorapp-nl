@@ -1,6 +1,75 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.16.5
+## Huidige versie: 2.16.7
+
+---
+
+## 🎯 PRODUCT VISIE - ONTHOUDEN!
+
+**Dit is geen gewone app. Dit wordt DE killer app voor:**
+- Metaaldetectie zoekers
+- Natuurliefhebbers
+- Geschiedenisgeïnteresseerden
+- Mensen die graag buiten zijn
+- Mensen die nieuwe dingen willen leren
+- Fossielen zoekers
+- Haaientanden zoekers
+- Mineralen verzamelaars
+- Iedereen die info op één plek wil hebben
+
+---
+
+## 📝 POPUP KWALITEITSSTANDAARD - KRITISCH!
+
+### Wat NIET mag:
+- Generieke tekst die overal hetzelfde is
+- Alleen "Wikipedia" als link zonder context
+- Oppervlakkige info zonder echte feiten
+- Tekst die geen waarde toevoegt
+
+### Wat WEL moet:
+1. **Locatie-specifieke info** - Zoek op wat er ECHT op die plek is
+2. **Concrete feiten** - Aantallen, afmetingen, jaartallen, namen
+3. **Historische context** - Waarom is dit hier? Wat gebeurde er?
+4. **Menselijk verhaal** - Wat betekende dit voor mensen?
+5. **Wat kun je zien/doen** - Praktische info voor bezoekers
+6. **BRONNEN** - Altijd met klikbare links zodat mensen verder kunnen leren
+
+### Voorbeeld goede popup (Bunkers Scheveningen):
+```
+Wat zijn dit voor bunkers?
+In de Tweede Wereldoorlog bouwden de Duitsers hier veel bunkers.
+Dit was onderdeel van de Atlantikwall: een lange verdedigingsmuur
+langs de hele kust van Europa.
+
+Wat kun je zien?
+• Ongeveer 80 bunkers liggen in de duinen bij Scheveningen
+• De muren zijn soms 3 meter dik beton
+• Er zijn ondergrondse gangen tussen de bunkers
+• Sommige bunkers kun je bezoeken
+
+Waarom hier?
+Scheveningen was belangrijk voor de Duitsers. Ze waren bang dat
+de geallieerden hier zouden landen. Daarom bouwden ze een
+commandocentrum met 13 bunkers in de Scheveningse Bosjes.
+
+Wat gebeurde er met de mensen?
+De Duitsers sloopten hele wijken voor de bunkers. 138.000 mensen
+uit Den Haag en Scheveningen moesten hun huis verlaten.
+
+Bronnen
+• Atlantikwall Museum Scheveningen (Wikipedia)
+• TracesOfWar
+```
+
+### Bronnen altijd meenemen:
+- Wikipedia (Nederlandse versie waar mogelijk)
+- TracesOfWar (voor WOII)
+- Rijksmonumenten database
+- Lokale musea/erfgoed sites
+- Officiële overheidsdata
+
+**Het mag tijd kosten om info op te zoeken. Kwaliteit > snelheid.**
 
 ---
 

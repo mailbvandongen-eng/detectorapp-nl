@@ -4,7 +4,7 @@ import TileWMS from 'ol/source/TileWMS'
 import TileLayer from 'ol/layer/Tile'
 import { toLonLat } from 'ol/proj'
 import proj4 from 'proj4'
-import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, Navigation2 } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, ExternalLink } from 'lucide-react'
 import { useMapStore } from '../../store'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
@@ -1700,6 +1700,16 @@ export function Popup() {
           }
         }
 
+        // Override name for specific layer types to have consistent headers
+        // Bunkers: always "Bunker" as header, specific name as subtitle
+        if (dataProps.bunker_type || (dataProps.name && (dataProps.name.toLowerCase().includes('bunker') || dataProps.name.toLowerCase().includes('kazemat') || dataProps.name.toLowerCase().includes('schuilplaats')))) {
+          name = 'Bunker'
+        }
+        // Slagvelden: always "Historisch slagveld" as header, battle name as subtitle
+        if (dataProps.historic === 'battlefield') {
+          name = 'Historisch slagveld'
+        }
+
         let html = `<strong>${name}</strong>`
 
         // Archis / Kromme Rijn Aardewerk: Show category
@@ -1997,124 +2007,227 @@ export function Popup() {
           }
         }
 
-        // Bunkers (WOII) - B1 stijl
-        if (dataProps.bunker_type || (dataProps.name && dataProps.name.toLowerCase().includes('bunker'))) {
-          const bunkerTypes: Record<string, { label: string; uitleg: string; vondsten: string }> = {
-            'munitions': {
-              label: 'Munitiebunker',
-              uitleg: 'Een bunker voor de opslag van munitie. Deze bunkers hadden dikke muren om explosies tegen te houden.',
-              vondsten: 'Patronen, hulzen, granaatfragmenten, militaire uitrusting'
+        // Bunkers (WOII) - B1 stijl met regio-specifieke info
+        if (dataProps.bunker_type || (dataProps.name && (dataProps.name.toLowerCase().includes('bunker') || dataProps.name.toLowerCase().includes('kazemat') || dataProps.name.toLowerCase().includes('schuilplaats')))) {
+          // Bunker type vertalingen
+          const bunkerTypeLabels: Record<string, string> = {
+            'munitions': 'Munitiebunker',
+            'personnel_shelter': 'Personeelsschuilplaats',
+            'personell_shelter': 'Personeelsschuilplaats',
+            'command': 'Commandobunker',
+            'gun_emplacement': 'Geschutsbunker',
+            'mg_nest': 'Mitrailleursnest',
+            'technical': 'Technische bunker',
+            'storage': 'Opslagbunker',
+            'tobruk': 'Tobruk',
+            'kazemat': 'Kazemat',
+            'Flak': 'Luchtafweerstelling',
+            'hardened_aircraft_shelter': 'Vliegtuigshelter',
+            'shelter': 'Schuilkelder',
+            'observation': 'Observatiebunker',
+            'anti_aircraft': 'Luchtafweerstelling'
+          }
+
+          // Toon bunkernaam als subtitle (niet als header - header is nu altijd "Bunker")
+          const bunkerNaam = dataProps.name || ''
+          const bunkerType = dataProps.bunker_type ? (bunkerTypeLabels[dataProps.bunker_type] || dataProps.bunker_type) : ''
+
+          if (bunkerNaam && bunkerNaam !== 'Bunker') {
+            html += `<br/><span class="text-sm font-semibold text-gray-700">${bunkerNaam}</span>`
+          }
+          if (bunkerType && bunkerType !== bunkerNaam) {
+            html += `<br/><span class="text-xs text-gray-500">${bunkerType}</span>`
+          }
+
+          // Detecteer regio op basis van coördinaten voor context
+          const coords = feature.getGeometry()?.getCoordinates()
+          let regioContext = ''
+          let regioLink = ''
+          let regioLinkLabel = ''
+
+          if (coords) {
+            const lonLat = toLonLat(coords)
+            const lon = lonLat[0]
+            const lat = lonLat[1]
+
+            // Kustgebied = Atlantikwall (west van 5.0 of dicht bij kust)
+            const isKust = lon < 4.8 || (lon < 5.2 && lat > 51.8 && lat < 53.5)
+            // Scheveningen/Den Haag gebied
+            const isScheveningen = lon > 4.2 && lon < 4.4 && lat > 52.0 && lat < 52.15
+            // IJmuiden gebied
+            const isIJmuiden = lon > 4.5 && lon < 4.7 && lat > 52.4 && lat < 52.5
+            // Hoek van Holland
+            const isHoekVanHolland = lon > 4.0 && lon < 4.2 && lat > 51.95 && lat < 52.05
+            // Zeeland kust
+            const isZeeland = lon < 4.2 && lat < 51.6
+            // Grebbelinie (Utrecht/Gelderland)
+            const isGrebbelinie = lon > 5.2 && lon < 5.8 && lat > 51.9 && lat < 52.3
+
+            if (isScheveningen) {
+              regioContext = `Deze bunker maakt deel uit van de Atlantikwall bij Scheveningen. De Duitsers bouwden hier tijdens WOII zo'n 80 bunkers in de duinen. De muren zijn soms 3 meter dik beton. Voor deze bunkers moesten 138.000 mensen uit Den Haag en Scheveningen hun huis verlaten.`
+              regioLink = 'https://nl.wikipedia.org/wiki/Atlantikwall_Museum_Scheveningen'
+              regioLinkLabel = 'Atlantikwall Museum Scheveningen'
+            } else if (isIJmuiden) {
+              regioContext = `Deze bunker hoort bij Festung IJmuiden, een van de zwaarst verdedigde punten van de Atlantikwall. De Duitsers bouwden hier bunkers om de haventoegang te beschermen. Er zijn nu rondleidingen door het Bunkermuseum.`
+              regioLink = 'https://www.bunkermuseum.nl/'
+              regioLinkLabel = 'Bunkermuseum IJmuiden'
+            } else if (isHoekVanHolland) {
+              regioContext = `Deze bunker maakt deel uit van de Atlantikwall bij Hoek van Holland. Dit was een strategisch punt voor de Duitsers vanwege de Nieuwe Waterweg. Veel bunkers zijn nog te bezoeken.`
+              regioLink = 'https://www.atlantikwallhoekvanholland.nl/'
+              regioLinkLabel = 'Atlantikwall Hoek van Holland'
+            } else if (isZeeland) {
+              regioContext = `Deze bunker hoort bij de Atlantikwall in Zeeland. De Duitsers verdedigden hier de Westerschelde en de kust. Bij Zoutelande en Westkapelle zijn veel bunkers bewaard gebleven.`
+              regioLink = 'https://www.bunkermuseumzoutelande.nl/'
+              regioLinkLabel = 'Bunkermuseum Zoutelande'
+            } else if (isKust) {
+              regioContext = `Deze bunker maakt deel uit van de Atlantikwall: de Duitse verdedigingslinie langs de hele kust van Europa. In Nederland bouwden de Duitsers duizenden bunkers tussen 1942 en 1944.`
+              regioLink = 'https://nl.wikipedia.org/wiki/Atlantikwall'
+              regioLinkLabel = 'Atlantikwall (Wikipedia)'
+            } else if (isGrebbelinie) {
+              regioContext = `Deze bunker hoort mogelijk bij de Grebbelinie of de Nieuwe Hollandse Waterlinie. Dit waren Nederlandse verdedigingslinies die de Duitsers na 1940 versterkten met bunkers.`
+              regioLink = 'https://nl.wikipedia.org/wiki/Grebbelinie'
+              regioLinkLabel = 'Grebbelinie (Wikipedia)'
+            } else {
+              regioContext = `Een bunker uit de Tweede Wereldoorlog. De meeste bunkers in Nederland zijn gebouwd tussen 1940 en 1944, als onderdeel van de Duitse verdediging of langs bestaande Nederlandse linies.`
+              regioLink = 'https://nl.wikipedia.org/wiki/Atlantikwall'
+              regioLinkLabel = 'WOII bunkers (Wikipedia)'
+            }
+          } else {
+            regioContext = `Een bunker uit de Tweede Wereldoorlog.`
+            regioLink = 'https://nl.wikipedia.org/wiki/Atlantikwall'
+            regioLinkLabel = 'WOII bunkers (Wikipedia)'
+          }
+
+          // Wat zie je hier?
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">${regioContext}</div>`
+
+          // Wat kun je vinden?
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je vinden?</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">Bij bunkers worden soms voorwerpen gevonden zoals patronen, uniformknopen, gespen en persoonlijke spullen van soldaten.</div>`
+
+          // Let op - subtiel, klein, italic
+          html += `<div class="mt-2 text-xs text-gray-500 italic">Let op: betreed nooit een bunker zonder toestemming. Raak munitieresten niet aan.</div>`
+
+          // Bronnen
+          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bronnen</span></div>`
+          html += `<div class="text-sm text-gray-700 mt-1">`
+          html += `<a href="${regioLink}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">${regioLinkLabel}</a>`
+          if (dataProps.website) {
+            html += `<br/><a href="${dataProps.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">TracesOfWar</a>`
+          } else {
+            html += `<br/><a href="https://www.tracesofwar.nl/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">TracesOfWar</a>`
+          }
+          html += `</div>`
+        }
+
+        // Slagvelden (battlefields) - B1 stijl met specifieke slag-info
+        if (dataProps.historic === 'battlefield') {
+          // Specifieke info per slag (header is al "Historisch slagveld", naam als subtitle)
+          const slagNaam = dataProps.name || 'Onbekend slagveld'
+
+          // Database van bekende slagen met B1 info
+          const slagInfo: Record<string, { periode: string; samenvatting: string; watZieJe: string; uitkomst: string; wikiUrl: string }> = {
+            'Slag om Arnhem': {
+              periode: 'September 1944',
+              samenvatting: 'De Slag om Arnhem was onderdeel van Operatie Market Garden. Geallieerde parachutisten probeerden de brug over de Rijn te veroveren. Na negen dagen hevige gevechten moesten ze zich terugtrekken. Van de 10.000 Britse soldaten werden er 1.500 gedood en 6.500 krijgsgevangen gemaakt.',
+              watZieJe: 'Er zijn veel monumenten en infoborden. Het Airborne Museum in Oosterbeek vertelt het hele verhaal. Elk jaar in september is er een herdenking.',
+              uitkomst: 'De geallieerden verloren de slag. Nederland bleef nog tot mei 1945 bezet.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Slag_om_Arnhem'
             },
-            'personnel_shelter': {
-              label: 'Schuilbunker',
-              uitleg: 'Een bunker waar soldaten konden schuilen tijdens bombardementen. Vaak met slaapplaatsen en voorzieningen.',
-              vondsten: 'Persoonlijke voorwerpen, knopen, gespen, munten, bestek'
+            'Slag om de Sloedam': {
+              periode: '1-2 november 1944',
+              samenvatting: 'Canadese soldaten vielen de Sloedam aan om Walcheren te bevrijden. De dam was smal en de Duitsers verdedigden fel. Veel soldaten sneuvelden bij deze bloedige aanval.',
+              watZieJe: 'Bij de dam staat een monument voor de gevallen Canadezen. Er zijn infoborden die de slag uitleggen.',
+              uitkomst: 'De Canadezen wonnen na zware verliezen. Dit opende de weg naar de bevrijding van Walcheren.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Slag_om_de_Sloedam'
             },
-            'command': {
-              label: 'Commandobunker',
-              uitleg: 'Het zenuwcentrum van een verdedigingslinie. Hier werden bevelen gegeven en communicatie gecoördineerd.',
-              vondsten: 'Communicatie-apparatuur, kaartmateriaal, uniformonderdelen'
+            'Slag bij Heiligerlee (1568)': {
+              periode: '23 mei 1568',
+              samenvatting: 'De eerste veldslag van de Tachtigjarige Oorlog. Lodewijk van Nassau versloeg het Spaanse leger. Zijn broer Adolf sneuvelde tijdens de strijd.',
+              watZieJe: 'In Heiligerlee staat het Slag bij Heiligerlee monument. Het klooster waar Adolf van Nassau begraven ligt is nog te bezoeken.',
+              uitkomst: 'De opstandelingen wonnen, maar dit was pas het begin van 80 jaar oorlog.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Slag_bij_Heiligerlee_(1568)'
             },
-            'gun_emplacement': {
-              label: 'Geschutsbunker',
-              uitleg: 'Een bunker met een geschutspositie voor kanonnen of luchtafweer. Gericht op het beschieten van vijanden.',
-              vondsten: 'Hulzen, granaatdelen, optische instrumenten'
+            'Overloon': {
+              periode: 'Oktober 1944',
+              samenvatting: 'Bij Overloon vochten Britten en Amerikanen tegen de Duitsers. Het was een van de zwaarste tankgevechten op Nederlandse bodem. Het dorp werd volledig verwoest.',
+              watZieJe: 'Het Oorlogsmuseum Overloon staat op het voormalige slagveld. Je kunt tanks, vliegtuigen en andere voertuigen zien.',
+              uitkomst: 'De geallieerden wonnen na wekenlange gevechten.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Slag_om_Overloon'
             },
-            'mg_nest': {
-              label: 'Mitrailleursnest',
-              uitleg: 'Een kleine, goed gecamoufleerde positie voor een mitrailleur. Vaak met beperkt zicht naar één richting.',
-              vondsten: 'Patronen, hulzen, onderdelen van wapens'
+            'Slagveld Lanakerveld': {
+              periode: '1568',
+              samenvatting: 'Onderdeel van de Nederlandse opstand tegen Spanje. Hier vonden gevechten plaats tijdens de beginjaren van de Tachtigjarige Oorlog.',
+              watZieJe: 'Het gebied is nu grotendeels landbouwgrond. Lokaal zijn er soms infoborden.',
+              uitkomst: 'Onderdeel van de lange strijd tegen de Spaanse overheersing.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Tachtigjarige_Oorlog'
             },
-            'technical': {
-              label: 'Technische bunker',
-              uitleg: 'Een bunker voor technische installaties zoals generatoren, pompinstallaties of telefoonverbindingen.',
-              vondsten: 'Technische onderdelen, kabels, gereedschap'
-            },
-            'storage': {
-              label: 'Opslagbunker',
-              uitleg: 'Een bunker voor de opslag van voorraden, voedsel of materiaal.',
-              vondsten: 'Conservenblikken, flessen, gereedschap, dozen'
-            },
-            'tobruk': {
-              label: 'Tobruk-bunker',
-              uitleg: 'Een klein, rond betonnen nest voor één of twee soldaten. Genoemd naar de stad Tobruk in Libië.',
-              vondsten: 'Patronen, hulzen, persoonlijke voorwerpen'
-            },
-            'kazemat': {
-              label: 'Kazemat',
-              uitleg: 'Een versterkte betonnen positie, vaak onderdeel van een grotere verdedigingslinie.',
-              vondsten: 'Militaire uitrusting, patronen, uniformonderdelen'
-            },
-            'Flak': {
-              label: 'Luchtafweerbunker',
-              uitleg: 'Een bunker met luchtafweergeschut (Flak) om vliegtuigen neer te schieten.',
-              vondsten: 'Grote hulzen, optische instrumenten, uniformonderdelen'
-            },
-            'hardened_aircraft_shelter': {
-              label: 'Vliegtuigbunker',
-              uitleg: 'Een grote bunker om vliegtuigen te beschermen tegen bombardementen.',
-              vondsten: 'Vliegtuigonderdelen, gereedschap, brandstofvaten'
-            },
-            'shelter': {
-              label: 'Schuilkelder',
-              uitleg: 'Een ondergrondse ruimte waar burgers of soldaten konden schuilen tijdens luchtaanvallen.',
-              vondsten: 'Persoonlijke voorwerpen, speelgoed, bestek, flessen'
+            'Blessebrugschans': {
+              periode: 'Diverse periodes',
+              samenvatting: 'Een historische schans die meerdere keren werd gebruikt in militaire conflicten.',
+              watZieJe: 'De resten van de schans zijn nog zichtbaar in het landschap.',
+              uitkomst: 'De schans speelde een rol in verschillende conflicten.',
+              wikiUrl: 'https://nl.wikipedia.org/wiki/Schans_(vestingwerk)'
             }
           }
 
-          const typeInfo = dataProps.bunker_type ? bunkerTypes[dataProps.bunker_type] : null
-          const typeLabel = typeInfo?.label || (dataProps.bunker_type ? dataProps.bunker_type : 'Bunker')
+          // Zoek specifieke info voor deze slag
+          const info = slagInfo[slagNaam]
 
-          html += `<br/><span class="text-sm text-gray-600">${typeLabel}</span>`
-
-          if (dataProps.operator) {
-            const operatorLabel = dataProps.operator === 'germany' ? 'Duitse bezetter (1940-1945)' : dataProps.operator
-            html += `<br/><span class="text-sm text-gray-500">Gebouwd door: ${operatorLabel}</span>`
-          }
-          if (dataProps.period) {
-            html += `<br/><span class="text-sm text-purple-600">${dataProps.period}</span>`
+          // Toon slagnaam als subtitle (header is al "Historisch slagveld")
+          if (slagNaam !== 'Onbekend slagveld' && slagNaam !== 'Historisch slagveld') {
+            html += `<br/><span class="text-sm font-semibold text-red-700">${slagNaam}</span>`
           }
 
-          // Wat zie je hier
-          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat zie je hier?</span></div>`
-          if (typeInfo) {
-            html += `<div class="text-sm text-gray-700 mt-1">${typeInfo.uitleg}</div>`
+          if (info) {
+            // Periode
+            html += `<br/><span class="text-xs text-gray-500">${info.periode}</span>`
+
+            // Wat gebeurde hier?
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat gebeurde hier?</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">${info.samenvatting}</div>`
+
+            // Uitkomst
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Hoe liep het af?</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">${info.uitkomst}</div>`
+
+            // Wat kun je zien?
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je zien?</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">${info.watZieJe}</div>`
+
+            // Bronnen
+            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bronnen</span></div>`
+            html += `<div class="text-sm text-gray-700 mt-1">`
+            html += `<a href="${info.wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a>`
+            if (slagNaam.includes('Arnhem')) {
+              html += `<br/><a href="https://www.airbornemuseum.nl/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Airborne Museum Oosterbeek</a>`
+            }
+            if (slagNaam.includes('Overloon')) {
+              html += `<br/><a href="https://www.oorlogsmuseum.nl/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Oorlogsmuseum Overloon</a>`
+            }
+            html += `</div>`
           } else {
-            html += `<div class="text-sm text-gray-700 mt-1">Een bunker uit de Tweede Wereldoorlog. De meeste bunkers in Nederland zijn gebouwd door de Duitse bezetter tussen 1940 en 1945.</div>`
-          }
+            // Fallback voor onbekende slagvelden
+            if (dataProps.date) {
+              html += `<br/><span class="text-xs text-gray-500">${dataProps.date}</span>`
+            }
+            if (dataProps.description) {
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat gebeurde hier?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">${dataProps.description}</div>`
+            } else {
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat gebeurde hier?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Op deze plek vonden historische gevechten plaats. Zoek lokaal naar infoborden of monumenten.</div>`
+            }
 
-          // Wat kun je hier vinden
-          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
-          if (typeInfo) {
-            html += `<div class="text-sm text-gray-700 mt-1">${typeInfo.vondsten}</div>`
-          } else {
-            html += `<div class="text-sm text-gray-700 mt-1">Patronen, hulzen, uniformonderdelen, persoonlijke voorwerpen van soldaten.</div>`
-          }
-
-          // Bezoeken / Veiligheid
-          html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Let op</span></div>`
-          html += `<div class="text-sm text-amber-700 mt-1">Bunkers kunnen gevaarlijk zijn. Betreed nooit een bunker zonder toestemming. Munitieresten nooit aanraken - bel 112 bij verdachte vondsten.</div>`
-
-          if (dataProps.website) {
-            html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
-            html += `<div class="text-sm text-gray-700 mt-1"><a href="${dataProps.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Website bezoeken</a></div>`
-          }
-        }
-
-        // Slagvelden (battlefields)
-        if (dataProps.historic === 'battlefield') {
-          html += `<br/><span class="text-xs text-red-700 font-medium">Historisch slagveld</span>`
-          if (dataProps.date) {
-            html += `<br/><span class="text-xs text-gray-600">Datum: ${dataProps.date}</span>`
-          }
-          if (dataProps.description) {
-            html += `<br/><span class="text-sm text-gray-700">${dataProps.description}</span>`
-          }
-          if (dataProps.wikipedia) {
-            const wikiUrl = dataProps.wikipedia.startsWith('http')
-              ? dataProps.wikipedia
-              : `https://nl.wikipedia.org/wiki/${dataProps.wikipedia.replace('nl:', '')}`
-            html += `<br/><a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-600 hover:underline">Wikipedia</a>`
+            // Wikipedia link als beschikbaar
+            if (dataProps.wikipedia) {
+              const wikiUrl = dataProps.wikipedia.startsWith('http')
+                ? dataProps.wikipedia
+                : `https://nl.wikipedia.org/wiki/${dataProps.wikipedia.replace('nl:', '')}`
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bronnen</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="${wikiUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
+            }
           }
         }
 
@@ -2613,17 +2726,17 @@ export function Popup() {
                 {extractedTitle || 'Info'}
               </span>
 
-              {/* Navigation button - Google Maps */}
+              {/* Open in Google Maps button */}
               {mapsUrl && (
                 <a
                   href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-7 h-7 flex items-center justify-center text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded-full transition-colors flex-shrink-0"
-                  title="Navigeer met Google Maps"
-                  aria-label="Navigeer met Google Maps"
+                  title="Open in Google Maps"
+                  aria-label="Open in Google Maps"
                 >
-                  <Navigation2 size={16} />
+                  <ExternalLink size={16} />
                 </a>
               )}
 

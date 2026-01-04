@@ -96,7 +96,7 @@ export function InfoButton() {
                     <span className="text-sm">Meld een bug</span>
                   </a>
                   <p className="text-xs text-gray-400 text-center">
-                    DetectorApp NL v2.16.6
+                    DetectorApp NL v2.16.7
                   </p>
                 </section>
               </div>
