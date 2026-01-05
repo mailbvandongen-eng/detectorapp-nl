@@ -1,13 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect } from 'react'
-import { X, Layers, Settings, Eye, EyeOff } from 'lucide-react'
+import { X, Layers, Check } from 'lucide-react'
 import { useUIStore, useSettingsStore } from '../../store'
 import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
 import { LayerGroup } from './LayerGroup'
 import { LayerItem } from './LayerItem'
 
 export function ThemesPanel() {
-  const { themesPanelOpen, toggleThemesPanel, openLayerManagerModal } = useUIStore()
+  const { themesPanelOpen, toggleThemesPanel } = useUIStore()
   const { layers: customLayers, toggleVisibility } = useCustomPointLayerStore()
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -87,42 +87,37 @@ export function ThemesPanel() {
               <LayerItem name="Mijn Vondsten" type="overlay" />
             </div>
 
-            {/* Mijn Lagen - custom point layers */}
+            {/* Mijn Lagen - custom point layers, zelfde stijl als LayerItem */}
             {customLayers.length > 0 && (
               <div className="mb-2 pb-1 border-b border-gray-100">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Mijn Lagen</span>
-                  <button
-                    onClick={() => {
-                      toggleThemesPanel()
-                      openLayerManagerModal()
-                    }}
-                    className="p-0.5 text-gray-400 hover:text-purple-500 transition-colors border-0 outline-none bg-transparent"
-                    title="Lagen beheren"
-                  >
-                    <Settings size={12} />
-                  </button>
-                </div>
                 {customLayers.map(layer => (
-                  <div
+                  <button
                     key={layer.id}
-                    className="flex items-center gap-2 py-1 px-1 rounded hover:bg-gray-50"
+                    onClick={() => toggleVisibility(layer.id)}
+                    className={`w-full flex items-center justify-between py-1 pl-3 pr-2 border-0 outline-none transition-colors text-left ${
+                      layer.visible ? 'bg-blue-50 hover:bg-blue-100' : 'bg-transparent hover:bg-blue-50'
+                    }`}
+                    style={{ fontSize: 'inherit' }}
                   >
-                    <button
-                      onClick={() => toggleVisibility(layer.id)}
-                      className={`p-0.5 rounded transition-colors border-0 outline-none bg-transparent ${
-                        layer.visible ? 'text-blue-500' : 'text-gray-300'
-                      }`}
-                    >
-                      {layer.visible ? <Eye size={14} /> : <EyeOff size={14} />}
-                    </button>
+                    <span className="flex items-center gap-2 text-gray-600">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: layer.color }}
+                      />
+                      {layer.name}
+                      <span className="text-xs text-gray-400">({layer.points.length})</span>
+                    </span>
                     <div
-                      className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: layer.color }}
-                    />
-                    <span className="flex-1 text-sm truncate">{layer.name}</span>
-                    <span className="text-xs text-gray-400">({layer.points.length})</span>
-                  </div>
+                      className="w-4 h-4 rounded-sm flex items-center justify-center transition-all duration-100 flex-shrink-0"
+                      style={{
+                        backgroundColor: layer.visible ? '#3b82f6' : 'white',
+                        border: layer.visible ? '2px solid #3b82f6' : '2px solid #60a5fa',
+                        color: 'white'
+                      }}
+                    >
+                      {layer.visible && <Check size={12} strokeWidth={3} />}
+                    </div>
+                  </button>
                 ))}
               </div>
             )}
