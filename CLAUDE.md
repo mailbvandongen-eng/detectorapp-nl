@@ -19,7 +19,7 @@
 4. Gebruiker kan zo zien dat nieuwe code geladen is!
 
 ## Belangrijke Regels
-- **NOOIT pushen naar GitHub zonder expliciete toestemming**
+- **ALTIJD pushen naar GitHub na elke wijziging + versie bump**
 - Screenshots staan in: `C:\VSCode\_Screenshots`
 - Vite base path is `/detectorapp-nl/` - alle data paden moeten `/detectorapp-nl/data/...` zijn
 
