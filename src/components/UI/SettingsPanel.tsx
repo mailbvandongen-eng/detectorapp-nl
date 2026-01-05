@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User } from 'lucide-react'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
@@ -10,6 +10,7 @@ import { useCustomLayerStore } from '../../store/customLayerStore'
 import { clearPasswordAuth } from '../Auth/PasswordGate'
 import { VondstenDashboard } from '../Vondst/VondstenDashboard'
 import { ImportLayerModal, CustomLayerItem } from '../CustomLayers'
+import { GoogleSignInButton } from '../Auth/GoogleSignInButton'
 import type { DefaultBackground } from '../../store/settingsStore'
 
 export function SettingsPanel() {
@@ -110,6 +111,11 @@ export function SettingsPanel() {
 
             {/* Content - apply font scaling directly */}
             <div className="flex-1 overflow-y-auto p-4 space-y-5" style={{ fontSize: `${baseFontSize}px` }}>
+              {/* Account / Cloud Sync */}
+              <Section title="Account" icon={<User size={16} />}>
+                <GoogleSignInButton />
+              </Section>
+
               {/* Kaart */}
               <Section title="Kaart" icon={<Map size={16} />}>
                 <OptionRow label="Standaard achtergrond">

@@ -21,12 +21,14 @@ import { CustomPointMarkers, CreateLayerModal, AddPointModal, LayerManagerModal,
 import { PasswordGate } from './components/Auth/PasswordGate'
 import { useHeading } from './hooks/useHeading'
 import { useDynamicAHN } from './hooks/useDynamicAHN'
+import { useCloudSync } from './hooks/useCloudSync'
 import { useSettingsStore } from './store'
 
 function App() {
   // Initialize hooks
   useHeading()
   useDynamicAHN()
+  useCloudSync() // Sync data to Firebase when logged in
 
   // Get font scale setting (80-150%)
   const fontScale = useSettingsStore(state => state.fontScale)
