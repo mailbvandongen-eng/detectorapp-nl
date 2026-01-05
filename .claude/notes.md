@@ -1,6 +1,43 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.20.0
+## Huidige versie: 2.22.0
+
+---
+
+## ⚠️ VERSIE BUMP CHECKLIST - ALTIJD VOLGEN! ⚠️
+
+Bij elke code wijziging **ALTIJD** deze 4 plekken updaten:
+
+| # | Bestand | Wat updaten |
+|---|---------|-------------|
+| 1 | Terminal | `npm version patch` (of minor/major) |
+| 2 | `src/main.tsx` | `const VERSION = 'X.X.X'` |
+| 3 | `src/components/UI/BuildLabel.tsx` | `v{X.X.X}` |
+| 4 | `src/components/UI/InfoButton.tsx` | `DetectorApp NL v{X.X.X}` |
+
+**Test na bump:** `npm run build` moet slagen!
+
+---
+
+## v2.22.0 - Google Sign-In & Cloud Sync
+
+### Nieuwe features:
+1. **Google Sign-In** - Inloggen met Google account
+   - `src/store/authStore.ts` - Auth state management
+   - `src/components/Auth/GoogleSignInButton.tsx` - Login knop
+   - Account sectie in SettingsPanel
+
+2. **Cloud Sync** - Automatische synchronisatie naar Firestore
+   - `src/hooks/useCloudSync.ts` - Sync hook met debouncing
+   - Synct: Mijn Lagen (CustomPointLayers) + Vondsten
+   - Merge strategie bij eerste login (local + cloud)
+   - 2 seconden debounce om API calls te beperken
+
+3. **Firebase Setup**
+   - Project: `detectorapp-nl`
+   - Auth: Google Sign-In provider
+   - Database: Firestore (nam5 region)
+   - Credentials in `.env`
 
 ---
 
