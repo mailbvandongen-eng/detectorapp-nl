@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 // Google logo SVG component
 function GoogleLogo({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} width="20" height="20">
+    <svg viewBox="0 0 24 24" className={className} width="24" height="24">
       <path
         fill="#4285F4"
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -37,7 +37,7 @@ export function CloudSyncIndicator() {
   if (loading) {
     return (
       <div className="fixed top-2 right-14 z-[800]">
-        <div className="w-9 h-9 flex items-center justify-center opacity-50">
+        <div className="w-11 h-11 flex items-center justify-center opacity-50">
           <GoogleLogo />
         </div>
       </div>
@@ -48,7 +48,7 @@ export function CloudSyncIndicator() {
     <div className="fixed top-2 right-14 z-[800]">
       <button
         onClick={() => setShowMenu(!showMenu)}
-        className="w-9 h-9 flex items-center justify-center border-0 outline-none bg-transparent transition-opacity hover:opacity-80"
+        className="w-11 h-11 flex items-center justify-center border-0 outline-none bg-transparent transition-opacity hover:opacity-80"
         title={user ? `Ingelogd als ${user.displayName || user.email}` : 'Niet ingelogd - klik om in te loggen'}
       >
         {user ? (
@@ -57,12 +57,12 @@ export function CloudSyncIndicator() {
             <img
               src={user.photoURL}
               alt={user.displayName || 'User'}
-              className="w-8 h-8 rounded-full"
+              className="w-9 h-9 rounded-full"
               referrerPolicy="no-referrer"
             />
           ) : (
-            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-              <User size={16} className="text-white" />
+            <div className="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center">
+              <User size={18} className="text-white" />
             </div>
           )
         ) : (
