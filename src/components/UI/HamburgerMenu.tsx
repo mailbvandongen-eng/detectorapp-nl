@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import { Menu, X, MapPin, Info, Settings, LogOut, User } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
-import { useAuth } from '../../hooks/useAuth'
 import { useSettingsStore } from '../../store/settingsStore'
 
 // Google logo SVG component
-function GoogleLogo({ className }: { className?: string }) {
+function GoogleLogo({ size = 18 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} width="20" height="20">
+    <svg viewBox="0 0 24 24" width={size} height={size}>
       <path
         fill="#4285F4"
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -30,37 +29,15 @@ function GoogleLogo({ className }: { className?: string }) {
   )
 }
 
-interface MenuItemProps {
-  icon: React.ComponentType<{ size?: number; className?: string }>
-  label: string
-  onClick: () => void
-  danger?: boolean
-  color?: string
-}
-
-function MenuItem({ icon: Icon, label, onClick, danger, color }: MenuItemProps) {
-  return (
-    <button
-      onClick={onClick}
-      className={`w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors ${
-        danger
-          ? 'text-red-600 hover:bg-red-50'
-          : 'text-gray-700 hover:bg-gray-50'
-      }`}
-      style={{ fontSize: '0.95em' }}
-    >
-      <Icon size={18} className={color || (danger ? 'text-red-500' : 'text-gray-500')} />
-      <span>{label}</span>
-    </button>
-  )
-}
 
 export function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const { user, loading, signInWithGoogle, logout } = useAuthStore()
-  const { toggleInfoPanel, toggleSettingsPanel, openVondstForm } = useUIStore()
-  const { isAuthenticated, loginAnonymous } = useAuth()
-  const vondstenLocalOnly = useSettingsStore(state => state.vondstenLocalOnly)
+  const { toggleInfoPanel, toggleSettingsPanel } = useUIStore()
+
+  // Settings for font scale
+  const menuFontScale = useSettingsStore(state => state.menuFontScale)
+  const setMenuFontScale = useSettingsStore(state => state.setMenuFontScale)
 
   // Safe top position for mobile browsers (accounts for notch/status bar)
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -77,25 +54,6 @@ export function HamburgerMenu() {
     toggleSettingsPanel()
   }
 
-  const handleVondstClick = () => {
-    closeMenu()
-
-    // If using local storage, no auth needed
-    if (vondstenLocalOnly) {
-      openVondstForm()
-      return
-    }
-
-    // If using cloud, require auth
-    if (!isAuthenticated) {
-      if (confirm('Je moet ingelogd zijn om vondsten in de cloud op te slaan. Anoniem inloggen?')) {
-        loginAnonymous()
-      }
-      return
-    }
-    openVondstForm()
-  }
-
   const handleLogin = () => {
     closeMenu()
     signInWithGoogle()
@@ -106,11 +64,18 @@ export function HamburgerMenu() {
     logout()
   }
 
+  // Calculate font size based on menuFontScale
+  const baseFontSize = 13 * menuFontScale / 100
+
   return (
     <>
-      {/* Hamburger Button */}
+      {/* Hamburger Button - Blue when open */}
       <motion.button
-        className="fixed right-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/90 hover:bg-white rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className={`fixed right-2 z-[800] w-11 h-11 flex items-center justify-center rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm ${
+          isOpen
+            ? 'bg-blue-500 hover:bg-blue-600'
+            : 'bg-white/90 hover:bg-white'
+        }`}
         style={safeTopStyle}
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
@@ -118,7 +83,7 @@ export function HamburgerMenu() {
         title="Menu"
       >
         {isOpen ? (
-          <X size={22} className="text-gray-600" />
+          <X size={22} className="text-white" />
         ) : (
           <Menu size={22} className="text-gray-600" />
         )}
@@ -142,12 +107,35 @@ export function HamburgerMenu() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="fixed right-2 z-[801] w-64 bg-white rounded-xl shadow-lg overflow-hidden"
-              style={{ top: 'calc(max(0.5rem, env(safe-area-inset-top, 0.5rem)) + 52px)' }}
+              className="fixed right-2 z-[801] w-64 bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
+              style={{
+                top: 'calc(max(0.5rem, env(safe-area-inset-top, 0.5rem)) + 52px)',
+                fontSize: `${baseFontSize}px`
+              }}
             >
-              {/* Google Login / Profile Section */}
+              {/* Header with title and font size slider - blue bg, white text */}
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-blue-500">
+                <span className="font-medium text-white" style={{ fontSize: `${baseFontSize}px` }}>Menu</span>
+                <div className="flex items-center gap-1">
+                  <span className="text-[9px] text-blue-200">T</span>
+                  <input
+                    type="range"
+                    min="80"
+                    max="130"
+                    step="10"
+                    value={menuFontScale}
+                    onInput={(e) => setMenuFontScale(parseInt((e.target as HTMLInputElement).value))}
+                    onChange={(e) => setMenuFontScale(parseInt(e.target.value))}
+                    className="w-16 opacity-70 hover:opacity-100 transition-opacity"
+                    title={`Tekstgrootte: ${menuFontScale}%`}
+                  />
+                  <span className="text-[11px] text-blue-200">T</span>
+                </div>
+              </div>
+
+              {/* Google Login / Profile Section - NO border when logged out */}
               {loading ? (
-                <div className="px-3 py-4 border-b border-gray-100 flex items-center justify-center">
+                <div className="px-3 py-4 flex items-center justify-center">
                   <div className="w-5 h-5 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
                 </div>
               ) : user ? (
@@ -157,67 +145,68 @@ export function HamburgerMenu() {
                       <img
                         src={user.photoURL}
                         alt={user.displayName || 'User'}
-                        className="w-10 h-10 rounded-full"
+                        className="w-8 h-8 rounded-full"
                         referrerPolicy="no-referrer"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
-                        <User size={18} className="text-white" />
+                      <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                        <User size={16} className="text-white" />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-800 truncate" style={{ fontSize: '0.9em' }}>
+                      <div className="font-medium text-gray-800 truncate" style={{ fontSize: '0.85em' }}>
                         {user.displayName || 'Gebruiker'}
                       </div>
-                      <div className="text-green-600" style={{ fontSize: '0.75em' }}>
+                      <div className="text-green-600" style={{ fontSize: '0.7em' }}>
                         Cloud sync actief
                       </div>
                     </div>
+                    <button
+                      onClick={handleLogout}
+                      className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors border-0 outline-none bg-transparent"
+                      title="Uitloggen"
+                    >
+                      <LogOut size={16} />
+                    </button>
                   </div>
                 </div>
               ) : (
                 <button
                   onClick={handleLogin}
-                  className="w-full px-3 py-3 border-b border-gray-100 flex items-center gap-3 hover:bg-blue-50 transition-colors border-0 outline-none bg-transparent"
+                  className="w-full px-3 py-3 flex items-center gap-3 hover:bg-blue-50 transition-colors border-0 outline-none bg-transparent"
                 >
-                  <GoogleLogo />
-                  <span className="text-gray-700" style={{ fontSize: '0.95em' }}>Inloggen met Google</span>
+                  <GoogleLogo size={18} />
+                  <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Inloggen met Google</span>
                 </button>
               )}
 
               {/* Menu Items */}
               <div className="py-1">
-                <MenuItem
-                  icon={MapPin}
-                  label="Vondst toevoegen"
-                  onClick={handleVondstClick}
-                  color="text-orange-500"
-                />
-                <MenuItem
-                  icon={Info}
-                  label="Info & handleiding"
+                <button
                   onClick={handleInfoClick}
-                  color="text-blue-500"
-                />
-                <MenuItem
-                  icon={Settings}
-                  label="Instellingen"
-                  onClick={handleSettingsClick}
-                />
+                  className="w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors text-gray-700 hover:bg-blue-50"
+                  style={{ fontSize: '0.95em' }}
+                >
+                  <Info size={18} className="text-blue-500" />
+                  <span>Info & handleiding</span>
+                </button>
+              </div>
 
-                {user && (
-                  <MenuItem
-                    icon={LogOut}
-                    label="Uitloggen"
-                    onClick={handleLogout}
-                    danger
-                  />
-                )}
+              {/* Settings always at bottom */}
+              <div className="mt-auto border-t border-gray-100">
+                <button
+                  onClick={handleSettingsClick}
+                  className="w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors text-gray-700 hover:bg-gray-50"
+                  style={{ fontSize: '0.95em' }}
+                >
+                  <Settings size={18} className="text-gray-500" />
+                  <span>Instellingen</span>
+                </button>
               </div>
 
               {/* Version Footer */}
-              <div className="px-3 py-2 border-t border-gray-100 text-center text-gray-400" style={{ fontSize: '0.7em' }}>
-                DetectorApp NL v2.25.0
+              <div className="px-3 py-1.5 bg-gray-50 text-center text-gray-400" style={{ fontSize: '0.65em' }}>
+                DetectorApp NL v2.26.4
               </div>
             </motion.div>
           </>

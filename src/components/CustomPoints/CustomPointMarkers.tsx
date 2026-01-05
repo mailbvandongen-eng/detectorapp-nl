@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useMapStore } from '../../store'
+import { useMapStore, useSettingsStore } from '../../store'
 import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
@@ -20,6 +20,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 export function CustomPointMarkers() {
   const map = useMapStore(state => state.map)
   const layers = useCustomPointLayerStore(state => state.layers)
+  const showCustomPointLayers = useSettingsStore(state => state.showCustomPointLayers)
   const layersRef = useRef<Map<string, VectorLayer<VectorSource>>>(new Map())
 
   useEffect(() => {
@@ -92,11 +93,11 @@ export function CustomPointMarkers() {
       const existingLayer = layersRef.current.get(customLayer.id)
 
       if (existingLayer) {
-        // Update existing layer
+        // Update existing layer - combine global toggle with individual layer visibility
         existingLayer.setSource(source)
-        existingLayer.setVisible(customLayer.visible)
+        existingLayer.setVisible(showCustomPointLayers && customLayer.visible)
       } else {
-        // Create new layer
+        // Create new layer - combine global toggle with individual layer visibility
         const vectorLayer = new VectorLayer({
           source,
           zIndex: 950, // Between imported layers (900) and vondsten (1000)
@@ -104,7 +105,7 @@ export function CustomPointMarkers() {
             title: customLayer.name,
             customPointLayerId: customLayer.id
           },
-          visible: customLayer.visible
+          visible: showCustomPointLayers && customLayer.visible
         })
         map.addLayer(vectorLayer)
         layersRef.current.set(customLayer.id, vectorLayer)
@@ -118,7 +119,7 @@ export function CustomPointMarkers() {
       })
       layersRef.current.clear()
     }
-  }, [map, layers])
+  }, [map, layers, showCustomPointLayers])
 
   return null // Render-less component
 }

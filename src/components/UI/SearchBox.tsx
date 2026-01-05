@@ -176,11 +176,11 @@ export function SearchBox() {
     )
   }
 
-  // Expanded state: full search bar
+  // Expanded state: full search bar (leave space for hamburger icon)
   return (
     <div
       ref={containerRef}
-      className="fixed left-[52px] right-2 z-[850]"
+      className="fixed left-[52px] right-14 z-[850]"
       style={safeTopStyle}
     >
       <motion.div

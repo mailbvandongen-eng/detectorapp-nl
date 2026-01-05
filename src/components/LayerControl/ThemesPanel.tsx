@@ -50,15 +50,15 @@ export function ThemesPanel() {
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.15 }}
           >
-            {/* Header with title and font size slider inline */}
-            <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+            {/* Header with title and font size slider - blue bg, white text, scales with slider */}
+            <div className="flex items-center justify-between px-3 py-2 bg-blue-500" style={{ fontSize: `${baseFontSize}px` }}>
               <div className="flex items-center gap-2">
-                <Layers size={14} />
-                <span className="font-medium text-sm">Kaartlagen</span>
+                <Layers size={14} className="text-white" />
+                <span className="font-medium text-white">Kaartlagen</span>
               </div>
               <div className="flex items-center gap-2">
                 {/* Font size slider */}
-                <span className="text-[10px] opacity-70">T</span>
+                <span className="text-[10px] text-blue-200">T</span>
                 <input
                   type="range"
                   min="80"
@@ -69,28 +69,34 @@ export function ThemesPanel() {
                     setLayerPanelFontScale(parseInt((e.target as HTMLInputElement).value))
                   }}
                   onChange={(e) => setLayerPanelFontScale(parseInt(e.target.value))}
-                  className="header-slider w-20 opacity-70 hover:opacity-100 transition-opacity"
+                  className="w-20 opacity-70 hover:opacity-100 transition-opacity"
                   title={`Tekstgrootte: ${layerPanelFontScale}%`}
                 />
-                <span className="text-xs opacity-70">T</span>
+                <span className="text-xs text-blue-200">T</span>
                 <button
                   onClick={toggleThemesPanel}
-                  className="p-0.5 rounded border-0 outline-none hover:bg-white/20 transition-colors ml-1"
+                  className="p-0.5 rounded border-0 outline-none bg-blue-400/50 hover:bg-blue-400 transition-colors ml-1"
                 >
-                  <X size={16} />
+                  <X size={16} className="text-white" strokeWidth={2.5} />
                 </button>
               </div>
             </div>
           <div className="p-2 overflow-y-auto flex-1" style={{ fontSize: `${baseFontSize}px` }}>
-            {/* Mijn Vondsten - direct weergeven, niet in groep */}
+            {/* Mijn Vondsten - blue header styling */}
             <div className="mb-2 pb-1 border-b border-gray-100">
+              <div className="flex items-center gap-1 py-0.5 px-1 mb-1">
+                <span className="text-blue-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Vondsten</span>
+              </div>
               <LayerItem name="Mijn Vondsten" type="overlay" />
             </div>
 
-            {/* Mijn Lagen - custom point layers, zelfde stijl als LayerItem */}
-            {customLayers.length > 0 && (
+            {/* Mijn Lagen - custom point layers with blue header */}
+            {customLayers.filter(l => !l.archived).length > 0 && (
               <div className="mb-2 pb-1 border-b border-gray-100">
-                {customLayers.map(layer => (
+                <div className="flex items-center gap-1 py-0.5 px-1 mb-1">
+                  <span className="text-blue-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Lagen</span>
+                </div>
+                {customLayers.filter(l => !l.archived).map(layer => (
                   <button
                     key={layer.id}
                     onClick={() => toggleVisibility(layer.id)}
@@ -100,10 +106,6 @@ export function ThemesPanel() {
                     style={{ fontSize: 'inherit' }}
                   >
                     <span className="flex items-center gap-2 text-gray-600">
-                      <div
-                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: layer.color }}
-                      />
                       {layer.name}
                       <span className="text-xs text-gray-400">({layer.points.length})</span>
                     </span>
@@ -122,18 +124,25 @@ export function ThemesPanel() {
               </div>
             )}
 
-            {/* Achtergronden */}
-            <LayerGroup title="Achtergronden" defaultExpanded={true}>
-              <LayerItem name="CartoDB (licht)" type="base" />
-              <LayerItem name="OpenStreetMap" type="base" />
-              <LayerItem name="Luchtfoto" type="base" />
-              <LayerItem name="Labels Overlay" type="overlay" />
-              <LayerItem name="TMK 1850" type="base" />
-              <LayerItem name="Bonnebladen 1900" type="base" />
-            </LayerGroup>
+            {/* Basislaag - vaste sectie zonder pijltje */}
+            <div className="mb-2">
+              <div className="flex items-center gap-1 py-1 px-1 mb-1">
+                <span className="text-blue-600 font-medium" style={{ fontSize: '0.95em' }}>Basislaag</span>
+              </div>
+              <div className="space-y-0">
+                <LayerItem name="CartoDB (licht)" type="base" />
+                <LayerItem name="OpenStreetMap" type="base" />
+                <LayerItem name="Luchtfoto" type="base" hasOverlay />
+                <LayerItem name="TMK 1850" type="base" hasOverlay />
+                <LayerItem name="Bonnebladen 1900" type="base" hasOverlay />
+              </div>
+            </div>
 
-            {/* Thema's - alle overlay lagen */}
-            <LayerGroup title="Thema's" defaultExpanded={true}>
+            {/* Thema's - vaste sectie, daaronder inklapbare groepen */}
+            <div className="mb-2">
+              <div className="flex items-center gap-1 py-1 px-1 mb-1 border-t border-gray-100 pt-2">
+                <span className="text-blue-600 font-medium" style={{ fontSize: '0.95em' }}>Thema's</span>
+              </div>
               {/* Steentijd (Stone Age) */}
               <LayerGroup title="Steentijd & Prehistorie" defaultExpanded={false} layerNames={['Hunebedden', 'FAMKE Steentijd', 'Grafheuvels', 'Terpen', 'Paleokaart 9000 v.Chr.', 'Paleokaart 5500 v.Chr.', 'Paleokaart 2750 v.Chr.', 'Paleokaart 1500 v.Chr.', 'Paleokaart 500 v.Chr.', 'Paleokaart 100 n.Chr.', 'Paleokaart 800 n.Chr.']}>
                 <LayerItem name="Hunebedden" type="overlay" />
@@ -261,7 +270,7 @@ export function ThemesPanel() {
                 <LayerItem name="Strandjes" type="overlay" />
                 <LayerItem name="Kringloopwinkels" type="overlay" />
               </LayerGroup>
-            </LayerGroup>
+            </div>
           </div>
         </motion.div>
       )}

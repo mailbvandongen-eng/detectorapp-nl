@@ -38,14 +38,14 @@ export function InfoButton() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
             >
-              {/* Header */}
-              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-                <span className="font-medium">DetectorApp NL</span>
+              {/* Header - blue bg, white text */}
+              <div className="flex items-center justify-between px-4 py-3 bg-blue-500">
+                <span className="font-medium text-white">DetectorApp NL</span>
                 <button
                   onClick={toggleInfoPanel}
-                  className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none"
+                  className="p-1 rounded bg-blue-400/50 hover:bg-blue-400 transition-colors border-0 outline-none"
                 >
-                  <X size={18} />
+                  <X size={18} className="text-white" strokeWidth={2.5} />
                 </button>
               </div>
 
@@ -85,7 +85,7 @@ export function InfoButton() {
                     <span className="text-sm">Meld een bug</span>
                   </a>
                   <p className="text-xs text-gray-400 text-center">
-                    DetectorApp NL v2.25.0
+                    DetectorApp NL v2.26.4
                   </p>
                 </section>
               </div>

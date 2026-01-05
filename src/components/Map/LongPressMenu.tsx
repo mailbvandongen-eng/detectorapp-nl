@@ -1,10 +1,20 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight } from 'lucide-react'
+import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight, Check } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useMapStore } from '../../store'
 import { useUIStore } from '../../store/uiStore'
-import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
+import { useCustomPointLayerStore, CustomPointLayer } from '../../store/customPointLayerStore'
+
+// Check if a coordinate is already in a layer (within ~10m tolerance)
+const TOLERANCE = 0.0001 // ~10 meters at equator
+function isCoordinateInLayer(layer: CustomPointLayer, coord: [number, number]): boolean {
+  return layer.points.some(point => {
+    const dx = Math.abs(point.coordinates[0] - coord[0])
+    const dy = Math.abs(point.coordinates[1] - coord[1])
+    return dx < TOLERANCE && dy < TOLERANCE
+  })
+}
 
 interface LongPressLocation {
   pixel: [number, number]
@@ -323,9 +333,9 @@ export function LongPressMenu() {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.15 }}
           >
-            {/* Header with coordinates */}
-            <div className="px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600">
-              <div className="flex items-center gap-2 text-white">
+            {/* Header with coordinates - white bg, blue text */}
+            <div className="px-4 py-3 bg-white border-b border-gray-100">
+              <div className="flex items-center gap-2 text-blue-600">
                 <MapPin size={16} />
                 <span className="text-xs font-mono">
                   {formatCoordinate(menuLocation.coordinate)}
@@ -374,20 +384,35 @@ export function LongPressMenu() {
                         </button>
                       ) : (
                         <>
-                          {customLayers.map(layer => (
-                            <button
-                              key={layer.id}
-                              onClick={() => handleAddToLayer(layer.id)}
-                              className="w-full px-4 py-2 pl-11 flex items-center gap-2 text-sm text-gray-700 hover:bg-gray-100 bg-transparent border-0 outline-none"
-                            >
-                              <div
-                                className="w-3 h-3 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: layer.color }}
-                              />
-                              <span className="truncate">{layer.name}</span>
-                              <span className="text-xs text-gray-400 ml-auto">({layer.points.length})</span>
-                            </button>
-                          ))}
+                          {customLayers.map(layer => {
+                            const isAlreadyAdded = menuLocation ? isCoordinateInLayer(layer, menuLocation.coordinate) : false
+                            return (
+                              <button
+                                key={layer.id}
+                                onClick={() => !isAlreadyAdded && handleAddToLayer(layer.id)}
+                                className={`w-full px-4 py-2 pl-11 flex items-center gap-2 text-sm bg-transparent border-0 outline-none ${
+                                  isAlreadyAdded
+                                    ? 'text-gray-400 cursor-not-allowed'
+                                    : 'text-gray-700 hover:bg-gray-100'
+                                }`}
+                                title={isAlreadyAdded ? 'Al toegevoegd aan deze laag' : undefined}
+                                disabled={isAlreadyAdded}
+                              >
+                                {isAlreadyAdded ? (
+                                  <Check size={14} className="text-green-500 flex-shrink-0" />
+                                ) : (
+                                  <div
+                                    className="w-3 h-3 rounded-full flex-shrink-0"
+                                    style={{ backgroundColor: layer.color }}
+                                  />
+                                )}
+                                <span className="truncate">{layer.name}</span>
+                                <span className="text-xs text-gray-400 ml-auto">
+                                  {isAlreadyAdded ? 'al toegevoegd' : `(${layer.points.length})`}
+                                </span>
+                              </button>
+                            )
+                          })}
                           <button
                             onClick={handleCreateNewLayer}
                             className="w-full px-4 py-2 pl-11 flex items-center gap-2 text-sm text-purple-600 hover:bg-purple-50 bg-transparent border-0 outline-none border-t border-gray-200"

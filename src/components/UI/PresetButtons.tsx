@@ -1,6 +1,7 @@
 import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Grid3X3, Save, LucideIcon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore } from '../../store'
+import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
+import { fromLonLat } from 'ol/proj'
 
 // Icon mapping for dynamic icon rendering
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -39,6 +40,8 @@ const HOVER_COLORS: Record<string, string> = {
 
 // All overlay layers for reset - must include ALL layers from layerStore
 const ALL_OVERLAYS = [
+  // Mijn data
+  'Mijn Vondsten',
   // Base layer overlays
   'Labels Overlay', 'TMK 1850', 'Bonnebladen 1900',
   // Steentijd
@@ -47,7 +50,7 @@ const ALL_OVERLAYS = [
   'AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig',
   'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Kastelen', 'IKAW', 'Archeo Landschappen',
   // Erfgoed
-  'Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed', 'Essen',
+  'Rijksmonumenten', 'Werelderfgoed', 'Religieus Erfgoed', 'Essen', 'Ruïnes',
   // Militair
   'WWII Bunkers', 'Slagvelden', 'Militaire Vliegvelden',
   'Verdedigingslinies', 'Inundatiegebieden', 'Militaire Objecten',
@@ -60,10 +63,11 @@ const ALL_OVERLAYS = [
   'AHN4 Hoogtekaart Kleur', 'AHN4 Hillshade NL', 'AHN4 Multi-Hillshade NL', 'AHN 0.5m',
   // Terrein
   'Veengebieden', 'Geomorfologie', 'Bodemkaart',
-  // Fossielen
+  // Fossielen, Mineralen & Goud
+  'Fossiel Hotspots', 'Mineralen Hotspots', 'Goudrivieren',
   'Fossielen Nederland', 'Fossielen België', 'Fossielen Duitsland', 'Fossielen Frankrijk',
   // Recreatie
-  'Parken', 'Speeltuinen', 'Musea', 'Strandjes',
+  'Wandelroutes', 'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels',
   // Percelen
   'Gewaspercelen', 'Kadastrale Grenzen',
   // Provinciale Waardenkaarten - Zuid-Holland
@@ -83,9 +87,14 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
+// Center of Netherlands (Utrecht area) and zoom level for ~50km view
+const NL_CENTER = [5.2913, 52.1326] // [lon, lat]
+const NL_ZOOM = 8 // ~50km view
+
 export function PresetButtons() {
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
   const stopTracking = useGPSStore(state => state.stopTracking)
+  const map = useMapStore(state => state.map)
   const { presetsPanelOpen, togglePresetsPanel, closeAllPanels } = useUIStore()
   const { presets, applyPreset, updatePreset } = usePresetStore()
   const visible = useLayerStore(state => state.visible)
@@ -112,7 +121,17 @@ export function PresetButtons() {
     // Stop GPS tracking
     stopTracking()
 
-    console.log('🔄 Reset: CartoDB (licht), alle lagen uit, GPS uit')
+    // Zoom to center of Netherlands at ~50km view
+    if (map) {
+      const view = map.getView()
+      view.animate({
+        center: fromLonLat(NL_CENTER),
+        zoom: NL_ZOOM,
+        duration: 500
+      })
+    }
+
+    console.log('🔄 Reset: CartoDB, alle lagen uit, GPS uit, zoom naar Nederland')
   }
 
   const handleApplyPreset = (id: string) => {
@@ -177,12 +196,12 @@ export function PresetButtons() {
               transition={{ duration: 0.15 }}
               className="fixed bottom-[112px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden w-[220px] backdrop-blur-sm z-[801]"
             >
-              {/* Header with title and font size slider inline */}
-              <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-                <span className="text-xs font-medium">Presets</span>
+              {/* Header with title and font size slider - blue bg, white text */}
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-blue-500" style={{ fontSize: `${baseFontSize}px` }}>
+                <span className="font-medium text-white">Presets</span>
                 {/* Font size slider */}
                 <div className="flex items-center gap-1">
-                  <span className="text-[9px] opacity-70">T</span>
+                  <span className="text-[9px] text-blue-200">T</span>
                   <input
                     type="range"
                     min="80"
@@ -193,10 +212,10 @@ export function PresetButtons() {
                       setPresetPanelFontScale(parseInt((e.target as HTMLInputElement).value))
                     }}
                     onChange={(e) => setPresetPanelFontScale(parseInt(e.target.value))}
-                    className="header-slider w-16 opacity-70 hover:opacity-100 transition-opacity"
+                    className="w-16 opacity-70 hover:opacity-100 transition-opacity"
                     title={`Tekstgrootte: ${presetPanelFontScale}%`}
                   />
-                  <span className="text-[11px] opacity-70">T</span>
+                  <span className="text-[11px] text-blue-200">T</span>
                 </div>
               </div>
               <div className="p-2">

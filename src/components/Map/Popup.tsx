@@ -307,6 +307,11 @@ export function Popup() {
 
         const title = layer.get('title') || ''
 
+        // Skip Paleokaarten - they're just visual overlays with no meaningful feature info
+        if (title.startsWith('Paleokaart')) {
+          continue
+        }
+
         // Archeo Landschappen (RCE) - B1 stijl
         if (title === 'Archeo Landschappen') {
           try {

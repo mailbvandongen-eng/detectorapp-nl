@@ -26,7 +26,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   immer((set, get) => ({
     user: null,
-    loading: true,
+    loading: false,  // Don't show spinner on initial load
     error: null,
     initialized: false,
 

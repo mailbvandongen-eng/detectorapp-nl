@@ -1,19 +1,18 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.22.4
+## Huidige versie: 2.26.3
 
 ---
 
 ## ⚠️ VERSIE BUMP CHECKLIST - ALTIJD VOLGEN! ⚠️
 
-Bij elke code wijziging **ALTIJD** deze 4 plekken updaten:
+Bij elke code wijziging **ALTIJD** deze 3 plekken updaten:
 
 | # | Bestand | Wat updaten |
 |---|---------|-------------|
 | 1 | Terminal | `npm version patch` (of minor/major) |
 | 2 | `src/main.tsx` | `const VERSION = 'X.X.X'` |
-| 3 | `src/components/UI/BuildLabel.tsx` | `v{X.X.X}` |
-| 4 | `src/components/UI/InfoButton.tsx` | `DetectorApp NL v{X.X.X}` |
+| 3 | `src/components/UI/HamburgerMenu.tsx` | `DetectorApp NL v{X.X.X}` |
 
 **Test na bump:** `npm run build` moet slagen!
 
