@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Plus, Trash2, Download, Eye, EyeOff, ChevronDown, ChevronRight, Upload } from 'lucide-react'
-import { useUIStore } from '../../store'
+import { X, Plus, Trash2, Download, Eye, EyeOff, ChevronDown, ChevronRight, Upload, Layers } from 'lucide-react'
+import { useUIStore, useSettingsStore } from '../../store'
 import { useCustomPointLayerStore, type CustomPointLayer } from '../../store/customPointLayerStore'
 
 export function LayerManagerModal() {
   const { layerManagerModalOpen, closeLayerManagerModal, openCreateLayerModal } = useUIStore()
   const { layers, removeLayer, toggleVisibility, exportLayerAsGeoJSON, importLayerFromGeoJSON } = useCustomPointLayerStore()
+  const settings = useSettingsStore()
+
+  // Calculate font size based on fontScale setting
+  const baseFontSize = 14 * settings.fontScale / 100
 
   const [expandedLayerId, setExpandedLayerId] = useState<string | null>(null)
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null)
@@ -80,25 +84,44 @@ export function LayerManagerModal() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
           >
-            {/* Header */}
+            {/* Header - met font slider */}
             <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white">
-              <span className="font-medium">Mijn Lagen beheren</span>
-              <button
-                onClick={handleClose}
-                className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none"
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-2">
+                <Layers size={18} />
+                <span className="font-medium">Mijn Lagen beheren</span>
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Font size slider */}
+                <span className="text-[10px] opacity-70">T</span>
+                <input
+                  type="range"
+                  min="80"
+                  max="150"
+                  step="10"
+                  value={settings.fontScale}
+                  onChange={(e) => settings.setFontScale(parseInt(e.target.value))}
+                  className="header-slider w-16 opacity-70 hover:opacity-100 transition-opacity"
+                  title={`Tekstgrootte: ${settings.fontScale}%`}
+                />
+                <span className="text-xs opacity-70">T</span>
+                <button
+                  onClick={handleClose}
+                  className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none ml-1"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
-            {/* Content */}
-            <div className="flex-1 overflow-y-auto">
+            {/* Content - met font scaling */}
+            <div className="flex-1 overflow-y-auto" style={{ fontSize: `${baseFontSize}px` }}>
               {layers.length === 0 ? (
                 <div className="p-8 text-center text-gray-500">
-                  <p className="mb-4">Je hebt nog geen eigen lagen.</p>
+                  <p className="mb-4" style={{ fontSize: '1em' }}>Je hebt nog geen eigen lagen.</p>
                   <button
                     onClick={handleNewLayer}
                     className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors border-0 outline-none"
+                    style={{ fontSize: '1em' }}
                   >
                     <Plus size={16} className="inline mr-2" />
                     Nieuwe laag aanmaken
@@ -129,12 +152,12 @@ export function LayerManagerModal() {
               )}
             </div>
 
-            {/* Footer */}
-            <div className="p-4 border-t border-gray-200 flex gap-3">
+            {/* Footer - geen border-t */}
+            <div className="p-4 flex gap-3" style={{ fontSize: `${baseFontSize}px` }}>
               {/* Import button */}
-              <label className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2">
+              <label className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2 border-0 outline-none">
                 <Upload size={16} />
-                <span>Importeren</span>
+                <span style={{ fontSize: '1em' }}>Importeren</span>
                 <input
                   type="file"
                   accept=".geojson,.json"
@@ -147,6 +170,7 @@ export function LayerManagerModal() {
               <button
                 onClick={handleNewLayer}
                 className="flex-1 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors border-0 outline-none flex items-center justify-center gap-2"
+                style={{ fontSize: '1em' }}
               >
                 <Plus size={16} />
                 <span>Nieuwe laag</span>
