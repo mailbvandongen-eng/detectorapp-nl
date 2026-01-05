@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight, Check } from 'lucide-react'
+import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight, Check, Camera } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useMapStore } from '../../store'
 import { useUIStore } from '../../store/uiStore'
@@ -301,6 +301,30 @@ export function LongPressMenu() {
     setCanClose(false)
   }
 
+  // Take photo with location metadata
+  const handleTakePhoto = () => {
+    if (!menuLocation) return
+
+    // Create hidden file input for camera
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.capture = 'environment' // Use back camera
+
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+
+      // For now, just open the vondst form with the location
+      // Photo can be attached via URL after uploading to Google Photos etc.
+      const [lng, lat] = menuLocation.coordinate
+      openVondstForm({ lat, lng })
+    }
+
+    input.click()
+    forceClose()
+  }
+
   // Format coordinate for display
   const formatCoordinate = (coord: [number, number]) => {
     const [lng, lat] = coord
@@ -352,6 +376,15 @@ export function LongPressMenu() {
               >
                 <Plus size={20} className="text-blue-500" />
                 <span className="font-medium">Vondst toevoegen</span>
+              </button>
+
+              {/* Take photo */}
+              <button
+                onClick={handleTakePhoto}
+                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-blue-50 text-gray-700 bg-white border-0 outline-none"
+              >
+                <Camera size={20} className="text-green-500" />
+                <span className="font-medium">Foto maken</span>
               </button>
 
               {/* Add to layer - with submenu */}

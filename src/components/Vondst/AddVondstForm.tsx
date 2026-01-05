@@ -213,9 +213,27 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
         </div>
 
         <form onSubmit={handleSubmit} className="p-4 space-y-3">
-          {/* Location buttons */}
+          {/* Location display and buttons */}
           <div>
             <label className="block text-sm text-gray-600 mb-1">Locatie</label>
+            {/* Show current location */}
+            {effectiveLocation && (
+              <div className="bg-blue-50 rounded px-3 py-2 mb-2">
+                <div className="text-xs text-blue-800 font-mono">
+                  {effectiveLocation.lat.toFixed(6)}°N, {effectiveLocation.lng.toFixed(6)}°E
+                </div>
+                <div className="text-xs text-blue-600 mt-0.5">
+                  {locationSource === 'gps' ? '📍 GPS locatie' :
+                   locationSource === 'map-pick' ? '🎯 Gekozen op kaart' :
+                   '🗺️ Kaart midden'}
+                </div>
+              </div>
+            )}
+            {!effectiveLocation && (
+              <div className="bg-red-50 rounded px-3 py-2 mb-2">
+                <div className="text-xs text-red-600">Geen locatie beschikbaar</div>
+              </div>
+            )}
             <div className="flex gap-2">
               {gpsPosition && locationSource !== 'gps' && (
                 <button
@@ -322,10 +340,16 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
             />
           </div>
 
-          {/* Privacy notice */}
-          <p className="text-xs text-gray-400">
-            Vondsten worden lokaal opgeslagen op dit apparaat.
-          </p>
+          {/* Storage info */}
+          <div className="bg-gray-50 rounded px-3 py-2">
+            <p className="text-xs text-gray-500">
+              {vondstenLocalOnly ? (
+                <>💾 Vondsten worden <strong>lokaal</strong> opgeslagen op dit apparaat.</>
+              ) : (
+                <>☁️ Vondsten worden in de <strong>cloud</strong> opgeslagen (vereist inloggen).</>
+              )}
+            </p>
+          </div>
 
           {/* Submit */}
           <div className="flex gap-2">
