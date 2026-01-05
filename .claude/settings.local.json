@@ -52,7 +52,8 @@
       "WebFetch(domain:www.svgrepo.com)",
       "WebFetch(domain:game-icons.net)",
       "WebFetch(domain:freesvg.org)",
-      "WebFetch(domain:www.routezoeker.com)"
+      "WebFetch(domain:www.routezoeker.com)",
+      "WebFetch(domain:data.geo.cultureelerfgoed.nl)"
     ]
   }
 }

@@ -15,6 +15,7 @@ import { SettingsPanel } from './components/UI/SettingsPanel'
 import { HamburgerMenu } from './components/UI/HamburgerMenu'
 import { InfoButton } from './components/UI/InfoButton'
 import { AddVondstForm } from './components/Vondst/AddVondstForm'
+import { AddVondstButton } from './components/Vondst/AddVondstButton'
 import { LocalVondstMarkers } from './components/Vondst/LocalVondstMarkers'
 import { CustomLayerMarkers } from './components/CustomLayers'
 import { CustomPointMarkers, CreateLayerModal, AddPointModal, LayerManagerModal, LayerDashboard } from './components/CustomPoints'
@@ -53,6 +54,7 @@ function App() {
         <LongPressMenu />
         <SearchBox />
         <GpsButton />
+        <AddVondstButton />
         <ZoomButtons />
         <LayerControlButton />
         <ThemesPanel />

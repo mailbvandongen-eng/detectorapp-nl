@@ -55,7 +55,7 @@ export const useSettingsStore = create<SettingsState>()(
       showAccuracyCircle: true,
       hapticFeedback: true,
       vondstenLocalOnly: true,  // Default to local storage (no login needed)
-      showVondstButton: true,   // Shown by default
+      showVondstButton: false,  // Hidden by default, can enable in settings
       showLocalVondsten: true,  // Show vondsten markers by default
       showCustomPointLayers: true,  // Show custom point layers by default
       fontScale: 100,           // Default 100% = 14px base

@@ -35,7 +35,6 @@ const OPACITY_LAYERS = [
   { name: 'Inundatiegebieden', color: 'red', default: 0.5 },
   // Percelen
   { name: 'Gewaspercelen', color: 'green', default: 0.6 },
-  { name: 'Kadastrale Grenzen', color: 'purple', default: 0.7 },
   // Provinciaal (vlakken)
   { name: 'Erfgoedlijnen', color: 'purple', default: 0.7 },
   { name: 'Oude Kernen', color: 'orange', default: 0.6 },

@@ -344,9 +344,10 @@ export function Popup() {
               html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
               html += `<div class="text-sm text-gray-700 mt-1">Aardewerk, munten, gereedschap en andere voorwerpen van vroegere bewoners. De kans op vondsten hangt af van het type landschap.</div>`
 
-              // Bezoeken
-              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten</span></div>`
-              html += `<div class="text-sm text-gray-700 mt-1">Bekijk de Rijksdienst voor het Cultureel Erfgoed (RCE) voor meer informatie over archeologische landschappen.</div>`
+              // Meer weten
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://www.cultureelerfgoed.nl/onderwerpen/bronnen-en-kaarten/overzicht/landschappenkaart" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">RCE Landschappenkaart</a></div>`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Landschapstypen_van_Nederland" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Landschapstypen</a></div>`
 
               results.push(html)
             }
@@ -381,6 +382,23 @@ export function Popup() {
               if (props.omschrijving || props.Omschrijving) {
                 html += `<br/><span class="text-xs text-gray-500">${props.omschrijving || props.Omschrijving}</span>`
               }
+
+              // Wat is een es?
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat is een es?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Een es is een oud akkercomplex op hogere zandgronden. Eeuwenlang werden hier gewassen verbouwd. De bodem werd bemest met plaggen en mest, waardoor de grond donker en vruchtbaar werd.</div>`
+
+              // Wat kun je hier vinden?
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1">Munten, gespen, knopen, aardewerk en soms bijzondere voorwerpen die door bemesting op het land terechtkwamen. Essen behoren tot de beste vindplaatsen voor metaaldetectie.</div>`
+
+              // Conservering
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Conservering</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1 italic">De zure zandgrond tast metaal aan. IJzer en koper zijn vaak slecht bewaard. Zilver en brons houden zich beter.</div>`
+
+              // Meer weten
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Es_(landbouw)" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Es (landbouw)</a></div>`
+
               results.push(html)
             }
           } catch (error) {
@@ -476,8 +494,10 @@ export function Popup() {
               const props = data.features[0].properties
               let html = `<strong class="text-blue-800">Archeologisch Onderzoek</strong>`
 
-              if (props.type_onderzoek) {
-                html += `<br/><span class="text-sm font-semibold">${props.type_onderzoek}</span>`
+              // Research type with explanation
+              const onderzoekType = props.type_onderzoek || ''
+              if (onderzoekType) {
+                html += `<br/><span class="text-sm font-semibold text-blue-700">${onderzoekType}</span>`
               }
               if (props.onderzoeksmeldingnummer) {
                 html += `<br/><span class="text-xs text-gray-500">Melding: ${props.onderzoeksmeldingnummer}</span>`
@@ -493,23 +513,30 @@ export function Popup() {
                 html += `<br/><span class="text-xs text-gray-500">${props.gemeente}</span>`
               }
 
-              // Convert type_uri to clickable hyperlink
-              if (props.type_uri) {
-                const linkUrl = props.type_uri.replace('type_uri:', '').trim()
-                if (linkUrl.startsWith('http')) {
-                  html += `<br/><a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-600 hover:underline">Meer informatie</a>`
-                }
+              // Wat betekent dit?
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat betekent dit?</span></div>`
+              if (onderzoekType.toLowerCase().includes('opgraving')) {
+                html += `<div class="text-sm text-gray-700 mt-1">Hier is een archeologische opgraving gedaan. Professionele archeologen hebben vondsten en sporen gedocumenteerd en geborgen.</div>`
+              } else if (onderzoekType.toLowerCase().includes('bureauonderzoek')) {
+                html += `<div class="text-sm text-gray-700 mt-1">Een bureauonderzoek naar de archeologische verwachting op basis van historische bronnen en kaarten.</div>`
+              } else if (onderzoekType.toLowerCase().includes('booronderzoek')) {
+                html += `<div class="text-sm text-gray-700 mt-1">Met boringen is onderzocht wat er in de grond zit. Vaak de eerste stap om te bepalen of er verder onderzoek nodig is.</div>`
+              } else if (onderzoekType.toLowerCase().includes('proefsleuven')) {
+                html += `<div class="text-sm text-gray-700 mt-1">Proefsleuven zijn gegraven om te kijken of er archeologische sporen in de grond zitten.</div>`
+              } else {
+                html += `<div class="text-sm text-gray-700 mt-1">Op deze locatie is archeologisch onderzoek uitgevoerd. De resultaten zijn opgeslagen in het landelijke archief.</div>`
               }
 
-              // Also check for other URI fields
-              for (const [key, value] of Object.entries(props)) {
-                if (key.toLowerCase().includes('uri') && typeof value === 'string' && key !== 'type_uri') {
-                  const linkUrl = value.replace(/^[a-z_]+:/i, '').trim()
-                  if (linkUrl.startsWith('http')) {
-                    html += `<br/><a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-600 hover:underline">${key.replace('_uri', '')}</a>`
-                  }
-                }
+              // Interesse voor detectoristen
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Interessant voor detectie?</span></div>`
+              html += `<div class="text-sm text-gray-700 mt-1 italic">Onderzoekslocaties kunnen interessant zijn: archeologen vinden vaak niet alles. Maar check altijd eerst of je daar mag zoeken.</div>`
+
+              // Meer weten
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+              if (props.onderzoeksmeldingnummer) {
+                html += `<div class="text-sm text-gray-700 mt-1"><a href="https://archis.cultureelerfgoed.nl/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Zoek in ARCHIS</a> <span class="text-gray-400">(melding ${props.onderzoeksmeldingnummer})</span></div>`
               }
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Archeologisch_onderzoek" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Archeologisch onderzoek</a></div>`
 
               results.push(html)
             }
@@ -818,6 +845,13 @@ export function Popup() {
               if (props.bouwjaar || props.oorspronkelijkebouwjaar) {
                 html += `<br/><span class="text-xs text-gray-500">Bouwjaar: ${props.bouwjaar || props.oorspronkelijkebouwjaar}</span>`
               }
+
+              // Meer weten - clickable links
+              html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
+              if (props.rijksmonumentnummer) {
+                html += `<div class="text-sm text-gray-700 mt-1"><a href="https://monumentenregister.cultureelerfgoed.nl/monumenten/${props.rijksmonumentnummer}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Bekijk in Monumentenregister</a></div>`
+              }
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Rijksmonument" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Rijksmonument</a></div>`
 
               results.push(html)
             }
@@ -3010,8 +3044,8 @@ export function Popup() {
 
                   {/* Layer picker dropdown */}
                   {showLayerPicker && (
-                    <div className="absolute right-0 top-8 z-50 bg-white rounded-lg shadow-lg border border-gray-100 py-1 min-w-[180px]">
-                      <div className="px-3 py-1.5 text-xs text-gray-400 font-medium">Toevoegen aan:</div>
+                    <div className="absolute right-0 top-8 z-50 bg-white rounded-lg shadow-md py-1 min-w-[160px] max-w-[200px]">
+                      <div className="px-3 py-1 text-xs text-gray-400 font-medium">Toevoegen aan:</div>
                       {customLayers.filter(l => !l.archived).map(layer => (
                         <button
                           key={layer.id}
@@ -3030,12 +3064,8 @@ export function Popup() {
                             // Auto-hide confirmation after 2 seconds
                             setTimeout(() => setAddedToLayer(null), 2000)
                           }}
-                          className="w-full px-3 py-1.5 text-left text-sm text-gray-700 hover:bg-orange-50 flex items-center gap-2"
+                          className="w-full px-3 py-1.5 text-left text-sm text-gray-700 hover:bg-blue-50 border-0 outline-none bg-transparent"
                         >
-                          <div
-                            className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                            style={{ backgroundColor: layer.color }}
-                          />
                           <span className="truncate">{layer.name}</span>
                         </button>
                       ))}

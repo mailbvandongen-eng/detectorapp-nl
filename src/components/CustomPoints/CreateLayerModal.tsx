@@ -145,7 +145,7 @@ export function CreateLayerModal() {
                 </div>
               </div>
 
-              {/* Custom categories */}
+              {/* Custom categories - track all added custom categories separately */}
               {selectedCategories.filter(c => !DEFAULT_CATEGORIES.includes(c)).length > 0 && (
                 <div>
                   <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '0.9em' }}>
@@ -155,15 +155,22 @@ export function CreateLayerModal() {
                     {selectedCategories
                       .filter(c => !DEFAULT_CATEGORIES.includes(c))
                       .map(cat => (
-                        <button
-                          key={cat}
-                          onClick={() => handleRemoveCategory(cat)}
-                          className="flex items-center gap-1 px-3 py-1 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors border-0 outline-none"
-                          style={{ fontSize: '0.9em' }}
-                        >
-                          {cat}
-                          <Trash2 size={12} />
-                        </button>
+                        <div key={cat} className="flex items-center">
+                          <button
+                            onClick={() => handleToggleCategory(cat)}
+                            className="px-3 py-1 rounded-l-full bg-orange-500 text-white hover:bg-orange-600 transition-colors border-0 outline-none"
+                            style={{ fontSize: '0.9em' }}
+                          >
+                            {cat}
+                          </button>
+                          <button
+                            onClick={() => handleRemoveCategory(cat)}
+                            className="px-2 py-1 rounded-r-full bg-orange-600 text-white hover:bg-orange-700 transition-colors border-0 outline-none"
+                            title="Verwijder categorie"
+                          >
+                            <Trash2 size={12} />
+                          </button>
+                        </div>
                       ))}
                   </div>
                 </div>

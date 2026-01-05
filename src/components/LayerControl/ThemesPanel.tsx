@@ -162,7 +162,7 @@ export function ThemesPanel() {
               </LayerGroup>
 
               {/* Archaeological Layers */}
-              <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'IKAW', 'Archeo Landschappen', 'UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling']}>
+              <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Archeo Onderzoeken', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'IKAW', 'Archeo Landschappen', 'UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling']}>
                 <LayerItem name="AMK Monumenten" type="overlay" />
                 {/* AMK per periode */}
                 <LayerGroup title="AMK per periode" defaultExpanded={false} layerNames={['AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig']}>
@@ -172,6 +172,7 @@ export function ThemesPanel() {
                   <LayerItem name="AMK Late ME" type="overlay" />
                   <LayerItem name="AMK Overig" type="overlay" />
                 </LayerGroup>
+                <LayerItem name="Archeo Onderzoeken" type="overlay" />
                 <LayerItem name="Romeinse wegen (regio)" type="overlay" />
                 <LayerItem name="Romeinse wegen (Wereld)" type="overlay" />
                 <LayerItem name="IKAW" type="overlay" />
