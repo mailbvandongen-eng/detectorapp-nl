@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Info, X, FileText, BookOpen, Map, Navigation, MapPin, Layers, MousePointer, Bug, ExternalLink } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useUIStore } from '../../store'
+import { version } from '../../../package.json'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useUIStore } from '../../store'
 
 type TabType = 'info' | 'functies' | 'handleiding'
 
@@ -85,7 +86,7 @@ export function InfoButton() {
                     <span className="text-sm">Meld een bug</span>
                   </a>
                   <p className="text-xs text-gray-400 text-center">
-                    DetectorApp NL v2.26.4
+                    DetectorApp NL v{version}
                   </p>
                 </section>
               </div>

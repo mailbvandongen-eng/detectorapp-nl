@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
 import { useSettingsStore } from '../../store/settingsStore'
+import { version } from '../../../package.json'
 
 // Google logo SVG component
 function GoogleLogo({ size = 18 }: { size?: number }) {
@@ -206,7 +207,7 @@ export function HamburgerMenu() {
 
               {/* Version Footer */}
               <div className="px-3 py-1.5 bg-gray-50 text-center text-gray-400" style={{ fontSize: '0.65em' }}>
-                DetectorApp NL v2.26.4
+                DetectorApp NL v{version}
               </div>
             </motion.div>
           </>

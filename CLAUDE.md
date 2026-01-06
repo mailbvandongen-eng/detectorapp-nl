@@ -11,14 +11,21 @@
 ## EERSTE ACTIE BIJ NIEUWE SESSIE
 **Lees ALTIJD eerst `.claude/notes.md` voor lopende taken, plannen en context uit vorige sessies!**
 
-## 🚨 VERSIE BUMPEN - ALTIJD ALLE 4 PLEKKEN!
-**Bij ELKE wijziging, update ALLE 4 plekken:**
-1. `npm version patch` (of minor/major) → `package.json`
-2. `src/main.tsx` → `const VERSION = 'X.X.X'`
-3. `src/components/UI/BuildLabel.tsx` → `v2.X.X` (linksboven op scherm)
-4. `src/components/UI/InfoButton.tsx` → `DetectorApp NL vX.X.X` (in info modal)
+## 🚨 VERSIE BUMPEN - ALLEEN NPM VERSION!
+**Bij ELKE wijziging, alleen dit commando:**
+```bash
+npm version patch   # of: minor / major
+```
 
-**Check met:** `grep -rn "2\.[0-9]" package.json src/main.tsx src/components/UI/BuildLabel.tsx src/components/UI/InfoButton.tsx`
+Alle versies komen nu uit `package.json`:
+- `src/main.tsx` → `import { version } from '../package.json'`
+- `src/components/UI/HamburgerMenu.tsx` → `import { version } from '../../../package.json'`
+- `src/components/UI/InfoButton.tsx` → `import { version } from '../../../package.json'`
+
+**Na versie bump: build en push!**
+```bash
+npm run build && git add -A && git commit -m "vX.X.X: beschrijving" && git push
+```
 
 ## Belangrijke Regels
 - **ALTIJD pushen naar GitHub na elke wijziging + versie bump**
