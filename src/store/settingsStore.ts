@@ -32,6 +32,9 @@ interface SettingsState {
   presetPanelFontScale: number  // 80-150, for Presets panel
   menuFontScale: number  // 80-130, for Hamburger menu
 
+  // Voice feedback
+  voiceFeedbackEnabled: boolean  // Speak aloud when adding vondsten
+
   // Actions
   setDefaultBackground: (bg: DefaultBackground) => void
   setShowScaleBar: (value: boolean) => void
@@ -47,6 +50,7 @@ interface SettingsState {
   setLayerPanelFontScale: (value: number) => void
   setPresetPanelFontScale: (value: number) => void
   setMenuFontScale: (value: number) => void
+  setVoiceFeedbackEnabled: (value: boolean) => void
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -67,6 +71,7 @@ export const useSettingsStore = create<SettingsState>()(
       layerPanelFontScale: 100, // Default 100%
       presetPanelFontScale: 100, // Default 100%
       menuFontScale: 100,       // Default 100%
+      voiceFeedbackEnabled: false, // Off by default
 
       // Actions
       setDefaultBackground: (defaultBackground) => set({ defaultBackground }),
@@ -82,7 +87,8 @@ export const useSettingsStore = create<SettingsState>()(
       setFontScale: (fontScale) => set({ fontScale }),
       setLayerPanelFontScale: (layerPanelFontScale) => set({ layerPanelFontScale }),
       setPresetPanelFontScale: (presetPanelFontScale) => set({ presetPanelFontScale }),
-      setMenuFontScale: (menuFontScale) => set({ menuFontScale })
+      setMenuFontScale: (menuFontScale) => set({ menuFontScale }),
+      setVoiceFeedbackEnabled: (voiceFeedbackEnabled) => set({ voiceFeedbackEnabled })
     }),
     {
       name: 'detectorapp-settings',

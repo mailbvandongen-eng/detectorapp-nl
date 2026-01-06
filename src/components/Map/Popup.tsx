@@ -4,7 +4,7 @@ import TileWMS from 'ol/source/TileWMS'
 import TileLayer from 'ol/layer/Tile'
 import { toLonLat } from 'ol/proj'
 import proj4 from 'proj4'
-import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, ExternalLink, Plus, Check, Pencil } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, ExternalLink, Plus, Check, Pencil, PersonStanding } from 'lucide-react'
 import { useMapStore } from '../../store'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
@@ -171,6 +171,7 @@ export function Popup() {
   const [currentVondstId, setCurrentVondstId] = useState<string | null>(null)
   const [editingVondst, setEditingVondst] = useState<LocalVondst | null>(null)
   const [mapsUrl, setMapsUrl] = useState<string | null>(null)
+  const [streetViewUrl, setStreetViewUrl] = useState<string | null>(null)
   const [showLayerPicker, setShowLayerPicker] = useState(false)
   const [addedToLayer, setAddedToLayer] = useState<string | null>(null)
   const [popupCoordinate, setPopupCoordinate] = useState<number[] | null>(null)
@@ -3182,6 +3183,7 @@ export function Popup() {
         const lonLat = toLonLat(evt.coordinate)
         setPopupCoordinate(lonLat) // Store lon/lat for adding to layer
         setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${lonLat[1]},${lonLat[0]}`)
+        setStreetViewUrl(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lonLat[1]},${lonLat[0]}`)
         setVisible(true)
       }
     }
@@ -3414,6 +3416,20 @@ export function Popup() {
                 </div>
               )}
 
+              {/* Street View button */}
+              {streetViewUrl && (
+                <a
+                  href={streetViewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 text-amber-500 hover:text-amber-600 transition-colors flex-shrink-0"
+                  title="Open Street View"
+                  aria-label="Open Street View"
+                >
+                  <PersonStanding size={18} />
+                </a>
+              )}
+
               {/* Open in Google Maps button */}
               {mapsUrl && (
                 <a
@@ -3421,7 +3437,7 @@ export function Popup() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1.5 text-blue-500 hover:text-blue-600 transition-colors flex-shrink-0"
-                  title="Open in Google Maps"
+                  title="Navigeer naar locatie"
                   aria-label="Open in Google Maps"
                 >
                   <ExternalLink size={18} />

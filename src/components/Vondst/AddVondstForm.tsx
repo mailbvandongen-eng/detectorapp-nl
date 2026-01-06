@@ -7,6 +7,8 @@ import { useMapStore } from '../../store/mapStore'
 import { useUIStore } from '../../store/uiStore'
 import { useCustomPointLayerStore, DEFAULT_VONDSTEN_LAYER_ID } from '../../store/customPointLayerStore'
 import { useRouteRecordingStore } from '../../store/routeRecordingStore'
+import { useSettingsStore } from '../../store/settingsStore'
+import { announceVondst } from '../../utils/voiceFeedback'
 
 interface Props {
   onClose: () => void
@@ -131,6 +133,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
   const vondstFormPhoto = useUIStore(state => state.vondstFormPhoto)
   const customLayers = useCustomPointLayerStore(state => state.layers)
   const addPointToLayer = useCustomPointLayerStore(state => state.addPoint)
+  const voiceFeedbackEnabled = useSettingsStore(state => state.voiceFeedbackEnabled)
 
   // Get active route info for linking
   const routeState = useRouteRecordingStore(state => state.state)
@@ -284,6 +287,17 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
       })
 
       const layerName = customLayers.find(l => l.id === saveTarget)?.name || 'Vondsten'
+
+      // Voice feedback
+      if (voiceFeedbackEnabled) {
+        announceVondst({
+          type: objectType,
+          material: material || undefined,
+          period: period || undefined,
+          layerName
+        })
+      }
+
       alert(`Toegevoegd aan ${layerName}! ✅`)
       onClose()
     } catch (error: any) {

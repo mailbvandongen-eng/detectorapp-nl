@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Route } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Route, Volume2, Car } from 'lucide-react'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useUIStore, useSettingsStore, usePresetStore, useSubscriptionStore } from '../../store'
+import { useUIStore, useSettingsStore, usePresetStore, useSubscriptionStore, useParkingStore } from '../../store'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { useCustomLayerStore } from '../../store/customLayerStore'
 import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
@@ -24,6 +24,7 @@ export function SettingsPanel() {
   const customLayers = useCustomLayerStore(state => state.layers)
   const { layers: customPointLayers, updateLayer: updateCustomPointLayer } = useCustomPointLayerStore()
   const { devMode, setDevMode, tier } = useSubscriptionStore()
+  const { showParkingButton, setShowParkingButton } = useParkingStore()
   const [newPresetName, setNewPresetName] = useState('')
   const [showNewPresetInput, setShowNewPresetInput] = useState(false)
   const [importModalOpen, setImportModalOpen] = useState(false)
@@ -191,6 +192,17 @@ export function SettingsPanel() {
                       checked={settings.hapticFeedback}
                       onChange={settings.setHapticFeedback}
                     />
+                    <ToggleRow
+                      label="Spraakfeedback vondsten"
+                      checked={settings.voiceFeedbackEnabled}
+                      onChange={settings.setVoiceFeedbackEnabled}
+                    />
+                    {settings.voiceFeedbackEnabled && (
+                      <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
+                        <Volume2 size={12} className="inline mr-1" />
+                        Spreekt vondst info uit bij toevoegen
+                      </p>
+                    )}
                   </Section>
 
                   {/* Development */}
@@ -450,6 +462,18 @@ export function SettingsPanel() {
                     />
                     <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
                       Neem je route op tijdens het detecteren of wandelen. Routes worden lokaal opgeslagen en kunnen als GPX geëxporteerd worden.
+                    </p>
+                  </Section>
+
+                  {/* Parkeerhulp */}
+                  <Section title="Parkeerhulp" icon={<Car size={16} />}>
+                    <ToggleRow
+                      label="Parkeerknop tonen"
+                      checked={showParkingButton}
+                      onChange={setShowParkingButton}
+                    />
+                    <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
+                      Sla op waar je auto staat en navigeer er later naar terug.
                     </p>
                   </Section>
                 </>
