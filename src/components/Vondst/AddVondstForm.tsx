@@ -459,17 +459,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {option.id === 'vondsten' ? (
-                      option.name
-                    ) : (
-                      <span className="flex items-center gap-1.5">
-                        <span
-                          className="w-3 h-3 rounded-full"
-                          style={{ backgroundColor: option.color }}
-                        />
-                        {option.name}
-                      </span>
-                    )}
+                    {option.name}
                   </button>
                 ))}
               </div>

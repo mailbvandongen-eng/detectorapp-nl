@@ -220,10 +220,6 @@ export function SettingsPanel() {
                       ) : (
                         customPointLayers.filter(l => !l.archived).map(layer => (
                           <div key={layer.id} className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-50 rounded">
-                            <div
-                              className="w-3 h-3 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: layer.color }}
-                            />
                             {renamingLayerId === layer.id ? (
                               <input
                                 type="text"

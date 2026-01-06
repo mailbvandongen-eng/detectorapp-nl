@@ -26,12 +26,6 @@ export function CustomLayerItem({ layer }: Props) {
   return (
     <div className="flex items-center justify-between py-1.5 group">
       <div className="flex items-center gap-2 flex-1 min-w-0">
-        {/* Color indicator */}
-        <div
-          className="w-3 h-3 rounded-full flex-shrink-0"
-          style={{ backgroundColor: layer.color }}
-        />
-
         {/* Layer info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1">

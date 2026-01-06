@@ -23,7 +23,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     id: 'detectie',
     name: 'Detectie',
     icon: 'Compass',
-    layers: ['AMK Monumenten', 'Gewaspercelen', 'IKAW'],
+    layers: ['AMK Monumenten', 'Gewaspercelen'],
     baseLayer: 'CartoDB (licht)',  // Explicit default base layer
     isBuiltIn: false  // Now editable like other presets
   },

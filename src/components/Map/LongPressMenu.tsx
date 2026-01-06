@@ -436,13 +436,8 @@ export function LongPressMenu() {
                                 title={isAlreadyAdded ? 'Al toegevoegd aan deze laag' : undefined}
                                 disabled={isAlreadyAdded}
                               >
-                                {isAlreadyAdded ? (
+                                {isAlreadyAdded && (
                                   <Check size={14} className="text-green-500 flex-shrink-0" />
-                                ) : (
-                                  <div
-                                    className="w-3 h-3 rounded-full flex-shrink-0"
-                                    style={{ backgroundColor: layer.color }}
-                                  />
                                 )}
                                 <span className="truncate">{layer.name}</span>
                                 <span className="text-xs text-gray-400 ml-auto">
