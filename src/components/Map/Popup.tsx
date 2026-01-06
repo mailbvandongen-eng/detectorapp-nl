@@ -400,7 +400,7 @@ export function Popup() {
 
               // Meer weten
               html += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
-              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Es_(landbouw)" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Es (landbouw)</a></div>`
+              html += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Es_(geografie)" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Es (geografie)</a></div>`
 
               results.push(html)
             }

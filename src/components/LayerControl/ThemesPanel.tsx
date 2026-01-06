@@ -82,16 +82,16 @@ export function ThemesPanel() {
               </div>
             </div>
           <div className="p-2 overflow-y-auto flex-1" style={{ fontSize: `${baseFontSize}px` }}>
-            {/* Mijn Lagen - custom point layers with orange header */}
+            {/* Mijn lagen - custom point layers with orange header */}
             {customLayers.filter(l => !l.archived).length > 0 && (
               <div className="mb-2 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-1 py-0.5 px-1 mb-1">
-                  <span className="text-orange-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Lagen</span>
+                  <span className="text-orange-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn lagen</span>
                 </div>
                 {customLayers.filter(l => !l.archived).map(layer => (
                   <button
                     key={layer.id}
-                    onClick={() => toggleVisibility(layer.id)}
+                    onClick={(e) => { e.stopPropagation(); toggleVisibility(layer.id) }}
                     className={`w-full flex items-center justify-between py-1 pl-3 pr-2 border-0 outline-none transition-colors text-left ${
                       layer.visible ? 'bg-orange-50 hover:bg-orange-100' : 'bg-transparent hover:bg-orange-50'
                     }`}

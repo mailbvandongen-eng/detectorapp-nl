@@ -28,7 +28,7 @@ export const DEFAULT_VONDSTEN_LAYER_ID = 'default-vondsten'
 // Default Vondsten layer - created on first load
 const DEFAULT_VONDSTEN_LAYER: CustomPointLayer = {
   id: DEFAULT_VONDSTEN_LAYER_ID,
-  name: 'Vondsten',
+  name: 'Mijn vondsten',
   color: '#f97316', // orange
   categories: ['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders'],
   points: [],
@@ -439,7 +439,7 @@ export const useCustomPointLayerStore = create<CustomPointLayerStore>()(
     }),
     {
       name: 'detectorapp-custom-point-layers',
-      version: 2,
+      version: 3,
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as { layers: CustomPointLayer[], colorIndex: number }
         if (version < 2) {
@@ -447,6 +447,15 @@ export const useCustomPointLayerStore = create<CustomPointLayerStore>()(
           return {
             ...state,
             layers: ensureDefaultVondstenLayer(state.layers || [])
+          }
+        }
+        if (version < 3) {
+          // Rename "Vondsten" to "Mijn vondsten"
+          return {
+            ...state,
+            layers: (state.layers || []).map(l =>
+              l.id === DEFAULT_VONDSTEN_LAYER_ID ? { ...l, name: 'Mijn vondsten' } : l
+            )
           }
         }
         return state

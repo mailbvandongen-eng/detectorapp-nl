@@ -43,7 +43,7 @@ const BUILT_IN_PRESETS: Preset[] = [
   },
   {
     id: 'romeins-midvroeg',
-    name: 'Romeins - Vroege ME',
+    name: 'Romeins - Mid vroeg',
     icon: 'Layers',
     // Percelen belangrijk voor nederzettingspatronen
     // Romeinse wegen en forten
@@ -55,12 +55,12 @@ const BUILT_IN_PRESETS: Preset[] = [
   },
   {
     id: 'midlaat-nieuwetijd',
-    name: 'Late ME - Nieuw',
+    name: 'Mid laat',
     icon: 'Grid',
     // Historische structuren en erfgoed
     layers: [
       'AMK Late ME', 'Kastelen', 'Essen', 'Rijksmonumenten',
-      'Kadastrale Grenzen', 'Oude Kernen'
+      'Gewaspercelen', 'Kadastrale Grenzen', 'Oude Kernen'
     ],
     isBuiltIn: false
   },
@@ -206,10 +206,10 @@ export const usePresetStore = create<PresetState>()(
     }),
     {
       name: 'detectorapp-presets',
-      version: 7,
+      version: 8,
       migrate: (persistedState: unknown, version: number) => {
-        // v2.10.5: Detectie heeft baseLayer, Steentijd heeft Labels Overlay
-        if (version < 7) {
+        // v2.27.1: Presets hernoemd (Romeins - Mid vroeg, Mid laat)
+        if (version < 8) {
           // Force reset all presets to new defaults
           return {
             presets: [...BUILT_IN_PRESETS]

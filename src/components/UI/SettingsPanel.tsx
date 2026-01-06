@@ -210,8 +210,8 @@ export function SettingsPanel() {
 
               {activeTab === 'lagen' && (
                 <>
-                  {/* Mijn Lagen (CustomPointLayers) */}
-                  <Section title="Mijn Lagen" icon={<Layers size={16} />} isOwn>
+                  {/* Mijn lagen (CustomPointLayers) */}
+                  <Section title="Mijn lagen" icon={<Layers size={16} />} isOwn>
                     <div className="space-y-1">
                       {customPointLayers.filter(l => !l.archived).length === 0 ? (
                         <p className="text-gray-500 py-1" style={{ fontSize: '0.75em' }}>
