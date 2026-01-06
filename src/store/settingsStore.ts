@@ -19,6 +19,9 @@ interface SettingsState {
   vondstenLocalOnly: boolean  // true = localStorage, false = Firebase
   showVondstButton: boolean   // Show/hide the add vondst button
 
+  // Route opnemen
+  showRouteRecordButton: boolean  // Show/hide the route record button
+
   // Zichtbaarheid op kaart
   showLocalVondsten: boolean  // Show/hide local vondsten markers on map
   showCustomPointLayers: boolean  // Show/hide custom point layers on map
@@ -37,6 +40,7 @@ interface SettingsState {
   setHapticFeedback: (value: boolean) => void
   setVondstenLocalOnly: (value: boolean) => void
   setShowVondstButton: (value: boolean) => void
+  setShowRouteRecordButton: (value: boolean) => void
   setShowLocalVondsten: (value: boolean) => void
   setShowCustomPointLayers: (value: boolean) => void
   setFontScale: (value: number) => void
@@ -56,6 +60,7 @@ export const useSettingsStore = create<SettingsState>()(
       hapticFeedback: true,
       vondstenLocalOnly: true,  // Default to local storage (no login needed)
       showVondstButton: false,  // Hidden by default, can enable in settings
+      showRouteRecordButton: false,  // Hidden by default, can enable in settings
       showLocalVondsten: true,  // Show vondsten markers by default
       showCustomPointLayers: true,  // Show custom point layers by default
       fontScale: 100,           // Default 100% = 14px base
@@ -71,6 +76,7 @@ export const useSettingsStore = create<SettingsState>()(
       setHapticFeedback: (hapticFeedback) => set({ hapticFeedback }),
       setVondstenLocalOnly: (vondstenLocalOnly) => set({ vondstenLocalOnly }),
       setShowVondstButton: (showVondstButton) => set({ showVondstButton }),
+      setShowRouteRecordButton: (showRouteRecordButton) => set({ showRouteRecordButton }),
       setShowLocalVondsten: (showLocalVondsten) => set({ showLocalVondsten }),
       setShowCustomPointLayers: (showCustomPointLayers) => set({ showCustomPointLayers }),
       setFontScale: (fontScale) => set({ fontScale }),

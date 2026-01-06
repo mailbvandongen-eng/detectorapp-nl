@@ -16,6 +16,7 @@ import { HamburgerMenu } from './components/UI/HamburgerMenu'
 import { InfoButton } from './components/UI/InfoButton'
 import { AddVondstForm } from './components/Vondst/AddVondstForm'
 import { AddVondstButton } from './components/Vondst/AddVondstButton'
+import { RouteRecordButton, RouteRecordingLayer } from './components/Route'
 import { LocalVondstMarkers } from './components/Vondst/LocalVondstMarkers'
 import { CustomLayerMarkers } from './components/CustomLayers'
 import { CustomPointMarkers, CreateLayerModal, AddPointModal, LayerManagerModal, LayerDashboard } from './components/CustomPoints'
@@ -50,11 +51,13 @@ function App() {
         <LocalVondstMarkers />
         <CustomLayerMarkers />
         <CustomPointMarkers />
+        <RouteRecordingLayer />
         <Popup />
         <LongPressMenu />
         <SearchBox />
         <GpsButton />
         <AddVondstButton />
+        <RouteRecordButton />
         <ZoomButtons />
         <LayerControlButton />
         <ThemesPanel />

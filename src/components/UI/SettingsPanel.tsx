@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Route } from 'lucide-react'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
@@ -439,6 +439,18 @@ export function SettingsPanel() {
                       <span>Dashboard ({vondsten.length} vondsten)</span>
                     </button>
                     <ExportButton />
+                  </Section>
+
+                  {/* Route opnemen */}
+                  <Section title="Route opnemen" icon={<Route size={16} />} isOwn>
+                    <ToggleRow
+                      label="Route knop tonen"
+                      checked={settings.showRouteRecordButton}
+                      onChange={settings.setShowRouteRecordButton}
+                    />
+                    <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
+                      Neem je route op tijdens het detecteren of wandelen. Routes worden lokaal opgeslagen en kunnen als GPX geëxporteerd worden.
+                    </p>
                   </Section>
                 </>
               )}
