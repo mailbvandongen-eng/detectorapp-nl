@@ -16,7 +16,7 @@ import { HamburgerMenu } from './components/UI/HamburgerMenu'
 import { InfoButton } from './components/UI/InfoButton'
 import { AddVondstForm } from './components/Vondst/AddVondstForm'
 import { AddVondstButton } from './components/Vondst/AddVondstButton'
-import { RouteRecordButton, RouteRecordingLayer } from './components/Route'
+import { RouteRecordButton, RouteRecordingLayer, SavedRoutesLayer, RouteDashboard } from './components/Route'
 import { LocalVondstMarkers } from './components/Vondst/LocalVondstMarkers'
 import { CustomLayerMarkers } from './components/CustomLayers'
 import { CustomPointMarkers, CreateLayerModal, AddPointModal, LayerManagerModal, LayerDashboard } from './components/CustomPoints'
@@ -43,6 +43,10 @@ function App() {
   const vondstFormLocation = useUIStore(state => state.vondstFormLocation)
   const closeVondstForm = useUIStore(state => state.closeVondstForm)
 
+  // Route dashboard state
+  const routeDashboardOpen = useUIStore(state => state.routeDashboardOpen)
+  const toggleRouteDashboard = useUIStore(state => state.toggleRouteDashboard)
+
   return (
     <PasswordGate>
       <div style={{ fontSize: `${baseFontSize}px` }}>
@@ -52,6 +56,7 @@ function App() {
         <CustomLayerMarkers />
         <CustomPointMarkers />
         <RouteRecordingLayer />
+        <SavedRoutesLayer />
         <Popup />
         <LongPressMenu />
         <SearchBox />
@@ -71,6 +76,10 @@ function App() {
         <AddPointModal />
         <LayerManagerModal />
         <LayerDashboard />
+        <RouteDashboard
+          isOpen={routeDashboardOpen}
+          onClose={toggleRouteDashboard}
+        />
         <AnimatePresence>
           {vondstFormOpen && (
             <AddVondstForm

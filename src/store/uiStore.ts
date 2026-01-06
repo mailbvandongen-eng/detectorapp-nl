@@ -26,6 +26,9 @@ interface UIState {
   layerDashboardOpen: boolean
   layerDashboardLayerId: string | null
 
+  // Route dashboard state
+  routeDashboardOpen: boolean
+
   // Collapsed categories
   collapsedCategories: Set<string>
 
@@ -54,6 +57,9 @@ interface UIState {
   closeLayerManagerModal: () => void
   openLayerDashboard: (layerId: string) => void
   closeLayerDashboard: () => void
+
+  // Route dashboard actions
+  toggleRouteDashboard: () => void
 }
 
 export const useUIStore = create<UIState>()(
@@ -76,6 +82,7 @@ export const useUIStore = create<UIState>()(
     layerManagerModalOpen: false,
     layerDashboardOpen: false,
     layerDashboardLayerId: null,
+    routeDashboardOpen: false,
     collapsedCategories: new Set<string>(),
 
     closeAllPanels: () => {
@@ -282,6 +289,13 @@ export const useUIStore = create<UIState>()(
       set(state => {
         state.layerDashboardOpen = false
         state.layerDashboardLayerId = null
+      })
+    },
+
+    // Route dashboard actions
+    toggleRouteDashboard: () => {
+      set(state => {
+        state.routeDashboardOpen = !state.routeDashboardOpen
       })
     }
   }))

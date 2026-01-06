@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Pause, Square, Route, X, Save, Clock, Ruler, Gauge } from 'lucide-react'
+import { Play, Pause, Square, Route, X, Save, Clock, Ruler, Gauge, List } from 'lucide-react'
 import { useSettingsStore } from '../../store/settingsStore'
+import { useUIStore } from '../../store/uiStore'
 import { useRouteRecordingStore, exportRouteAsGPX } from '../../store/routeRecordingStore'
 import type { RecordingState } from '../../store/routeRecordingStore'
 
 export function RouteRecordButton() {
   const showRouteRecordButton = useSettingsStore(state => state.showRouteRecordButton)
+  const toggleRouteDashboard = useUIStore(state => state.toggleRouteDashboard)
   const {
     state: recordingState,
     startRecording,
@@ -199,6 +201,28 @@ export function RouteRecordButton() {
           />
         )}
       </motion.button>
+
+      {/* Dashboard button - visible when idle and has saved routes */}
+      <AnimatePresence>
+        {recordingState === 'idle' && savedRoutes.length > 0 && (
+          <motion.button
+            className="fixed bottom-2 right-[168px] z-[1000] w-11 h-11 bg-purple-400 hover:bg-purple-500 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none"
+            initial={{ opacity: 0, scale: 0.8, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0.8, x: 20 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleRouteDashboard}
+            title={`Mijn routes (${savedRoutes.length})`}
+          >
+            <List size={18} strokeWidth={2} />
+            {/* Badge showing count */}
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-purple-600 text-xs font-bold rounded-full flex items-center justify-center shadow-sm">
+              {savedRoutes.length}
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Stop button - only visible during recording/paused */}
       <AnimatePresence>

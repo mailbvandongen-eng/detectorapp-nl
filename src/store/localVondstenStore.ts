@@ -23,6 +23,9 @@ export interface LocalVondst {
   condition?: VondstCondition // Object condition
   weight?: number // Weight in grams
   length?: number // Length in mm
+  // Route linking v2.28.0
+  routeId?: string // ID of active route when vondst was made
+  routeName?: string // Name of the route (for display even if route is deleted)
 }
 
 interface LocalVondstenState {

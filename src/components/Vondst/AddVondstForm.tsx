@@ -1,11 +1,12 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Navigation, Crosshair, Camera, X, Trash2, ChevronDown, Edit3 } from 'lucide-react'
+import { Navigation, Crosshair, Camera, X, Trash2, ChevronDown, Edit3, Route } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useGPSStore } from '../../store/gpsStore'
 import { useMapStore } from '../../store/mapStore'
 import { useUIStore } from '../../store/uiStore'
 import { useCustomPointLayerStore, DEFAULT_VONDSTEN_LAYER_ID } from '../../store/customPointLayerStore'
+import { useRouteRecordingStore } from '../../store/routeRecordingStore'
 
 interface Props {
   onClose: () => void
@@ -131,6 +132,21 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
   const customLayers = useCustomPointLayerStore(state => state.layers)
   const addPointToLayer = useCustomPointLayerStore(state => state.addPoint)
 
+  // Get active route info for linking
+  const routeState = useRouteRecordingStore(state => state.state)
+  const routeStartTime = useRouteRecordingStore(state => state.startTime)
+  const savedRoutes = useRouteRecordingStore(state => state.savedRoutes)
+
+  // Generate a temporary route name for active recording
+  const getActiveRouteName = () => {
+    if (routeState === 'idle' || !routeStartTime) return null
+    return `Route ${new Date(routeStartTime).toLocaleDateString('nl-NL')} ${new Date(routeStartTime).toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`
+  }
+
+  // Check if we're currently recording a route
+  const isRecordingRoute = routeState === 'recording' || routeState === 'paused'
+  const activeRouteName = getActiveRouteName()
+
   const [notes, setNotes] = useState('')
   const [objectType, setObjectType] = useState('')
   const [material, setMaterial] = useState('')
@@ -254,12 +270,17 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
         }
       }
 
-      // Save to custom layer
+      // Save to custom layer with optional route link
       addPointToLayer(saveTarget, {
         coordinates: [location.lng, location.lat],
         name: objectType,
         category: saveTarget === DEFAULT_VONDSTEN_LAYER_ID ? objectType : 'Overig',
-        notes: fullNotes || ''
+        notes: fullNotes || '',
+        // Link to active route if recording
+        ...(isRecordingRoute && routeStartTime ? {
+          routeId: `recording-${routeStartTime}`, // Temporary ID, will be updated when route is saved
+          routeName: activeRouteName || undefined
+        } : {})
       })
 
       const layerName = customLayers.find(l => l.id === saveTarget)?.name || 'Vondsten'

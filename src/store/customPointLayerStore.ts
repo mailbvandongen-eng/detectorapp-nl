@@ -76,6 +76,9 @@ export interface CustomPoint {
   sourceProperties?: Record<string, unknown>
   // HTML content for popup display
   popupContent?: string
+  // Route linking v2.28.0
+  routeId?: string       // ID of active route when point was created
+  routeName?: string     // Name of the route (for display)
 }
 
 export interface CustomPointLayer {

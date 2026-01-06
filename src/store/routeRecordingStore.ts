@@ -32,6 +32,13 @@ interface RouteRecordingStore {
   // Saved routes
   savedRoutes: RecordedRoute[]
 
+  // Visible routes on map
+  visibleRouteIds: Set<string>
+
+  // Auto-pause settings
+  autoPauseEnabled: boolean
+  autoPauseSeconds: number // Seconds of no movement before auto-pause
+
   // Actions
   startRecording: () => void
   pauseRecording: () => void
@@ -44,6 +51,17 @@ interface RouteRecordingStore {
   deleteRoute: (id: string) => void
   renameRoute: (id: string, name: string) => void
   clearAllRoutes: () => void
+
+  // Visibility management
+  toggleRouteVisibility: (id: string) => void
+  showRoute: (id: string) => void
+  hideRoute: (id: string) => void
+  showAllRoutes: () => void
+  hideAllRoutes: () => void
+
+  // Auto-pause settings
+  setAutoPauseEnabled: (enabled: boolean) => void
+  setAutoPauseSeconds: (seconds: number) => void
 
   // Computed values (as functions)
   getCurrentDistance: () => number
@@ -88,6 +106,9 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
       pauseStartTime: null,
       totalPausedTime: 0,
       savedRoutes: [],
+      visibleRouteIds: new Set<string>(),
+      autoPauseEnabled: false,
+      autoPauseSeconds: 120, // 2 minutes default
 
       startRecording: () => {
         set({
@@ -220,7 +241,55 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
       },
 
       clearAllRoutes: () => {
-        set({ savedRoutes: [] })
+        set({ savedRoutes: [], visibleRouteIds: new Set() })
+      },
+
+      // Visibility management
+      toggleRouteVisibility: (id) => {
+        set(state => {
+          const newSet = new Set(state.visibleRouteIds)
+          if (newSet.has(id)) {
+            newSet.delete(id)
+          } else {
+            newSet.add(id)
+          }
+          return { visibleRouteIds: newSet }
+        })
+      },
+
+      showRoute: (id) => {
+        set(state => {
+          const newSet = new Set(state.visibleRouteIds)
+          newSet.add(id)
+          return { visibleRouteIds: newSet }
+        })
+      },
+
+      hideRoute: (id) => {
+        set(state => {
+          const newSet = new Set(state.visibleRouteIds)
+          newSet.delete(id)
+          return { visibleRouteIds: newSet }
+        })
+      },
+
+      showAllRoutes: () => {
+        set(state => ({
+          visibleRouteIds: new Set(state.savedRoutes.map(r => r.id))
+        }))
+      },
+
+      hideAllRoutes: () => {
+        set({ visibleRouteIds: new Set() })
+      },
+
+      // Auto-pause settings
+      setAutoPauseEnabled: (enabled) => {
+        set({ autoPauseEnabled: enabled })
+      },
+
+      setAutoPauseSeconds: (seconds) => {
+        set({ autoPauseSeconds: seconds })
       },
 
       getCurrentDistance: () => {
@@ -255,10 +324,19 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
     }),
     {
       name: 'detectorapp-route-recording',
-      version: 1,
+      version: 2,
       partialize: (state) => ({
-        // Only persist saved routes, not current recording state
-        savedRoutes: state.savedRoutes
+        // Only persist saved routes and settings, not current recording state
+        savedRoutes: state.savedRoutes,
+        visibleRouteIds: Array.from(state.visibleRouteIds), // Convert Set to Array for JSON
+        autoPauseEnabled: state.autoPauseEnabled,
+        autoPauseSeconds: state.autoPauseSeconds
+      }),
+      merge: (persisted: any, current) => ({
+        ...current,
+        ...persisted,
+        // Convert Array back to Set
+        visibleRouteIds: new Set(persisted?.visibleRouteIds || [])
       })
     }
   )
