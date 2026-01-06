@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Route, Trash2, Download, Pencil, Eye, EyeOff, Calendar, Ruler, Clock, MapPin } from 'lucide-react'
+import { X, Route, Trash2, Download, Pencil, Eye, EyeOff, Calendar, Ruler, Clock, MapPin, Flame, Grid3x3, Crosshair, Timer, Upload, Mountain, Info, Share2 } from 'lucide-react'
 import { useRouteRecordingStore, exportRouteAsGPX } from '../../store/routeRecordingStore'
 import type { RecordedRoute } from '../../store/routeRecordingStore'
+import { ElevationProfile } from './ElevationProfile'
+import { RouteDetailsModal } from './RouteDetailsModal'
 
 // Mini map preview using canvas
 function RoutePreview({ route, size = 80 }: { route: RecordedRoute; size?: number }) {
@@ -136,10 +138,86 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
     visibleRouteIds,
     toggleRouteVisibility: storeToggleVisibility,
     showAllRoutes,
-    hideAllRoutes
+    hideAllRoutes,
+    heatmapEnabled,
+    toggleHeatmap,
+    gridEnabled,
+    toggleGrid,
+    centerGridOnCurrentLocation,
+    gridSize,
+    setGridSize,
+    autoPauseEnabled,
+    setAutoPauseEnabled,
+    autoPauseSeconds,
+    setAutoPauseSeconds,
+    importRouteFromGPX
   } = useRouteRecordingStore()
   const [renamingId, setRenamingId] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState('')
+  const [showGridSettings, setShowGridSettings] = useState(false)
+  const [showAutoPauseSettings, setShowAutoPauseSettings] = useState(false)
+  const [elevationRoute, setElevationRoute] = useState<RecordedRoute | null>(null)
+  const [detailsRoute, setDetailsRoute] = useState<RecordedRoute | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleShareRoute = async (route: RecordedRoute) => {
+    const shareText = `🗺️ ${route.name}
+
+📏 Afstand: ${formatDistance(route.totalDistance)}
+⏱️ Duur: ${formatDuration(route.totalDuration)}
+📍 ${route.points.length} GPS punten
+📅 ${formatDate(route.createdAt)}
+
+Opgenomen met DetectorApp NL`
+
+    // Try Web Share API first (mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: route.name,
+          text: shareText
+        })
+        return
+      } catch (e) {
+        // User cancelled or API not supported
+        if ((e as Error).name !== 'AbortError') {
+          console.error('Share failed:', e)
+        }
+      }
+    }
+
+    // Fallback: copy to clipboard
+    try {
+      await navigator.clipboard.writeText(shareText)
+      alert('Route info gekopieerd naar klembord!')
+    } catch (e) {
+      // Final fallback: prompt with text
+      prompt('Kopieer de route info:', shareText)
+    }
+  }
+
+  const handleImportGPX = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    try {
+      const text = await file.text()
+      const result = importRouteFromGPX(text, file.name.replace('.gpx', ''))
+
+      if (result.success) {
+        alert(`Route geïmporteerd: ${file.name}`)
+      } else {
+        alert(`Import mislukt: ${result.error}`)
+      }
+    } catch (e) {
+      alert('Fout bij lezen van bestand')
+    }
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
 
   const handleStartRename = (route: RecordedRoute) => {
     setRenamingId(route.id)
@@ -181,6 +259,7 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
   const totalDuration = savedRoutes.reduce((sum, r) => sum + r.totalDuration, 0)
 
   return (
+    <>
     <AnimatePresence>
       {isOpen && (
         <>
@@ -230,6 +309,39 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
                 </div>
                 <div className="flex gap-1">
                   <button
+                    onClick={() => setShowAutoPauseSettings(!showAutoPauseSettings)}
+                    className={`px-2 py-1 text-xs rounded transition-colors border-0 outline-none ${
+                      autoPauseEnabled
+                        ? 'bg-green-100 text-green-600'
+                        : 'text-purple-600 hover:bg-purple-100'
+                    }`}
+                    title={autoPauseEnabled ? 'Auto-pauze uit' : 'Auto-pauze aan'}
+                  >
+                    <Timer size={14} />
+                  </button>
+                  <button
+                    onClick={() => setShowGridSettings(!showGridSettings)}
+                    className={`px-2 py-1 text-xs rounded transition-colors border-0 outline-none ${
+                      gridEnabled
+                        ? 'bg-blue-100 text-blue-600'
+                        : 'text-purple-600 hover:bg-purple-100'
+                    }`}
+                    title={gridEnabled ? 'Grid verbergen' : 'Grid tonen'}
+                  >
+                    <Grid3x3 size={14} />
+                  </button>
+                  <button
+                    onClick={toggleHeatmap}
+                    className={`px-2 py-1 text-xs rounded transition-colors border-0 outline-none ${
+                      heatmapEnabled
+                        ? 'bg-orange-100 text-orange-600'
+                        : 'text-purple-600 hover:bg-purple-100'
+                    }`}
+                    title={heatmapEnabled ? 'Heatmap verbergen' : 'Heatmap tonen'}
+                  >
+                    <Flame size={14} />
+                  </button>
+                  <button
                     onClick={showAllRoutes}
                     className="px-2 py-1 text-xs text-purple-600 hover:bg-purple-100 rounded transition-colors border-0 outline-none"
                     title="Alle tonen"
@@ -246,6 +358,116 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
                 </div>
               </div>
             )}
+
+            {/* Grid settings panel */}
+            <AnimatePresence>
+              {showGridSettings && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden border-b border-purple-100"
+                >
+                  <div className="px-4 py-3 bg-blue-50 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-blue-800">Grid Assistent</span>
+                      <button
+                        onClick={toggleGrid}
+                        className={`px-3 py-1 text-xs rounded-full transition-colors border-0 outline-none ${
+                          gridEnabled
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-blue-200 text-blue-700'
+                        }`}
+                      >
+                        {gridEnabled ? 'Aan' : 'Uit'}
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={centerGridOnCurrentLocation}
+                        className="flex-1 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors border-0 outline-none flex items-center justify-center gap-2"
+                      >
+                        <Crosshair size={14} />
+                        Centreer op mijn locatie
+                      </button>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs text-blue-700">Celgrootte: {gridSize}m</label>
+                      <input
+                        type="range"
+                        min="5"
+                        max="50"
+                        step="5"
+                        value={gridSize}
+                        onChange={(e) => setGridSize(Number(e.target.value))}
+                        className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"
+                      />
+                      <div className="flex justify-between text-xs text-blue-600">
+                        <span>5m</span>
+                        <span>50m</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-blue-600">
+                      Gebruik het grid om systematisch een veld af te zoeken. Elk vak heeft een label (A1, B2, etc.) voor referentie.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Auto-pause settings panel */}
+            <AnimatePresence>
+              {showAutoPauseSettings && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden border-b border-purple-100"
+                >
+                  <div className="px-4 py-3 bg-green-50 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-green-800">Auto-pauze</span>
+                      <button
+                        onClick={() => setAutoPauseEnabled(!autoPauseEnabled)}
+                        className={`px-3 py-1 text-xs rounded-full transition-colors border-0 outline-none ${
+                          autoPauseEnabled
+                            ? 'bg-green-500 text-white'
+                            : 'bg-green-200 text-green-700'
+                        }`}
+                      >
+                        {autoPauseEnabled ? 'Aan' : 'Uit'}
+                      </button>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs text-green-700">
+                        Pauze na: {autoPauseSeconds < 60 ? `${autoPauseSeconds}s` : `${Math.floor(autoPauseSeconds / 60)}m ${autoPauseSeconds % 60}s`}
+                      </label>
+                      <input
+                        type="range"
+                        min="30"
+                        max="300"
+                        step="30"
+                        value={autoPauseSeconds}
+                        onChange={(e) => setAutoPauseSeconds(Number(e.target.value))}
+                        className="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
+                      />
+                      <div className="flex justify-between text-xs text-green-600">
+                        <span>30s</span>
+                        <span>5min</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-green-600">
+                      De opname pauzeert automatisch als je langer dan {autoPauseSeconds < 60 ? `${autoPauseSeconds} seconden` : `${Math.floor(autoPauseSeconds / 60)} minuten`} stilstaat. Ideaal voor pauzes tijdens het detecteren.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Routes list */}
             <div className="flex-1 overflow-y-auto p-3 space-y-2">
@@ -325,6 +547,27 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
                         <Pencil size={16} />
                       </button>
                       <button
+                        onClick={() => setDetailsRoute(route)}
+                        className="p-1.5 text-gray-400 hover:text-cyan-600 hover:bg-cyan-50 rounded transition-colors border-0 outline-none"
+                        title="Details & foto's"
+                      >
+                        <Info size={16} />
+                      </button>
+                      <button
+                        onClick={() => setElevationRoute(route)}
+                        className="p-1.5 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none"
+                        title="Hoogteprofiel"
+                      >
+                        <Mountain size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleShareRoute(route)}
+                        className="p-1.5 text-gray-400 hover:text-pink-600 hover:bg-pink-50 rounded transition-colors border-0 outline-none"
+                        title="Delen"
+                      >
+                        <Share2 size={16} />
+                      </button>
+                      <button
                         onClick={() => exportRouteAsGPX(route)}
                         className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded transition-colors border-0 outline-none"
                         title="Exporteer als GPX"
@@ -345,19 +588,58 @@ export function RouteDashboard({ isOpen, onClose, onViewRoute }: RouteDashboardP
             </div>
 
             {/* Footer */}
-            {savedRoutes.length > 0 && (
-              <div className="px-4 py-3 border-t border-gray-100">
+            <div className="px-4 py-3 border-t border-gray-100 space-y-2">
+              {/* Hidden file input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".gpx"
+                onChange={handleImportGPX}
+                className="hidden"
+              />
+
+              {/* Import button */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="w-full px-3 py-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors border-0 outline-none text-sm flex items-center justify-center gap-2"
+              >
+                <Upload size={16} />
+                GPX bestand importeren
+              </button>
+
+              {savedRoutes.length > 0 && (
                 <button
                   onClick={handleClearAll}
                   className="w-full px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border-0 outline-none text-sm"
                 >
                   Alle routes verwijderen
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </motion.div>
         </>
       )}
     </AnimatePresence>
+
+      {/* Elevation Profile Modal */}
+      <AnimatePresence>
+        {elevationRoute && (
+          <ElevationProfile
+            route={elevationRoute}
+            onClose={() => setElevationRoute(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Route Details Modal */}
+      <AnimatePresence>
+        {detailsRoute && (
+          <RouteDetailsModal
+            route={detailsRoute}
+            onClose={() => setDetailsRoute(null)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   )
 }

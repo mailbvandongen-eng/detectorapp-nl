@@ -21,13 +21,18 @@ export function RouteRecordButton() {
     getCurrentDuration,
     getAverageSpeed,
     currentPoints,
-    savedRoutes
+    savedRoutes,
+    autoPauseEnabled,
+    autoPauseSeconds
   } = useRouteRecordingStore()
 
   const [showStopDialog, setShowStopDialog] = useState(false)
   const [routeName, setRouteName] = useState('')
   const [showStats, setShowStats] = useState(false)
+  const [autoPaused, setAutoPaused] = useState(false)
   const watchIdRef = useRef<number | null>(null)
+  const lastPositionRef = useRef<{ lon: number; lat: number; time: number } | null>(null)
+  const autoPauseTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Format time as HH:MM:SS
   const formatTime = (ms: number) => {
@@ -54,18 +59,64 @@ export function RouteRecordButton() {
     return `${kmh.toFixed(1)} km/h`
   }
 
+  // Haversine distance calculation for auto-pause
+  const haversineDistance = (lon1: number, lat1: number, lon2: number, lat2: number): number => {
+    const R = 6371000
+    const dLat = (lat2 - lat1) * Math.PI / 180
+    const dLon = (lon2 - lon1) * Math.PI / 180
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    return R * c
+  }
+
   // Start/stop GPS watching based on recording state
   useEffect(() => {
     if (recordingState === 'recording') {
+      // Clear auto-pause state when recording resumes
+      setAutoPaused(false)
+
       // Start watching position
       if ('geolocation' in navigator && watchIdRef.current === null) {
         watchIdRef.current = navigator.geolocation.watchPosition(
           (position) => {
-            addPoint(
-              position.coords.longitude,
-              position.coords.latitude,
-              position.coords.accuracy
-            )
+            const lon = position.coords.longitude
+            const lat = position.coords.latitude
+            const now = Date.now()
+
+            addPoint(lon, lat, position.coords.accuracy)
+
+            // Auto-pause logic
+            if (autoPauseEnabled && lastPositionRef.current) {
+              const dist = haversineDistance(
+                lastPositionRef.current.lon,
+                lastPositionRef.current.lat,
+                lon,
+                lat
+              )
+
+              // If moved more than 3 meters, reset the timer
+              if (dist > 3) {
+                lastPositionRef.current = { lon, lat, time: now }
+                if (autoPauseTimerRef.current) {
+                  clearTimeout(autoPauseTimerRef.current)
+                  autoPauseTimerRef.current = null
+                }
+              } else {
+                // Check if we've been still for too long
+                const stillDuration = now - lastPositionRef.current.time
+                if (stillDuration >= autoPauseSeconds * 1000) {
+                  // Auto-pause
+                  pauseRecording()
+                  setAutoPaused(true)
+                  lastPositionRef.current = null
+                }
+              }
+            } else {
+              // Initialize last position
+              lastPositionRef.current = { lon, lat, time: now }
+            }
           },
           (error) => {
             console.error('GPS error:', error)
@@ -83,6 +134,11 @@ export function RouteRecordButton() {
         navigator.geolocation.clearWatch(watchIdRef.current)
         watchIdRef.current = null
       }
+      // Clear auto-pause timer
+      if (autoPauseTimerRef.current) {
+        clearTimeout(autoPauseTimerRef.current)
+        autoPauseTimerRef.current = null
+      }
     }
 
     // Cleanup on unmount
@@ -91,8 +147,12 @@ export function RouteRecordButton() {
         navigator.geolocation.clearWatch(watchIdRef.current)
         watchIdRef.current = null
       }
+      if (autoPauseTimerRef.current) {
+        clearTimeout(autoPauseTimerRef.current)
+        autoPauseTimerRef.current = null
+      }
     }
-  }, [recordingState, addPoint])
+  }, [recordingState, addPoint, autoPauseEnabled, autoPauseSeconds, pauseRecording])
 
   // Don't render if disabled in settings
   if (!showRouteRecordButton) return null
@@ -253,7 +313,7 @@ export function RouteRecordButton() {
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                {recordingState === 'recording' ? '● Opname' : '⏸ Gepauzeerd'}
+                {recordingState === 'recording' ? '● Opname' : autoPaused ? '⏸ Auto-pauze' : '⏸ Gepauzeerd'}
               </span>
               <button
                 onClick={() => setShowStats(false)}

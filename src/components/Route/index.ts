@@ -1,4 +1,8 @@
 export { RouteRecordButton } from './RouteRecordButton'
 export { RouteRecordingLayer } from './RouteRecordingLayer'
 export { SavedRoutesLayer } from './SavedRoutesLayer'
+export { CoverageHeatmapLayer } from './CoverageHeatmapLayer'
+export { GridOverlayLayer } from './GridOverlayLayer'
 export { RouteDashboard } from './RouteDashboard'
+export { ElevationProfile } from './ElevationProfile'
+export { RouteDetailsModal } from './RouteDetailsModal'

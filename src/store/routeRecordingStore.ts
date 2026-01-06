@@ -9,6 +9,13 @@ export interface RoutePoint {
   accuracy?: number
 }
 
+export interface RoutePhoto {
+  id: string
+  url: string // Local blob URL or external URL
+  caption?: string
+  timestamp: string
+}
+
 export interface RecordedRoute {
   id: string
   name: string
@@ -19,6 +26,8 @@ export interface RecordedRoute {
   totalDuration: number // milliseconds (excluding pauses)
   pausedDuration: number // milliseconds spent paused
   createdAt: string
+  photos?: RoutePhoto[]
+  notes?: string
 }
 
 interface RouteRecordingStore {
@@ -34,6 +43,16 @@ interface RouteRecordingStore {
 
   // Visible routes on map
   visibleRouteIds: Set<string>
+
+  // Heatmap mode
+  heatmapEnabled: boolean
+
+  // Grid overlay settings
+  gridEnabled: boolean
+  gridCenter: [number, number] | null // [lon, lat]
+  gridSize: number // meters per cell
+  gridCount: number // cells in each direction
+  gridColor: string
 
   // Auto-pause settings
   autoPauseEnabled: boolean
@@ -59,9 +78,30 @@ interface RouteRecordingStore {
   showAllRoutes: () => void
   hideAllRoutes: () => void
 
+  // Heatmap toggle
+  toggleHeatmap: () => void
+  setHeatmapEnabled: (enabled: boolean) => void
+
+  // Grid overlay
+  toggleGrid: () => void
+  setGridEnabled: (enabled: boolean) => void
+  setGridCenter: (center: [number, number] | null) => void
+  setGridSize: (size: number) => void
+  setGridCount: (count: number) => void
+  setGridColor: (color: string) => void
+  centerGridOnCurrentLocation: () => void
+
   // Auto-pause settings
   setAutoPauseEnabled: (enabled: boolean) => void
   setAutoPauseSeconds: (seconds: number) => void
+
+  // Import
+  importRouteFromGPX: (gpxString: string, name?: string) => { success: boolean; error?: string; routeId?: string }
+
+  // Route editing
+  updateRouteNotes: (id: string, notes: string) => void
+  addPhotoToRoute: (routeId: string, photo: Omit<RoutePhoto, 'id' | 'timestamp'>) => void
+  removePhotoFromRoute: (routeId: string, photoId: string) => void
 
   // Computed values (as functions)
   getCurrentDistance: () => number
@@ -107,6 +147,12 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
       totalPausedTime: 0,
       savedRoutes: [],
       visibleRouteIds: new Set<string>(),
+      heatmapEnabled: false,
+      gridEnabled: false,
+      gridCenter: null,
+      gridSize: 20, // 20 meters default
+      gridCount: 10, // 10x10 grid default
+      gridColor: 'rgba(139, 92, 246, 0.6)', // purple with transparency
       autoPauseEnabled: false,
       autoPauseSeconds: 120, // 2 minutes default
 
@@ -283,6 +329,56 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
         set({ visibleRouteIds: new Set() })
       },
 
+      // Heatmap toggle
+      toggleHeatmap: () => {
+        set(state => ({ heatmapEnabled: !state.heatmapEnabled }))
+      },
+
+      setHeatmapEnabled: (enabled) => {
+        set({ heatmapEnabled: enabled })
+      },
+
+      // Grid overlay
+      toggleGrid: () => {
+        set(state => ({ gridEnabled: !state.gridEnabled }))
+      },
+
+      setGridEnabled: (enabled) => {
+        set({ gridEnabled: enabled })
+      },
+
+      setGridCenter: (center) => {
+        set({ gridCenter: center })
+      },
+
+      setGridSize: (size) => {
+        set({ gridSize: size })
+      },
+
+      setGridCount: (count) => {
+        set({ gridCount: count })
+      },
+
+      setGridColor: (color) => {
+        set({ gridColor: color })
+      },
+
+      centerGridOnCurrentLocation: () => {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              set({
+                gridCenter: [position.coords.longitude, position.coords.latitude],
+                gridEnabled: true
+              })
+            },
+            (error) => {
+              console.error('Could not get location:', error)
+            }
+          )
+        }
+      },
+
       // Auto-pause settings
       setAutoPauseEnabled: (enabled) => {
         set({ autoPauseEnabled: enabled })
@@ -290,6 +386,118 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
 
       setAutoPauseSeconds: (seconds) => {
         set({ autoPauseSeconds: seconds })
+      },
+
+      importRouteFromGPX: (gpxString, name) => {
+        try {
+          const parser = new DOMParser()
+          const doc = parser.parseFromString(gpxString, 'application/xml')
+
+          // Check for parse errors
+          const parseError = doc.querySelector('parsererror')
+          if (parseError) {
+            return { success: false, error: 'Ongeldig XML formaat' }
+          }
+
+          // Find track points
+          const trkpts = doc.querySelectorAll('trkpt')
+          if (trkpts.length < 2) {
+            // Try waypoints if no track
+            const wpts = doc.querySelectorAll('wpt')
+            if (wpts.length < 2) {
+              return { success: false, error: 'Geen route punten gevonden in GPX bestand' }
+            }
+          }
+
+          // Parse track points or waypoints
+          const points: RoutePoint[] = []
+          const trackPoints = trkpts.length > 0 ? trkpts : doc.querySelectorAll('wpt')
+
+          trackPoints.forEach((pt) => {
+            const lat = parseFloat(pt.getAttribute('lat') || '0')
+            const lon = parseFloat(pt.getAttribute('lon') || '0')
+            const timeEl = pt.querySelector('time')
+            const timestamp = timeEl ? new Date(timeEl.textContent || '').getTime() : Date.now()
+
+            if (!isNaN(lat) && !isNaN(lon)) {
+              points.push({
+                coordinates: [lon, lat],
+                timestamp: isNaN(timestamp) ? Date.now() : timestamp
+              })
+            }
+          })
+
+          if (points.length < 2) {
+            return { success: false, error: 'Niet genoeg geldige punten in GPX bestand' }
+          }
+
+          // Get route name from GPX or use provided name
+          const gpxName = doc.querySelector('trk > name')?.textContent ||
+                          doc.querySelector('metadata > name')?.textContent ||
+                          name ||
+                          `Import ${new Date().toLocaleDateString('nl-NL')}`
+
+          // Calculate stats
+          const totalDistance = calculateTotalDistance(points)
+          const startTime = points[0].timestamp
+          const endTime = points[points.length - 1].timestamp
+          const totalDuration = endTime - startTime
+
+          const route: RecordedRoute = {
+            id: crypto.randomUUID(),
+            name: gpxName,
+            points,
+            startTime,
+            endTime,
+            totalDistance,
+            totalDuration: totalDuration > 0 ? totalDuration : 0,
+            pausedDuration: 0,
+            createdAt: new Date().toISOString()
+          }
+
+          set(state => ({
+            savedRoutes: [route, ...state.savedRoutes]
+          }))
+
+          return { success: true, routeId: route.id }
+        } catch (e) {
+          console.error('GPX import error:', e)
+          return { success: false, error: 'Fout bij importeren van GPX bestand' }
+        }
+      },
+
+      updateRouteNotes: (id, notes) => {
+        set(state => ({
+          savedRoutes: state.savedRoutes.map(r =>
+            r.id === id ? { ...r, notes } : r
+          )
+        }))
+      },
+
+      addPhotoToRoute: (routeId, photo) => {
+        const newPhoto: RoutePhoto = {
+          ...photo,
+          id: crypto.randomUUID(),
+          timestamp: new Date().toISOString()
+        }
+
+        set(state => ({
+          savedRoutes: state.savedRoutes.map(r =>
+            r.id === routeId
+              ? { ...r, photos: [...(r.photos || []), newPhoto] }
+              : r
+          )
+        }))
+      },
+
+      removePhotoFromRoute: (routeId, photoId) => {
+        set(state => ({
+          savedRoutes: state.savedRoutes.map(r =>
+            r.id === routeId
+              ? { ...r, photos: (r.photos || []).filter(p => p.id !== photoId) }
+              : r
+          )
+        }))
       },
 
       getCurrentDistance: () => {
@@ -329,6 +537,12 @@ export const useRouteRecordingStore = create<RouteRecordingStore>()(
         // Only persist saved routes and settings, not current recording state
         savedRoutes: state.savedRoutes,
         visibleRouteIds: Array.from(state.visibleRouteIds), // Convert Set to Array for JSON
+        heatmapEnabled: state.heatmapEnabled,
+        gridEnabled: state.gridEnabled,
+        gridCenter: state.gridCenter,
+        gridSize: state.gridSize,
+        gridCount: state.gridCount,
+        gridColor: state.gridColor,
         autoPauseEnabled: state.autoPauseEnabled,
         autoPauseSeconds: state.autoPauseSeconds
       }),
