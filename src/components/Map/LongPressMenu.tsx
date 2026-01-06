@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight, Check, Camera } from 'lucide-react'
+import { X, MapPin, Plus, ExternalLink, Layers, ChevronRight, Check, Camera, Settings2, Crosshair } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useMapStore } from '../../store'
 import { useUIStore } from '../../store/uiStore'
@@ -24,7 +24,7 @@ interface LongPressLocation {
 export function LongPressMenu() {
   const map = useMapStore(state => state.map)
   const openVondstForm = useUIStore(state => state.openVondstForm)
-  const { openAddPointModal, openCreateLayerModal } = useUIStore()
+  const { openAddPointModal, openCreateLayerModal, openLayerManagerModal } = useUIStore()
   const customLayers = useCustomPointLayerStore(state => state.layers)
 
   const [menuLocation, setMenuLocation] = useState<LongPressLocation | null>(null)
@@ -315,13 +315,18 @@ export function LongPressMenu() {
       const file = (e.target as HTMLInputElement).files?.[0]
       if (!file) return
 
-      // For now, just open the vondst form with the location
-      // Photo can be attached via URL after uploading to Google Photos etc.
+      // Open vondst form with location AND photo
       const [lng, lat] = menuLocation.coordinate
-      openVondstForm({ lat, lng })
+      openVondstForm({ lat, lng }, file)
     }
 
     input.click()
+    forceClose()
+  }
+
+  // Open layer manager
+  const handleManageLayers = () => {
+    openLayerManagerModal()
     forceClose()
   }
 
@@ -372,16 +377,16 @@ export function LongPressMenu() {
               {/* Add vondst */}
               <button
                 onClick={handleAddVondst}
-                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-blue-50 text-gray-700 bg-white border-0 outline-none"
+                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-orange-50 text-gray-700 bg-white border-0 outline-none"
               >
-                <Plus size={20} className="text-blue-500" />
+                <Crosshair size={20} className="text-orange-500" />
                 <span className="font-medium">Vondst toevoegen</span>
               </button>
 
               {/* Take photo */}
               <button
                 onClick={handleTakePhoto}
-                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-blue-50 text-gray-700 bg-white border-0 outline-none"
+                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-green-50 text-gray-700 bg-white border-0 outline-none"
               >
                 <Camera size={20} className="text-green-500" />
                 <span className="font-medium">Foto maken</span>
@@ -459,6 +464,15 @@ export function LongPressMenu() {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* Manage layers */}
+              <button
+                onClick={handleManageLayers}
+                className="w-full px-4 py-3 flex items-center gap-3 transition-colors hover:bg-purple-50 text-gray-700 bg-white border-0 outline-none"
+              >
+                <Settings2 size={20} className="text-purple-500" />
+                <span className="font-medium">Lagen beheren</span>
+              </button>
 
               {/* Open in Google Maps */}
               <button

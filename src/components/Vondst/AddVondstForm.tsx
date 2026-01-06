@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Navigation, Crosshair, Link } from 'lucide-react'
-import { CustomSelectWithFreeInput } from '../UI/CustomSelectWithFreeInput'
+import { Navigation, Crosshair, Camera, X, Trash2, ChevronDown, Edit3 } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
 import { useVondstenStore } from '../../store/vondstenStore'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
@@ -9,6 +8,8 @@ import { useAuthStore } from '../../store/authStore'
 import { useGPSStore } from '../../store/gpsStore'
 import { useMapStore } from '../../store/mapStore'
 import { useSettingsStore } from '../../store/settingsStore'
+import { useUIStore } from '../../store/uiStore'
+import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
 
 interface Props {
   onClose: () => void
@@ -16,6 +17,116 @@ interface Props {
 }
 
 type LocationSource = 'gps' | 'map-center' | 'map-pick'
+type SaveTarget = 'vondsten' | string // 'vondsten' or a custom layer ID
+
+// Reusable dropdown component matching app style
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+  required = false,
+  placeholder = 'Typ hier...'
+}: {
+  label: string
+  value: string
+  onChange: (value: string) => void
+  options: string[]
+  required?: boolean
+  placeholder?: string
+}) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isFreeInput, setIsFreeInput] = useState(false)
+  const [freeInputValue, setFreeInputValue] = useState('')
+
+  const isCustomValue = value && !options.includes(value)
+
+  const handleFreeInputSelect = () => {
+    setIsFreeInput(true)
+    setFreeInputValue(isCustomValue ? value : '')
+    setIsOpen(false)
+  }
+
+  const handleFreeInputSubmit = () => {
+    if (freeInputValue.trim()) {
+      onChange(freeInputValue.trim())
+    }
+    setIsFreeInput(false)
+  }
+
+  if (isFreeInput) {
+    return (
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          {label}{required && <span className="text-orange-500 ml-0.5">*</span>}
+        </label>
+        <input
+          type="text"
+          value={freeInputValue}
+          onChange={(e) => setFreeInputValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') { e.preventDefault(); handleFreeInputSubmit() }
+            if (e.key === 'Escape') setIsFreeInput(false)
+          }}
+          onBlur={handleFreeInputSubmit}
+          placeholder={placeholder}
+          autoFocus
+          className="w-full px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 focus:bg-white focus:ring-2 focus:ring-orange-500 transition-all"
+          style={{ border: 'none', outline: 'none' }}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div className="relative">
+      <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        {label}{required && <span className="text-orange-500 ml-0.5">*</span>}
+      </label>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left"
+        style={{ border: 'none', outline: 'none' }}
+      >
+        <span className={!value ? 'text-gray-400' : ''}>
+          {value || 'Selecteer...'}
+          {isCustomValue && <Edit3 size={12} className="inline ml-1 text-orange-500" />}
+        </span>
+        <ChevronDown size={16} className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg max-h-48 overflow-y-auto">
+          {/* Free input option */}
+          <button
+            type="button"
+            onClick={handleFreeInputSelect}
+            className="w-full px-3 py-2 text-left text-sm text-orange-600 hover:bg-orange-50 transition-colors flex items-center gap-2"
+            style={{ border: 'none', outline: 'none' }}
+          >
+            <Edit3 size={12} />
+            Eigen invoer...
+          </button>
+          <div className="border-t border-gray-100" />
+          {options.map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => { onChange(option); setIsOpen(false) }}
+              className={`w-full px-3 py-2 text-left text-sm transition-colors ${
+                option === value ? 'bg-orange-50 text-orange-600' : 'text-gray-600 hover:bg-gray-50'
+              }`}
+              style={{ border: 'none', outline: 'none' }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function AddVondstForm({ onClose, initialLocation }: Props) {
   const user = useAuthStore(state => state.user)
@@ -24,18 +135,35 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
   const addCloudVondst = useVondstenStore(state => state.addVondst)
   const addLocalVondst = useLocalVondstenStore(state => state.addVondst)
   const vondstenLocalOnly = useSettingsStore(state => state.vondstenLocalOnly)
+  const vondstFormPhoto = useUIStore(state => state.vondstFormPhoto)
+  const customLayers = useCustomPointLayerStore(state => state.layers)
+  const addPointToLayer = useCustomPointLayerStore(state => state.addPoint)
 
   const [notes, setNotes] = useState('')
   const [objectType, setObjectType] = useState('')
   const [material, setMaterial] = useState('')
   const [period, setPeriod] = useState('')
-  const [isPrivate, setIsPrivate] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [photoUrl, setPhotoUrl] = useState('')
   const [weight, setWeight] = useState<number | undefined>(undefined)
   const [length, setLength] = useState<number | undefined>(undefined)
+  const [saveTarget, setSaveTarget] = useState<SaveTarget>('vondsten')
 
-  // Location state - use initialLocation if provided
+  // Photo state - initialize from store
+  const [photo, setPhoto] = useState<File | null>(vondstFormPhoto)
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null)
+
+  // Generate photo preview URL
+  useEffect(() => {
+    if (photo) {
+      const url = URL.createObjectURL(photo)
+      setPhotoPreview(url)
+      return () => URL.revokeObjectURL(url)
+    } else {
+      setPhotoPreview(null)
+    }
+  }, [photo])
+
+  // Location state
   const [locationSource, setLocationSource] = useState<LocationSource>(
     initialLocation ? 'map-pick' : (gpsPosition ? 'gps' : 'map-center')
   )
@@ -52,7 +180,6 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
     if (locationSource === 'map-pick' && customLocation) {
       return customLocation
     }
-    // Fallback: map center
     if (map) {
       const center = map.getView().getCenter()
       if (center) {
@@ -80,9 +207,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
     return () => map.un('click', handleMapClick)
   }, [pickingLocation, map])
 
-  const handlePickLocation = () => {
-    setPickingLocation(true)
-  }
+  const handlePickLocation = () => setPickingLocation(true)
 
   const handleUseGPS = () => {
     if (gpsPosition) {
@@ -91,11 +216,22 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
     }
   }
 
-  // Check if objectType is valid (not empty or placeholder)
-  const isValidObjectType = objectType && objectType !== '-maak een keuze-'
+  // Handle camera capture
+  const handleTakePhoto = () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.capture = 'environment'
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (file) setPhoto(file)
+    }
+    input.click()
+  }
 
-  // Get clean values (replace placeholder with empty)
-  const getCleanValue = (val: string) => (!val || val === '-maak een keuze-') ? '' : val
+  const handleRemovePhoto = () => setPhoto(null)
+
+  const isValidObjectType = !!objectType
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -106,55 +242,57 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
       return
     }
 
-    if (!isValidObjectType) {
+    if (saveTarget === 'vondsten' && !isValidObjectType) {
       alert('Kies een objecttype')
       return
     }
 
     // For cloud storage, require user
-    if (!vondstenLocalOnly && !user) {
+    if (saveTarget === 'vondsten' && !vondstenLocalOnly && !user) {
       alert('Log in om vondsten in de cloud op te slaan')
       return
     }
 
     setSaving(true)
     try {
-      if (vondstenLocalOnly) {
-        // Save locally (no login needed)
+      if (saveTarget !== 'vondsten') {
+        // Save to custom layer
+        addPointToLayer(saveTarget, {
+          coordinates: [location.lng, location.lat],
+          name: objectType || 'Punt',
+          notes: notes || undefined
+        })
+        alert('Toegevoegd aan laag! ✅')
+      } else if (vondstenLocalOnly) {
+        // Save locally
         addLocalVondst({
-          location: {
-            lat: location.lat,
-            lng: location.lng
-          },
+          location: { lat: location.lat, lng: location.lng },
           notes,
-          objectType: getCleanValue(objectType) as any,
-          material: getCleanValue(material) as any,
-          period: getCleanValue(period) as any,
-          photoUrl: photoUrl || undefined,
+          objectType: objectType as any,
+          material: material as any,
+          period: period as any,
+          photoUrl: undefined,
           weight,
           length
         })
         alert('Vondst lokaal opgeslagen! ✅')
       } else {
-        // Save to Firebase (requires login)
-        const cleanObjectType = getCleanValue(objectType)
-        const cleanMaterial = getCleanValue(material)
-        const cleanPeriod = getCleanValue(period)
+        // Save to Firebase
         await addCloudVondst({
           userId: user!.uid,
           location: {
             lat: location.lat,
             lng: location.lng,
-            accuracy: locationSource === 'gps' ? 5 : 50 // Manual location has lower accuracy
+            accuracy: locationSource === 'gps' ? 5 : 50
           },
           timestamp: new Date().toISOString(),
           photos: [],
           notes,
-          objectType: cleanObjectType as any,
-          material: cleanMaterial as any,
-          period: cleanPeriod as any,
-          tags: [cleanPeriod.toLowerCase(), cleanObjectType.toLowerCase()].filter(Boolean),
-          private: isPrivate
+          objectType: objectType as any,
+          material: material as any,
+          period: period as any,
+          tags: [period.toLowerCase(), objectType.toLowerCase()].filter(Boolean),
+          private: true
         })
         alert('Vondst opgeslagen in cloud! ✅')
       }
@@ -166,7 +304,18 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
     }
   }
 
-  // When picking location, show minimal UI so user can see the map
+  // Layer options for save target
+  const saveTargetOptions = useMemo(() => {
+    const options = [
+      { id: 'vondsten', name: '📍 Vondsten', color: '#f97316' }
+    ]
+    customLayers.forEach(layer => {
+      options.push({ id: layer.id, name: layer.name, color: layer.color })
+    })
+    return options
+  }, [customLayers])
+
+  // When picking location, show minimal UI
   if (pickingLocation) {
     return (
       <motion.div
@@ -175,7 +324,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
         animate={{ y: 0 }}
         exit={{ y: 100 }}
       >
-        <div className="bg-orange-500 text-white rounded-lg shadow-xl p-4 flex items-center justify-between max-w-md mx-auto">
+        <div className="bg-orange-500 text-white rounded-xl shadow-xl p-4 flex items-center justify-between max-w-md mx-auto">
           <div className="flex items-center gap-3">
             <Crosshair size={24} className="animate-pulse" />
             <div>
@@ -185,7 +334,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
           </div>
           <button
             onClick={() => setPickingLocation(false)}
-            className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+            className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors border-0 outline-none"
           >
             Annuleren
           </button>
@@ -202,172 +351,249 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden flex flex-col"
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
       >
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-3 flex justify-between items-center">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-4 flex justify-between items-center flex-shrink-0">
           <h2 className="text-lg font-semibold">Nieuwe Vondst</h2>
-          <button onClick={onClose} className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none">&times;</button>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors border-0 outline-none"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-4 space-y-3">
-          {/* Location display and buttons */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Locatie</label>
-            {/* Show current location */}
-            {effectiveLocation && (
-              <div className="bg-blue-50 rounded px-3 py-2 mb-2">
-                <div className="text-xs text-blue-800 font-mono">
-                  {effectiveLocation.lat.toFixed(6)}°N, {effectiveLocation.lng.toFixed(6)}°E
+        {/* Content */}
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
+          <div className="p-5 space-y-4">
+
+            {/* Photo section */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Foto</label>
+              {photoPreview ? (
+                <div className="relative">
+                  <img
+                    src={photoPreview}
+                    alt="Vondst"
+                    className="w-full h-40 object-cover rounded-xl"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemovePhoto}
+                    className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors border-0 outline-none shadow-lg"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
-                <div className="text-xs text-blue-600 mt-0.5">
-                  {locationSource === 'gps' ? '📍 GPS locatie' :
-                   locationSource === 'map-pick' ? '🎯 Gekozen op kaart' :
-                   '🗺️ Kaart midden'}
-                </div>
-              </div>
-            )}
-            {!effectiveLocation && (
-              <div className="bg-red-50 rounded px-3 py-2 mb-2">
-                <div className="text-xs text-red-600">Geen locatie beschikbaar</div>
-              </div>
-            )}
-            <div className="flex gap-2">
-              {gpsPosition && locationSource !== 'gps' && (
+              ) : (
                 <button
                   type="button"
-                  onClick={handleUseGPS}
-                  className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs bg-white text-green-700 rounded hover:bg-blue-50 transition-colors border-0 outline-none"
+                  onClick={handleTakePhoto}
+                  className="w-full h-32 bg-gray-50 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-gray-100 transition-colors text-gray-500 border-2 border-dashed border-gray-200"
+                  style={{ outline: 'none' }}
                 >
-                  <Navigation size={14} />
-                  <span>GPS gebruiken</span>
+                  <Camera size={32} />
+                  <span className="text-sm">Maak een foto</span>
                 </button>
               )}
-              <button
-                type="button"
-                onClick={handlePickLocation}
-                className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs text-blue-700 rounded hover:bg-blue-50 transition-colors bg-white outline-none border-0"
-              >
-                <Crosshair size={14} />
-                <span>Kies op kaart</span>
-              </button>
             </div>
-          </div>
 
-          {/* Object Type */}
-          <CustomSelectWithFreeInput
-            label="Objecttype"
-            value={objectType}
-            onChange={setObjectType}
-            options={['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders']}
-            required
-            placeholder="Typ objecttype..."
-          />
-
-          {/* Material */}
-          <CustomSelectWithFreeInput
-            label="Materiaal"
-            value={material}
-            onChange={setMaterial}
-            options={['Brons', 'IJzer', 'Zilver', 'Goud', 'Keramiek', 'Steen', 'Glas', 'Onbekend']}
-            placeholder="Typ materiaal..."
-          />
-
-          {/* Period */}
-          <CustomSelectWithFreeInput
-            label="Periode"
-            value={period}
-            onChange={setPeriod}
-            options={['Romeins (12 v.Chr.-450 n.Chr.)', 'IJzertijd', 'Middeleeuws (450-1500)', 'Nieuwetijd (1500-1800)', 'Modern (1800+)', 'Onbekend']}
-            placeholder="Typ periode..."
-          />
-
-          {/* Weight & Length */}
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className="block text-sm text-gray-600 mb-1">Gewicht (g)</label>
-              <input
-                type="number"
-                value={weight ?? ''}
-                onChange={(e) => setWeight(e.target.value ? parseFloat(e.target.value) : undefined)}
-                className="w-full rounded px-3 py-1.5 bg-white outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
-                style={{ border: 'none' }}
-                min="0"
-                step="0.1"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm text-gray-600 mb-1">Lengte (mm)</label>
-              <input
-                type="number"
-                value={length ?? ''}
-                onChange={(e) => setLength(e.target.value ? parseFloat(e.target.value) : undefined)}
-                className="w-full rounded px-3 py-1.5 bg-white outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
-                style={{ border: 'none' }}
-                min="0"
-                step="0.1"
-              />
-            </div>
-          </div>
-
-          {/* Photo URL */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1 flex items-center gap-1">
-              <Link size={12} className="text-blue-500" />
-              Foto link
-            </label>
-            <input
-              type="url"
-              value={photoUrl}
-              onChange={(e) => setPhotoUrl(e.target.value)}
-              className="w-full rounded px-3 py-1.5 bg-white outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors"
-              style={{ border: 'none' }}
-              placeholder="Bijvoorbeeld https://photos.google.com/..."
-            />
-          </div>
-
-          {/* Notes */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Notities</label>
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              className="w-full rounded px-3 py-1.5 h-16 bg-white outline-none text-sm text-gray-600 hover:bg-blue-50 transition-colors resize-none"
-              style={{ border: 'none' }}
-              placeholder="Beschrijving..."
-            />
-          </div>
-
-          {/* Storage info */}
-          <div className={`rounded px-3 py-2 ${vondstenLocalOnly ? 'bg-gray-50' : 'bg-green-50'}`}>
-            <p className={`text-xs ${vondstenLocalOnly ? 'text-gray-500' : 'text-green-700'}`}>
-              {vondstenLocalOnly ? (
-                <>💾 Vondsten worden <strong>lokaal</strong> opgeslagen op dit apparaat.</>
-              ) : user ? (
-                <>☁️ Opslaan naar cloud ({user.displayName || user.email})</>
-              ) : (
-                <>☁️ Cloud opslag geselecteerd - log in om op te slaan</>
+            {/* Location */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Locatie</label>
+              {effectiveLocation && (
+                <div className="bg-orange-50 rounded-xl px-4 py-3 mb-2">
+                  <div className="text-sm text-orange-800 font-mono">
+                    {effectiveLocation.lat.toFixed(6)}°N, {effectiveLocation.lng.toFixed(6)}°E
+                  </div>
+                  <div className="text-xs text-orange-600 mt-1">
+                    {locationSource === 'gps' ? '📍 GPS locatie' :
+                     locationSource === 'map-pick' ? '🎯 Gekozen op kaart' :
+                     '🗺️ Kaart midden'}
+                  </div>
+                </div>
               )}
-            </p>
+              {!effectiveLocation && (
+                <div className="bg-red-50 rounded-xl px-4 py-3 mb-2">
+                  <div className="text-sm text-red-600">Geen locatie beschikbaar</div>
+                </div>
+              )}
+              <div className="flex gap-2">
+                {gpsPosition && locationSource !== 'gps' && (
+                  <button
+                    type="button"
+                    onClick={handleUseGPS}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-sm bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors border-0 outline-none"
+                  >
+                    <Navigation size={16} />
+                    GPS
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={handlePickLocation}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors border-0 outline-none"
+                >
+                  <Crosshair size={16} />
+                  Kies op kaart
+                </button>
+              </div>
+            </div>
+
+            {/* Save target */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Opslaan naar</label>
+              <div className="flex flex-wrap gap-2">
+                {saveTargetOptions.map(option => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setSaveTarget(option.id)}
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all border-0 outline-none ${
+                      saveTarget === option.id
+                        ? 'bg-gray-800 text-white shadow-md'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    {option.id === 'vondsten' ? (
+                      option.name
+                    ) : (
+                      <span className="flex items-center gap-1.5">
+                        <span
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: option.color }}
+                        />
+                        {option.name}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Object Type - only for vondsten */}
+            {saveTarget === 'vondsten' && (
+              <SelectField
+                label="Objecttype"
+                value={objectType}
+                onChange={setObjectType}
+                options={['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders']}
+                required
+                placeholder="Typ objecttype..."
+              />
+            )}
+
+            {/* Name field for custom layers */}
+            {saveTarget !== 'vondsten' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Naam<span className="text-orange-500 ml-0.5">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={objectType}
+                  onChange={(e) => setObjectType(e.target.value)}
+                  placeholder="Naam van het punt..."
+                  className="w-full px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 focus:bg-white focus:ring-2 focus:ring-orange-500 transition-all"
+                  style={{ border: 'none', outline: 'none' }}
+                />
+              </div>
+            )}
+
+            {/* Material & Period - only for vondsten */}
+            {saveTarget === 'vondsten' && (
+              <>
+                <SelectField
+                  label="Materiaal"
+                  value={material}
+                  onChange={setMaterial}
+                  options={['Brons', 'IJzer', 'Zilver', 'Goud', 'Koper', 'Lood', 'Tin', 'Keramiek', 'Steen', 'Glas', 'Bot', 'Hout', 'Leer', 'Onbekend']}
+                  placeholder="Typ materiaal..."
+                />
+
+                <SelectField
+                  label="Periode"
+                  value={period}
+                  onChange={setPeriod}
+                  options={['Steentijd', 'Bronstijd', 'IJzertijd', 'Romeins', 'Middeleeuws', 'Nieuwetijd', 'Modern', 'Onbekend']}
+                  placeholder="Typ periode..."
+                />
+
+                {/* Weight & Length */}
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Gewicht (g)</label>
+                    <input
+                      type="number"
+                      value={weight ?? ''}
+                      onChange={(e) => setWeight(e.target.value ? parseFloat(e.target.value) : undefined)}
+                      className="w-full px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 focus:bg-white focus:ring-2 focus:ring-orange-500 transition-all"
+                      style={{ border: 'none', outline: 'none' }}
+                      min="0"
+                      step="0.1"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Lengte (mm)</label>
+                    <input
+                      type="number"
+                      value={length ?? ''}
+                      onChange={(e) => setLength(e.target.value ? parseFloat(e.target.value) : undefined)}
+                      className="w-full px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 focus:bg-white focus:ring-2 focus:ring-orange-500 transition-all"
+                      style={{ border: 'none', outline: 'none' }}
+                      min="0"
+                      step="0.1"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Notes */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Notities</label>
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="w-full px-3 py-2.5 bg-gray-50 rounded-lg text-gray-700 focus:bg-white focus:ring-2 focus:ring-orange-500 transition-all resize-none h-20"
+                style={{ border: 'none', outline: 'none' }}
+                placeholder="Beschrijving, context, vindplaats details..."
+              />
+            </div>
+
+            {/* Storage info - only for vondsten */}
+            {saveTarget === 'vondsten' && (
+              <div className={`rounded-xl px-4 py-3 ${vondstenLocalOnly ? 'bg-gray-50' : 'bg-green-50'}`}>
+                <p className={`text-sm ${vondstenLocalOnly ? 'text-gray-600' : 'text-green-700'}`}>
+                  {vondstenLocalOnly ? (
+                    <>💾 Lokaal opgeslagen op dit apparaat</>
+                  ) : user ? (
+                    <>☁️ Cloud sync met {user.displayName || user.email}</>
+                  ) : (
+                    <>☁️ Cloud geselecteerd - log in om op te slaan</>
+                  )}
+                </p>
+              </div>
+            )}
           </div>
 
-          {/* Submit */}
-          <div className="flex gap-2">
+          {/* Footer buttons */}
+          <div className="p-5 pt-0 flex gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-1.5 rounded hover:bg-blue-50 transition-colors bg-white outline-none text-sm text-gray-600"
-              style={{ border: 'none' }}
+              className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors font-medium border-0 outline-none"
             >
               Annuleren
             </button>
             <button
               type="submit"
-              disabled={saving || !effectiveLocation || pickingLocation || !isValidObjectType}
-              className="flex-1 px-4 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 outline-none text-sm"
-              style={{ border: 'none' }}
+              disabled={saving || !effectiveLocation || pickingLocation || (saveTarget === 'vondsten' && !isValidObjectType) || (saveTarget !== 'vondsten' && !objectType)}
+              className="flex-1 px-4 py-3 bg-orange-500 text-white rounded-xl hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium border-0 outline-none"
             >
               {saving ? 'Opslaan...' : 'Opslaan'}
             </button>

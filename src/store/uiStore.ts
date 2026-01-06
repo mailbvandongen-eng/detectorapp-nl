@@ -14,6 +14,7 @@ interface UIState {
   // Vondst form state
   vondstFormOpen: boolean
   vondstFormLocation: { lat: number; lng: number } | null
+  vondstFormPhoto: File | null
   vondstDashboardOpen: boolean
 
   // Custom point layer state
@@ -40,7 +41,7 @@ interface UIState {
   toggleCategory: (category: string) => void
   setLayerControlOpen: (open: boolean) => void
   setLegendOpen: (open: boolean) => void
-  openVondstForm: (location?: { lat: number; lng: number }) => void
+  openVondstForm: (location?: { lat: number; lng: number }, photo?: File) => void
   closeVondstForm: () => void
   toggleVondstDashboard: () => void
 
@@ -66,6 +67,7 @@ export const useUIStore = create<UIState>()(
     presetsPanelOpen: false,
     vondstFormOpen: false,
     vondstFormLocation: null,
+    vondstFormPhoto: null,
     vondstDashboardOpen: false,
     createLayerModalOpen: false,
     addPointModalOpen: false,
@@ -190,7 +192,7 @@ export const useUIStore = create<UIState>()(
       })
     },
 
-    openVondstForm: (location) => {
+    openVondstForm: (location, photo) => {
       set(state => {
         // Close all panels first
         state.backgroundsPanelOpen = false
@@ -201,6 +203,7 @@ export const useUIStore = create<UIState>()(
         // Open vondst form
         state.vondstFormOpen = true
         state.vondstFormLocation = location || null
+        state.vondstFormPhoto = photo || null
       })
     },
 
@@ -208,6 +211,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         state.vondstFormOpen = false
         state.vondstFormLocation = null
+        state.vondstFormPhoto = null
       })
     },
 
