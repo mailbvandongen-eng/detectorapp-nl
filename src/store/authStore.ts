@@ -12,6 +12,7 @@ import { useSettingsStore } from './settingsStore'
 
 interface AuthState {
   user: User | null
+  accessToken: string | null  // For Google Fit API
   loading: boolean
   error: string | null
   initialized: boolean
@@ -19,6 +20,7 @@ interface AuthState {
   setUser: (user: User | null) => void
   setLoading: (loading: boolean) => void
   setError: (error: string | null) => void
+  setAccessToken: (token: string | null) => void
   signInWithGoogle: () => Promise<void>
   logout: () => Promise<void>
   initAuth: () => void
@@ -27,6 +29,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   immer((set, get) => ({
     user: null,
+    accessToken: null,
     loading: false,  // Don't show spinner on initial load
     error: null,
     initialized: false,
@@ -50,11 +53,25 @@ export const useAuthStore = create<AuthState>()(
       })
     },
 
+    setAccessToken: (token) => {
+      set(state => {
+        state.accessToken = token
+      })
+    },
+
     signInWithGoogle: async () => {
       set(state => { state.loading = true; state.error = null })
       try {
         const provider = new GoogleAuthProvider()
-        await signInWithPopup(auth, provider)
+        // Add Google Fit scope for step count access
+        provider.addScope('https://www.googleapis.com/auth/fitness.activity.read')
+        const result = await signInWithPopup(auth, provider)
+        // Get the access token for Google Fit API calls
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        if (credential?.accessToken) {
+          set(state => { state.accessToken = credential.accessToken || null })
+          console.log('🏃 Google Fit toegang verkregen')
+        }
         // User will be set by onAuthStateChanged
       } catch (error: any) {
         console.error('Google sign-in error:', error)
@@ -69,6 +86,7 @@ export const useAuthStore = create<AuthState>()(
       set(state => { state.loading = true })
       try {
         await signOut(auth)
+        set(state => { state.accessToken = null })
         // User will be set to null by onAuthStateChanged
       } catch (error: any) {
         console.error('Logout error:', error)
