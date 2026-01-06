@@ -48,13 +48,21 @@ export interface PhotoData {
   pendingUpload?: boolean    // True when offline, needs sync
 }
 
+// Geometry types for storing complex shapes
+export type GeometryType = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon'
+
+export interface FeatureGeometry {
+  type: GeometryType
+  coordinates: number[] | number[][] | number[][][] | number[][][][]
+}
+
 export interface CustomPoint {
   id: string
   name: string
   category: string
   notes: string
   url?: string
-  coordinates: [number, number] // [lon, lat] WGS84
+  coordinates: [number, number] // [lon, lat] WGS84 - center point for display
   createdAt: string
   // POI management fields
   status: PointStatus
@@ -62,6 +70,12 @@ export interface CustomPoint {
   sourceId?: string      // original feature ID from source layer
   // Photo support
   photos?: PhotoData[]
+  // Full geometry support (for polygons, lines, etc.)
+  geometry?: FeatureGeometry  // Full geometry if not just a point
+  // Original properties from source feature
+  sourceProperties?: Record<string, unknown>
+  // HTML content for popup display
+  popupContent?: string
 }
 
 export interface CustomPointLayer {

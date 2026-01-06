@@ -8,7 +8,7 @@ import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, External
 import { useMapStore } from '../../store'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
-import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
+import { useCustomPointLayerStore, type FeatureGeometry, type GeometryType } from '../../store/customPointLayerStore'
 import { ROMEINSE_FORTEN_INFO, GENERIEK_FORT_INFO, FORT_TYPE_LABELS } from '../../data/romeinseFortenInfo'
 import type { MapBrowserEvent } from 'ol'
 
@@ -161,7 +161,7 @@ export function Popup() {
   const removeVondst = useLocalVondstenStore(state => state.removeVondst)
   const updateVondst = useLocalVondstenStore(state => state.updateVondst)
   const vondsten = useLocalVondstenStore(state => state.vondsten)
-  const { layers: customLayers, addPoint: addPointToLayer } = useCustomPointLayerStore()
+  const { layers: customLayers, addPoint: addPointToLayer, addLayer: createNewLayer } = useCustomPointLayerStore()
   const [allContents, setAllContents] = useState<string[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(false)
@@ -174,6 +174,22 @@ export function Popup() {
   const [showLayerPicker, setShowLayerPicker] = useState(false)
   const [addedToLayer, setAddedToLayer] = useState<string | null>(null)
   const [popupCoordinate, setPopupCoordinate] = useState<number[] | null>(null)
+  // Store current feature's geometry and properties for "add to layer"
+  const [popupFeatureData, setPopupFeatureData] = useState<{
+    geometry?: FeatureGeometry
+    properties?: Record<string, unknown>
+    popupHtml?: string
+  } | null>(null)
+  const [showNewLayerInput, setShowNewLayerInput] = useState(false)
+  const [newLayerName, setNewLayerName] = useState('')
+  // Store feature data for each popup content (parallel to allContents)
+  const [allFeatureData, setAllFeatureData] = useState<Array<{
+    geometry?: FeatureGeometry
+    properties?: Record<string, unknown>
+    popupHtml?: string
+  } | null>>([])
+  // Get current feature data based on index
+  const currentFeatureData = allFeatureData[currentIndex] || null
   // Popup text scale: 100 = normal, 120 = 20% bigger, etc
   const [textScale, setTextScale] = useState(() => {
     const saved = localStorage.getItem('popupTextScale')
@@ -1716,6 +1732,22 @@ export function Popup() {
     const handleClick = async (evt: MapBrowserEvent<any>) => {
       // Collect all popup contents from all sources
       const collectedContents: string[] = []
+      // Parallel array for feature data (geometry + properties)
+      const collectedFeatureData: Array<{
+        geometry?: FeatureGeometry
+        properties?: Record<string, unknown>
+        popupHtml?: string
+      } | null> = []
+
+      // Helper to extract geometry from OpenLayers feature
+      const extractGeometry = (olGeometry: any): FeatureGeometry | undefined => {
+        if (!olGeometry) return undefined
+        const type = olGeometry.getType() as GeometryType
+        // Convert to WGS84 (lon/lat) coordinates
+        const cloned = olGeometry.clone().transform('EPSG:3857', 'EPSG:4326')
+        const coords = cloned.getCoordinates()
+        return { type, coordinates: coords }
+      }
 
       // Query AHN height in parallel with feature lookup
       const heightPromise = queryAHNHeight(evt.coordinate)
@@ -1747,6 +1779,7 @@ export function Popup() {
             ${v.photoUrl ? `<br/><a href="${v.photoUrl}" target="_blank" rel="noopener" class="text-blue-600 hover:underline text-sm">📷 Bekijk foto</a>` : ''}
             <br/><span class="text-xs text-gray-400">${new Date(v.timestamp).toLocaleDateString('nl-NL')}</span>`
           collectedContents.push(vondstHtml)
+          collectedFeatureData.push(null) // Vondsten don't need to be added to layers
           setCurrentVondstId(v.id)
           continue
         }
@@ -1755,12 +1788,28 @@ export function Popup() {
         if (dataProps.layerType === 'customPoint' && dataProps.customPoint) {
           const point = dataProps.customPoint
           const layerName = dataProps.customLayerName || 'Mijn Laag'
-          let pointHtml = `<strong>${point.name}</strong>`
-          pointHtml += `<br/><span class="text-xs text-gray-500">${layerName}</span>`
-          if (point.category) {
-            pointHtml += `<br/><span class="text-sm text-gray-600"><strong>Categorie:</strong> ${point.category}</span>`
+          const layerColor = dataProps.customLayerColor || '#f97316'
+
+          let pointHtml = ''
+
+          // If this point has stored popup content (from adding a monument/feature), show that
+          if (point.popupContent) {
+            // Show original popup content with layer badge
+            pointHtml = `<div class="flex items-center gap-2 mb-2 pb-2 border-b border-gray-100">
+              <span class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: ${layerColor}"></span>
+              <span class="text-xs font-medium" style="color: ${layerColor}">${layerName}</span>
+            </div>`
+            pointHtml += point.popupContent
+          } else {
+            // Standard custom point display
+            pointHtml = `<strong>${point.name}</strong>`
+            pointHtml += `<br/><span class="text-xs text-gray-500">${layerName}</span>`
+            if (point.category && point.category !== 'Overig') {
+              pointHtml += `<br/><span class="text-sm text-gray-600"><strong>Categorie:</strong> ${point.category}</span>`
+            }
           }
-          // Photos display
+
+          // Photos display (always show if available)
           if (point.photos && point.photos.length > 0) {
             pointHtml += `<div class="flex flex-wrap gap-1 my-2">`
             for (const photo of point.photos.slice(0, 3)) {
@@ -1774,7 +1823,9 @@ export function Popup() {
             }
             pointHtml += `</div>`
           }
-          if (point.notes) {
+
+          // Notes (always show if available and no popup content)
+          if (point.notes && !point.popupContent) {
             pointHtml += `<br/><span class="text-sm text-gray-600 mt-1">${point.notes}</span>`
           }
           if (point.url) {
@@ -1782,6 +1833,7 @@ export function Popup() {
           }
           pointHtml += `<br/><span class="text-xs text-gray-400">${new Date(point.createdAt).toLocaleDateString('nl-NL')}</span>`
           collectedContents.push(pointHtml)
+          collectedFeatureData.push(null) // Custom points are already stored
           continue
         }
 
@@ -1831,6 +1883,12 @@ export function Popup() {
           }
 
           collectedContents.push(html)
+          // Capture geometry and properties for imported layers (allow adding to other layers)
+          collectedFeatureData.push({
+            geometry: extractGeometry(geometry),
+            properties: dataProps,
+            popupHtml: html
+          })
           continue
         }
 
@@ -1838,6 +1896,12 @@ export function Popup() {
         if (dataProps.kwaliteitswaarde && dataProps.kwaliteitswaarde.includes('archeologische waarde')) {
           const amkHtml = formatAMKPopup(dataProps)
           collectedContents.push(amkHtml)
+          // Capture AMK geometry for adding to layers
+          collectedFeatureData.push({
+            geometry: extractGeometry(geometry),
+            properties: dataProps,
+            popupHtml: amkHtml
+          })
           continue
         }
 
@@ -1911,6 +1975,12 @@ export function Popup() {
           }
 
           collectedContents.push(fortHtml)
+          // Capture fort geometry for adding to layers
+          collectedFeatureData.push({
+            geometry: extractGeometry(geometry),
+            properties: dataProps,
+            popupHtml: fortHtml
+          })
           continue
         }
 
@@ -3059,12 +3129,22 @@ export function Popup() {
         }
 
         collectedContents.push(html)
+        // Capture geometry for generic vector features
+        collectedFeatureData.push({
+          geometry: extractGeometry(geometry),
+          properties: dataProps,
+          popupHtml: html
+        })
       }
 
       // Also query WMS layers (they may have info even with vector features)
       const viewResolution = map.getView().getResolution() || 1
       const wmsResults = await queryWMSLayers(evt.coordinate, viewResolution)
       collectedContents.push(...wmsResults)
+      // WMS results don't have local geometry (only point coordinate)
+      for (const _wms of wmsResults) {
+        collectedFeatureData.push(null)
+      }
 
       // If no features found anywhere, check for just height info
       const height = await heightPromise
@@ -3075,6 +3155,7 @@ export function Popup() {
             <span class="text-sm font-medium text-blue-600">${height.toFixed(2)} m NAP</span>
           </div>`
         collectedContents.push(heightHtml)
+        collectedFeatureData.push(null) // Height-only doesn't have geometry
       }
 
       // Add height info to first popup if we have features
@@ -3088,11 +3169,14 @@ export function Popup() {
       // Show popup if we found any content
       if (collectedContents.length > 0) {
         setAllContents(collectedContents)
+        setAllFeatureData(collectedFeatureData) // Store feature geometries
         setCurrentIndex(0)
         console.log(`📌 KLIK OPGESLAGEN: [${evt.coordinate[0].toFixed(0)}, ${evt.coordinate[1].toFixed(0)}]`)
         setParcelCoordinate(evt.coordinate) // Store coordinate for height map
         setShowingHeightMap(false) // Reset height map state
         setShowLayerPicker(false) // Reset layer picker
+        setShowNewLayerInput(false) // Reset new layer input
+        setNewLayerName('') // Clear new layer name
         setAddedToLayer(null) // Reset added to layer confirmation
         // Generate Google Maps URL for navigation
         const lonLat = toLonLat(evt.coordinate)
@@ -3187,7 +3271,7 @@ export function Popup() {
               </span>
 
               {/* Add to layer button - oranje voor eigen lagen */}
-              {popupCoordinate && customLayers.filter(l => !l.archived).length > 0 && (
+              {popupCoordinate && (
                 <div className="relative">
                   <button
                     onClick={() => setShowLayerPicker(!showLayerPicker)}
@@ -3204,31 +3288,127 @@ export function Popup() {
 
                   {/* Layer picker dropdown */}
                   {showLayerPicker && (
-                    <div className="absolute right-0 top-8 z-50 bg-white rounded-lg shadow-md py-1 min-w-[160px] max-w-[200px]">
+                    <div className="absolute right-0 top-8 z-50 bg-white rounded-lg shadow-md py-1 min-w-[180px] max-w-[220px]">
                       <div className="px-3 py-1 text-xs text-gray-400 font-medium">Toevoegen aan:</div>
-                      {customLayers.filter(l => !l.archived).map(layer => (
-                        <button
-                          key={layer.id}
-                          onClick={() => {
-                            // Add point to layer
-                            addPointToLayer(layer.id, {
-                              name: extractedTitle || 'Punt',
-                              category: 'Overig',
-                              notes: '',
-                              url: undefined,
-                              coordinates: [popupCoordinate[0], popupCoordinate[1]],
-                              sourceLayer: extractedTitle,
-                            })
-                            setShowLayerPicker(false)
-                            setAddedToLayer(layer.name)
-                            // Auto-hide confirmation after 2 seconds
-                            setTimeout(() => setAddedToLayer(null), 2000)
-                          }}
-                          className="w-full px-3 py-1.5 text-left text-sm text-gray-700 hover:bg-blue-50 border-0 outline-none bg-transparent"
-                        >
-                          <span className="truncate">{layer.name}</span>
-                        </button>
-                      ))}
+                      {/* Scrollable layer list */}
+                      <div className="max-h-[200px] overflow-y-auto">
+                        {customLayers.filter(l => !l.archived).map(layer => (
+                          <button
+                            key={layer.id}
+                            onClick={() => {
+                              // Add point to layer - include full geometry if available
+                              const featureData = currentFeatureData
+                              addPointToLayer(layer.id, {
+                                name: extractedTitle || 'Punt',
+                                category: 'Overig',
+                                notes: '',
+                                url: undefined,
+                                coordinates: [popupCoordinate[0], popupCoordinate[1]],
+                                sourceLayer: extractedTitle,
+                                // Include full geometry and properties if available
+                                geometry: featureData?.geometry,
+                                sourceProperties: featureData?.properties,
+                                popupContent: featureData?.popupHtml,
+                              })
+                              setShowLayerPicker(false)
+                              setAddedToLayer(layer.name)
+                              setTimeout(() => setAddedToLayer(null), 2000)
+                            }}
+                            className="w-full px-3 py-1.5 text-left text-sm text-gray-700 hover:bg-blue-50 border-0 outline-none bg-transparent flex items-center gap-2"
+                          >
+                            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: layer.color }}></span>
+                            <span className="truncate">{layer.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                      {/* Nieuwe laag maken optie */}
+                      <div className="border-t border-gray-100 mt-1 pt-1">
+                        {showNewLayerInput ? (
+                          <div className="px-2 py-1">
+                            <input
+                              type="text"
+                              value={newLayerName}
+                              onChange={(e) => setNewLayerName(e.target.value)}
+                              placeholder="Naam nieuwe laag..."
+                              className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-orange-400"
+                              autoFocus
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' && newLayerName.trim()) {
+                                  // Create new layer and add point
+                                  const newLayerId = createNewLayer(newLayerName.trim())
+                                  const featureData = currentFeatureData
+                                  addPointToLayer(newLayerId, {
+                                    name: extractedTitle || 'Punt',
+                                    category: 'Overig',
+                                    notes: '',
+                                    url: undefined,
+                                    coordinates: [popupCoordinate[0], popupCoordinate[1]],
+                                    sourceLayer: extractedTitle,
+                                    geometry: featureData?.geometry,
+                                    sourceProperties: featureData?.properties,
+                                    popupContent: featureData?.popupHtml,
+                                  })
+                                  setShowLayerPicker(false)
+                                  setShowNewLayerInput(false)
+                                  setNewLayerName('')
+                                  setAddedToLayer(newLayerName.trim())
+                                  setTimeout(() => setAddedToLayer(null), 2000)
+                                } else if (e.key === 'Escape') {
+                                  setShowNewLayerInput(false)
+                                  setNewLayerName('')
+                                }
+                              }}
+                            />
+                            <div className="flex gap-1 mt-1">
+                              <button
+                                onClick={() => {
+                                  if (newLayerName.trim()) {
+                                    const newLayerId = createNewLayer(newLayerName.trim())
+                                    const featureData = currentFeatureData
+                                    addPointToLayer(newLayerId, {
+                                      name: extractedTitle || 'Punt',
+                                      category: 'Overig',
+                                      notes: '',
+                                      url: undefined,
+                                      coordinates: [popupCoordinate[0], popupCoordinate[1]],
+                                      sourceLayer: extractedTitle,
+                                      geometry: featureData?.geometry,
+                                      sourceProperties: featureData?.properties,
+                                      popupContent: featureData?.popupHtml,
+                                    })
+                                    setShowLayerPicker(false)
+                                    setShowNewLayerInput(false)
+                                    setNewLayerName('')
+                                    setAddedToLayer(newLayerName.trim())
+                                    setTimeout(() => setAddedToLayer(null), 2000)
+                                  }
+                                }}
+                                disabled={!newLayerName.trim()}
+                                className="flex-1 px-2 py-1 text-xs bg-orange-500 text-white rounded disabled:opacity-50"
+                              >
+                                Toevoegen
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setShowNewLayerInput(false)
+                                  setNewLayerName('')
+                                }}
+                                className="px-2 py-1 text-xs text-gray-500 hover:text-gray-700"
+                              >
+                                Annuleer
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => setShowNewLayerInput(true)}
+                            className="w-full px-3 py-1.5 text-left text-sm text-orange-600 hover:bg-orange-50 border-0 outline-none bg-transparent flex items-center gap-2"
+                          >
+                            <Plus size={14} />
+                            <span>Nieuwe laag maken...</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

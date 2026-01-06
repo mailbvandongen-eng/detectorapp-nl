@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { useMapStore, useSettingsStore } from '../../store'
-import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
+import { useCustomPointLayerStore, type FeatureGeometry } from '../../store/customPointLayerStore'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { Feature } from 'ol'
-import { Point } from 'ol/geom'
+import { Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon } from 'ol/geom'
 import { fromLonLat } from 'ol/proj'
 import { Style, Circle, Fill, Stroke, Text } from 'ol/style'
+import type { Geometry } from 'ol/geom'
 
 // Category icons (first letter)
 const CATEGORY_LABELS: Record<string, string> = {
@@ -15,6 +16,41 @@ const CATEGORY_LABELS: Record<string, string> = {
   'Erfgoed': 'E',
   'Monument': 'Mo',
   'Overig': '•'
+}
+
+// Helper to convert FeatureGeometry (WGS84) to OpenLayers geometry (EPSG:3857)
+function createOLGeometry(geometry: FeatureGeometry): Geometry {
+  const { type, coordinates } = geometry
+
+  // Transform coordinates from WGS84 [lon, lat] to Web Mercator
+  const transformCoords = (coords: any): any => {
+    if (typeof coords[0] === 'number') {
+      // Single coordinate [lon, lat]
+      return fromLonLat(coords as [number, number])
+    }
+    // Nested array - recurse
+    return coords.map(transformCoords)
+  }
+
+  const webMercatorCoords = transformCoords(coordinates)
+
+  switch (type) {
+    case 'Point':
+      return new Point(webMercatorCoords)
+    case 'LineString':
+      return new LineString(webMercatorCoords)
+    case 'Polygon':
+      return new Polygon(webMercatorCoords)
+    case 'MultiPoint':
+      return new MultiPoint(webMercatorCoords)
+    case 'MultiLineString':
+      return new MultiLineString(webMercatorCoords)
+    case 'MultiPolygon':
+      return new MultiPolygon(webMercatorCoords)
+    default:
+      // Fallback to point
+      return new Point(fromLonLat(coordinates as [number, number]))
+  }
 }
 
 export function CustomPointMarkers() {
@@ -42,8 +78,18 @@ export function CustomPointMarkers() {
 
       // Add features for each point
       customLayer.points.forEach(point => {
+        // Use full geometry if available, otherwise create point from coordinates
+        let olGeometry: Geometry
+        const hasFullGeometry = point.geometry && point.geometry.type !== 'Point'
+
+        if (point.geometry) {
+          olGeometry = createOLGeometry(point.geometry)
+        } else {
+          olGeometry = new Point(fromLonLat(point.coordinates))
+        }
+
         const feature = new Feature({
-          geometry: new Point(fromLonLat(point.coordinates)),
+          geometry: olGeometry,
           // Store data for popup
           layerType: 'customPoint',
           customPoint: point,
@@ -54,37 +100,63 @@ export function CustomPointMarkers() {
 
         const label = CATEGORY_LABELS[point.category] || point.category.charAt(0).toUpperCase()
 
-        // Zoom-dependent style function
-        feature.setStyle((_, resolution) => {
-          const baseRadius = 12
-          const minRadius = 6
-          const maxRadius = 14
-
-          let radius = baseRadius
-          if (resolution > 50) {
-            radius = minRadius
-          } else if (resolution > 10) {
-            radius = Math.max(minRadius, baseRadius - (resolution - 10) / 10)
-          } else if (resolution < 2) {
-            radius = maxRadius
-          }
-
-          const fontSize = Math.max(8, Math.min(12, radius - 2))
-
-          return new Style({
-            image: new Circle({
-              radius,
-              fill: new Fill({ color: customLayer.color }),
-              stroke: new Stroke({ color: '#ffffff', width: radius > 8 ? 2 : 1 })
-            }),
-            text: radius >= 8 ? new Text({
-              text: label,
-              font: `bold ${fontSize}px sans-serif`,
-              fill: new Fill({ color: '#ffffff' }),
-              offsetY: 1
-            }) : undefined
+        // Style depends on geometry type
+        if (hasFullGeometry) {
+          // Style for polygons, lines, etc.
+          const geometryType = point.geometry!.type
+          feature.setStyle(() => {
+            if (geometryType === 'Polygon' || geometryType === 'MultiPolygon') {
+              return new Style({
+                fill: new Fill({ color: customLayer.color + '40' }), // 25% opacity fill
+                stroke: new Stroke({ color: customLayer.color, width: 2 })
+              })
+            } else if (geometryType === 'LineString' || geometryType === 'MultiLineString') {
+              return new Style({
+                stroke: new Stroke({ color: customLayer.color, width: 3 })
+              })
+            }
+            // MultiPoint or other - use circle style
+            return new Style({
+              image: new Circle({
+                radius: 8,
+                fill: new Fill({ color: customLayer.color }),
+                stroke: new Stroke({ color: '#ffffff', width: 2 })
+              })
+            })
           })
-        })
+        } else {
+          // Zoom-dependent style function for points
+          feature.setStyle((_, resolution) => {
+            const baseRadius = 12
+            const minRadius = 6
+            const maxRadius = 14
+
+            let radius = baseRadius
+            if (resolution > 50) {
+              radius = minRadius
+            } else if (resolution > 10) {
+              radius = Math.max(minRadius, baseRadius - (resolution - 10) / 10)
+            } else if (resolution < 2) {
+              radius = maxRadius
+            }
+
+            const fontSize = Math.max(8, Math.min(12, radius - 2))
+
+            return new Style({
+              image: new Circle({
+                radius,
+                fill: new Fill({ color: customLayer.color }),
+                stroke: new Stroke({ color: '#ffffff', width: radius > 8 ? 2 : 1 })
+              }),
+              text: radius >= 8 ? new Text({
+                text: label,
+                font: `bold ${fontSize}px sans-serif`,
+                fill: new Fill({ color: '#ffffff' }),
+                offsetY: 1
+              }) : undefined
+            })
+          })
+        }
 
         source.addFeature(feature)
       })
