@@ -164,7 +164,7 @@ export function ThemesPanel() {
                 <LayerItem name="Grafheuvels" type="overlay" />
                 <LayerItem name="Terpen" type="overlay" />
                 {/* Paleogeografische kaarten - oud naar nieuw */}
-                <LayerGroup title="Paleokaarten (tijdreizen)" defaultExpanded={false} layerNames={['Paleokaart 9000 v.Chr.', 'Paleokaart 5500 v.Chr.', 'Paleokaart 2750 v.Chr.', 'Paleokaart 1500 v.Chr.', 'Paleokaart 500 v.Chr.', 'Paleokaart 100 n.Chr.', 'Paleokaart 800 n.Chr.']}>
+                <LayerGroup title="Paleokaarten" defaultExpanded={false} layerNames={['Paleokaart 9000 v.Chr.', 'Paleokaart 5500 v.Chr.', 'Paleokaart 2750 v.Chr.', 'Paleokaart 1500 v.Chr.', 'Paleokaart 500 v.Chr.', 'Paleokaart 100 n.Chr.', 'Paleokaart 800 n.Chr.']}>
                   <LayerItem name="Paleokaart 9000 v.Chr." type="overlay" />
                   <LayerItem name="Paleokaart 5500 v.Chr." type="overlay" />
                   <LayerItem name="Paleokaart 2750 v.Chr." type="overlay" />

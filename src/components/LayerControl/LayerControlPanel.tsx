@@ -73,7 +73,7 @@ export function LayerControlPanel() {
               </LayerGroup>
 
               {/* Paleogeografische kaarten */}
-              <LayerGroup title="Paleokaarten (tijdreizen)" defaultExpanded={false}>
+              <LayerGroup title="Paleokaarten" defaultExpanded={false}>
                 <LayerItem name="Paleokaart 800 n.Chr." type="overlay" />
                 <LayerItem name="Paleokaart 100 n.Chr." type="overlay" />
                 <LayerItem name="Paleokaart 500 v.Chr." type="overlay" />
