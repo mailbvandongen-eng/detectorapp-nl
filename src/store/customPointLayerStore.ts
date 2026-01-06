@@ -22,6 +22,21 @@ export const DEFAULT_CATEGORIES = [
   'Overig'
 ]
 
+// Default "Vondsten" layer ID - always present
+export const DEFAULT_VONDSTEN_LAYER_ID = 'default-vondsten'
+
+// Default Vondsten layer - created on first load
+const DEFAULT_VONDSTEN_LAYER: CustomPointLayer = {
+  id: DEFAULT_VONDSTEN_LAYER_ID,
+  name: 'Vondsten',
+  color: '#f97316', // orange
+  categories: ['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders'],
+  points: [],
+  visible: true,
+  archived: false,
+  createdAt: new Date().toISOString()
+}
+
 export type PointStatus = 'todo' | 'completed' | 'skipped'
 
 // Photo data for custom points
@@ -97,10 +112,19 @@ interface CustomPointLayerStore {
   clearAll: () => void
 }
 
+// Ensure default Vondsten layer exists
+const ensureDefaultVondstenLayer = (layers: CustomPointLayer[]): CustomPointLayer[] => {
+  const hasDefaultLayer = layers.some(l => l.id === DEFAULT_VONDSTEN_LAYER_ID)
+  if (!hasDefaultLayer) {
+    return [{ ...DEFAULT_VONDSTEN_LAYER, createdAt: new Date().toISOString() }, ...layers]
+  }
+  return layers
+}
+
 export const useCustomPointLayerStore = create<CustomPointLayerStore>()(
   persist(
     (set, get) => ({
-      layers: [],
+      layers: [{ ...DEFAULT_VONDSTEN_LAYER }],
       colorIndex: 0,
 
       addLayer: (name, categories = DEFAULT_CATEGORIES) => {
@@ -402,11 +426,31 @@ export const useCustomPointLayerStore = create<CustomPointLayerStore>()(
       },
 
       clearAll: () => {
-        set({ layers: [], colorIndex: 0 })
+        // Keep the default Vondsten layer, just clear its points
+        set(state => ({
+          layers: state.layers.map(l =>
+            l.id === DEFAULT_VONDSTEN_LAYER_ID
+              ? { ...l, points: [] }
+              : l
+          ).filter(l => l.id === DEFAULT_VONDSTEN_LAYER_ID),
+          colorIndex: 0
+        }))
       }
     }),
     {
-      name: 'detectorapp-custom-point-layers'
+      name: 'detectorapp-custom-point-layers',
+      version: 2,
+      migrate: (persistedState: unknown, version: number) => {
+        const state = persistedState as { layers: CustomPointLayer[], colorIndex: number }
+        if (version < 2) {
+          // Ensure default Vondsten layer exists for existing users
+          return {
+            ...state,
+            layers: ensureDefaultVondstenLayer(state.layers || [])
+          }
+        }
+        return state
+      }
     }
   )
 )

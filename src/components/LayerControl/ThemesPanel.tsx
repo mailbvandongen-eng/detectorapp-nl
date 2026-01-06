@@ -82,26 +82,18 @@ export function ThemesPanel() {
               </div>
             </div>
           <div className="p-2 overflow-y-auto flex-1" style={{ fontSize: `${baseFontSize}px` }}>
-            {/* Mijn Vondsten - blue header styling */}
-            <div className="mb-2 pb-1 border-b border-gray-100">
-              <div className="flex items-center gap-1 py-0.5 px-1 mb-1">
-                <span className="text-blue-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Vondsten</span>
-              </div>
-              <LayerItem name="Mijn Vondsten" type="overlay" />
-            </div>
-
-            {/* Mijn Lagen - custom point layers with blue header */}
+            {/* Mijn Lagen - custom point layers with orange header */}
             {customLayers.filter(l => !l.archived).length > 0 && (
               <div className="mb-2 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-1 py-0.5 px-1 mb-1">
-                  <span className="text-blue-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Lagen</span>
+                  <span className="text-orange-600 font-medium" style={{ fontSize: '0.9em' }}>Mijn Lagen</span>
                 </div>
                 {customLayers.filter(l => !l.archived).map(layer => (
                   <button
                     key={layer.id}
                     onClick={() => toggleVisibility(layer.id)}
                     className={`w-full flex items-center justify-between py-1 pl-3 pr-2 border-0 outline-none transition-colors text-left ${
-                      layer.visible ? 'bg-blue-50 hover:bg-blue-100' : 'bg-transparent hover:bg-blue-50'
+                      layer.visible ? 'bg-orange-50 hover:bg-orange-100' : 'bg-transparent hover:bg-orange-50'
                     }`}
                     style={{ fontSize: 'inherit' }}
                   >
@@ -112,8 +104,8 @@ export function ThemesPanel() {
                     <div
                       className="w-4 h-4 rounded-sm flex items-center justify-center transition-all duration-100 flex-shrink-0"
                       style={{
-                        backgroundColor: layer.visible ? '#3b82f6' : 'white',
-                        border: layer.visible ? '2px solid #3b82f6' : '2px solid #60a5fa',
+                        backgroundColor: layer.visible ? '#f97316' : 'white',
+                        border: layer.visible ? '2px solid #f97316' : '2px solid #fb923c',
                         color: 'white'
                       }}
                     >

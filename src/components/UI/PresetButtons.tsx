@@ -1,6 +1,8 @@
-import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Grid3X3, Save, LucideIcon } from 'lucide-react'
+import { useState } from 'react'
+import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Grid3X3, Save, Plus, RotateCw, Check, LucideIcon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
+import type { Preset } from '../../store/presetStore'
 import { fromLonLat } from 'ol/proj'
 
 // Icon mapping for dynamic icon rendering
@@ -96,7 +98,7 @@ export function PresetButtons() {
   const stopTracking = useGPSStore(state => state.stopTracking)
   const map = useMapStore(state => state.map)
   const { presetsPanelOpen, togglePresetsPanel, closeAllPanels } = useUIStore()
-  const { presets, applyPreset, updatePreset } = usePresetStore()
+  const { presets, applyPreset, updatePreset, createPreset, resetToDefaults } = usePresetStore()
   const visible = useLayerStore(state => state.visible)
 
   // Explicit selectors to ensure re-render on state change
@@ -105,6 +107,11 @@ export function PresetButtons() {
 
   // Calculate font size based on panel-specific fontScale
   const baseFontSize = 12 * presetPanelFontScale / 100
+
+  // State for save feedback
+  const [savedPresetId, setSavedPresetId] = useState<string | null>(null)
+  const [showAddPreset, setShowAddPreset] = useState(false)
+  const [newPresetName, setNewPresetName] = useState('')
 
   const resetAll = () => {
     // Close any open panels
@@ -146,7 +153,26 @@ export function PresetButtons() {
       .filter(([layerName, isVisible]) => isVisible && ALL_OVERLAYS.includes(layerName))
       .map(([layerName]) => layerName)
     updatePreset(presetId, { layers: currentLayers })
+
+    // Show feedback
+    setSavedPresetId(presetId)
+    setTimeout(() => setSavedPresetId(null), 2000)
     console.log(`💾 Lagen opgeslagen naar preset`)
+  }
+
+  // Add new preset with current layers
+  const handleAddPreset = () => {
+    if (!newPresetName.trim()) return
+    createPreset(newPresetName.trim(), 'Layers')
+    setNewPresetName('')
+    setShowAddPreset(false)
+  }
+
+  // Reset presets to defaults
+  const handleResetPresets = () => {
+    if (confirm('Alle presets terugzetten naar standaard? Dit verwijdert aangepaste presets.')) {
+      resetToDefaults()
+    }
   }
 
   return (
@@ -190,11 +216,11 @@ export function PresetButtons() {
               onClick={togglePresetsPanel}
             />
             <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              initial={{ opacity: 0, x: -10, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="fixed bottom-[112px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden w-[220px] backdrop-blur-sm z-[801]"
+              className="fixed bottom-[60px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden w-[240px] backdrop-blur-sm z-[801]"
             >
               {/* Header with title and font size slider - blue bg, white text */}
               <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-blue-500" style={{ fontSize: `${baseFontSize}px` }}>
@@ -218,31 +244,84 @@ export function PresetButtons() {
                   <span className="text-[11px] text-blue-200">T</span>
                 </div>
               </div>
-              <div className="p-2">
+              <div className="p-2 max-h-[300px] overflow-y-auto">
                 {presets.map(preset => {
                   const IconComponent = ICON_MAP[preset.icon] || Layers
                   const iconColor = ICON_COLORS[preset.icon] || 'text-blue-600'
                   const hoverColor = HOVER_COLORS[preset.icon] || 'hover:bg-blue-50'
+                  const isSaved = savedPresetId === preset.id
 
                   return (
                     <button
                       key={preset.id}
                       onClick={() => handleApplyPreset(preset.id)}
-                      className={`w-full h-8 flex items-center gap-2 px-2 ${hoverColor} rounded text-left transition-colors border-0 outline-none bg-transparent overflow-hidden`}
+                      className={`w-full h-8 flex items-center gap-2 px-2 ${hoverColor} rounded text-left transition-colors border-0 outline-none bg-transparent overflow-hidden ${isSaved ? 'bg-green-50' : ''}`}
                       style={{ fontSize: `${baseFontSize}px` }}
                     >
                       <IconComponent size={14} className={`${iconColor} flex-shrink-0`} />
-                      <span className="text-gray-700 truncate">{preset.name}</span>
-                      <span
-                        onClick={(e) => handleSaveToPreset(e, preset.id)}
-                        className="ml-auto p-1 hover:bg-gray-200 rounded transition-colors flex-shrink-0"
-                        title="Huidige lagen opslaan naar deze preset"
-                      >
-                        <Save size={12} className="text-gray-400 hover:text-blue-500" />
-                      </span>
+                      <span className="text-gray-700 truncate flex-1">{preset.name}</span>
+                      {isSaved ? (
+                        <span className="ml-auto p-1 flex-shrink-0">
+                          <Check size={14} className="text-green-500" />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={(e) => handleSaveToPreset(e, preset.id)}
+                          className="ml-auto p-1 hover:bg-gray-200 rounded transition-colors flex-shrink-0"
+                          title="Huidige lagen opslaan naar deze preset"
+                        >
+                          <Save size={12} className="text-gray-400 hover:text-blue-500" />
+                        </span>
+                      )}
                     </button>
                   )
                 })}
+              </div>
+
+              {/* Footer: Add preset & Reset */}
+              <div className="border-t border-gray-200 p-2">
+                {showAddPreset ? (
+                  <div className="flex gap-1">
+                    <input
+                      type="text"
+                      value={newPresetName}
+                      onChange={(e) => setNewPresetName(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleAddPreset()
+                        if (e.key === 'Escape') setShowAddPreset(false)
+                      }}
+                      placeholder="Naam preset..."
+                      autoFocus
+                      className="flex-1 px-2 py-1 text-sm rounded bg-gray-50 border-0 outline-none focus:ring-1 focus:ring-blue-400"
+                      style={{ fontSize: `${baseFontSize}px` }}
+                    />
+                    <button
+                      onClick={handleAddPreset}
+                      disabled={!newPresetName.trim()}
+                      className="px-2 py-1 bg-blue-500 text-white rounded text-sm disabled:opacity-50 border-0 outline-none"
+                    >
+                      <Check size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-1">
+                    <button
+                      onClick={() => setShowAddPreset(true)}
+                      className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none"
+                      style={{ fontSize: `${baseFontSize}px` }}
+                    >
+                      <Plus size={14} />
+                      <span>Nieuwe preset</span>
+                    </button>
+                    <button
+                      onClick={handleResetPresets}
+                      className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors border-0 outline-none"
+                      title="Presets terugzetten naar standaard"
+                    >
+                      <RotateCw size={14} />
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           </>

@@ -2,14 +2,10 @@ import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Navigation, Crosshair, Camera, X, Trash2, ChevronDown, Edit3 } from 'lucide-react'
 import { toLonLat } from 'ol/proj'
-import { useVondstenStore } from '../../store/vondstenStore'
-import { useLocalVondstenStore } from '../../store/localVondstenStore'
-import { useAuthStore } from '../../store/authStore'
 import { useGPSStore } from '../../store/gpsStore'
 import { useMapStore } from '../../store/mapStore'
-import { useSettingsStore } from '../../store/settingsStore'
 import { useUIStore } from '../../store/uiStore'
-import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
+import { useCustomPointLayerStore, DEFAULT_VONDSTEN_LAYER_ID } from '../../store/customPointLayerStore'
 
 interface Props {
   onClose: () => void
@@ -17,7 +13,7 @@ interface Props {
 }
 
 type LocationSource = 'gps' | 'map-center' | 'map-pick'
-type SaveTarget = 'vondsten' | string // 'vondsten' or a custom layer ID
+type SaveTarget = string // layer ID - defaults to DEFAULT_VONDSTEN_LAYER_ID
 
 // Reusable dropdown component matching app style
 function SelectField({
@@ -129,12 +125,8 @@ function SelectField({
 }
 
 export function AddVondstForm({ onClose, initialLocation }: Props) {
-  const user = useAuthStore(state => state.user)
   const gpsPosition = useGPSStore(state => state.position)
   const map = useMapStore(state => state.map)
-  const addCloudVondst = useVondstenStore(state => state.addVondst)
-  const addLocalVondst = useLocalVondstenStore(state => state.addVondst)
-  const vondstenLocalOnly = useSettingsStore(state => state.vondstenLocalOnly)
   const vondstFormPhoto = useUIStore(state => state.vondstFormPhoto)
   const customLayers = useCustomPointLayerStore(state => state.layers)
   const addPointToLayer = useCustomPointLayerStore(state => state.addPoint)
@@ -146,7 +138,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
   const [saving, setSaving] = useState(false)
   const [weight, setWeight] = useState<number | undefined>(undefined)
   const [length, setLength] = useState<number | undefined>(undefined)
-  const [saveTarget, setSaveTarget] = useState<SaveTarget>('vondsten')
+  const [saveTarget, setSaveTarget] = useState<SaveTarget>(DEFAULT_VONDSTEN_LAYER_ID)
 
   // Photo state - initialize from store
   const [photo, setPhoto] = useState<File | null>(vondstFormPhoto)
@@ -242,60 +234,36 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
       return
     }
 
-    if (saveTarget === 'vondsten' && !isValidObjectType) {
-      alert('Kies een objecttype')
-      return
-    }
-
-    // For cloud storage, require user
-    if (saveTarget === 'vondsten' && !vondstenLocalOnly && !user) {
-      alert('Log in om vondsten in de cloud op te slaan')
+    if (!objectType) {
+      alert('Vul een naam/type in')
       return
     }
 
     setSaving(true)
     try {
-      if (saveTarget !== 'vondsten') {
-        // Save to custom layer
-        addPointToLayer(saveTarget, {
-          coordinates: [location.lng, location.lat],
-          name: objectType || 'Punt',
-          notes: notes || undefined
-        })
-        alert('Toegevoegd aan laag! ✅')
-      } else if (vondstenLocalOnly) {
-        // Save locally
-        addLocalVondst({
-          location: { lat: location.lat, lng: location.lng },
-          notes,
-          objectType: objectType as any,
-          material: material as any,
-          period: period as any,
-          photoUrl: undefined,
-          weight,
-          length
-        })
-        alert('Vondst lokaal opgeslagen! ✅')
-      } else {
-        // Save to Firebase
-        await addCloudVondst({
-          userId: user!.uid,
-          location: {
-            lat: location.lat,
-            lng: location.lng,
-            accuracy: locationSource === 'gps' ? 5 : 50
-          },
-          timestamp: new Date().toISOString(),
-          photos: [],
-          notes,
-          objectType: objectType as any,
-          material: material as any,
-          period: period as any,
-          tags: [period.toLowerCase(), objectType.toLowerCase()].filter(Boolean),
-          private: true
-        })
-        alert('Vondst opgeslagen in cloud! ✅')
+      // Build notes with extra details for Vondsten layer
+      let fullNotes = notes || ''
+      if (saveTarget === DEFAULT_VONDSTEN_LAYER_ID) {
+        const details: string[] = []
+        if (material) details.push(`Materiaal: ${material}`)
+        if (period) details.push(`Periode: ${period}`)
+        if (weight) details.push(`Gewicht: ${weight}g`)
+        if (length) details.push(`Lengte: ${length}mm`)
+        if (details.length > 0) {
+          fullNotes = details.join(' | ') + (notes ? ` | ${notes}` : '')
+        }
       }
+
+      // Save to custom layer
+      addPointToLayer(saveTarget, {
+        coordinates: [location.lng, location.lat],
+        name: objectType,
+        category: saveTarget === DEFAULT_VONDSTEN_LAYER_ID ? objectType : 'Overig',
+        notes: fullNotes || ''
+      })
+
+      const layerName = customLayers.find(l => l.id === saveTarget)?.name || 'Vondsten'
+      alert(`Toegevoegd aan ${layerName}! ✅`)
       onClose()
     } catch (error: any) {
       alert('Fout bij opslaan: ' + error.message)
@@ -304,15 +272,13 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
     }
   }
 
-  // Layer options for save target
+  // Layer options for save target - all custom layers
   const saveTargetOptions = useMemo(() => {
-    const options = [
-      { id: 'vondsten', name: '📍 Vondsten', color: '#f97316' }
-    ]
-    customLayers.forEach(layer => {
-      options.push({ id: layer.id, name: layer.name, color: layer.color })
-    })
-    return options
+    return customLayers.map(layer => ({
+      id: layer.id,
+      name: layer.name,
+      color: layer.color
+    }))
   }, [customLayers])
 
   // When picking location, show minimal UI
@@ -465,20 +431,20 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
               </div>
             </div>
 
-            {/* Object Type - only for vondsten */}
-            {saveTarget === 'vondsten' && (
+            {/* Object Type - for Vondsten layer with dropdown */}
+            {saveTarget === DEFAULT_VONDSTEN_LAYER_ID && (
               <SelectField
-                label="Objecttype"
+                label="Type vondst"
                 value={objectType}
                 onChange={setObjectType}
                 options={['Munt', 'Aardewerk', 'Gesp', 'Fibula', 'Ring', 'Speld', 'Sieraad', 'Gereedschap', 'Wapen', 'Anders']}
                 required
-                placeholder="Typ objecttype..."
+                placeholder="Typ type vondst..."
               />
             )}
 
-            {/* Name field for custom layers */}
-            {saveTarget !== 'vondsten' && (
+            {/* Name field for other layers */}
+            {saveTarget !== DEFAULT_VONDSTEN_LAYER_ID && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   Naam<span className="text-orange-500 ml-0.5">*</span>
@@ -494,8 +460,8 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
               </div>
             )}
 
-            {/* Material & Period - only for vondsten */}
-            {saveTarget === 'vondsten' && (
+            {/* Material & Period - only for Vondsten layer */}
+            {saveTarget === DEFAULT_VONDSTEN_LAYER_ID && (
               <>
                 <SelectField
                   label="Materiaal"
@@ -555,20 +521,12 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
               />
             </div>
 
-            {/* Storage info - only for vondsten */}
-            {saveTarget === 'vondsten' && (
-              <div className={`rounded-xl px-4 py-3 ${vondstenLocalOnly ? 'bg-gray-50' : 'bg-green-50'}`}>
-                <p className={`text-sm ${vondstenLocalOnly ? 'text-gray-600' : 'text-green-700'}`}>
-                  {vondstenLocalOnly ? (
-                    <>💾 Lokaal opgeslagen op dit apparaat</>
-                  ) : user ? (
-                    <>☁️ Cloud sync met {user.displayName || user.email}</>
-                  ) : (
-                    <>☁️ Cloud geselecteerd - log in om op te slaan</>
-                  )}
-                </p>
-              </div>
-            )}
+            {/* Storage info */}
+            <div className="rounded-xl px-4 py-3 bg-orange-50">
+              <p className="text-sm text-orange-700">
+                💾 Opgeslagen in "Mijn Lagen" op dit apparaat
+              </p>
+            </div>
           </div>
 
           {/* Footer buttons */}
@@ -582,7 +540,7 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
             </button>
             <button
               type="submit"
-              disabled={saving || !effectiveLocation || pickingLocation || (saveTarget === 'vondsten' && !isValidObjectType) || (saveTarget !== 'vondsten' && !objectType)}
+              disabled={saving || !effectiveLocation || pickingLocation || !objectType}
               className="flex-1 px-4 py-3 bg-orange-500 text-white rounded-xl hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium border-0 outline-none"
             >
               {saving ? 'Opslaan...' : 'Opslaan'}
