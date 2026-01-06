@@ -132,22 +132,13 @@ function getRuiterpadStyle(resolution: number): Style {
 /**
  * Ruiterpaden in Nederland
  * Bron: OpenStreetMap via Overpass API
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createRuiterpadenLayerOL() {
-  const ruiterpadData = await fetchRuiterpaden()
-
-  const features = ruiterpadData.map(item => {
-    const coords = item.coords.map(c => fromLonLat(c))
-    const feature = new Feature({
-      geometry: new LineString(coords),
-      name: item.name || 'Ruiterpad',
-      surface: item.surface,
-      access: item.access
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -155,6 +146,32 @@ export async function createRuiterpadenLayerOL() {
     visible: false,
     style: (feature, resolution) => getRuiterpadStyle(resolution),
     zIndex: 15 // Below point markers
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Ruiterpaden: laden...')
+
+      const ruiterpadData = await fetchRuiterpaden()
+
+      const features = ruiterpadData.map(item => {
+        const coords = item.coords.map(c => fromLonLat(c))
+        const feature = new Feature({
+          geometry: new LineString(coords),
+          name: item.name || 'Ruiterpad',
+          surface: item.surface,
+          access: item.access
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Ruiterpaden geladen (${features.length} paden)`)
+    }
   })
 
   return layer

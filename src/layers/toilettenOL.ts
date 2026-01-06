@@ -156,24 +156,13 @@ function getToiletStyle(resolution: number): Style {
 /**
  * Openbare toiletten in Nederland
  * Bron: OpenStreetMap via Overpass API
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createToilettenLayerOL() {
-  const toiletData = await fetchToiletten()
-
-  const features = toiletData.map(item => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([item.lon, item.lat])),
-      name: item.name,
-      fee: item.fee,
-      access: item.access,
-      wheelchair: item.wheelchair,
-      opening_hours: item.opening_hours,
-      operator: item.operator
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -181,6 +170,34 @@ export async function createToilettenLayerOL() {
     visible: false,
     style: (feature, resolution) => getToiletStyle(resolution),
     zIndex: 28
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Toiletten: laden...')
+
+      const toiletData = await fetchToiletten()
+
+      const features = toiletData.map(item => {
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          name: item.name,
+          fee: item.fee,
+          access: item.access,
+          wheelchair: item.wheelchair,
+          opening_hours: item.opening_hours,
+          operator: item.operator
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Toiletten geladen (${features.length} locaties)`)
+    }
   })
 
   return layer

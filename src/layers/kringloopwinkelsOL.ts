@@ -133,23 +133,13 @@ async function fetchKringloopwinkels(): Promise<KringloopFeature[]> {
  * Kringloopwinkels (thrift stores) in Nederland
  * Bron: OpenStreetMap via Overpass API (live data)
  * ~840+ locaties
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createKringloopwinkelsLayerOL() {
-  const kringloopData = await fetchKringloopwinkels()
-
-  const features = kringloopData.map(item => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([item.lon, item.lat])),
-      name: item.name,
-      website: item.website,
-      phone: item.phone,
-      address: item.address,
-      opening_hours: item.opening_hours
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -157,6 +147,33 @@ export async function createKringloopwinkelsLayerOL() {
     visible: false,
     style: LAYER_STYLES.recycle(),
     zIndex: 27
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Kringloopwinkels: laden...')
+
+      const kringloopData = await fetchKringloopwinkels()
+
+      const features = kringloopData.map(item => {
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          name: item.name,
+          website: item.website,
+          phone: item.phone,
+          address: item.address,
+          opening_hours: item.opening_hours
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Kringloopwinkels geladen (${features.length} winkels)`)
+    }
   })
 
   return layer

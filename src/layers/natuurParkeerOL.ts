@@ -183,26 +183,13 @@ function getParkeerStyle(feature: any, resolution: number): Style {
  * Parkeerplaatsen bij natuurgebieden in Nederland
  * Bron: OpenStreetMap via Overpass API
  * Groen = gratis, Oranje = betaald
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createNatuurParkeerLayerOL() {
-  const parkeerData = await fetchNatuurParkeer()
-
-  const features = parkeerData.map(item => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([item.lon, item.lat])),
-      name: item.name,
-      fee: item.fee,
-      capacity: item.capacity,
-      access: item.access,
-      surface: item.surface,
-      operator: item.operator,
-      opening_hours: item.opening_hours,
-      natuurgebied: item.natuurgebied
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -210,6 +197,36 @@ export async function createNatuurParkeerLayerOL() {
     visible: false,
     style: (feature, resolution) => getParkeerStyle(feature, resolution),
     zIndex: 26
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Natuurparkeren: laden...')
+
+      const parkeerData = await fetchNatuurParkeer()
+
+      const features = parkeerData.map(item => {
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          name: item.name,
+          fee: item.fee,
+          capacity: item.capacity,
+          access: item.access,
+          surface: item.surface,
+          operator: item.operator,
+          opening_hours: item.opening_hours,
+          natuurgebied: item.natuurgebied
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Natuurparkeren geladen (${features.length} locaties)`)
+    }
   })
 
   return layer

@@ -162,23 +162,13 @@ function getStrandopgangStyle(resolution: number): Style {
 /**
  * Strandopgangen in Nederland
  * Bron: OpenStreetMap via Overpass API
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createStrandopgangenLayerOL() {
-  const strandData = await fetchStrandopgangen()
-
-  const features = strandData.map(item => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([item.lon, item.lat])),
-      name: item.name,
-      ref: item.ref,
-      access: item.access,
-      wheelchair: item.wheelchair,
-      surface: item.surface
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -186,6 +176,33 @@ export async function createStrandopgangenLayerOL() {
     visible: false,
     style: (feature, resolution) => getStrandopgangStyle(resolution),
     zIndex: 27
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Strandopgangen: laden...')
+
+      const strandData = await fetchStrandopgangen()
+
+      const features = strandData.map(item => {
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          name: item.name,
+          ref: item.ref,
+          access: item.access,
+          wheelchair: item.wheelchair,
+          surface: item.surface
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Strandopgangen geladen (${features.length} locaties)`)
+    }
   })
 
   return layer

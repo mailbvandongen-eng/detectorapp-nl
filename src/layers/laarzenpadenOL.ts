@@ -147,24 +147,13 @@ function getLaarzenpadStyle(resolution: number): Style {
  * Laarzenpaden in Nederland
  * Modderige/natte paden waar laarzen nodig zijn
  * Bron: OpenStreetMap via Overpass API
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createLaarzenpadenLayerOL() {
-  const laarzenpadData = await fetchLaarzenpaden()
-
-  const features = laarzenpadData.map(item => {
-    const coords = item.coords.map(c => fromLonLat(c))
-    const feature = new Feature({
-      geometry: new LineString(coords),
-      name: item.name || 'Laarzenpad',
-      surface: item.surface,
-      smoothness: item.smoothness,
-      trail_visibility: item.trail_visibility,
-      access: item.access
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -172,6 +161,34 @@ export async function createLaarzenpadenLayerOL() {
     visible: false,
     style: (feature, resolution) => getLaarzenpadStyle(resolution),
     zIndex: 14 // Below point markers, similar to ruiterpaden
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Laarzenpaden: laden...')
+
+      const laarzenpadData = await fetchLaarzenpaden()
+
+      const features = laarzenpadData.map(item => {
+        const coords = item.coords.map(c => fromLonLat(c))
+        const feature = new Feature({
+          geometry: new LineString(coords),
+          name: item.name || 'Laarzenpad',
+          surface: item.surface,
+          smoothness: item.smoothness,
+          trail_visibility: item.trail_visibility,
+          access: item.access
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Laarzenpaden geladen (${features.length} paden)`)
+    }
   })
 
   return layer

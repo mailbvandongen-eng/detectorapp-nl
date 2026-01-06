@@ -169,25 +169,13 @@ function getWinkelcentrumStyle(resolution: number): Style {
 /**
  * Winkelcentra in Nederland
  * Bron: OpenStreetMap via Overpass API
+ * Uses lazy loading - data is only fetched when layer is first made visible
  */
 export async function createWinkelcentraLayerOL() {
-  const winkelData = await fetchWinkelcentra()
-
-  const features = winkelData.map(item => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([item.lon, item.lat])),
-      name: item.name,
-      opening_hours: item.opening_hours,
-      website: item.website,
-      phone: item.phone,
-      address: item.address,
-      wheelchair: item.wheelchair,
-      shops: item.shops
-    })
-    return feature
-  })
-
-  const source = new VectorSource({ features })
+  // Start with empty source - data loaded lazily
+  const source = new VectorSource()
+  let dataLoaded = false
+  let isLoading = false
 
   const layer = new VectorLayer({
     source: source,
@@ -195,6 +183,35 @@ export async function createWinkelcentraLayerOL() {
     visible: false,
     style: (feature, resolution) => getWinkelcentrumStyle(resolution),
     zIndex: 28
+  })
+
+  // Lazy load data when layer becomes visible
+  layer.on('change:visible', async () => {
+    if (layer.getVisible() && !dataLoaded && !isLoading) {
+      isLoading = true
+      console.log('🔄 Winkelcentra: laden...')
+
+      const winkelData = await fetchWinkelcentra()
+
+      const features = winkelData.map(item => {
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          name: item.name,
+          opening_hours: item.opening_hours,
+          website: item.website,
+          phone: item.phone,
+          address: item.address,
+          wheelchair: item.wheelchair,
+          shops: item.shops
+        })
+        return feature
+      })
+
+      source.addFeatures(features)
+      dataLoaded = true
+      isLoading = false
+      console.log(`✓ Winkelcentra geladen (${features.length} locaties)`)
+    }
   })
 
   return layer
