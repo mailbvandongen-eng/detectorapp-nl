@@ -1906,77 +1906,37 @@ export function Popup() {
           continue
         }
 
-        // Romeinse Forten (GeoJSON) - uitgebreide popup met historische context
+        // Romeinse Forten (GeoJSON) - compacte popup zoals AMK stijl
         if (dataProps.layerType === 'romeinsFort' || dataProps.layerType === 'romeinsFortLijn') {
           const fortNaam = dataProps.Name || dataProps.name || ''
           const beschrijving = dataProps.description || ''
 
           // Zoek specifieke info voor dit fort
           const fortInfo = ROMEINSE_FORTEN_INFO[fortNaam] || null
-
-          // Bepaal of er specifieke info is of dat we generieke info moeten gebruiken
           const info = fortInfo || GENERIEK_FORT_INFO
 
-          // Header
+          // Header - fort naam
           let fortHtml = `<strong class="text-red-800">${fortInfo ? info.naam : fortNaam || 'Romeins Fort'}</strong>`
 
-          // Latijnse naam als beschikbaar
-          if (fortInfo?.latinNaam && fortInfo.latinNaam !== info.naam) {
-            fortHtml += `<br/><span class="text-sm text-red-600 italic">${fortInfo.latinNaam}</span>`
-          }
-
-          // Type en periode
-          fortHtml += `<br/><span class="text-sm text-gray-600">${FORT_TYPE_LABELS[info.type] || info.type}</span>`
-          fortHtml += `<br/><span class="text-xs text-gray-500">${info.periode}</span>`
+          // Type en periode op één regel
+          fortHtml += `<br/><span class="text-sm text-red-700">${FORT_TYPE_LABELS[info.type] || info.type}</span>`
+          fortHtml += `<br/><span class="text-sm text-gray-500">${info.periode}</span>`
 
           // Als het een lijn (fortomtrek) is, toon speciale tekst
           if (dataProps.layerType === 'romeinsFortLijn') {
-            fortHtml += `<br/><span class="text-xs text-red-700 mt-1">📍 Gereconstrueerde fortomtrek</span>`
+            fortHtml += `<br/><span class="text-sm text-red-600">📍 Gereconstrueerde fortomtrek</span>`
           }
 
-          // Beschrijving sectie
-          fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Over dit fort</span></div>`
-          fortHtml += `<div class="text-sm text-gray-700 mt-1">${info.beschrijving}</div>`
+          // Compacte beschrijving - alleen de hoofdtekst, geen secties
+          fortHtml += `<br/><span class="text-xs text-gray-600 mt-1 block">${info.beschrijving}</span>`
 
-          // Wat was hier
-          fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat was hier?</span></div>`
-          fortHtml += `<div class="text-sm text-gray-700 mt-1">${info.watWasHier}</div>`
-
-          // Wat is er nu nog te zien
-          fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat is er nu nog te zien?</span></div>`
-          fortHtml += `<div class="text-sm text-gray-700 mt-1">${info.watTeZien}</div>`
-
-          // Verwachte vondsten
-          fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Wat kun je hier vinden?</span></div>`
-          fortHtml += `<div class="text-sm text-gray-700 mt-1">${info.verwachteVondsten}</div>`
-
-          // Betekenis
-          fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Historische betekenis</span></div>`
-          fortHtml += `<div class="text-sm text-gray-700 mt-1">${info.betekenis}</div>`
-
-          // Bronnen
+          // Bronnen als link onderaan
           if (fortInfo?.bronnen && fortInfo.bronnen.length > 0) {
-            fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Bronnen</span></div>`
-            fortHtml += `<div class="text-sm text-gray-700 mt-1">`
-            fortInfo.bronnen.forEach(bron => {
-              // Extract domain name for display
-              const domain = bron.replace(/^https?:\/\//, '').split('/')[0]
-              fortHtml += `<a href="${bron}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline block">${domain}</a>`
-            })
-            fortHtml += `</div>`
-          } else {
-            // Generieke Wikipedia link
-            fortHtml += `<div class="mt-3"><span class="text-sm font-semibold text-gray-800">Meer weten?</span></div>`
-            fortHtml += `<div class="text-sm text-gray-700 mt-1"><a href="https://nl.wikipedia.org/wiki/Limes_(Romeinse_Rijk)" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia: Romeinse Limes</a></div>`
-          }
-
-          // Originele beschrijving uit GeoJSON als extra info (alleen als geen specifieke info)
-          if (!fortInfo && beschrijving) {
-            fortHtml += `<div class="mt-3"><span class="text-xs text-gray-500 italic">${beschrijving}</span></div>`
+            const domain = fortInfo.bronnen[0].replace(/^https?:\/\//, '').split('/')[0]
+            fortHtml += `<br/><a href="${fortInfo.bronnen[0]}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-xs">${domain}</a>`
           }
 
           collectedContents.push(fortHtml)
-          // Capture fort geometry for adding to layers
           collectedFeatureData.push({
             geometry: extractGeometry(geometry),
             properties: dataProps,
@@ -3288,9 +3248,9 @@ export function Popup() {
                     {addedToLayer ? <Check size={18} /> : <Plus size={18} />}
                   </button>
 
-                  {/* Layer picker dropdown */}
+                  {/* Layer picker dropdown - opent naar boven zodat het niet onder het scherm valt */}
                   {showLayerPicker && (
-                    <div className="absolute right-0 top-8 z-50 bg-white rounded-lg shadow-md py-1 min-w-[180px] max-w-[220px]">
+                    <div className="absolute right-0 bottom-full mb-1 z-50 bg-white rounded-lg shadow-md py-1 min-w-[180px] max-w-[220px]">
                       <div className="px-3 py-1 text-xs text-gray-400 font-medium">Toevoegen aan:</div>
                       {/* Scrollable layer list */}
                       <div className="max-h-[200px] overflow-y-auto">
