@@ -183,15 +183,15 @@ export const ROMEINSE_FORTEN_INFO: Record<string, RomeinsFortInfo> = {
   },
   'Nigrum Pullum': {
     naam: 'Nigrum Pullum',
-    latinNaam: 'Nigrum Pullum',
+    latinNaam: 'Nigrum Pullum (Zwarte Poel)',
     type: 'minifort',
-    periode: '1e - 3e eeuw n.Chr.',
-    beschrijving: 'Nigrum Pullum (Zwarte Poel) lag bij Zwammerdam. Het was een klein fortje in het veengebied.',
-    watWasHier: 'Een klein fort met pakhuizen. Er zijn meerdere Romeinse schepen gevonden.',
+    periode: 'ca. 40 - 270 n.Chr.',
+    beschrijving: 'Romeins castellum bij Zwammerdam aan de Oude Rijn. Garnizoen van 100-150 soldaten met pakhuizen en haven voor riviertransport. Wereldberoemd door de vondst van 6 Romeinse schepen (1971-1974) in perfecte staat - bewaard door de natte veengrond. De Zwammerdamschepen zijn de best bewaarde Romeinse rivierschepen ter wereld en tonen uniek inzicht in Romeins transport en scheepsbouw. Vondsten: schepen, leren schoeisel, houten voorwerpen, aardewerk, munten, militaria. Te zien in Rijksmuseum van Oudheden, Leiden.',
+    watWasHier: 'Een klein fort met pakhuizen en haven. Bij opgravingen werden 6 Romeinse schepen gevonden.',
     watTeZien: 'De schepen zijn in het Rijksmuseum van Oudheden in Leiden. Het terrein zelf is niet te bezoeken.',
-    verwachteVondsten: 'Scheepsonderdelen, bouwmaterialen, aardewerk, en door de natte grond organisch materiaal.',
-    betekenis: 'Beroemd om de goed bewaarde Romeinse schepen. Toont transport over water.',
-    bronnen: ['https://www.rmo.nl']
+    verwachteVondsten: 'Scheepsonderdelen, leren schoeisel, houten voorwerpen, aardewerk, munten, en door de natte veengrond organisch materiaal.',
+    betekenis: 'Wereldberoemd om de goed bewaarde Romeinse schepen. Toont transport over de Rijn.',
+    bronnen: ['https://www.rmo.nl/collectie/themas/zwammerdam']
   },
   'Stenen wachttoren Vleuterweide': {
     naam: 'Wachttoren Vleuterweide',
