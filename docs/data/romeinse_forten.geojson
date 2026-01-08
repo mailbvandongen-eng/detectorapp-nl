@@ -603,6 +603,20 @@
           50.77644
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Hazerswoude",
+        "description": "Vermoedelijke Romeinse wachtpost aan de Oude Rijn"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.5956,
+          52.1139
+        ]
+      }
     }
   ]
 }

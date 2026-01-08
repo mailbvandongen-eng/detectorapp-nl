@@ -543,6 +543,17 @@ export const ROMEINSE_FORTEN_INFO: Record<string, RomeinsFortInfo> = {
     verwachteVondsten: 'Laat-Romeinse munten, militaria, badhuisresten.',
     betekenis: 'Continuïteit van Romeinse tijd tot Karel de Grote.',
     bronnen: []
+  },
+  'Hazerswoude': {
+    naam: 'Hazerswoude-Rijndijk',
+    type: 'wachttoren',
+    periode: '1e - 3e eeuw n.Chr.',
+    beschrijving: 'Vermoedelijke Romeinse wachtpost aan de Oude Rijn bij Hazerswoude, precies op de Limes tussen Nigrum Pullum (Zwammerdam) en Praetorium Agrippinae (Valkenburg). Bij graafwerkzaamheden en veldverkenningen zijn Romeinse scherven en vondsten gedaan die wijzen op militaire aanwezigheid. De Rijndijk volgt de oude Romeinse grensweg. De exacte locatie van een eventueel wachtpost is niet vastgesteld, maar de vondsten tonen dat de Romeinen ook dit deel van de rivier bewaakten. Later ontstond hier een middeleeuwse veennederzetting (11e-12e eeuw) die de basis vormde voor het huidige dorp.',
+    watWasHier: 'Vermoedelijke wachtpost op de Limes. Romeinse grensweg langs de Oude Rijn.',
+    watTeZien: 'Rijndijk volgt Romeinse grensweg. Geen zichtbare resten.',
+    verwachteVondsten: 'Romeinse scherven, munten, militaria bij graafwerk.',
+    betekenis: 'Toont continuïteit bewaking langs de hele Limes, ook tussen de grote forten.',
+    bronnen: []
   }
 }
 
