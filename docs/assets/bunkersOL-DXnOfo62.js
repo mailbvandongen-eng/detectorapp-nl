@@ -1,2 +1,0 @@
-import{V as o,G as t,c as s}from"./index-pu7XD9SX.js";import{L as a}from"./iconStyles-CdpVywfc.js";async function p(){const e=await(await fetch("/detectorapp-nl/data/bunkers.geojson")).json(),r=new o({features:new t().readFeatures(e,{dataProjection:"EPSG:4326",featureProjection:"EPSG:3857"})});return new s({source:r,properties:{title:"WWII Bunkers"},visible:!1,zIndex:25,style:a.bunker()})}export{p as createBunkersLayerOL};
-//# sourceMappingURL=bunkersOL-DXnOfo62.js.map

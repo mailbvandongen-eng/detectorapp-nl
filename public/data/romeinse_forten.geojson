@@ -608,7 +608,7 @@
       "type": "Feature",
       "properties": {
         "Name": "Hazerswoude",
-        "description": "Vermoedelijke Romeinse wachtpost aan de Oude Rijn"
+        "description": "Bevestigde wachtpost (opgravingen 2021-2023). Eerste Romeinse mijlpaal in NL."
       },
       "geometry": {
         "type": "Point",
@@ -622,69 +622,13 @@
       "type": "Feature",
       "properties": {
         "Name": "Albaniana",
-        "description": "Castellum Albanianae met vicus"
+        "description": "Castellum 41-275 n.Chr. Locatie: Rijnplein/Castellumstraat Alphen aan den Rijn."
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           4.6588,
           52.1268
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Name": "Polder Groenendijk",
-        "description": "Inheems-Romeinse nederzetting"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.5543,
-          52.1291
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Name": "Hondsdijkse Polder",
-        "description": "Romeinse nederzetting met rijke vondsten"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.5748,
-          52.1338
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Name": "Limesweg Polder Steekt",
-        "description": "Resten van Romeinse limesweg"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.6988,
-          52.1112
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Name": "Limesweg Frederikshoeve",
-        "description": "Romeinse weg bij HSL-tracé"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.5533,
-          52.1309
         ]
       }
     }

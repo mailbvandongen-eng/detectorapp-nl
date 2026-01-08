@@ -535,70 +535,34 @@ export const ROMEINSE_FORTEN_INFO: Record<string, RomeinsFortInfo> = {
   'Hazerswoude': {
     naam: 'Hazerswoude-Rijndijk',
     type: 'wachttoren',
-    periode: '1e - 3e eeuw n.Chr.',
-    beschrijving: 'Vermoedelijke Romeinse wachtpost aan de Oude Rijn bij Hazerswoude, precies op de Limes tussen Nigrum Pullum (Zwammerdam) en Praetorium Agrippinae (Valkenburg). Bij graafwerkzaamheden en veldverkenningen zijn Romeinse scherven en vondsten gedaan die wijzen op militaire aanwezigheid. De Rijndijk volgt de oude Romeinse grensweg. De exacte locatie van een eventueel wachtpost is niet vastgesteld, maar de vondsten tonen dat de Romeinen ook dit deel van de rivier bewaakten. Later ontstond hier een middeleeuwse veennederzetting (11e-12e eeuw) die de basis vormde voor het huidige dorp.',
-    watWasHier: 'Vermoedelijke wachtpost op de Limes. Romeinse grensweg langs de Oude Rijn.',
-    watTeZien: 'Rijndijk volgt Romeinse grensweg. Geen zichtbare resten.',
-    verwachteVondsten: 'Romeinse scherven, munten, militaria bij graafwerk.',
-    betekenis: 'Toont continuïteit bewaking langs de hele Limes, ook tussen de grote forten.',
-    bronnen: []
+    periode: '2e - 3e eeuw n.Chr.',
+    beschrijving: 'Bevestigde Romeinse wachtpost langs de Limesweg bij Hazerswoude-Rijndijk. Bij opgravingen in 2021-2023 door Vestigia BV en het Rijksmuseum van Oudheden zijn spectaculaire vondsten gedaan: resten van de houten Limesweg (eiken palen uit 124-125 n.Chr.), een Romeinse dam, en aanwijzingen voor een kleine wachtpost. Bijzondere vondsten: de eerste Romeinse mijlpaal in Nederland (2023), een muntschat met 22 zilveren munten (na 166 n.Chr.), aardewerk, mantelspelden, leren schoenzolen en ca. 40.000-50.000 objecten. De locatie ligt precies tussen Albaniana (Alphen) en Matilo (Leiden).',
+    watWasHier: 'Wachtpost langs de Limesweg. Houten wegdek uit 124-125 n.Chr.',
+    watTeZien: 'Opgravingen afgerond. Vondsten naar Rijksmuseum van Oudheden.',
+    verwachteVondsten: 'Militaria, munten, aardewerk. Gebied grotendeels onderzocht.',
+    betekenis: 'Eerste Romeinse mijlpaal in Nederland. Bevestigt tracé Limesweg.',
+    bronnen: [
+      'https://www.rmo.nl/onderzoek/opgravingsprojecten/hazerswoude/',
+      'https://www.vestigia.nl/opgraving-hazerswoude-in-samenwerking-met-het-rijksmuseum-van-oudheden-en-de-gemeente-alphen-aan-den-rijn/',
+      'https://romeinsalphen.nl/themas/romeinse-weg-hazerswoude-rijndijk'
+    ]
   },
   'Albaniana': {
     naam: 'Albaniana',
     latinNaam: 'Albaniana',
     type: 'castellum',
     periode: '41 - 275 n.Chr.',
-    beschrijving: 'Groot Romeins castellum bij Alphen aan den Rijn, een van de belangrijkste forten aan de Nederlandse Limes. Het fort (Albaniana of Albanianae) lag strategisch aan de Oude Rijn en bewaakte een rivierovergang. Het garnizoen bestond uit hulptroepen (auxilia). Ten zuiden van het fort lag een uitgebreide vicus (burgernederzetting) met ambachtslieden, handelaren en soldatenfamilies. Bij opgravingen zijn veel vondsten gedaan: aardewerk, munten, militaria, bouwmateriaal. De Castellumstraat in Alphen herinnert aan de locatie. Archeon in Alphen toont reconstructies van Romeins leven.',
-    watWasHier: 'Groot castellum met vicus. Garnizoen van hulptroepen. Rivierovergang.',
-    watTeZien: 'Castellumstraat markeert locatie. Archeon toont Romeinse reconstructies.',
+    beschrijving: 'Groot Romeins castellum bij Alphen aan den Rijn, een van de belangrijkste forten aan de Nederlandse Limes. Het fort werd gesticht in 41-42 n.Chr., kort na de dood van keizer Caligula. De locatie is nauwkeurig bekend: bij het Rijnplein en Theater Castellum aan de Castellumstraat. Het fort (80x120m) was beschermd door een omgrachte aarden wal. Bij opgravingen tussen 1950 en 2002 zijn uitgebreide resten gevonden. Door de natte bodem zijn veel houten structuren bewaard gebleven. Een bronzen maquette van het castellum staat op het Rijnplein.',
+    watWasHier: 'Castellum met vicus. Locatie bekend: Rijnplein/Castellumstraat.',
+    watTeZien: 'Bronzen maquette Rijnplein. Theater Castellum op fortlocatie. Archeon.',
     verwachteVondsten: 'Munten, militaria, aardewerk, dakpannen, fibulae. Veel bij bouwwerkzaamheden.',
-    betekenis: 'Een van de hoofdforten aan de Limes. Belangrijke schakel in grensverdediging.',
-    bronnen: ['https://www.archeon.nl']
+    betekenis: 'Een van de hoofdforten aan de Limes. UNESCO Werelderfgoed.',
+    bronnen: [
+      'https://www.hierisalphen.nl/home/ontdekken/romeinse-limes',
+      'https://www.romeinen.nl/weten/nederland-in-de-romeinse-tijd/zuid-holland/alphen-aan-den-rijn',
+      'https://archeologiehuiszuidholland.nl/zien-en-doen/het-archeologiehuis/fort-aan-de-rijn'
+    ]
   },
-  'Polder Groenendijk': {
-    naam: 'Polder Groenendijk',
-    type: 'versterking',
-    periode: '1e - 3e eeuw n.Chr.',
-    beschrijving: 'Inheems-Romeinse nederzetting in de Polder Groenendijk bij Hazerswoude. In 1951 zijn hier sporen van bewoning gevonden. Bij graafwerk in 1967 werd zowel Romeins importaardewerk als lokaal vervaardigd inheems aardewerk aangetroffen. Dit wijst op een nederzetting van de lokale Cananefaten die handel dreven met de Romeinen. Het terrein toont twee cultuurlagen en is deels verstoord door afkleien. De combinatie van import en inheems materiaal is typerend voor nederzettingen nabij de Limes.',
-    watWasHier: 'Inheemse nederzetting met Romeinse handelscontacten.',
-    watTeZien: 'Geen zichtbare resten. Terrein deels verstoord.',
-    verwachteVondsten: 'Inheems aardewerk, Romeins importaardewerk, gebruiksvoorwerpen.',
-    betekenis: 'Toont contact tussen lokale bevolking en Romeinse bezetters.',
-    bronnen: []
-  },
-  'Hondsdijkse Polder': {
-    naam: 'Hondsdijkse Polder',
-    type: 'versterking',
-    periode: '1e - 5e eeuw n.Chr.',
-    beschrijving: 'Rijke Romeinse tot vroegmiddeleeuwse nederzetting in de Hondsdijkse Polder. Bijzondere vondsten wijzen op welvarende bewoners met toegang tot Romeinse handelsgoederen: een sestertius (grote bronzen munt), een dupondius, twee bronzen fibulae (mantelsluiting), een bronzen baardtang, tufstenen weefgewichten en een kraal met glasdraad. Deze voorwerpen tonen intensief contact met het Romeinse handelsnetwerk. Het terrein is deels verstoord door afkleien maar grotendeels nog intact.',
-    watWasHier: 'Welvarende nederzetting met toegang tot Romeinse luxegoederen.',
-    watTeZien: 'Geen zichtbare resten. Landbouwgebied.',
-    verwachteVondsten: 'Munten, fibulae, bronzen voorwerpen, aardewerk, sieraden.',
-    betekenis: 'Toont welvaart en handelscontacten van lokale elite nabij de Limes.',
-    bronnen: []
-  },
-  'Limesweg Polder Steekt': {
-    naam: 'Limesweg Polder Steekt',
-    type: 'versterking',
-    periode: '1e - 3e eeuw n.Chr.',
-    beschrijving: 'Resten van de Romeinse limesweg in de Polder Steekt. De weg liep parallel aan de Oude Rijn en verbond de castella onderling. In de vulling van middeleeuwse kleiputten is veel grind gevonden dat afkomstig is van het oorspronkelijke wegdek. Delen van de weg zijn mogelijk nog intact onder het maaiveld. De limesweg was essentieel voor snelle troepenbewegingen en bevoorrading van de forten. Romeinse wegen waren stevig gebouwd met grindlagen en konden eeuwen meegaan.',
-    watWasHier: 'Romeinse militaire weg langs de Limes. Verbinding tussen forten.',
-    watTeZien: 'Geen zichtbare resten. Grind in kleiputten.',
-    verwachteVondsten: 'Weggrind, verloren voorwerpen langs de route, paardentuig.',
-    betekenis: 'Onderdeel van het Romeinse wegennet langs de grens.',
-    bronnen: []
-  },
-  'Limesweg Frederikshoeve': {
-    naam: 'Limesweg Frederikshoeve',
-    type: 'versterking',
-    periode: '1e - 3e eeuw n.Chr.',
-    beschrijving: 'Resten van een Romeins wegennet bij Frederikshoeve, ontdekt bij boringen voor de HSL (Hoge Snelheidslijn). De weg lag op geringe diepte en bevatte houtskool in het wegdek - mogelijk van verbrand hout voor drainage of markering. De vindplaats is beschermd omdat de HSL hier als tunnel loopt (Groene Harttunnel). Dit deel van de limesweg is daardoor onverstoord gebleven. De ontdekking bevestigt het tracé van de Romeinse grensweg door dit gebied.',
-    watWasHier: 'Romeinse weg, mogelijk onderdeel van limesweg.',
-    watTeZien: 'Niet zichtbaar, beschermd onder maaiveld.',
-    verwachteVondsten: 'Wegmateriaal, houtskool, verloren voorwerpen.',
-    betekenis: 'Bevestigt Romeins wegtracé. Onverstoord door HSL-tunnel.',
-    bronnen: []
-  }
 }
 
 // Generieke informatie voor forten zonder specifieke data
