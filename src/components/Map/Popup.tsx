@@ -3204,10 +3204,15 @@ export function Popup() {
           {/* Bottom Sheet */}
           <motion.div
             className="fixed bottom-0 left-0 right-0 z-[1501] bg-white rounded-t-2xl shadow-2xl overflow-hidden flex flex-col"
-            style={{ fontSize: `${14 * textScale / 100}px` }}
-            initial={{ height: '50vh' }}
-            animate={{ height: popupHeight === 'full' ? '90vh' : '50vh' }}
-            exit={{ height: 0, opacity: 0 }}
+            style={{
+              fontSize: `${14 * textScale / 100}px`,
+              // In half mode: auto height up to 50vh. In full mode: fixed 90vh
+              height: popupHeight === 'full' ? '90vh' : 'auto',
+              maxHeight: popupHeight === 'full' ? '90vh' : '50vh'
+            }}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
@@ -3436,7 +3441,7 @@ export function Popup() {
 
             {/* Content - scrollable, without title */}
             <div
-              className={`px-4 py-3 overflow-y-auto select-text flex-1 ${popupHeight === 'full' ? 'max-h-[75vh]' : 'max-h-[35vh]'}`}
+              className={`px-4 py-3 overflow-y-auto select-text min-h-0 ${popupHeight === 'full' ? 'flex-1' : ''}`}
               style={{ userSelect: 'text', WebkitUserSelect: 'text' }}
               dangerouslySetInnerHTML={{ __html: contentWithoutTitle }}
             />
