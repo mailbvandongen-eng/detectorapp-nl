@@ -49,11 +49,16 @@ async function fetchWinkelcentra(): Promise<WinkelcentrumFeature[]> {
     [out:json][timeout:60];
     area["ISO3166-1"="NL"]->.nl;
     (
-      // Shopping malls and centers
+      // Winkelcentra en shopping malls
       nwr["shop"="mall"](area.nl);
+      nwr["shop"="shopping_centre"](area.nl);
+      // Winkelgebieden met naam
       nwr["landuse"="retail"]["name"](area.nl);
-      // Shopping streets/areas with name
+      // Warenhuizen en grote winkels
       nwr["shop"="department_store"](area.nl);
+      nwr["shop"="supermarket"]["name"~"Jumbo|Albert Heijn|Lidl|Aldi|Plus",i](area.nl);
+      // Naam bevat winkelcentrum of shopping
+      nwr["name"~"[Ww]inkelcentrum|[Ss]hopping|[Ww]inkelpassage|[Cc]entrum"](area.nl);
     );
     out center;
   `

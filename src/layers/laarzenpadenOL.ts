@@ -42,23 +42,20 @@ async function fetchLaarzenpaden(): Promise<LaarzenpadFeature[]> {
     // Cache read failed
   }
 
-  // Fetch trails that are typically muddy/wet
-  // - surface=mud/ground/grass/dirt
-  // - smoothness=very_bad/horrible/very_horrible
-  // - trail_visibility=bad/horrible/no
+  // Fetch trails that are typically muddy/wet - "laarzenpaden"
+  // Focus on unpaved paths that can be wet/muddy
   const query = `
-    [out:json][timeout:90];
+    [out:json][timeout:60];
     area["ISO3166-1"="NL"]->.nl;
     (
-      // Paths with muddy surfaces
-      way["highway"~"path|track|footway"]["surface"="mud"](area.nl);
-      way["highway"~"path|track"]["surface"="ground"]["smoothness"~"very_bad|horrible|very_horrible"](area.nl);
-      // Paths explicitly tagged for hiking with bad smoothness
-      way["highway"~"path|track"]["sac_scale"~"hiking|mountain_hiking"]["smoothness"~"bad|very_bad|horrible"](area.nl);
-      // Paths in wetlands/marshes
-      way["highway"~"path|track"]["wetland"](area.nl);
-      // Difficult trails with poor visibility
-      way["highway"="path"]["trail_visibility"~"bad|horrible|no"](area.nl);
+      // Onverharde paden met modder, gras of aarde
+      way["highway"~"path|track"]["surface"~"mud|ground|grass|dirt|earth|unpaved"](area.nl);
+      // Paden met slechte begaanbaarheid
+      way["highway"~"path|track"]["smoothness"~"bad|very_bad|horrible|very_horrible|impassable"](area.nl);
+      // Paden door natuurgebied die vaak nat zijn
+      way["highway"="path"]["sac_scale"](area.nl);
+      // Klompenpaden (expliciet getagd)
+      way["name"~"[Kk]lompen|[Ll]aarzen",i](area.nl);
     );
     out geom;
   `

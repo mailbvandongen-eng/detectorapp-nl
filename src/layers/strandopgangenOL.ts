@@ -43,21 +43,21 @@ async function fetchStrandopgangen(): Promise<StrandopgangFeature[]> {
   }
 
   // Fetch beach access points from Overpass API
+  // Strandpalen in NL zijn genummerd (paal 10, 11, etc.) en staan als tourism=information
   const query = `
-    [out:json][timeout:30];
+    [out:json][timeout:45];
     area["ISO3166-1"="NL"]->.nl;
     (
-      // Beach access points
-      nwr["highway"="footway"]["beach"="yes"](area.nl);
-      nwr["highway"="path"]["beach"="yes"](area.nl);
-      nwr["natural"="beach"]["access"~"yes|public"](area.nl);
+      // Strandpalen - de meest voorkomende manier om strandopgangen te markeren in NL
+      nwr["tourism"="information"]["ref"~"^[0-9]"](area.nl);
+      // Standaard strandpalen/markers
+      nwr["man_made"="marker"]["natural"="beach"](area.nl);
+      nwr["tourism"="information"]["information"="guidepost"](area.nl);
+      // Strandpaviljoens en resorts (vaak bij opgang)
       nwr["leisure"="beach_resort"](area.nl);
-      // Strandpalen (beach poles) - common in NL
-      nwr["man_made"="monitoring_station"]["beach"="yes"](area.nl);
-      nwr["tourism"="information"]["information"="guidepost"]["beach"="yes"](area.nl);
-      // Beach entrances
-      nwr["entrance"="yes"]["beach"="yes"](area.nl);
-      nwr["barrier"="gate"]["beach"="yes"](area.nl);
+      nwr["amenity"="restaurant"]["beach"](area.nl);
+      // Parkeerplaatsen bij strand (goede indicator voor opgang)
+      nwr["amenity"="parking"]["name"~"[Ss]trand|[Bb]each|[Dd]uin",i](area.nl);
     );
     out center;
   `

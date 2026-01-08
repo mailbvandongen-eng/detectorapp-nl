@@ -46,18 +46,21 @@ async function fetchNatuurParkeer(): Promise<ParkeerFeature[]> {
   }
 
   // Fetch parking areas associated with nature reserves, forests, parks
-  // This query finds parking tagged as hiking/nature parking or near nature areas
+  // Broader query to find more relevant parking spots
   const query = `
     [out:json][timeout:60];
     area["ISO3166-1"="NL"]->.nl;
     (
-      // Parking explicitly tagged for hiking or nature
-      nwr["amenity"="parking"]["hiking"="yes"](area.nl);
-      nwr["amenity"="parking"]["leisure"~"nature_reserve|park"](area.nl);
-      nwr["amenity"="parking"]["tourism"="trailhead"](area.nl);
-      nwr["amenity"="parking"]["access"="customers"]["operator"~"Staatsbosbeheer|Natuurmonumenten|Landschap"](area.nl);
-      // Parking with nature-related names
-      nwr["amenity"="parking"]["name"~"bos|natuur|heide|duin|wandel|Staatsbosbeheer|Natuurmonumenten",i](area.nl);
+      // Parkeren bij Staatsbosbeheer, Natuurmonumenten, etc.
+      nwr["amenity"="parking"]["operator"~"Staatsbosbeheer|Natuurmonumenten|Landschap|PWN|Waternet",i](area.nl);
+      // Parkeren met natuur-gerelateerde namen
+      nwr["amenity"="parking"]["name"~"bos|natuur|heide|duin|wandel|recreatie|forest|park",i](area.nl);
+      // Parkeren bij bezoekerscentra (vaak bij natuurgebieden)
+      nwr["amenity"="parking"]["tourism"](area.nl);
+      // Onverharde parkeerplaatsen (vaak in natuur)
+      nwr["amenity"="parking"]["surface"~"gravel|unpaved|grass|ground"](area.nl);
+      // Gratis parkeren op afgelegen locaties
+      nwr["amenity"="parking"]["fee"="no"]["access"!="private"](area.nl);
     );
     out center;
   `

@@ -39,14 +39,16 @@ async function fetchRuiterpaden(): Promise<RuiterpadFeature[]> {
     // Cache read failed
   }
 
-  // Fetch fresh data from Overpass API
+  // Fetch horse riding trails from Overpass API
+  // Bridleways and paths designated for horses
   const query = `
-    [out:json][timeout:60];
+    [out:json][timeout:90];
     area["ISO3166-1"="NL"]->.nl;
     (
       way["highway"="bridleway"](area.nl);
       way["horse"="designated"](area.nl);
       way["horse"="yes"]["highway"~"path|track"](area.nl);
+      way["name"~"[Rr]uiter|[Pp]aard",i](area.nl);
     );
     out geom;
   `
