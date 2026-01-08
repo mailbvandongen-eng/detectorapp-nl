@@ -5,8 +5,8 @@ import { LineString } from 'ol/geom'
 import { fromLonLat } from 'ol/proj'
 import { Style, Stroke } from 'ol/style'
 
-// Cache for localStorage
-const CACHE_KEY = 'laarzenpaden_cache'
+// Cache for localStorage - v2 forces refresh after query fix
+const CACHE_KEY = 'laarzenpaden_cache_v2'
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000 // 7 days
 
 interface LaarzenpadCache {
@@ -43,19 +43,19 @@ async function fetchLaarzenpaden(): Promise<LaarzenpadFeature[]> {
   }
 
   // Fetch trails that are typically muddy/wet - "laarzenpaden"
-  // Focus on unpaved paths that can be wet/muddy
+  // Beperkte query om timeout te voorkomen
   const query = `
-    [out:json][timeout:60];
+    [out:json][timeout:90];
     area["ISO3166-1"="NL"]->.nl;
     (
-      // Onverharde paden met modder, gras of aarde
-      way["highway"~"path|track"]["surface"~"mud|ground|grass|dirt|earth|unpaved"](area.nl);
-      // Paden met slechte begaanbaarheid
-      way["highway"~"path|track"]["smoothness"~"bad|very_bad|horrible|very_horrible|impassable"](area.nl);
-      // Paden door natuurgebied die vaak nat zijn
-      way["highway"="path"]["sac_scale"](area.nl);
-      // Klompenpaden (expliciet getagd)
+      // Expliciet modderige paden
+      way["highway"~"path|track"]["surface"="mud"](area.nl);
+      // Paden met zeer slechte begaanbaarheid
+      way["highway"~"path|track"]["smoothness"~"very_bad|horrible|very_horrible|impassable"](area.nl);
+      // Klompenpaden en laarzenpaden (expliciet getagd)
       way["name"~"[Kk]lompen|[Ll]aarzen",i](area.nl);
+      // Paden in wetlands
+      way["highway"="path"]["wetland"](area.nl);
     );
     out geom;
   `
