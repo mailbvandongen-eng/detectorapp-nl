@@ -200,7 +200,8 @@ export function ThemesPanel() {
               </LayerGroup>
 
               {/* Archaeological Layers */}
-              <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Archeo Onderzoeken', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten', 'Romeinse Forten Lijnen', 'IKAW', 'Archeo Landschappen', 'UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling']}>
+              <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['Archeo Landschappen', 'AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Archeo Onderzoeken', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten', 'Romeinse Forten Lijnen']}>
+                <LayerItem name="Archeo Landschappen" type="overlay" />
                 <LayerItem name="AMK Monumenten" type="overlay" />
                 {/* AMK per periode */}
                 <LayerGroup title="AMK per periode" defaultExpanded={false} layerNames={['AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig']}>
@@ -211,27 +212,23 @@ export function ThemesPanel() {
                   <LayerItem name="AMK Overig" type="overlay" />
                 </LayerGroup>
                 <LayerItem name="Archeo Onderzoeken" type="overlay" />
-                {/* Romeinse tijd - wegen en forten */}
+                {/* Romeinse tijd - wegen en forten direct zichtbaar */}
                 <LayerGroup title="Romeinse tijd" defaultExpanded={false} layerNames={['Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten', 'Romeinse Forten Lijnen']}>
-                  <LayerGroup title="Romeinse wegen" defaultExpanded={false} layerNames={['Romeinse wegen (regio)', 'Romeinse wegen (Wereld)']}>
-                    <LayerItem name="Romeinse wegen (regio)" type="overlay" />
-                    <LayerItem name="Romeinse wegen (Wereld)" type="overlay" />
-                  </LayerGroup>
-                  <LayerGroup title="Romeinse forten" defaultExpanded={false} layerNames={['Romeinse Forten', 'Romeinse Forten Lijnen']}>
-                    <LayerItem name="Romeinse Forten" type="overlay" />
-                    <LayerItem name="Romeinse Forten Lijnen" type="overlay" />
-                  </LayerGroup>
+                  <LayerItem name="Romeinse wegen (regio)" type="overlay" />
+                  <LayerItem name="Romeinse wegen (Wereld)" type="overlay" />
+                  <LayerItem name="Romeinse Forten" type="overlay" />
+                  <LayerItem name="Romeinse Forten Lijnen" type="overlay" />
                 </LayerGroup>
+              </LayerGroup>
+
+              {/* Archeologische verwachtingen */}
+              <LayerGroup title="Archeologische verwachtingen" defaultExpanded={false} layerNames={['IKAW', 'UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling']}>
                 <LayerItem name="IKAW" type="overlay" />
-                <LayerItem name="Archeo Landschappen" type="overlay" />
-                {/* Uiterwaarden verwachtingen */}
-                <LayerGroup title="Verwachtingen uiterwaarden" defaultExpanded={false} layerNames={['UIKAV Punten', 'UIKAV Vlakken', 'UIKAV Expert', 'UIKAV Buffer', 'UIKAV Indeling']}>
-                  <LayerItem name="UIKAV Punten" type="overlay" />
-                  <LayerItem name="UIKAV Vlakken" type="overlay" />
-                  <LayerItem name="UIKAV Expert" type="overlay" />
-                  <LayerItem name="UIKAV Buffer" type="overlay" />
-                  <LayerItem name="UIKAV Indeling" type="overlay" />
-                </LayerGroup>
+                <LayerItem name="UIKAV Punten" type="overlay" />
+                <LayerItem name="UIKAV Vlakken" type="overlay" />
+                <LayerItem name="UIKAV Expert" type="overlay" />
+                <LayerItem name="UIKAV Buffer" type="overlay" />
+                <LayerItem name="UIKAV Indeling" type="overlay" />
               </LayerGroup>
 
               {/* Erfgoed & Monumenten */}
