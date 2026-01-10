@@ -39,6 +39,15 @@ export const LUCIDE_ICONS = {
   // Military
   bunker: 'M3 21h18M5 21V7l7-4 7 4v14M9 21V11h6v10M9 11h6M5 7h14',
 
+  // Relicten / Erfgoed
+  windmill: 'M12 2v20M12 12l8-4M12 12l-8-4M12 12l4 8M12 12l-4 8',  // Windmolen wieken
+  duck: 'M4 16c0-4 4-8 8-8s8 4 8 8H4zM12 8V4M10 4h4M8 12h8',  // Eendenkooi (gestileerd)
+  estate: 'M3 21h18M6 21V12l6-5 6 5v9M10 21v-4h4v4M6 12V9M18 12V9M4 9l8-6 8 6',  // Havezate/Landgoed
+  watermill: 'M2 16h20M6 16v5M18 16v5M12 2v6M12 8a6 6 0 1 0 0 12M8 14h8',  // Watermolen
+  well: 'M8 21v-6M16 21v-6M6 15h12M9 15V9a3 3 0 0 1 6 0v6M12 3v2',  // Bron/Put
+  farm: 'M3 21h18M5 21V10l7-7 7 7v11M10 21v-4h4v4',  // Boerderij
+  bridge: 'M2 18h20M4 18v-4c0-2 3.5-4 8-4s8 2 8 4v4M8 10v8M16 10v8',  // Brug
+
   // Burial / Mounds
   tumulus: 'M2 20h20M4 20c0-6 3.5-12 8-12s8 6 8 12',  // Simple burial mound shape
   terp: 'M2 20h20M4 20c0-5 3-10 8-10s8 5 8 10M10 10v-3h4v3',  // Mound with house
@@ -298,6 +307,48 @@ export const LAYER_STYLES = {
     icon: 'ruins',
     color: 'white',
     bgColor: '#6b7280',  // gray-500 (weathered stone)
+    baseSize: 26
+  }),
+
+  windmill: () => createIconStyle({
+    icon: 'windmill',
+    color: 'white',
+    bgColor: '#b45309',  // amber-700 (earthy orange)
+    baseSize: 26
+  }),
+
+  eendenkooi: () => createIconStyle({
+    icon: 'duck',
+    color: 'white',
+    bgColor: '#0891b2',  // cyan-600 (water blue)
+    baseSize: 26
+  }),
+
+  estate: () => createIconStyle({
+    icon: 'estate',
+    color: 'white',
+    bgColor: '#4f46e5',  // indigo-600 (noble purple)
+    baseSize: 26
+  }),
+
+  watermill: () => createIconStyle({
+    icon: 'watermill',
+    color: 'white',
+    bgColor: '#0284c7',  // sky-600 (water blue)
+    baseSize: 26
+  }),
+
+  well: () => createIconStyle({
+    icon: 'well',
+    color: 'white',
+    bgColor: '#0d9488',  // teal-600 (water teal)
+    baseSize: 26
+  }),
+
+  farm: () => createIconStyle({
+    icon: 'farm',
+    color: 'white',
+    bgColor: '#65a30d',  // lime-600 (farm green)
     baseSize: 26
   }),
 }

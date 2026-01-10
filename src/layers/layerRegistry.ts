@@ -334,14 +334,14 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: true
   },
 
-  // Gelderland - Relictenkaart
+  // Gelderland - Relictenkaart (Punten nu met eigen iconen via WFS)
   'Relictenkaart Punten': {
     name: 'Relictenkaart Punten',
     factory: async () => {
-      const { createRelictenkaartPuntenLayerOL } = await import('./pdokWMSLayers')
-      return createRelictenkaartPuntenLayerOL()
+      const { createRelictenPuntenLayerOL } = await import('./relictenGelderlandOL')
+      return createRelictenPuntenLayerOL()
     },
-    immediateLoad: true
+    immediateLoad: false  // Lazy load - data fetched when visible
   },
   'Relictenkaart Lijnen': {
     name: 'Relictenkaart Lijnen',

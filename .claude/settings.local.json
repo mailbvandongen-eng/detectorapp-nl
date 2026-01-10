@@ -60,7 +60,8 @@
       "WebFetch(domain:doi.org)",
       "WebFetch(domain:zenodo.org)",
       "WebFetch(domain:fryslan.maps.arcgis.com)",
-      "WebFetch(domain:geoportaal.fryslan.nl)"
+      "WebFetch(domain:geoportaal.fryslan.nl)",
+      "WebFetch(domain:geoserver.gelderland.nl)"
     ]
   }
 }
