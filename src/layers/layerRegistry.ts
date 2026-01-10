@@ -664,18 +664,6 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     regions: ['nl', 'be', 'de', 'fr']  // Internationale laag
   },
 
-  // Wandelroutes - startpunten populaire wandelroutes
-  'Wandelroutes': {
-    name: 'Wandelroutes',
-    factory: async () => {
-      const { createWandelroutesLayer } = await import('./wandelroutesOL')
-      return createWandelroutesLayer()
-    },
-    immediateLoad: false,
-    tier: 'free',
-    regions: ['nl', 'be']
-  },
-
   // WWII Bunkers - from OpenStreetMap
   'WWII Bunkers': {
     name: 'WWII Bunkers',

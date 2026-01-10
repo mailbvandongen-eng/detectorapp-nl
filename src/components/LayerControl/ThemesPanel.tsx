@@ -308,8 +308,7 @@ export function ThemesPanel() {
               </LayerGroup>
 
               {/* Recreation */}
-              <LayerGroup title="Recreatie" defaultExpanded={false} layerNames={['Wandelroutes', 'Ruiterpaden', 'Laarzenpaden', 'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels']}>
-                <LayerItem name="Wandelroutes" type="overlay" />
+              <LayerGroup title="Recreatie" defaultExpanded={false} layerNames={['Ruiterpaden', 'Laarzenpaden', 'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels']}>
                 <LayerItem name="Ruiterpaden" type="overlay" />
                 <LayerItem name="Laarzenpaden" type="overlay" />
                 <LayerItem name="Parken" type="overlay" />

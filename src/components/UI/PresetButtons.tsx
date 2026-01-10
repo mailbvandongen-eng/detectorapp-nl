@@ -69,7 +69,7 @@ const ALL_OVERLAYS = [
   'Fossiel Hotspots', 'Mineralen Hotspots', 'Goudrivieren',
   'Fossielen Nederland', 'Fossielen België', 'Fossielen Duitsland', 'Fossielen Frankrijk',
   // Recreatie
-  'Wandelroutes', 'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels',
+  'Parken', 'Speeltuinen', 'Musea', 'Strandjes', 'Kringloopwinkels',
   'Ruiterpaden', 'Laarzenpaden',
   // Percelen
   'Gewaspercelen', 'Kadastrale Grenzen',
