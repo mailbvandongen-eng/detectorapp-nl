@@ -252,7 +252,8 @@ export function ThemesPanel() {
               </LayerGroup>
 
               {/* Hillshade & LiDAR Layers */}
-              <LayerGroup title="Hillshade & LiDAR" defaultExpanded={false} layerNames={['AHN4 Hoogtekaart Kleur', 'AHN4 Hillshade NL', 'AHN4 Multi-Hillshade NL', 'AHN 0.5m']}>
+              <LayerGroup title="Hillshade & LiDAR" defaultExpanded={false} layerNames={['Hoogtekaart (WebGL)', 'AHN4 Hoogtekaart Kleur', 'AHN4 Hillshade NL', 'AHN4 Multi-Hillshade NL', 'AHN 0.5m']}>
+                <LayerItem name="Hoogtekaart (WebGL)" type="overlay" />
                 <LayerItem name="AHN4 Hoogtekaart Kleur" type="overlay" />
                 <LayerItem name="AHN4 Hillshade NL" type="overlay" />
                 <LayerItem name="AHN4 Multi-Hillshade NL" type="overlay" />

@@ -84,7 +84,8 @@ export const useLayerStore = create<LayerState>()(
       'UIKAV Buffer': false,
       'UIKAV Expert': false,
       'UIKAV Indeling': false,
-      // Hillshade NL (Esri)
+      // Hillshade NL
+      'Hoogtekaart (WebGL)': false,
       'AHN4 Hoogtekaart Kleur': false,
       'AHN4 Hillshade NL': false,
       'AHN4 Multi-Hillshade NL': false,
@@ -127,7 +128,8 @@ export const useLayerStore = create<LayerState>()(
 
     // Initial opacity state - all overlay/vlak layers
     opacity: {
-      // Hoogtekaarten (Esri)
+      // Hoogtekaarten
+      'Hoogtekaart (WebGL)': 0.8,
       'AHN4 Hoogtekaart Kleur': 0.85,
       'AHN4 Hillshade NL': 0.7,
       'AHN4 Multi-Hillshade NL': 0.7,

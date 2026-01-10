@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Route, Volume2, Type } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Volume2 } from 'lucide-react'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
@@ -436,12 +436,7 @@ export function SettingsPanel() {
                 <>
                   {/* Vondsten */}
                   <Section title="Vondsten" icon={<MapPin size={16} />} isOwn>
-                    <ToggleRow
-                      label="Vondsten knop tonen"
-                      checked={settings.showVondstButton}
-                      onChange={settings.setShowVondstButton}
-                    />
-                    <p className="text-gray-500 mt-1 py-1" style={{ fontSize: '0.75em' }}>
+                    <p className="text-gray-500 py-1" style={{ fontSize: '0.75em' }}>
                       Vondsten worden altijd lokaal op dit apparaat opgeslagen.
                     </p>
                     {/* Dashboard button */}
@@ -454,30 +449,6 @@ export function SettingsPanel() {
                       <span>Dashboard ({vondsten.length} vondsten)</span>
                     </button>
                     <ExportButton />
-                  </Section>
-
-                  {/* Route opnemen */}
-                  <Section title="Route opnemen" icon={<Route size={16} />} isOwn>
-                    <ToggleRow
-                      label="Route knop tonen"
-                      checked={settings.showRouteRecordButton}
-                      onChange={settings.setShowRouteRecordButton}
-                    />
-                    <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
-                      Neem je route op tijdens het detecteren of wandelen. Routes worden lokaal opgeslagen en kunnen als GPX geëxporteerd worden.
-                    </p>
-                  </Section>
-
-                  {/* Tekstgrootte (Boomer mode) */}
-                  <Section title="Tekstgrootte" icon={<Type size={16} />}>
-                    <ToggleRow
-                      label="Tekstgrootte schuifjes tonen"
-                      checked={settings.showFontSliders}
-                      onChange={settings.setShowFontSliders}
-                    />
-                    <p className="text-gray-500 mt-1" style={{ fontSize: '0.75em' }}>
-                      Toon schuifjes in menu's om de tekstgrootte aan te passen.
-                    </p>
                   </Section>
                 </>
               )}

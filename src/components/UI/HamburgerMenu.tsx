@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, X, Info, Settings, LogOut, User } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
@@ -40,6 +40,11 @@ export function HamburgerMenu() {
   const menuFontScale = useSettingsStore(state => state.menuFontScale)
   const setMenuFontScale = useSettingsStore(state => state.setMenuFontScale)
   const showFontSliders = useSettingsStore(state => state.showFontSliders)
+  const setShowFontSliders = useSettingsStore(state => state.setShowFontSliders)
+  const showVondstButton = useSettingsStore(state => state.showVondstButton)
+  const setShowVondstButton = useSettingsStore(state => state.setShowVondstButton)
+  const showRouteRecordButton = useSettingsStore(state => state.showRouteRecordButton)
+  const setShowRouteRecordButton = useSettingsStore(state => state.setShowRouteRecordButton)
 
   // Safe top position for mobile browsers (accounts for notch/status bar)
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -194,6 +199,69 @@ export function HamburgerMenu() {
                   <Info size={18} className="text-blue-500" />
                   <span>Info & handleiding</span>
                 </button>
+              </div>
+
+              {/* Toggle Options */}
+              <div className="py-1 border-t border-gray-100">
+                {/* Vondst knop toggle */}
+                <div className="px-3 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <MapPin size={18} className="text-orange-500" />
+                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Vondst knop</span>
+                  </div>
+                  <button
+                    onClick={() => setShowVondstButton(!showVondstButton)}
+                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                      showVondstButton ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gray-300'
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                        showVondstButton ? 'left-[22px]' : 'left-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Route knop toggle */}
+                <div className="px-3 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Route size={18} className="text-green-500" />
+                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Route knop</span>
+                  </div>
+                  <button
+                    onClick={() => setShowRouteRecordButton(!showRouteRecordButton)}
+                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                      showRouteRecordButton ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gray-300'
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                        showRouteRecordButton ? 'left-[22px]' : 'left-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Tekstgrootte schuifjes toggle */}
+                <div className="px-3 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Type size={18} className="text-purple-500" />
+                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Tekstgrootte</span>
+                  </div>
+                  <button
+                    onClick={() => setShowFontSliders(!showFontSliders)}
+                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                      showFontSliders ? 'bg-gradient-to-r from-purple-500 to-purple-600' : 'bg-gray-300'
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                        showFontSliders ? 'left-[22px]' : 'left-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
               </div>
 
               {/* Settings always at bottom */}

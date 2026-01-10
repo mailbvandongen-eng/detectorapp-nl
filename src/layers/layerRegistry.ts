@@ -254,8 +254,15 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     tier: 'premium'
   },
 
-  // WebGL Hillshade layers - UITGESCHAKELD (werkt niet correct in OL 10.7)
-  // TODO: Later opnieuw proberen met andere aanpak
+  // WebGL Elevation - Stap 1: Simpele grayscale test
+  'Hoogtekaart (WebGL)': {
+    name: 'Hoogtekaart (WebGL)',
+    factory: async () => {
+      const { createWebGLHillshadeLayerOL } = await import('./ahnWebGLHillshade')
+      return createWebGLHillshadeLayerOL()
+    },
+    immediateLoad: true
+  },
   // World Hillshade VERWIJDERD - Esri commercieel, geen toestemming
 
   // Percelen - Kadaster & Landbouw

@@ -63,7 +63,8 @@
       "WebFetch(domain:geoportaal.fryslan.nl)",
       "WebFetch(domain:geoserver.gelderland.nl)",
       "WebFetch(domain:openlayers.org)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:wiki.openstreetmap.org)"
     ]
   }
 }
