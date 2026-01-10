@@ -372,27 +372,55 @@ export function createWebGLCombinedHillshadeLayerOL() {
   const normalized = ['/', ['-', elevation, ['var', 'minElevation']], ['-', ['var', 'maxElevation'], ['var', 'minElevation']]]
   const clamped = ['clamp', normalized, 0, 1]
 
-  // Terrain color ramp
-  const baseColor = [
+  // Terrain color ramp - separate R, G, B channels for blending
+  const redChannel = [
     'interpolate',
     ['linear'],
     clamped,
-    0, [68, 1, 84, 255],
-    0.1, [59, 82, 139, 255],
-    0.25, [33, 145, 140, 255],
-    0.4, [94, 201, 98, 255],
-    0.55, [189, 223, 38, 255],
-    0.7, [253, 231, 37, 255],
-    0.85, [254, 173, 84, 255],
-    1, [189, 99, 38, 255]
+    0, 68,
+    0.1, 59,
+    0.25, 33,
+    0.4, 94,
+    0.55, 189,
+    0.7, 253,
+    0.85, 254,
+    1, 189
+  ]
+
+  const greenChannel = [
+    'interpolate',
+    ['linear'],
+    clamped,
+    0, 1,
+    0.1, 82,
+    0.25, 145,
+    0.4, 201,
+    0.55, 223,
+    0.7, 231,
+    0.85, 173,
+    1, 99
+  ]
+
+  const blueChannel = [
+    'interpolate',
+    ['linear'],
+    clamped,
+    0, 84,
+    0.1, 139,
+    0.25, 140,
+    0.4, 98,
+    0.55, 38,
+    0.7, 37,
+    0.85, 84,
+    1, 38
   ]
 
   // Multiply blend: color * hillshade
   const finalColor = [
     'color',
-    ['*', ['band', 1, 0, 0, baseColor], hillshadeFactor],  // R
-    ['*', ['band', 2, 0, 0, baseColor], hillshadeFactor],  // G
-    ['*', ['band', 3, 0, 0, baseColor], hillshadeFactor],  // B
+    ['*', redChannel, hillshadeFactor],    // R
+    ['*', greenChannel, hillshadeFactor],  // G
+    ['*', blueChannel, hillshadeFactor],   // B
     255  // A
   ]
 
