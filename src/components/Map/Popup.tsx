@@ -3671,9 +3671,9 @@ export function Popup() {
                     {addedToLayer ? <Check size={18} /> : <Plus size={18} />}
                   </button>
 
-                  {/* Layer picker dropdown - opent naar boven zodat het niet onder het scherm valt */}
+                  {/* Layer picker dropdown - opent naar beneden, binnen de popup content */}
                   {showLayerPicker && (
-                    <div className="absolute right-0 bottom-full mb-1 z-50 bg-white rounded-lg shadow-md py-1 min-w-[180px] max-w-[220px]">
+                    <div className="absolute right-0 top-full mt-1 z-50 bg-white rounded-lg shadow-lg border border-gray-200 py-1 min-w-[180px] max-w-[220px]">
                       <div className="px-3 py-1 text-xs text-gray-400 font-medium">Toevoegen aan:</div>
                       {/* Scrollable layer list */}
                       <div className="max-h-[200px] overflow-y-auto">
