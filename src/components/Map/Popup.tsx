@@ -2239,6 +2239,8 @@ export function Popup() {
         }
 
         let html = `<strong>${name}</strong>`
+        // Flag to track if feature was handled by specific handler (prevents duplicate generic content)
+        let isSpecificHandled = false
 
         // Archis / Kromme Rijn Aardewerk: Show category
         if (dataProps.category) {
@@ -2302,6 +2304,7 @@ export function Popup() {
 
         // Parken (OSM data) - uitgebreide info met groene kop
         if (dataProps.leisure === 'park') {
+          isSpecificHandled = true
           const parkNaam = dataProps.name || 'Park'
           html = `<strong class="text-green-800">${parkNaam}</strong>`
           html += `<br/><span class="text-sm text-gray-800">Park</span>`
@@ -2342,6 +2345,7 @@ export function Popup() {
         }
         // Speeltuinen (OSM data) - aparte behandeling
         else if (dataProps.leisure === 'playground') {
+          isSpecificHandled = true
           const speeltuinNaam = dataProps.name || 'Speeltuin'
           html = `<strong class="text-orange-800">${speeltuinNaam}</strong>`
           html += `<br/><span class="text-sm text-gray-800">Speeltuin</span>`
@@ -2352,75 +2356,77 @@ export function Popup() {
         }
         // Musea (OSM data) - uitgebreide info met paarse kop
         if ((dataProps.tourism === 'museum' || dataProps.museum)) {
-          // Vervang standaard zwarte kop door paarse kop
+          isSpecificHandled = true
           const museumNaam = dataProps.name || 'Museum'
-          html = `<strong class="text-purple-800">${museumNaam}</strong>`
-          html += `<br/><span class="text-sm text-gray-800">Museum</span>`
 
-          // Museum type als beschikbaar
+          // Museum type bepalen
           const museumType = dataProps.museum || dataProps['museum:type'] || ''
-          if (museumType && museumType !== 'yes') {
-            const typeMap: Record<string, string> = {
-              'art': 'Kunstmuseum',
-              'history': 'Geschiedenismuseum',
-              'archaeology': 'Archeologisch museum',
-              'science': 'Wetenschapsmuseum',
-              'technology': 'Techniekmuseum',
-              'nature': 'Natuurmuseum',
-              'open_air': 'Openluchtmuseum',
-              'local': 'Streekmuseum',
-              'military': 'Militair museum',
-              'railway': 'Spoorwegmuseum',
-              'maritime': 'Maritiem museum',
-              'children': 'Kindermuseum'
-            }
-            const typeLabel = typeMap[museumType.toLowerCase()] || museumType
-            html += `<br/><span class="text-sm text-gray-700">${typeLabel}</span>`
+          const typeMap: Record<string, string> = {
+            'art': 'Kunstmuseum',
+            'history': 'Geschiedenismuseum',
+            'archaeology': 'Archeologisch museum',
+            'science': 'Wetenschapsmuseum',
+            'technology': 'Techniekmuseum',
+            'nature': 'Natuurmuseum',
+            'open_air': 'Openluchtmuseum',
+            'local': 'Streekmuseum',
+            'military': 'Militair museum',
+            'railway': 'Spoorwegmuseum',
+            'maritime': 'Maritiem museum',
+            'children': 'Kindermuseum'
           }
+          const typeLabel = (museumType && museumType !== 'yes') ? typeMap[museumType.toLowerCase()] || museumType : 'Museum'
+
+          // Header: Museum naam
+          html = `<strong class="text-purple-800">${museumNaam}</strong>`
+          html += `<br/><span class="text-sm text-purple-600">${typeLabel}</span>`
 
           // Beschrijving als beschikbaar
           if (dataProps.description) {
             html += `<div class="mt-2 text-sm text-gray-700">${dataProps.description}</div>`
           }
 
-          // Openingstijden
-          if (dataProps.opening_hours) {
-            html += `<div class="mt-2"><span class="text-sm font-semibold text-gray-800">Openingstijden:</span></div>`
-            html += `<div class="text-sm text-gray-700">${dataProps.opening_hours}</div>`
-          }
-
           // Toegangsprijs
           if (dataProps.fee) {
             const feeText = dataProps.fee === 'yes' ? 'Toegangsprijs' : dataProps.fee === 'no' ? 'Gratis toegang' : dataProps.fee
-            html += `<br/><span class="text-sm text-gray-600">${feeText}</span>`
+            html += `<div class="mt-2"><span class="text-sm text-gray-600">${feeText}</span></div>`
           }
 
-          // Adres
-          if (dataProps['addr:street'] || dataProps['addr:housenumber']) {
-            const adres = [dataProps['addr:street'], dataProps['addr:housenumber']].filter(Boolean).join(' ')
-            if (adres) html += `<br/><span class="text-xs text-gray-500">${adres}</span>`
-          }
-          if (dataProps['addr:city']) {
-            html += `<br/><span class="text-xs text-gray-500">${dataProps['addr:postcode'] || ''} ${dataProps['addr:city']}</span>`
+          // Openingstijden (vertaald naar Nederlands)
+          if (dataProps.opening_hours) {
+            const dutchHours = translateOpeningHours(String(dataProps.opening_hours))
+            html += `<div class="mt-2"><span class="text-xs text-green-600">Open: ${dutchHours}</span></div>`
           }
 
-          // Website link
+          // Website link met logische naam
           if (dataProps.website || dataProps.url) {
             const url = dataProps.website || dataProps.url
-            const domain = url.replace(/^https?:\/\//, '').split('/')[0]
-            html += `<div class="mt-2"><a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm">Bezoek ${domain}</a></div>`
+            html += `<div class="mt-1"><a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm">Bezoek ${museumNaam}</a></div>`
           }
 
           // Wikipedia link
           if (dataProps.wikipedia) {
             const wikiLang = dataProps.wikipedia.split(':')[0] || 'nl'
             const wikiTitle = dataProps.wikipedia.split(':')[1] || dataProps.wikipedia
-            html += `<div class="text-sm"><a href="https://${wikiLang}.wikipedia.org/wiki/${encodeURIComponent(wikiTitle)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Wikipedia</a></div>`
+            html += `<div class="text-sm"><a href="https://${wikiLang}.wikipedia.org/wiki/${encodeURIComponent(wikiTitle)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Meer info op Wikipedia</a></div>`
+          }
+
+          // Adres onderaan
+          if (dataProps['addr:street'] || dataProps['addr:housenumber'] || dataProps['addr:city']) {
+            html += `<div class="mt-2 text-xs text-gray-400">`
+            if (dataProps['addr:street'] || dataProps['addr:housenumber']) {
+              const adres = [dataProps['addr:street'], dataProps['addr:housenumber']].filter(Boolean).join(' ')
+              if (adres) html += `${adres}<br/>`
+            }
+            if (dataProps['addr:city']) {
+              html += `${dataProps['addr:postcode'] || ''} ${dataProps['addr:city']}`
+            }
+            html += `</div>`
           }
         }
         // Strandjes/Zwemplekken (OSM data) - uitgebreide info
         if (dataProps.leisure === 'swimming_area' || dataProps.sport === 'swimming' || dataProps.natural === 'beach') {
-          // Vervang standaard kop door cyaan kop
+          isSpecificHandled = true
           const strandNaam = dataProps.name || 'Zwemplek'
           html = `<strong class="text-cyan-800">${strandNaam}</strong>`
 
@@ -2471,6 +2477,7 @@ export function Popup() {
 
         // Grafheuvels (tumuli) - B1 stijl informatief
         if (dataProps.site_type === 'tumulus') {
+          isSpecificHandled = true
           // Bepaal regio op basis van coördinaten (Web Mercator -> WGS84)
           const coords = feature.getGeometry()?.getCoordinates()
           let regio = ''
@@ -2540,6 +2547,7 @@ export function Popup() {
 
         // Kastelen (OSM data) - B1 stijl
         if (dataProps.historic === 'castle' || dataProps.castle_type) {
+          isSpecificHandled = true
           // Type vertalingen en uitleg
           const castleTypes: Record<string, { label: string; uitleg: string; vondsten: string }> = {
             'manor': {
@@ -2678,6 +2686,7 @@ export function Popup() {
 
         // Bunkers (WOII) - B1 stijl met regio-specifieke info
         if (dataProps.bunker_type || (dataProps.name && (dataProps.name.toLowerCase().includes('bunker') || dataProps.name.toLowerCase().includes('kazemat') || dataProps.name.toLowerCase().includes('schuilplaats')))) {
+          isSpecificHandled = true
           // Bunker type vertalingen
           const bunkerTypeLabels: Record<string, string> = {
             'munitions': 'Munitiebunker',
@@ -2792,6 +2801,7 @@ export function Popup() {
 
         // Slagvelden (battlefields) - B1 stijl met specifieke slag-info
         if (dataProps.historic === 'battlefield') {
+          isSpecificHandled = true
           // Specifieke info per slag (header is al "Historisch slagveld", naam als subtitle)
           const slagNaam = dataProps.name || 'Onbekend slagveld'
 
@@ -3470,12 +3480,15 @@ export function Popup() {
         if (dataProps.operator) {
           html += `<br/><span class="text-sm text-gray-600">${dataProps.operator}</span>`
         }
-        if (dataProps.opening_hours) {
-          const dutchHours = translateOpeningHours(String(dataProps.opening_hours))
-          html += `<br/><span class="text-xs text-green-600">Open: ${dutchHours}</span>`
-        }
-        if (dataProps.website) {
-          html += `<br/><a href="${dataProps.website}" target="_blank" class="text-xs text-blue-600 underline">Website</a>`
+        // Generic opening hours and website - skip if already handled by specific handler
+        if (!isSpecificHandled) {
+          if (dataProps.opening_hours) {
+            const dutchHours = translateOpeningHours(String(dataProps.opening_hours))
+            html += `<br/><span class="text-xs text-green-600">Open: ${dutchHours}</span>`
+          }
+          if (dataProps.website) {
+            html += `<br/><a href="${dataProps.website}" target="_blank" class="text-xs text-blue-600 underline">Website</a>`
+          }
         }
         if (dataProps.addr_street) {
           const addr = [dataProps.addr_street, dataProps.addr_housenumber, dataProps.addr_postcode].filter(Boolean).join(' ')
@@ -3604,9 +3617,9 @@ export function Popup() {
             className="fixed bottom-0 left-0 right-0 z-[1501] bg-white rounded-t-2xl shadow-2xl overflow-hidden flex flex-col"
             style={{
               fontSize: `${14 * textScale / 100}px`,
-              // In half mode: auto height up to 50vh. In full mode: fixed 90vh
+              // In half mode: auto height up to 35vh. In full mode: fixed 90vh
               height: popupHeight === 'full' ? '90vh' : 'auto',
-              maxHeight: popupHeight === 'full' ? '90vh' : '50vh'
+              maxHeight: popupHeight === 'full' ? '90vh' : '35vh'
             }}
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
