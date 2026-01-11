@@ -9,7 +9,6 @@ import {
   useWeatherStore,
   useSettingsStore,
   useGPSStore,
-  useLayerStore,
   weatherCodeDescriptions,
   windDirectionToText,
   calculateDetectingScore,
@@ -17,7 +16,6 @@ import {
   getScoreColor,
   getScoreBgColor
 } from '../../store'
-import { Layers } from 'lucide-react'
 import type { WeatherCode, PrecipitationForecast, PollenData } from '../../store'
 
 // Default location: center of Netherlands
@@ -195,10 +193,8 @@ export function WeatherWidget() {
   const showWeatherButton = useSettingsStore(state => state.showWeatherButton)
   const gps = useGPSStore()
   const weather = useWeatherStore()
-  const { visible, toggleLayer } = useLayerStore()
 
   const [isExpanded, setIsExpanded] = useState(false)
-  const windLayerActive = visible['wind'] || false
 
   // Safe top position
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -273,28 +269,11 @@ export function WeatherWidget() {
                 </div>
               </div>
 
-              {/* Wind speed + arrow + layer button */}
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  <Wind size={14} className="text-gray-400" />
-                  <span className="text-sm text-gray-600">{Math.round(current.windSpeed)}</span>
-                  <WindArrow degrees={current.windDirection} size={14} />
-                </div>
-                {/* Wind layer toggle */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    toggleLayer('wind')
-                  }}
-                  className={`p-1.5 rounded-md border-0 outline-none transition-colors ${
-                    windLayerActive
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                  }`}
-                  title="Windkaart aan/uit"
-                >
-                  <Layers size={14} />
-                </button>
+              {/* Wind speed + arrow */}
+              <div className="flex items-center gap-1">
+                <Wind size={14} className="text-gray-400" />
+                <span className="text-sm text-gray-600">{Math.round(current.windSpeed)}</span>
+                <WindArrow degrees={current.windDirection} size={14} />
               </div>
 
               {/* Expand indicator */}

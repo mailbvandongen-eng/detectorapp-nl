@@ -702,17 +702,6 @@ export const layerRegistry: Record<string, LayerDefinition> = {
     immediateLoad: false
   },
 
-  // ============================================
-  // WEATHER LAYERS
-  // ============================================
-  'wind': {
-    name: 'Wind',
-    factory: async () => {
-      const { createWindLayerOL } = await import('./windOL')
-      return createWindLayerOL()
-    },
-    immediateLoad: true
-  },
 }
 
 // Helper to get all immediate load layers
