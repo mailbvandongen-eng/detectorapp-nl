@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
@@ -47,6 +47,8 @@ export function HamburgerMenu() {
   const setShowRouteRecordButton = useSettingsStore(state => state.setShowRouteRecordButton)
   const showCustomPointLayers = useSettingsStore(state => state.showCustomPointLayers)
   const setShowCustomPointLayers = useSettingsStore(state => state.setShowCustomPointLayers)
+  const showWeatherButton = useSettingsStore(state => state.showWeatherButton)
+  const setShowWeatherButton = useSettingsStore(state => state.setShowWeatherButton)
 
   // Safe top position for mobile browsers (accounts for notch/status bar)
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -240,6 +242,26 @@ export function HamburgerMenu() {
                     <span
                       className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
                         showRouteRecordButton ? 'left-[22px]' : 'left-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Weer knop toggle */}
+                <div className="px-3 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Cloud size={18} className="text-cyan-500" />
+                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Weer knop</span>
+                  </div>
+                  <button
+                    onClick={() => setShowWeatherButton(!showWeatherButton)}
+                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                      showWeatherButton ? 'bg-gradient-to-r from-cyan-500 to-cyan-600' : 'bg-gray-300'
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                        showWeatherButton ? 'left-[22px]' : 'left-0.5'
                       }`}
                     />
                   </button>

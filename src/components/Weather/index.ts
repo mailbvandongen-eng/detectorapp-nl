@@ -1,2 +1,1 @@
-export { WeatherPanel } from './WeatherPanel'
-export { WeatherButton } from './WeatherButton'
+export { WeatherWidget } from './WeatherWidget'
