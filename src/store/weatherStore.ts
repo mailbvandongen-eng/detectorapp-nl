@@ -291,6 +291,110 @@ export function calculateDetectingScore(data: WeatherData): { score: number; rea
   return { score, reasons }
 }
 
+// Calculate score for hourly forecast (simplified version for planning)
+export function calculateHourlyScore(
+  hourly: HourlyForecast,
+  frostDays: number,
+  date: Date
+): { score: number; reasons: string[] } {
+  let score = 100
+  const reasons: string[] = []
+  const month = date.getMonth()
+
+  // === TEMPERATURE ===
+  if (hourly.temperature >= 12 && hourly.temperature <= 22) {
+    // Perfect
+  } else if (hourly.temperature >= 8 && hourly.temperature < 12) {
+    score -= 10
+    reasons.push('Fris')
+  } else if (hourly.temperature > 22 && hourly.temperature <= 26) {
+    score -= 10
+    reasons.push('Warm')
+  } else if (hourly.temperature >= 4 && hourly.temperature < 8) {
+    score -= 25
+    reasons.push('Koud')
+  } else if (hourly.temperature > 26 && hourly.temperature <= 30) {
+    score -= 20
+    reasons.push('Heet')
+  } else if (hourly.temperature >= 0 && hourly.temperature < 4) {
+    score -= 40
+    reasons.push('Erg koud')
+  } else if (hourly.temperature > 30) {
+    score -= 35
+    reasons.push('Te heet')
+  } else if (hourly.temperature < 0) {
+    score -= 50
+    reasons.push('Vorst')
+  }
+
+  // === FROST DAYS ===
+  if (frostDays >= 3) {
+    score -= 40
+    reasons.push('Bevroren bodem')
+  } else if (frostDays >= 1) {
+    score -= 15
+    reasons.push('Recent vorst')
+  }
+
+  // === WEATHER CODE ===
+  if (hourly.weatherCode >= 71 && hourly.weatherCode <= 77) {
+    score -= 30
+    reasons.push('Sneeuw')
+  } else if (hourly.weatherCode >= 85 && hourly.weatherCode <= 86) {
+    score -= 25
+    reasons.push('Sneeuwbuien')
+  } else if (hourly.weatherCode >= 95) {
+    score -= 35
+    reasons.push('Onweer')
+  } else if (hourly.weatherCode >= 65 || hourly.weatherCode === 82) {
+    score -= 20
+    reasons.push('Hevige regen')
+  } else if ((hourly.weatherCode >= 61 && hourly.weatherCode <= 63) ||
+             (hourly.weatherCode >= 80 && hourly.weatherCode <= 81)) {
+    score -= 10
+    reasons.push('Regen')
+  } else if (hourly.weatherCode >= 51 && hourly.weatherCode <= 57) {
+    score -= 5
+    reasons.push('Motregen')
+  }
+
+  // === PRECIPITATION ===
+  if (hourly.precipitation > 2) {
+    score -= 15
+    reasons.push('Neerslag')
+  } else if (hourly.precipitation > 0.5) {
+    score -= 8
+  }
+
+  // === WIND ===
+  if (hourly.windSpeed > 50) {
+    score -= 25
+    reasons.push('Storm')
+  } else if (hourly.windSpeed > 35) {
+    score -= 15
+    reasons.push('Harde wind')
+  } else if (hourly.windSpeed > 25) {
+    score -= 8
+    reasons.push('Winderig')
+  }
+
+  // === SEASON ===
+  if (month >= 8 && month <= 10) {
+    score += 10
+  } else if (month >= 2 && month <= 3) {
+    score += 5
+  } else if (month >= 4 && month <= 5) {
+    score -= 10
+  } else if (month >= 6 && month <= 7) {
+    score -= 20
+  } else {
+    score -= 15
+  }
+
+  score = Math.max(0, Math.min(100, score))
+  return { score, reasons }
+}
+
 // Get score label
 export function getScoreLabel(score: number): string {
   if (score >= 80) return 'Uitstekend'

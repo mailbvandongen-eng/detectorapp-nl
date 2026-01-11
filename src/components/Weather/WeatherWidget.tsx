@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Cloud, Sun, CloudRain, CloudSnow, CloudLightning, CloudFog, Wind,
   Thermometer, Droplets, ChevronDown, ChevronUp, X, RefreshCw,
-  Navigation, Snowflake, Flower2, AlertTriangle
+  Navigation, Snowflake, Flower2, AlertTriangle, Calendar
 } from 'lucide-react'
 import {
   useWeatherStore,
@@ -17,6 +17,7 @@ import {
   getScoreBgColor
 } from '../../store'
 import type { WeatherCode, PrecipitationForecast, PollenData } from '../../store'
+import { DetectorPlanner } from './DetectorPlanner'
 
 // Default location: center of Netherlands
 const DEFAULT_LOCATION = { lat: 52.1326, lon: 5.2913 }
@@ -292,6 +293,7 @@ export function WeatherWidget() {
   const weather = useWeatherStore()
 
   const [isExpanded, setIsExpanded] = useState(false)
+  const [showPlanner, setShowPlanner] = useState(false)
 
   // Safe top position
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -335,6 +337,7 @@ export function WeatherWidget() {
   const bgColor = weather.weatherData ? getScoreBgColor(score) : 'bg-white/95 border-gray-200'
 
   return (
+    <>
     <motion.div
       className={`fixed left-2 z-[700] backdrop-blur-sm rounded-xl shadow-sm border transition-all ${bgColor}`}
       style={safeTopStyle}
@@ -384,9 +387,18 @@ export function WeatherWidget() {
               </div>
             </div>
 
-            {/* Detecting score bar */}
-            <div className="flex items-center gap-2 mt-1.5 pt-1.5 border-t border-gray-200/50">
-              <span className="text-[10px] text-gray-500">Detecteren</span>
+            {/* Detecting score bar - clickable for planner */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowPlanner(true)
+              }}
+              className="w-full flex items-center gap-2 mt-1.5 pt-1.5 border-t border-gray-200/50 border-0 border-t bg-transparent p-0 outline-none hover:opacity-80 transition-opacity"
+            >
+              <span className="text-[10px] text-gray-500 flex items-center gap-1">
+                <Calendar size={10} className="text-gray-400" />
+                Detecteren
+              </span>
               <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
                 <div
                   className={`h-full transition-all ${
@@ -401,7 +413,7 @@ export function WeatherWidget() {
               <span className={`text-[10px] font-medium ${getScoreColor(score)}`}>
                 {getScoreLabel(score)}
               </span>
-            </div>
+            </button>
           </button>
 
           {/* Expanded view */}
@@ -500,5 +512,12 @@ export function WeatherWidget() {
         </button>
       )}
     </motion.div>
+
+      {/* Detector Planner Modal */}
+      <DetectorPlanner
+        isOpen={showPlanner}
+        onClose={() => setShowPlanner(false)}
+      />
+    </>
   )
 }
