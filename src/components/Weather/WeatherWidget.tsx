@@ -9,6 +9,7 @@ import {
   useWeatherStore,
   useSettingsStore,
   useGPSStore,
+  useLayerStore,
   weatherCodeDescriptions,
   windDirectionToText,
   calculateDetectingScore,
@@ -16,6 +17,7 @@ import {
   getScoreColor,
   getScoreBgColor
 } from '../../store'
+import { Layers } from 'lucide-react'
 import type { WeatherCode, PrecipitationForecast, PollenData } from '../../store'
 
 // Default location: center of Netherlands
@@ -32,11 +34,40 @@ function WeatherIcon({ code, size = 18 }: { code: WeatherCode; size?: number }) 
   return <Cloud size={size} className="text-gray-400" />
 }
 
-// Wind direction arrow
-function WindArrow({ degrees, size = 14 }: { degrees: number; size?: number }) {
+// Wind compass with N/Z/O/W
+function WindCompass({ degrees, size = 36 }: { degrees: number; size?: number }) {
+  // Wind direction: degrees is where wind comes FROM, arrow shows where it goes TO
+  const arrowRotation = degrees + 180
+
   return (
-    <div style={{ transform: `rotate(${degrees + 180}deg)` }} className="inline-flex">
-      <Navigation size={size} className="text-blue-500" />
+    <div
+      className="relative flex items-center justify-center"
+      style={{ width: size, height: size }}
+    >
+      {/* Compass circle */}
+      <div className="absolute inset-0 rounded-full border-2 border-gray-300 bg-gradient-to-b from-gray-50 to-gray-100" />
+
+      {/* Cardinal directions */}
+      <span className="absolute text-[7px] font-bold text-red-500" style={{ top: 1 }}>N</span>
+      <span className="absolute text-[7px] font-medium text-gray-500" style={{ bottom: 1 }}>Z</span>
+      <span className="absolute text-[7px] font-medium text-gray-500" style={{ right: 2 }}>O</span>
+      <span className="absolute text-[7px] font-medium text-gray-500" style={{ left: 2 }}>W</span>
+
+      {/* Wind arrow */}
+      <div
+        className="absolute transition-transform duration-300"
+        style={{ transform: `rotate(${arrowRotation}deg)` }}
+      >
+        <svg width={size * 0.5} height={size * 0.5} viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 4L12 20M12 4L8 8M12 4L16 8"
+            stroke="#3b82f6"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
     </div>
   )
 }
@@ -193,8 +224,10 @@ export function WeatherWidget() {
   const showWeatherButton = useSettingsStore(state => state.showWeatherButton)
   const gps = useGPSStore()
   const weather = useWeatherStore()
+  const { activeLayers, toggleLayer } = useLayerStore()
 
   const [isExpanded, setIsExpanded] = useState(false)
+  const windLayerActive = activeLayers.includes('wind')
 
   // Safe top position
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
@@ -255,20 +288,42 @@ export function WeatherWidget() {
             onClick={() => setIsExpanded(!isExpanded)}
             className="w-full border-0 outline-none bg-transparent p-0"
           >
-            <div className="flex items-center gap-3">
-              {/* Weather icon + temp */}
+            <div className="flex items-center gap-2">
+              {/* Weather icon + temp + feels like */}
               <div className="flex items-center gap-1.5">
                 <WeatherIcon code={current.weatherCode} size={22} />
-                <span className="text-xl font-bold text-gray-800">
-                  {Math.round(current.temperature)}°
-                </span>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-lg font-bold text-gray-800">
+                    {Math.round(current.temperature)}°
+                  </span>
+                  <span className="text-[9px] text-gray-400">
+                    voelt {Math.round(current.apparentTemperature)}°
+                  </span>
+                </div>
               </div>
 
-              {/* Wind */}
-              <div className="flex items-center gap-1 text-sm text-gray-600">
-                <Wind size={14} />
-                <span>{Math.round(current.windSpeed)}</span>
-                <WindArrow degrees={current.windDirection} size={12} />
+              {/* Wind speed + compass + layer button */}
+              <div className="flex items-center gap-1.5">
+                <div className="flex flex-col items-center leading-tight">
+                  <span className="text-sm font-medium text-gray-600">{Math.round(current.windSpeed)}</span>
+                  <span className="text-[8px] text-gray-400">km/u</span>
+                </div>
+                <WindCompass degrees={current.windDirection} size={32} />
+                {/* Wind layer toggle */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleLayer('wind')
+                  }}
+                  className={`p-1 rounded-md border-0 outline-none transition-colors ${
+                    windLayerActive
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                  }`}
+                  title="Windkaart aan/uit"
+                >
+                  <Layers size={14} />
+                </button>
               </div>
 
               {/* Expand indicator */}
