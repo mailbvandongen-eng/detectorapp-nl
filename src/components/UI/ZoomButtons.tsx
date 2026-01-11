@@ -23,8 +23,11 @@ export function ZoomButtons() {
     }
   }
 
+  // Position below hamburger menu (which is at top with safe-area + 44px height)
+  const topPosition = 'calc(max(0.5rem, env(safe-area-inset-top, 0.5rem)) + 52px)'
+
   return (
-    <div className="fixed top-2 left-2 z-[800] flex flex-col gap-1">
+    <div className="fixed right-2 z-[800] flex flex-col gap-1" style={{ top: topPosition }}>
       <motion.button
         className="w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         onClick={handleZoomIn}
