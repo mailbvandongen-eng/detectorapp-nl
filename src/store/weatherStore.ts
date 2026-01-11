@@ -82,6 +82,7 @@ export interface WeatherData {
   daily: DailyForecast[]
   // Extra data for detecting conditions
   precipitation15min: PrecipitationForecast[]  // Next 2 hours per 15 min
+  precipitation48h: PrecipitationForecast[]    // Next 48 hours per 15 min (extended view)
   frostDays: number  // Number of consecutive frost days (min temp < 0)
   pollen?: PollenData
   lastUpdated: number
@@ -401,15 +402,32 @@ export const useWeatherStore = create<WeatherState>()(
           // Find current location info
           const selectedLocation = savedLocations.find(l => l.id === selectedLocationId) || savedLocations[0]
 
-          // Get next 2 hours of 15-minute precipitation data
+          // Get precipitation data
           const now = new Date()
           const precipitation15min: PrecipitationForecast[] = []
+          const precipitation48h: PrecipitationForecast[] = []
+
           if (data.minutely_15?.time && data.minutely_15?.precipitation) {
+            const twoHoursLater = new Date(now.getTime() + 2 * 60 * 60 * 1000)
+            const fortyEightHoursLater = new Date(now.getTime() + 48 * 60 * 60 * 1000)
+
             for (let i = 0; i < data.minutely_15.time.length; i++) {
               const time = new Date(data.minutely_15.time[i])
-              // Only include next 2 hours
-              if (time >= now && time <= new Date(now.getTime() + 2 * 60 * 60 * 1000)) {
+
+              // Skip past times
+              if (time < now) continue
+
+              // 2-hour data (15min intervals)
+              if (time <= twoHoursLater) {
                 precipitation15min.push({
+                  time: data.minutely_15.time[i],
+                  precipitation: data.minutely_15.precipitation[i]
+                })
+              }
+
+              // 48-hour data (15min intervals but we'll sample every hour for display)
+              if (time <= fortyEightHoursLater) {
+                precipitation48h.push({
                   time: data.minutely_15.time[i],
                   precipitation: data.minutely_15.precipitation[i]
                 })
@@ -469,6 +487,7 @@ export const useWeatherStore = create<WeatherState>()(
             hourly: hourlyFiltered,
             daily: dailyFiltered,
             precipitation15min,
+            precipitation48h,
             frostDays,
             lastUpdated: Date.now()
           }

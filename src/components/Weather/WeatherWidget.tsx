@@ -41,40 +41,118 @@ function WindArrow({ degrees, size = 14 }: { degrees: number; size?: number }) {
   )
 }
 
-// Precipitation graph (Buienalarm style)
-function PrecipitationGraph({ data }: { data: PrecipitationForecast[] }) {
+// Precipitation graph (Buienalarm style) - expandable
+function PrecipitationGraph({ data, data48h }: { data: PrecipitationForecast[]; data48h: PrecipitationForecast[] }) {
+  const [isExtended, setIsExtended] = useState(false)
+  const [sliderPosition, setSliderPosition] = useState(0)
+
   if (!data || data.length === 0) return null
 
-  const maxPrecip = Math.max(...data.map(d => d.precipitation), 0.5)
-  const hasRain = data.some(d => d.precipitation > 0)
+  // For extended view: sample every 4th point (hourly instead of 15-min)
+  const extendedData = data48h ? data48h.filter((_, i) => i % 4 === 0) : []
+  const displayData = isExtended ? extendedData : data
 
-  // Format time
+  // For extended view with slider: show 12 hours at a time
+  const windowSize = isExtended ? 12 : data.length
+  const maxSliderPosition = isExtended ? Math.max(0, extendedData.length - windowSize) : 0
+  const visibleData = isExtended
+    ? extendedData.slice(sliderPosition, sliderPosition + windowSize)
+    : data
+
+  const maxPrecip = Math.max(...visibleData.map(d => d.precipitation), 0.5)
+  const hasRain = visibleData.some(d => d.precipitation > 0)
+  const hasRainAnywhere = (isExtended ? extendedData : data).some(d => d.precipitation > 0)
+
+  // Find next rain time
+  const findNextRain = () => {
+    const dataToCheck = isExtended ? extendedData : data
+    for (const d of dataToCheck) {
+      if (d.precipitation > 0.1) {
+        const time = new Date(d.time)
+        const now = new Date()
+        const diffMs = time.getTime() - now.getTime()
+        const diffHours = Math.round(diffMs / (1000 * 60 * 60))
+        if (diffHours < 1) return 'Nu regen'
+        if (diffHours < 24) return `Regen over ${diffHours}u`
+        const diffDays = Math.round(diffHours / 24)
+        return `Regen over ${diffDays} dag${diffDays > 1 ? 'en' : ''}`
+      }
+    }
+    return null
+  }
+
+  // Format time for tooltip
   const formatTime = (timeStr: string) => {
     const date = new Date(timeStr)
     return `${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`
   }
 
+  // Format time labels for extended view
+  const formatExtendedLabel = (timeStr: string) => {
+    const date = new Date(timeStr)
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    const isToday = date.toDateString() === today.toDateString()
+    const isTomorrow = date.toDateString() === tomorrow.toDateString()
+
+    if (isToday) return `${date.getHours()}u`
+    if (isTomorrow) return `mor ${date.getHours()}u`
+    return `${date.getDate()}/${date.getMonth() + 1}`
+  }
+
+  // Get time labels for visible window
+  const getTimeLabels = () => {
+    if (!isExtended) return ['Nu', '+1u', '+2u']
+
+    if (visibleData.length === 0) return []
+    const first = new Date(visibleData[0].time)
+    const middle = visibleData[Math.floor(visibleData.length / 2)]
+    const last = visibleData[visibleData.length - 1]
+
+    return [
+      formatExtendedLabel(visibleData[0].time),
+      formatExtendedLabel(middle?.time || visibleData[0].time),
+      formatExtendedLabel(last?.time || visibleData[0].time)
+    ]
+  }
+
+  const nextRain = findNextRain()
+  const timeLabels = getTimeLabels()
+
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-gray-500">Neerslag komende 2 uur</span>
-        {!hasRain && (
+        <button
+          onClick={() => {
+            setIsExtended(!isExtended)
+            setSliderPosition(0)
+          }}
+          className="flex items-center gap-1 text-[10px] text-gray-500 hover:text-blue-500 transition-colors border-0 outline-none bg-transparent p-0"
+        >
+          <span>Neerslag {isExtended ? '48 uur' : '2 uur'}</span>
+          <ChevronDown size={10} className={`transition-transform ${isExtended ? 'rotate-180' : ''}`} />
+        </button>
+        {!hasRainAnywhere ? (
           <span className="text-[10px] text-green-600 font-medium">Droog</span>
-        )}
+        ) : nextRain ? (
+          <span className="text-[10px] text-blue-500 font-medium">{nextRain}</span>
+        ) : null}
       </div>
 
       {/* Graph */}
       <div className="relative h-12 bg-gray-100 rounded-lg overflow-hidden">
         {/* Grid lines */}
         <div className="absolute inset-0 flex">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(isExtended ? 12 : 8)].map((_, i) => (
             <div key={i} className="flex-1 border-r border-gray-200/50" />
           ))}
         </div>
 
         {/* Bars */}
         <div className="absolute inset-0 flex items-end px-0.5">
-          {data.map((d, i) => {
+          {visibleData.map((d, i) => {
             const height = (d.precipitation / maxPrecip) * 100
             const intensity = d.precipitation > 2 ? 'bg-blue-600' :
                              d.precipitation > 0.5 ? 'bg-blue-500' :
@@ -96,11 +174,27 @@ function PrecipitationGraph({ data }: { data: PrecipitationForecast[] }) {
 
         {/* Time labels */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-between px-1 text-[8px] text-gray-400">
-          <span>Nu</span>
-          <span>+1u</span>
-          <span>+2u</span>
+          {timeLabels.map((label, i) => (
+            <span key={i}>{label}</span>
+          ))}
         </div>
       </div>
+
+      {/* Slider for extended view */}
+      {isExtended && maxSliderPosition > 0 && (
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] text-gray-400">Nu</span>
+          <input
+            type="range"
+            min={0}
+            max={maxSliderPosition}
+            value={sliderPosition}
+            onChange={(e) => setSliderPosition(parseInt(e.target.value))}
+            className="flex-1 h-1 accent-blue-500"
+          />
+          <span className="text-[9px] text-gray-400">+48u</span>
+        </div>
+      )}
 
       {/* Legend */}
       {hasRain && (
@@ -226,6 +320,7 @@ export function WeatherWidget() {
   const current = weather.weatherData?.current
   const hourly = weather.weatherData?.hourly || []
   const precipitation15min = weather.weatherData?.precipitation15min || []
+  const precipitation48h = weather.weatherData?.precipitation48h || []
   const pollen = weather.weatherData?.pollen
 
   // Calculate detecting score
@@ -364,7 +459,7 @@ export function WeatherWidget() {
 
                   {/* Precipitation graph */}
                   {precipitation15min.length > 0 && (
-                    <PrecipitationGraph data={precipitation15min} />
+                    <PrecipitationGraph data={precipitation15min} data48h={precipitation48h} />
                   )}
 
                   {/* Pollen info */}
