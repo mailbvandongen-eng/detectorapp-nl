@@ -1,2 +1,0 @@
-import{T as e,X as t}from"./index-DG2R-9px.js";function p(){return new e({properties:{title:"Wind",type:"tile"},source:new t({url:"https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=9de243494c0b295cca9337e1e96b00e2",maxZoom:19,attributions:'&copy; <a href="https://openweathermap.org">OpenWeatherMap</a>'}),opacity:.7,visible:!0,zIndex:50})}export{p as createWindLayerOL};
-//# sourceMappingURL=windOL-CRq3dJBD.js.map
