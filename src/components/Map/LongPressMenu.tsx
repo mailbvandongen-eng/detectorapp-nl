@@ -365,8 +365,18 @@ export function LongPressMenu() {
             className="fixed z-[1601] bg-white rounded-xl shadow-md overflow-hidden min-w-[200px] border-0 outline-none"
             style={{
               // Position menu near the long press location
+              // Calculate available space and position accordingly
               left: Math.min(menuLocation.pixel[0], window.innerWidth - 220),
-              top: Math.min(menuLocation.pixel[1], window.innerHeight - 240)
+              // Menu height: ~340px base + ~100px if submenu open
+              top: (() => {
+                const menuHeight = showLayerSubmenu ? 480 : 380
+                const spaceBelow = window.innerHeight - menuLocation.pixel[1]
+                // If not enough space below, position above the click point
+                if (spaceBelow < menuHeight && menuLocation.pixel[1] > menuHeight) {
+                  return menuLocation.pixel[1] - menuHeight + 40
+                }
+                return Math.min(menuLocation.pixel[1], window.innerHeight - menuHeight)
+              })()
             }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

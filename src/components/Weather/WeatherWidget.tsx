@@ -13,8 +13,7 @@ import {
   windDirectionToText,
   calculateDetectingScore,
   getScoreLabel,
-  getScoreColor,
-  getScoreBgColor
+  getScoreColor
 } from '../../store'
 import type { WeatherCode, PrecipitationForecast, PollenData } from '../../store'
 import { DetectorPlanner } from './DetectorPlanner'
@@ -333,17 +332,27 @@ export function WeatherWidget() {
     ? calculateDetectingScore(weather.weatherData)
     : { score: 0, reasons: [] }
 
-  // Background color based on detecting score
-  const bgColor = weather.weatherData ? getScoreBgColor(score) : 'bg-white/95 border-gray-200'
-
   return (
     <>
-    <motion.div
-      className={`fixed left-2 z-[700] backdrop-blur-sm rounded-xl shadow-sm border transition-all ${bgColor}`}
-      style={safeTopStyle}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-    >
+      {/* Backdrop when expanded - click to close */}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            className="fixed inset-0 z-[1099]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsExpanded(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        className={`fixed left-2 backdrop-blur-sm rounded-xl shadow-sm border transition-all bg-white border-gray-200 ${isExpanded ? 'z-[1100]' : 'z-[700]'}`}
+        style={safeTopStyle}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+      >
       {weather.isLoading && !current ? (
         <div className="p-3 flex items-center gap-2">
           <RefreshCw size={16} className="animate-spin text-blue-500" />
