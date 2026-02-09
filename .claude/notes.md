@@ -1,6 +1,6 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.32.45
+## Huidige versie: 2.32.46
 
 ---
 
@@ -11,6 +11,7 @@
 **Contactpersoon:** Glenn Heeres (Esri Nederland)
 **Vereiste:** Volledige migratie naar ArcGIS Maps SDK for JavaScript (geen hybride)
 **API Key:** Geldig tot 27 januari 2027
+**AHN Licentie:** ✅ **GOEDGEKEURD** - Esri heeft toestemming gegeven bij volledige migratie
 
 ---
 
@@ -261,7 +262,7 @@ Alle PDOK WMS/WMTS services zijn OGC-compliant en werken direct met ArcGIS WMSLa
 - [ ] Performance acceptabel
 
 ### Licentie
-- [ ] AHN lagen licentie bevestigd door Esri
+- [x] AHN lagen licentie bevestigd door Esri ✅ (feb 2026)
 - [ ] API key productie-ready
 - [ ] Attributie correct
 
@@ -1280,9 +1281,11 @@ Update ALLE 4 plekken:
 | **Esri World Imagery** | Commercieel | ✅ Vervangen door PDOK Luchtfoto 8cm |
 | **Esri World Hillshade** | Commercieel global | ✅ Verwijderd |
 
-### ⏳ WACHTEN OP ESRI - ahn.arcgisonline.nl
+### ✅ GOEDGEKEURD - ahn.arcgisonline.nl (feb 2026)
 
-**Status:** Email gestuurd naar Esri Nederland, wachten op antwoord.
+**Status:** Esri Nederland heeft toestemming gegeven bij volledige migratie naar ArcGIS SDK.
+
+**Voorwaarde:** Volledige migratie van OpenLayers naar ArcGIS Maps SDK for JavaScript (geen hybride).
 
 **Gebruikt voor:**
 - AHN4 Hoogtekaart Kleur (belangrijkste laag!)
@@ -1292,13 +1295,8 @@ Update ALLE 4 plekken:
 
 **Achtergrond:**
 - AHN DATA zelf is CC-0 (publiek domein) - vrij te gebruiken
-- Esri visualisatie-service (hillshade, color ramp) vereist mogelijk licentie
+- Esri visualisatie-service mag gebruikt worden na volledige SDK migratie
 - Deze lagen zijn premium-only, dus alleen voor betalende gebruikers
-
-**Als Esri NEE zegt:**
-1. Self-hosted tiles genereren van PDOK AHN data
-2. Client-side WebGL hillshade rendering
-3. Alleen PDOK WMS grayscale gebruiken
 
 ### ✅ AL CORRECT - Map5.nl historische kaarten
 
