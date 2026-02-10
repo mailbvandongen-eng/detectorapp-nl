@@ -1,6 +1,6 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.32.46
+## Huidige versie: 2.32.47
 
 ---
 
@@ -15,6 +15,32 @@
 
 ---
 
+## ✅ MIGRATIE VOORTGANG (10 feb 2026)
+
+### Fase 1+2: Core Infrastructure - VOLTOOID
+| Component | Status | Bestand |
+|-----------|--------|---------|
+| Engine config met feature flags | ✅ | `src/config/mapEngineConfig.ts` **NIEUW** |
+| Unified mapStore interface | ✅ | `src/store/mapStore.ts` |
+| Conditional useMap hook | ✅ | `src/hooks/useMap.ts` |
+| Standalone ArcGIS container | ✅ | `src/components/Map/ArcGISMapContainer.tsx` **NIEUW** |
+| Dual-engine MapContainer | ✅ | `src/components/Map/MapContainer.tsx` |
+| ArcGIS base layers | ✅ | CartoDB, OSM, Luchtfoto, TMK 1850, Bonne 1900 |
+| View sync ArcGIS ↔ OL | ✅ | Bidirectionele synchronisatie |
+| ScaleBar widget | ✅ | Conditional op engine |
+
+**Engine configuratie** (`src/config/mapEngineConfig.ts`):
+```typescript
+engine: 'arcgis'           // Primaire engine
+arcgisBaseLayers: true     // ArcGIS handelt basemaps
+arcgisWMSLayers: false     // Nog via OL (Fase 3)
+arcgisVectorLayers: false  // Nog via OL (Fase 3)
+```
+
+### Wat nog gemigreerd moet worden:
+
+---
+
 ## 📊 HUIDIGE STATUS ANALYSE
 
 ### Wat al werkt met ArcGIS SDK:
@@ -22,8 +48,10 @@
 |-----------|--------|---------|
 | API Key configuratie | ✅ | `src/config/arcgisConfig.ts` |
 | AHN4 ImageryLayers | ✅ | `src/layers/arcgisAHNLayers.ts` |
-| Hybride MapView overlay | ✅ | `src/components/Map/MapContainer.tsx` |
-| View synchronisatie OL↔ArcGIS | ✅ | `MapContainer.tsx:228-252` |
+| Engine switch + base layers | ✅ | `src/config/mapEngineConfig.ts` |
+| ArcGIS MapView als primair | ✅ | `src/components/Map/MapContainer.tsx` |
+| View synchronisatie OL↔ArcGIS | ✅ | Bidirectioneel |
+| ScaleBar via ArcGIS | ✅ | ScaleBar widget |
 
 ### Wat nog gemigreerd moet worden:
 
