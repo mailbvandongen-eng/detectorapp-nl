@@ -53,12 +53,12 @@ interface MapEngineConfig {
  * Na volledige migratie: verwijder OL dependencies
  */
 export const mapEngineConfig: MapEngineConfig = {
-  // ROLLBACK: OpenLayers als primaire engine (ArcGIS veroorzaakte zoom/basemap issues)
-  engine: 'openlayers',
+  // ArcGIS als primaire engine (Glenn Heeres / Esri vereiste)
+  engine: 'arcgis',
 
   features: {
-    // Fase 2: Base layers - UIT tot issues opgelost
-    arcgisBaseLayers: false,
+    // Fase 2: Base layers via ArcGIS
+    arcgisBaseLayers: true,
 
     // Fase 3: Layer migratie (nog niet klaar)
     arcgisWMSLayers: false,

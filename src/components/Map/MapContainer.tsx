@@ -55,24 +55,35 @@ const ARCGIS_BASE_LAYERS: Record<string, { url: string; subDomains?: string[]; c
 export function MapContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
   const arcgisContainerRef = useRef<HTMLDivElement>(null)
-  const olContainerRef = useRef<HTMLDivElement>(null)
   const initialBgApplied = useRef(false)
   const arcgisInitialized = useRef(false)
   const scaleBarRef = useRef<ScaleBar | null>(null)
   const [arcgisReady, setArcgisReady] = useState(false)
+  const [containerMounted, setContainerMounted] = useState(false)
 
   // Determine engine mode
   const arcgisIsPrimary = isArcGISEngine()
   const arcgisBaseLayers = useArcGISFeature('arcgisBaseLayers')
 
-  useMap({ target: arcgisIsPrimary ? 'ol-overlay' : 'map' }) // Initialize OpenLayers map
-  const map = useMapStore(state => state.map) // Get reactive OL map from store
+  // OL map target - 'map' for primary, 'ol-overlay' for overlay mode
+  const olTarget = arcgisIsPrimary ? 'ol-overlay' : 'map'
+  useMap({ target: olTarget })
+
+  const map = useMapStore(state => state.map)
   const arcgisView = useMapStore(state => state.arcgisView)
   const setArcGISMap = useMapStore(state => state.setArcGISMap)
   const registerLayer = useLayerStore(state => state.registerLayer)
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
   const defaultBackground = useSettingsStore(state => state.defaultBackground)
   const showScaleBar = useSettingsStore(state => state.showScaleBar)
+
+  // Track when container is mounted
+  useEffect(() => {
+    if (arcgisContainerRef.current) {
+      setContainerMounted(true)
+      engineLog('ArcGIS container mounted')
+    }
+  }, [])
 
   useEffect(() => {
     if (!map) {
@@ -220,32 +231,30 @@ export function MapContainer() {
     engineLog(`Total OL layers: ${map.getLayers().getLength()}`)
   }
 
-  // Initialize ArcGIS Map
+  // Initialize ArcGIS Map - wait for container to be mounted
   useEffect(() => {
-    if (!arcgisContainerRef.current || arcgisInitialized.current) return
+    // Must have container and not already initialized
+    if (!containerMounted || !arcgisContainerRef.current || arcgisInitialized.current) return
 
-    // For primary engine mode, don't wait for OL map
     // For overlay mode, wait for OL map to sync position
     if (!arcgisIsPrimary && !map) return
 
-    engineLog('Initializing ArcGIS MapView...', { isPrimary: arcgisIsPrimary })
+    engineLog('Initializing ArcGIS MapView...', {
+      isPrimary: arcgisIsPrimary,
+      container: arcgisContainerRef.current?.id
+    })
 
-    // Get initial view state
-    let lonLat: [number, number] = [5.1214, 52.0907]
-    let zoom = 8
-
-    if (map) {
-      const olView = map.getView()
-      const center = olView.getCenter()
-      zoom = olView.getZoom() || 8
-      lonLat = center ? toLonLat(center) as [number, number] : [5.1214, 52.0907]
-    }
+    // Default view state for Netherlands
+    const defaultCenter: [number, number] = [5.1214, 52.0907]
+    const defaultZoom = 8
 
     // Create basemap for primary engine mode
     let basemap: Basemap | undefined
     if (arcgisIsPrimary && arcgisBaseLayers) {
       const bgName = defaultBackground || 'CartoDB (licht)'
       const config = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['CartoDB (licht)']
+
+      engineLog('Creating basemap:', bgName, config.url)
 
       const baseLayer = new WebTileLayer({
         urlTemplate: config.url,
@@ -263,62 +272,73 @@ export function MapContainer() {
 
     // Create ArcGIS Map
     const esriMap = new EsriMap({
-      basemap: basemap // undefined for overlay mode (transparent)
+      basemap: basemap
     })
 
     // Create ArcGIS MapView
     const esriView = new MapView({
       container: arcgisContainerRef.current,
       map: esriMap,
-      center: lonLat,
-      zoom: zoom,
+      center: defaultCenter,
+      zoom: defaultZoom,
       constraints: {
         rotationEnabled: true,
         minZoom: 3,
         maxZoom: 19
       },
       ui: {
-        components: arcgisIsPrimary ? ['attribution'] : [] // Show attribution only when primary
+        components: arcgisIsPrimary ? ['attribution'] : []
       },
-      // Transparent background for overlay mode
-      background: arcgisIsPrimary ? undefined : {
-        color: [0, 0, 0, 0]
-      }
+      background: arcgisIsPrimary ? undefined : { color: [0, 0, 0, 0] }
     })
+
+    arcgisInitialized.current = true
 
     // Wait for view to be ready
     esriView.when(() => {
       engineLog('ArcGIS MapView ready', {
         center: [esriView.center?.longitude, esriView.center?.latitude],
         zoom: esriView.zoom,
-        isPrimary: arcgisIsPrimary
+        scale: esriView.scale
       })
 
       setArcGISMap(esriMap, esriView)
       setArcgisReady(true)
-      arcgisInitialized.current = true
 
-      // Set up view synchronization
-      if (arcgisIsPrimary && map) {
-        // ArcGIS is primary: sync ArcGIS → OL
-        esriView.watch('center', (center) => {
-          if (center && map) {
-            const { fromLonLat } = require('ol/proj')
-            map.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
-          }
-        })
+      // Set up view synchronization after both maps are ready
+      if (arcgisIsPrimary) {
+        // ArcGIS is primary: sync ArcGIS → OL when OL map becomes available
+        const setupOLSync = () => {
+          const olMap = useMapStore.getState().map
+          if (!olMap) return
 
-        esriView.watch('zoom', (newZoom) => {
-          if (newZoom !== undefined && map) {
-            map.getView().setZoom(newZoom)
-          }
-        })
+          esriView.watch('center', (center) => {
+            if (center) {
+              const { fromLonLat } = require('ol/proj')
+              olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
+            }
+          })
 
-        esriView.watch('rotation', (rotation) => {
-          if (rotation !== undefined && map) {
-            map.getView().setRotation((rotation * Math.PI) / 180)
-          }
-        })
+          esriView.watch('zoom', (newZoom) => {
+            if (newZoom !== undefined) {
+              olMap.getView().setZoom(newZoom)
+            }
+          })
+
+          engineLog('ArcGIS → OL sync setup complete')
+        }
+
+        // Try immediately, or wait for OL map
+        if (map) {
+          setupOLSync()
+        } else {
+          const unsubscribe = useMapStore.subscribe((state) => {
+            if (state.map) {
+              setupOLSync()
+              unsubscribe()
+            }
+          })
+        }
       } else if (map) {
         // OL is primary: sync OL → ArcGIS
         const olView = map.getView()
@@ -337,17 +357,21 @@ export function MapContainer() {
             esriView.goTo({ zoom: newZoom }, { animate: false })
           }
         })
+
+        engineLog('OL → ArcGIS sync setup complete')
       }
     }).catch((error: Error) => {
       console.error('❌ ArcGIS MapView initialization failed:', error)
+      arcgisInitialized.current = false // Allow retry
     })
 
     return () => {
-      if (esriView) {
+      if (esriView && !esriView.destroyed) {
         esriView.destroy()
+        arcgisInitialized.current = false
       }
     }
-  }, [map, setArcGISMap, arcgisIsPrimary, arcgisBaseLayers, defaultBackground])
+  }, [containerMounted, map, setArcGISMap, arcgisIsPrimary, arcgisBaseLayers, defaultBackground])
 
   // Handle ScaleBar for ArcGIS primary mode
   useEffect(() => {
@@ -510,7 +534,6 @@ export function MapContainer() {
           {/* OpenLayers Map (overlay - for WMS/Vector layers during migration) */}
           <div
             id="ol-overlay"
-            ref={olContainerRef}
             style={olStyle}
           />
         </>
