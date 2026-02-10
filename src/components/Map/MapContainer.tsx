@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import 'ol/ol.css'
 import { Tile as TileLayer } from 'ol/layer'
 import { OSM, XYZ } from 'ol/source'
@@ -52,14 +52,18 @@ const ARCGIS_BASE_LAYERS: Record<string, { url: string; subDomains?: string[]; c
   }
 }
 
+// Netherlands center
+const NL_CENTER: [number, number] = [5.1214, 52.0907]
+const NL_ZOOM = 8
+
 export function MapContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
   const arcgisContainerRef = useRef<HTMLDivElement>(null)
   const initialBgApplied = useRef(false)
   const arcgisInitialized = useRef(false)
+  const arcgisViewRef = useRef<MapView | null>(null)
   const scaleBarRef = useRef<ScaleBar | null>(null)
   const [arcgisReady, setArcgisReady] = useState(false)
-  const [containerMounted, setContainerMounted] = useState(false)
 
   // Determine engine mode
   const arcgisIsPrimary = isArcGISEngine()
@@ -77,12 +81,23 @@ export function MapContainer() {
   const defaultBackground = useSettingsStore(state => state.defaultBackground)
   const showScaleBar = useSettingsStore(state => state.showScaleBar)
 
-  // Track when container is mounted
-  useEffect(() => {
-    if (arcgisContainerRef.current) {
-      setContainerMounted(true)
-      engineLog('ArcGIS container mounted')
-    }
+  // Create ArcGIS basemap helper
+  const createArcGISBasemap = useCallback((bgName: string) => {
+    const config = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['CartoDB (licht)']
+    engineLog('Creating basemap:', bgName)
+
+    const baseLayer = new WebTileLayer({
+      urlTemplate: config.url,
+      subDomains: config.subDomains,
+      copyright: config.copyright,
+      title: bgName,
+      maxScale: config.maxScale
+    })
+
+    return new Basemap({
+      baseLayers: [baseLayer],
+      title: bgName
+    })
   }, [])
 
   useEffect(() => {
@@ -231,147 +246,164 @@ export function MapContainer() {
     engineLog(`Total OL layers: ${map.getLayers().getLength()}`)
   }
 
-  // Initialize ArcGIS Map - wait for container to be mounted
+  // Initialize ArcGIS Map
   useEffect(() => {
-    // Must have container and not already initialized
-    if (!containerMounted || !arcgisContainerRef.current || arcgisInitialized.current) return
+    // Already initialized?
+    if (arcgisInitialized.current) return
 
-    // For overlay mode, wait for OL map to sync position
-    if (!arcgisIsPrimary && !map) return
+    const container = arcgisContainerRef.current
+    if (!container) {
+      engineLog('ArcGIS container not ready')
+      return
+    }
 
-    engineLog('Initializing ArcGIS MapView...', {
-      isPrimary: arcgisIsPrimary,
-      container: arcgisContainerRef.current?.id
-    })
+    // For overlay mode (OL primary), wait for OL map
+    if (!arcgisIsPrimary && !map) {
+      engineLog('Waiting for OL map (overlay mode)')
+      return
+    }
 
-    // Default view state for Netherlands
-    const defaultCenter: [number, number] = [5.1214, 52.0907]
-    const defaultZoom = 8
+    // Wait for next frame to ensure container has dimensions
+    const initializeMap = () => {
+      const rect = container.getBoundingClientRect()
+      engineLog('ArcGIS container dimensions:', { width: rect.width, height: rect.height })
 
-    // Create basemap for primary engine mode
-    let basemap: Basemap | undefined
-    if (arcgisIsPrimary && arcgisBaseLayers) {
-      const bgName = defaultBackground || 'CartoDB (licht)'
-      const config = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['CartoDB (licht)']
+      if (rect.width === 0 || rect.height === 0) {
+        engineLog('Container has no dimensions, retrying...')
+        requestAnimationFrame(initializeMap)
+        return
+      }
 
-      engineLog('Creating basemap:', bgName, config.url)
+      // Mark as initializing to prevent duplicate init
+      arcgisInitialized.current = true
 
-      const baseLayer = new WebTileLayer({
-        urlTemplate: config.url,
-        subDomains: config.subDomains,
-        copyright: config.copyright,
-        title: bgName,
-        maxScale: config.maxScale
+      engineLog('Initializing ArcGIS MapView...', {
+        isPrimary: arcgisIsPrimary,
+        containerId: container.id
       })
 
-      basemap = new Basemap({
-        baseLayers: [baseLayer],
-        title: bgName
+      // Create basemap for primary mode
+      const basemap = (arcgisIsPrimary && arcgisBaseLayers)
+        ? createArcGISBasemap(defaultBackground || 'CartoDB (licht)')
+        : undefined
+
+      // Create ArcGIS Map
+      const esriMap = new EsriMap({ basemap })
+
+      // Create ArcGIS MapView with explicit center and zoom
+      const esriView = new MapView({
+        container: container,
+        map: esriMap,
+        center: NL_CENTER,
+        zoom: NL_ZOOM,
+        constraints: {
+          rotationEnabled: true,
+          minZoom: 3,
+          maxZoom: 19
+        },
+        ui: {
+          components: arcgisIsPrimary ? ['attribution'] : []
+        },
+        background: arcgisIsPrimary ? undefined : { color: [0, 0, 0, 0] }
+      })
+
+      // Store view ref for cleanup
+      arcgisViewRef.current = esriView
+
+      // Wait for view to be ready
+      esriView.when(() => {
+        engineLog('ArcGIS MapView ready', {
+          center: [esriView.center?.longitude, esriView.center?.latitude],
+          zoom: esriView.zoom,
+          scale: esriView.scale
+        })
+
+        // Store in Zustand
+        setArcGISMap(esriMap, esriView)
+        setArcgisReady(true)
+
+        // Setup view sync
+        if (arcgisIsPrimary) {
+          // ArcGIS primary: sync ArcGIS → OL
+          const setupSync = (olMap: any) => {
+            if (!olMap) return
+
+            esriView.watch('center', (center) => {
+              if (center && olMap) {
+                const { fromLonLat } = require('ol/proj')
+                olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
+              }
+            })
+
+            esriView.watch('zoom', (newZoom) => {
+              if (newZoom !== undefined && olMap) {
+                olMap.getView().setZoom(newZoom)
+              }
+            })
+
+            engineLog('ArcGIS → OL sync complete')
+          }
+
+          // Setup sync when OL map is available
+          const currentOLMap = useMapStore.getState().map
+          if (currentOLMap) {
+            setupSync(currentOLMap)
+          } else {
+            const unsubscribe = useMapStore.subscribe((state) => {
+              if (state.map) {
+                setupSync(state.map)
+                unsubscribe()
+              }
+            })
+          }
+        } else if (map) {
+          // OL primary: sync OL → ArcGIS
+          const olView = map.getView()
+
+          olView.on('change:center', () => {
+            const newCenter = olView.getCenter()
+            if (newCenter && !esriView.destroyed) {
+              const newLonLat = toLonLat(newCenter)
+              esriView.goTo({ center: newLonLat }, { animate: false })
+            }
+          })
+
+          olView.on('change:resolution', () => {
+            const newZoom = olView.getZoom()
+            if (newZoom !== undefined && !esriView.destroyed) {
+              esriView.goTo({ zoom: newZoom }, { animate: false })
+            }
+          })
+
+          engineLog('OL → ArcGIS sync complete')
+        }
+      }).catch((error: Error) => {
+        console.error('❌ ArcGIS MapView init failed:', error)
+        arcgisInitialized.current = false
       })
     }
 
-    // Create ArcGIS Map
-    const esriMap = new EsriMap({
-      basemap: basemap
-    })
-
-    // Create ArcGIS MapView
-    const esriView = new MapView({
-      container: arcgisContainerRef.current,
-      map: esriMap,
-      center: defaultCenter,
-      zoom: defaultZoom,
-      constraints: {
-        rotationEnabled: true,
-        minZoom: 3,
-        maxZoom: 19
-      },
-      ui: {
-        components: arcgisIsPrimary ? ['attribution'] : []
-      },
-      background: arcgisIsPrimary ? undefined : { color: [0, 0, 0, 0] }
-    })
-
-    arcgisInitialized.current = true
-
-    // Wait for view to be ready
-    esriView.when(() => {
-      engineLog('ArcGIS MapView ready', {
-        center: [esriView.center?.longitude, esriView.center?.latitude],
-        zoom: esriView.zoom,
-        scale: esriView.scale
-      })
-
-      setArcGISMap(esriMap, esriView)
-      setArcgisReady(true)
-
-      // Set up view synchronization after both maps are ready
-      if (arcgisIsPrimary) {
-        // ArcGIS is primary: sync ArcGIS → OL when OL map becomes available
-        const setupOLSync = () => {
-          const olMap = useMapStore.getState().map
-          if (!olMap) return
-
-          esriView.watch('center', (center) => {
-            if (center) {
-              const { fromLonLat } = require('ol/proj')
-              olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
-            }
-          })
-
-          esriView.watch('zoom', (newZoom) => {
-            if (newZoom !== undefined) {
-              olMap.getView().setZoom(newZoom)
-            }
-          })
-
-          engineLog('ArcGIS → OL sync setup complete')
-        }
-
-        // Try immediately, or wait for OL map
-        if (map) {
-          setupOLSync()
-        } else {
-          const unsubscribe = useMapStore.subscribe((state) => {
-            if (state.map) {
-              setupOLSync()
-              unsubscribe()
-            }
-          })
-        }
-      } else if (map) {
-        // OL is primary: sync OL → ArcGIS
-        const olView = map.getView()
-
-        olView.on('change:center', () => {
-          const newCenter = olView.getCenter()
-          if (newCenter) {
-            const newLonLat = toLonLat(newCenter)
-            esriView.goTo({ center: newLonLat }, { animate: false })
-          }
-        })
-
-        olView.on('change:resolution', () => {
-          const newZoom = olView.getZoom()
-          if (newZoom !== undefined) {
-            esriView.goTo({ zoom: newZoom }, { animate: false })
-          }
-        })
-
-        engineLog('OL → ArcGIS sync setup complete')
-      }
-    }).catch((error: Error) => {
-      console.error('❌ ArcGIS MapView initialization failed:', error)
-      arcgisInitialized.current = false // Allow retry
-    })
+    // Start initialization on next frame
+    const rafId = requestAnimationFrame(initializeMap)
 
     return () => {
-      if (esriView && !esriView.destroyed) {
-        esriView.destroy()
+      cancelAnimationFrame(rafId)
+      // Note: Don't destroy view here - it causes issues with React strict mode
+      // View cleanup happens when component unmounts
+    }
+  }, [map, setArcGISMap, arcgisIsPrimary, arcgisBaseLayers, defaultBackground, createArcGISBasemap])
+
+  // Cleanup ArcGIS view on unmount
+  useEffect(() => {
+    return () => {
+      if (arcgisViewRef.current && !arcgisViewRef.current.destroyed) {
+        arcgisViewRef.current.destroy()
+        arcgisViewRef.current = null
         arcgisInitialized.current = false
+        engineLog('ArcGIS MapView destroyed')
       }
     }
-  }, [containerMounted, map, setArcGISMap, arcgisIsPrimary, arcgisBaseLayers, defaultBackground])
+  }, [])
 
   // Handle ScaleBar for ArcGIS primary mode
   useEffect(() => {
@@ -402,28 +434,14 @@ export function MapContainer() {
     if (!arcgisIsPrimary || !arcgisBaseLayers || !arcgisReady || !arcgisView) return
 
     const bgName = defaultBackground || 'CartoDB (licht)'
-    const config = ARCGIS_BASE_LAYERS[bgName]
-    if (!config) {
+    if (!ARCGIS_BASE_LAYERS[bgName]) {
       engineLog('Unknown basemap:', bgName)
       return
     }
 
-    const baseLayer = new WebTileLayer({
-      urlTemplate: config.url,
-      subDomains: config.subDomains,
-      copyright: config.copyright,
-      title: bgName,
-      maxScale: config.maxScale
-    })
-
-    const basemap = new Basemap({
-      baseLayers: [baseLayer],
-      title: bgName
-    })
-
-    arcgisView.map.basemap = basemap
+    arcgisView.map.basemap = createArcGISBasemap(bgName)
     engineLog('Basemap changed to:', bgName)
-  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers])
+  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap])
 
   // Apply default background setting on first load (only for OL base layers)
   useEffect(() => {
