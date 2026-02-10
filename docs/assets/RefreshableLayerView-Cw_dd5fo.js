@@ -1,2 +1,0 @@
-import{bw as i,bA as h,dh as d,bE as o,Z as l}from"./index-BcLxkgZR.js";const n=s=>{const r=s;let e=class extends r{initialize(){this.addHandles(d(()=>this.layer,"refresh",t=>{this.doRefresh(t.dataChanged).catch(a=>{o(a)||l.getLogger(this).error(a)})}),"RefreshableLayerView")}};return e=i([h("esri.views.layers.RefreshableLayerView")],e),e};export{n as i};
-//# sourceMappingURL=RefreshableLayerView-Cw_dd5fo.js.map

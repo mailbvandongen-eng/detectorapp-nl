@@ -4,6 +4,7 @@ import View from 'ol/View'
 import { fromLonLat } from 'ol/proj'
 import { ScaleLine } from 'ol/control'
 import { useMapStore, useSettingsStore } from '../store'
+import { isArcGISEngine, engineLog } from '../config/mapEngineConfig'
 import type { MapViewOptions } from '../types/map'
 
 interface UseMapOptions {
@@ -11,6 +12,14 @@ interface UseMapOptions {
   viewOptions?: Partial<MapViewOptions>
 }
 
+/**
+ * Hook voor OpenLayers map initialisatie.
+ *
+ * Bij ArcGIS engine: OL map wordt nog steeds gecreëerd voor legacy layers,
+ * maar is onzichtbaar (gebruikt door layerStore voor WMS/Vector layers).
+ *
+ * Na volledige migratie: deze hook kan verwijderd worden.
+ */
 export function useMap({ target, viewOptions }: UseMapOptions) {
   const mapRef = useRef<Map | null>(null)
   const scaleLineRef = useRef<ScaleLine | null>(null)
@@ -46,6 +55,13 @@ export function useMap({ target, viewOptions }: UseMapOptions) {
 
       // Expose map globally for extent-based loaders (fossils, etc.)
       ;(window as any).__olMap = map
+
+      engineLog('OpenLayers map created', {
+        target,
+        isOverlay: isArcGISEngine(),
+        center: defaultView.center,
+        zoom: defaultView.zoom
+      })
     }
 
     // Cleanup on unmount
@@ -54,14 +70,25 @@ export function useMap({ target, viewOptions }: UseMapOptions) {
         mapRef.current.setTarget(undefined)
         setMap(null)
         ;(window as any).__olMap = null
+        engineLog('OpenLayers map destroyed')
       }
     }
   }, [target, viewOptions, setMap])
 
   // Handle ScaleLine control based on settings
+  // Only show for OpenLayers engine (ArcGIS has its own scale bar)
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
+
+    // Skip ScaleLine if ArcGIS is primary (ArcGIS handles scale bar)
+    if (isArcGISEngine()) {
+      if (scaleLineRef.current) {
+        map.removeControl(scaleLineRef.current)
+        scaleLineRef.current = null
+      }
+      return
+    }
 
     if (showScaleBar) {
       // Add ScaleLine if not already added

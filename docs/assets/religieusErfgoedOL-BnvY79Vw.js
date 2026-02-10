@@ -1,2 +1,0 @@
-import{T as r,a as s}from"./index-BcLxkgZR.js";const i="https://services.rce.geovoorziening.nl/landschapsatlas_view/wms";function a(){const e=new r({properties:{title:"Religieus Erfgoed",type:"wms"},visible:!1,opacity:.8,source:new s({url:i,params:{LAYERS:"religieuserfgoed",STYLES:"",TILED:!0,FORMAT:"image/png"},crossOrigin:"anonymous"})});return console.log("⛪ Religieus Erfgoed WMS layer loaded (RCE)"),e}export{a as createReligieusErfgoedLayerOL};
-//# sourceMappingURL=religieusErfgoedOL-BnvY79Vw.js.map

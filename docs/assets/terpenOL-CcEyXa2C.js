@@ -1,2 +1,0 @@
-import{T as r,a}from"./index-BcLxkgZR.js";function n(){const e=new r({properties:{title:"Terpen",type:"wms"},visible:!1,opacity:.7,source:new a({url:"https://geoportaal.fryslan.nl/arcgis/services/ProvinciaalGeoRegister/PGR2/MapServer/WMSServer",params:{LAYERS:"Terpen",STYLES:"",TILED:!0,FORMAT:"image/png"},crossOrigin:"anonymous"})});return console.log("🏔️ Terpen WMS layer loaded (Friesland)"),e}export{n as createTerpenLayerOL};
-//# sourceMappingURL=terpenOL-CcEyXa2C.js.map
