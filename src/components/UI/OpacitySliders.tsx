@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react'
+import { SlidersHorizontal } from 'lucide-react'
 import { useLayerStore } from '../../store/layerStore'
 
 // All layers that should have opacity sliders - vlak/overlay lagen, geen punten
@@ -60,7 +60,6 @@ const COLOR_CLASSES: Record<string, string> = {
 
 export function OpacitySliders() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
   const visibleLayers = useLayerStore(state => state.visible)
   const opacities = useLayerStore(state => state.opacity)
   const setLayerOpacity = useLayerStore(state => state.setLayerOpacity)
@@ -70,10 +69,6 @@ export function OpacitySliders() {
 
   // Only show if at least one layer is visible
   if (activeSliders.length === 0) return null
-
-  // Show first 3 by default, or all if expanded
-  const displayedSliders = isExpanded ? activeSliders : activeSliders.slice(0, 3)
-  const hasMore = activeSliders.length > 3
 
   return (
     <div className="fixed bottom-[56px] right-2 z-[900]">
@@ -117,53 +112,32 @@ export function OpacitySliders() {
               <div className="px-3 py-1.5 bg-blue-500">
                 <span className="font-medium text-white text-xs">Transparantie</span>
               </div>
-            <div className="p-3 overflow-y-auto flex-1">
-            <div className="space-y-3">
-              {displayedSliders.map(layer => {
-                const opacity = opacities[layer.name] ?? layer.default
-                return (
-                  <div key={layer.name}>
-                    <label className="text-xs font-medium text-gray-700 mb-1 block truncate" title={layer.name}>
-                      {layer.name}
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={opacity * 100}
-                        onChange={(e) => setLayerOpacity(layer.name, parseInt(e.target.value) / 100)}
-                        className={`flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ${COLOR_CLASSES[layer.color]}`}
-                      />
-                      <span className="text-xs text-gray-500 w-8 text-right select-none pointer-events-none">
-                        {Math.round(opacity * 100)}%
-                      </span>
+              {/* Scrollable content - all sliders always visible */}
+              <div className="p-3 overflow-y-auto flex-1 space-y-3">
+                {activeSliders.map(layer => {
+                  const opacity = opacities[layer.name] ?? layer.default
+                  return (
+                    <div key={layer.name}>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block truncate" title={layer.name}>
+                        {layer.name}
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          value={opacity * 100}
+                          onChange={(e) => setLayerOpacity(layer.name, parseInt(e.target.value) / 100)}
+                          className={`flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ${COLOR_CLASSES[layer.color]}`}
+                        />
+                        <span className="text-xs text-gray-500 w-8 text-right select-none pointer-events-none">
+                          {Math.round(opacity * 100)}%
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Expand/collapse button */}
-            {hasMore && (
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="w-full mt-3 pt-2 border-t border-gray-200 flex items-center justify-center gap-1 text-xs text-gray-500 hover:text-gray-700"
-              >
-                {isExpanded ? (
-                  <>
-                    <ChevronUp size={14} />
-                    Minder tonen
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown size={14} />
-                    {activeSliders.length - 3} meer...
-                  </>
-                )}
-              </button>
-            )}
-            </div>
+                  )
+                })}
+              </div>
           </motion.div>
           </>
         )}

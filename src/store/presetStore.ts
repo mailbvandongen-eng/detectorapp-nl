@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useLayerStore } from './layerStore'
+import { useMapStore } from './mapStore'
 
 export interface Preset {
   id: string
@@ -156,6 +157,7 @@ export const usePresetStore = create<PresetState>()(
         if (!preset) return
 
         const layerStore = useLayerStore.getState()
+        const mapStore = useMapStore.getState()
 
         // Turn off all overlays
         ALL_OVERLAYS.forEach(layer => layerStore.setLayerVisibility(layer, false))
@@ -173,9 +175,12 @@ export const usePresetStore = create<PresetState>()(
         // Set base layer if specified
         if (preset.baseLayer) {
           const baseLayerNames = ['CartoDB (licht)', 'OpenStreetMap', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
+          // Set OL layer visibility (for when OL is primary)
           baseLayerNames.forEach(layerName => {
             layerStore.setLayerVisibility(layerName, layerName === preset.baseLayer)
           })
+          // Also update ArcGIS basemap (for when ArcGIS is primary)
+          mapStore.setBasemap(preset.baseLayer)
         }
 
         console.log(`🎨 Preset toegepast: ${preset.name}${preset.baseLayer ? ` (${preset.baseLayer})` : ''}`)

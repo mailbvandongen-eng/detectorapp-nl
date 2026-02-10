@@ -3,7 +3,37 @@ import { immer } from 'zustand/middleware/immer'
 import type Map from 'ol/Map'
 import type MapView from '@arcgis/core/views/MapView'
 import type EsriMap from '@arcgis/core/Map'
+import Basemap from '@arcgis/core/Basemap'
+import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
+
+// ArcGIS base layer configurations (same as MapContainer)
+const ARCGIS_BASE_LAYERS: Record<string, { url: string; subDomains?: string[]; copyright: string; maxScale?: number }> = {
+  'CartoDB (licht)': {
+    url: 'https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png',
+    subDomains: ['a', 'b', 'c', 'd'],
+    copyright: '© OpenStreetMap contributors © CARTO'
+  },
+  'OpenStreetMap': {
+    url: 'https://{subDomain}.tile.openstreetmap.org/{level}/{col}/{row}.png',
+    subDomains: ['a', 'b', 'c'],
+    copyright: '© OpenStreetMap contributors'
+  },
+  'Luchtfoto': {
+    url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
+    copyright: '© Kadaster / PDOK Luchtfoto'
+  },
+  'TMK 1850': {
+    url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
+    copyright: '© Kadaster / Map5.nl',
+    maxScale: 4514
+  },
+  'Bonnebladen 1900': {
+    url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
+    copyright: '© Kadaster / Map5.nl',
+    maxScale: 4514
+  }
+}
 
 interface MapState {
   // Current active engine
@@ -34,6 +64,9 @@ interface MapState {
 
   // Unified view actions (werkt met beide engines)
   goTo: (options: { center?: [number, number]; zoom?: number; rotation?: number; animate?: boolean }) => void
+
+  // Basemap actions
+  setBasemap: (basemapName: string) => void
 }
 
 export const useMapStore = create<MapState>()(
@@ -160,6 +193,35 @@ export const useMapStore = create<MapState>()(
           if (zoom !== undefined) view.setZoom(zoom)
           if (rotation !== undefined) view.setRotation((rotation * Math.PI) / 180)
         }
+      }
+    },
+
+    setBasemap: (basemapName: string) => {
+      const state = get()
+
+      // Only change ArcGIS basemap if ArcGIS is primary engine
+      if (state.activeEngine === 'arcgis' && state.arcgisView) {
+        const config = ARCGIS_BASE_LAYERS[basemapName]
+        if (!config) {
+          engineLog('Unknown basemap:', basemapName)
+          return
+        }
+
+        const baseLayer = new WebTileLayer({
+          urlTemplate: config.url,
+          subDomains: config.subDomains,
+          copyright: config.copyright,
+          title: basemapName,
+          maxScale: config.maxScale
+        })
+
+        const basemap = new Basemap({
+          baseLayers: [baseLayer],
+          title: basemapName
+        })
+
+        state.arcgisView.map.basemap = basemap
+        engineLog('Basemap changed to:', basemapName)
       }
     }
   }))

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
 import { useMonumentFilterStore } from '../../store/monumentFilterStore'
 import type { Preset } from '../../store/presetStore'
-import { fromLonLat } from 'ol/proj'
 
 // Icon mapping for dynamic icon rendering
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -99,7 +98,6 @@ export function PresetButtons() {
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
   const stopTracking = useGPSStore(state => state.stopTracking)
   const clearMonumentFilter = useMonumentFilterStore(state => state.clearFilter)
-  const map = useMapStore(state => state.map)
   const { presetsPanelOpen, togglePresetsPanel, closeAllPanels } = useUIStore()
   const { presets, applyPreset, updatePreset, createPreset, resetToDefaults } = usePresetStore()
   const visible = useLayerStore(state => state.visible)
@@ -124,10 +122,14 @@ export function PresetButtons() {
     // Turn off all overlay layers
     ALL_OVERLAYS.forEach(layer => setLayerVisibility(layer, false))
 
-    // Set CartoDB as active base layer
+    // Set CartoDB as active base layer (for OL)
     BASE_LAYERS.forEach(layer => {
       setLayerVisibility(layer, layer === 'CartoDB (licht)')
     })
+
+    // Also set ArcGIS basemap (for when ArcGIS is primary)
+    const mapStore = useMapStore.getState()
+    mapStore.setBasemap('CartoDB (licht)')
 
     // Stop GPS tracking
     stopTracking()
@@ -135,15 +137,12 @@ export function PresetButtons() {
     // Clear monument filter
     clearMonumentFilter()
 
-    // Zoom to center of Netherlands at ~50km view
-    if (map) {
-      const view = map.getView()
-      view.animate({
-        center: fromLonLat(NL_CENTER),
-        zoom: NL_ZOOM,
-        duration: 500
-      })
-    }
+    // Use unified goTo for both engines
+    mapStore.goTo({
+      center: NL_CENTER as [number, number],
+      zoom: NL_ZOOM,
+      animate: true
+    })
 
     console.log('🔄 Reset: CartoDB, alle lagen uit, GPS uit, zoom naar Nederland')
   }
