@@ -1,0 +1,2 @@
+import{bn as s,bo as a,br as n}from"./index-Byxx4W8D.js";const i=r=>{const o=r;let e=class extends o{constructor(){super(...arguments),this.customParameters=null}};return s([a({type:Object,json:{write:{overridePolicy:t=>({enabled:!!(t&&Object.keys(t).length>0)})}}})],e.prototype,"customParameters",void 0),e=s([n("esri.layers.mixins.CustomParametersMixin")],e),e};export{i as s};
+//# sourceMappingURL=CustomParametersMixin-BxblOFiM.js.map
