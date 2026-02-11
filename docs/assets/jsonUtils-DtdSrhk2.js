@@ -1,0 +1,2 @@
+import{bt as u,y as t,bu as l}from"./index-CjMOz23x.js";function i(e,s){return a(e,null,s)}const o=u({types:l});function a(e,s,n){return e?e&&(e.styleName||e.styleUrl)&&e.type!=="uniqueValue"?(n?.messages&&n.messages.push(new t("renderer:unsupported","Only UniqueValueRenderer can be referenced from a web style, but found '"+e.type+"'",{definition:e,context:n})),null):o(e,s,n):null}export{a as o,i as t};
+//# sourceMappingURL=jsonUtils-DtdSrhk2.js.map
