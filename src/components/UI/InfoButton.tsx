@@ -243,7 +243,7 @@ function FunctiesTab() {
           Kaartlagen (70+)
         </h3>
         <ul className="text-gray-600 space-y-1 text-xs">
-          <li><strong>Basis:</strong> CartoDB, OpenStreetMap, PDOK Luchtfoto</li>
+          <li><strong>Basis:</strong> Esri Licht, Esri Straten, Esri Satelliet, PDOK Luchtfoto</li>
           <li><strong>Historisch:</strong> TMK 1850, Bonnebladen 1900</li>
           <li><strong>Hoogtekaarten:</strong> AHN4 Hillshade, Multi-Hillshade, Hoogtekaart Kleur, AHN 0.5m</li>
           <li><strong>Archeologie:</strong> AMK Monumenten (per periode), Archeo Onderzoeken, IKAW, Essen</li>

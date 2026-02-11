@@ -663,3 +663,25 @@ input[type="range"]:not(.header-slider)::-moz-range-thumb {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
+
+/* ============================================================
+   PRESET BUTTON ICONS - gray by default, colored on hover
+   ============================================================ */
+.preset-btn .preset-icon {
+  color: #9ca3af; /* gray-400 */
+  transition: color 0.15s ease;
+}
+
+/* Colored on hover - each icon type gets its own color */
+.preset-btn:hover .preset-icon {
+  color: #3b82f6; /* blue-500 default */
+}
+
+.preset-btn[data-icon="Compass"]:hover .preset-icon { color: #a855f7; } /* purple-500 */
+.preset-btn[data-icon="Waves"]:hover .preset-icon { color: #06b6d4; } /* cyan-500 */
+.preset-btn[data-icon="TreePalm"]:hover .preset-icon { color: #22c55e; } /* green-500 */
+.preset-btn[data-icon="Mountain"]:hover .preset-icon { color: #78716c; } /* stone-500 */
+.preset-btn[data-icon="Search"]:hover .preset-icon { color: #f59e0b; } /* amber-500 */
+.preset-btn[data-icon="Target"]:hover .preset-icon { color: #ef4444; } /* red-500 */
+.preset-btn[data-icon="Layers"]:hover .preset-icon { color: #3b82f6; } /* blue-500 */
+.preset-btn[data-icon="Grid"]:hover .preset-icon { color: #84cc16; } /* lime-500 */

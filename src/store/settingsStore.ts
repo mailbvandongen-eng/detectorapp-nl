@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type DefaultBackground = 'CartoDB (licht)' | 'Luchtfoto' | 'OpenStreetMap'
+export type DefaultBackground = 'Esri Licht' | 'Esri Straten' | 'Esri Satelliet' | 'Luchtfoto' | 'TMK 1850' | 'Bonnebladen 1900'
 
 interface SettingsState {
   // Kaart
@@ -83,7 +83,7 @@ export const useSettingsStore = create<SettingsState>()(
   persist(
     (set) => ({
       // Defaults
-      defaultBackground: 'CartoDB (licht)',
+      defaultBackground: 'Esri Licht',
       showScaleBar: true,
       gpsAutoStart: false,
       showAccuracyCircle: true,

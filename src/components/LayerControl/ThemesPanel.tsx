@@ -160,8 +160,9 @@ export function ThemesPanel() {
                 <span className="text-blue-600 font-medium" style={{ fontSize: '0.95em' }}>Basislaag</span>
               </div>
               <div className="space-y-0">
-                <LayerItem name="CartoDB (licht)" type="base" />
-                <LayerItem name="OpenStreetMap" type="base" />
+                <LayerItem name="Esri Licht" type="base" />
+                <LayerItem name="Esri Straten" type="base" />
+                <LayerItem name="Esri Satelliet" type="base" />
                 <LayerItem name="Luchtfoto" type="base" hasOverlay />
                 <LayerItem name="TMK 1850" type="base" hasOverlay />
                 <LayerItem name="Bonnebladen 1900" type="base" hasOverlay />

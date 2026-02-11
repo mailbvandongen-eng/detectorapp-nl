@@ -162,9 +162,12 @@ export function SettingsPanel() {
                         className="px-2 py-1 bg-gray-100 rounded border-0 outline-none"
                         style={{ fontSize: '0.9em' }}
                       >
-                        <option value="CartoDB (licht)">Licht</option>
-                        <option value="OpenStreetMap">OSM</option>
-                        <option value="Luchtfoto">Luchtfoto</option>
+                        <option value="Esri Licht">Esri Licht</option>
+                        <option value="Esri Straten">Esri Straten</option>
+                        <option value="Esri Satelliet">Esri Satelliet</option>
+                        <option value="Luchtfoto">Luchtfoto (PDOK)</option>
+                        <option value="TMK 1850">TMK 1850</option>
+                        <option value="Bonnebladen 1900">Bonnebladen 1900</option>
                       </select>
                     </OptionRow>
                     <ToggleRow

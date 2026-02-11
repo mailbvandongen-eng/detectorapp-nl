@@ -7,28 +7,41 @@ import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
 
-// ArcGIS base layer configurations (same as MapContainer)
-const ARCGIS_BASE_LAYERS: Record<string, { url: string; subDomains?: string[]; copyright: string; maxScale?: number }> = {
-  'CartoDB (licht)': {
-    url: 'https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png',
-    subDomains: ['a', 'b', 'c', 'd'],
-    copyright: '© OpenStreetMap contributors © CARTO'
+// Esri basemap IDs for built-in basemaps
+type EsriBasemapConfig = { type: 'esri'; id: string }
+type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
+type BasemapConfig = EsriBasemapConfig | WebTileConfig
+
+// ArcGIS base layer configurations - using Esri basemaps where possible
+const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
+  // Esri built-in basemaps (required by Esri for marketplace)
+  'Esri Licht': {
+    type: 'esri',
+    id: 'gray-vector'
   },
-  'OpenStreetMap': {
-    url: 'https://{subDomain}.tile.openstreetmap.org/{level}/{col}/{row}.png',
-    subDomains: ['a', 'b', 'c'],
-    copyright: '© OpenStreetMap contributors'
+  'Esri Straten': {
+    type: 'esri',
+    id: 'streets-vector'
   },
+  'Esri Satelliet': {
+    type: 'esri',
+    id: 'satellite'
+  },
+  // PDOK aerial imagery (high resolution Netherlands)
   'Luchtfoto': {
+    type: 'webtile',
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
+  // Historical maps (custom WebTileLayers)
   'TMK 1850': {
+    type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
     copyright: '© Kadaster / Map5.nl',
     maxScale: 4514
   },
   'Bonnebladen 1900': {
+    type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
     copyright: '© Kadaster / Map5.nl',
     maxScale: 4514
@@ -207,18 +220,27 @@ export const useMapStore = create<MapState>()(
           return
         }
 
-        const baseLayer = new WebTileLayer({
-          urlTemplate: config.url,
-          subDomains: config.subDomains,
-          copyright: config.copyright,
-          title: basemapName,
-          maxScale: config.maxScale
-        })
+        let basemap: Basemap
 
-        const basemap = new Basemap({
-          baseLayers: [baseLayer],
-          title: basemapName
-        })
+        if (config.type === 'esri') {
+          // Use built-in Esri basemap
+          basemap = Basemap.fromId(config.id)
+          engineLog('Using Esri basemap:', config.id)
+        } else {
+          // Use custom WebTileLayer
+          const baseLayer = new WebTileLayer({
+            urlTemplate: config.url,
+            subDomains: config.subDomains,
+            copyright: config.copyright,
+            title: basemapName,
+            maxScale: config.maxScale
+          })
+
+          basemap = new Basemap({
+            baseLayers: [baseLayer],
+            title: basemapName
+          })
+        }
 
         state.arcgisView.map.basemap = basemap
         engineLog('Basemap changed to:', basemapName)

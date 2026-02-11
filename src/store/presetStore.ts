@@ -26,7 +26,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     name: 'Detectie',
     icon: 'Compass',
     layers: ['AMK Monumenten', 'Gewaspercelen', 'Geomorfologie', 'AHN4 Hoogtekaart Kleur', 'Kadastrale Grenzen'],
-    baseLayer: 'CartoDB (licht)',  // Explicit default base layer
+    baseLayer: 'Esri Licht',  // Explicit default base layer
     layerOpacities: {
       'AMK Monumenten': 0.50,
       'Gewaspercelen': 0.25,
@@ -174,7 +174,7 @@ export const usePresetStore = create<PresetState>()(
 
         // Set base layer if specified
         if (preset.baseLayer) {
-          const baseLayerNames = ['CartoDB (licht)', 'OpenStreetMap', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
+          const baseLayerNames = ['Esri Licht', 'Esri Straten', 'Esri Satelliet', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
           // Set OL layer visibility (for when OL is primary)
           baseLayerNames.forEach(layerName => {
             layerStore.setLayerVisibility(layerName, layerName === preset.baseLayer)

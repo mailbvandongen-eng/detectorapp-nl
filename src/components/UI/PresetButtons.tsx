@@ -17,27 +17,18 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Grid: Grid3X3
 }
 
-// Icon color mapping
-const ICON_COLORS: Record<string, string> = {
-  Compass: 'text-purple-600',
-  Waves: 'text-cyan-600',
-  TreePalm: 'text-green-600',
-  Mountain: 'text-stone-600',
-  Search: 'text-amber-600',
-  Target: 'text-red-600',
-  Layers: 'text-blue-600',
-  Grid: 'text-lime-600'
-}
-
-const HOVER_COLORS: Record<string, string> = {
-  Compass: 'hover:bg-purple-50',
-  Waves: 'hover:bg-cyan-50',
-  TreePalm: 'hover:bg-green-50',
-  Mountain: 'hover:bg-stone-50',
-  Search: 'hover:bg-amber-50',
-  Target: 'hover:bg-red-50',
-  Layers: 'hover:bg-blue-50',
-  Grid: 'hover:bg-lime-50'
+// Icon color mapping - subtle colors, only colored when active
+// Inactive: gray icon, Active: colored icon
+const ICON_COLORS_INACTIVE = 'text-gray-400'
+const ICON_COLORS_ACTIVE: Record<string, string> = {
+  Compass: 'text-purple-500',
+  Waves: 'text-cyan-500',
+  TreePalm: 'text-green-500',
+  Mountain: 'text-stone-500',
+  Search: 'text-amber-500',
+  Target: 'text-red-500',
+  Layers: 'text-blue-500',
+  Grid: 'text-lime-500'
 }
 
 // All overlay layers for reset - must include ALL layers from layerStore
@@ -81,10 +72,11 @@ const ALL_OVERLAYS = [
   'Verdronken Dorpen'
 ]
 
-// Base layers
+// Base layers - Esri basemaps + custom
 const BASE_LAYERS = [
-  'CartoDB (licht)',
-  'OpenStreetMap',
+  'Esri Licht',
+  'Esri Straten',
+  'Esri Satelliet',
   'Luchtfoto',
   'TMK 1850',
   'Bonnebladen 1900'
@@ -122,14 +114,14 @@ export function PresetButtons() {
     // Turn off all overlay layers
     ALL_OVERLAYS.forEach(layer => setLayerVisibility(layer, false))
 
-    // Set CartoDB as active base layer (for OL)
+    // Set Esri Licht as active base layer (for OL)
     BASE_LAYERS.forEach(layer => {
-      setLayerVisibility(layer, layer === 'CartoDB (licht)')
+      setLayerVisibility(layer, layer === 'Esri Licht')
     })
 
     // Also set ArcGIS basemap (for when ArcGIS is primary)
     const mapStore = useMapStore.getState()
-    mapStore.setBasemap('CartoDB (licht)')
+    mapStore.setBasemap('Esri Licht')
 
     // Stop GPS tracking
     stopTracking()
@@ -144,7 +136,7 @@ export function PresetButtons() {
       animate: true
     })
 
-    console.log('🔄 Reset: CartoDB, alle lagen uit, GPS uit, zoom naar Nederland')
+    console.log('Reset: Esri Licht, alle lagen uit, GPS uit, zoom naar Nederland')
   }
 
   const handleApplyPreset = (id: string) => {
@@ -195,7 +187,7 @@ export function PresetButtons() {
         className="fixed bottom-2 left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        title="Reset - CartoDB, alle lagen uit, GPS uit"
+        title="Reset - Esri Licht, alle lagen uit, GPS uit"
       >
         <RotateCcw size={20} className="text-gray-600 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.15)]" />
       </motion.button>
@@ -261,18 +253,18 @@ export function PresetButtons() {
               <div className="p-2 max-h-[300px] overflow-y-auto">
                 {presets.map(preset => {
                   const IconComponent = ICON_MAP[preset.icon] || Layers
-                  const iconColor = ICON_COLORS[preset.icon] || 'text-blue-600'
-                  const hoverColor = HOVER_COLORS[preset.icon] || 'hover:bg-blue-50'
                   const isSaved = savedPresetId === preset.id
 
                   return (
                     <button
                       key={preset.id}
                       onClick={() => handleApplyPreset(preset.id)}
-                      className={`w-full h-8 flex items-center gap-1.5 px-2 ${hoverColor} rounded text-left transition-colors border-0 outline-none bg-transparent overflow-hidden ${isSaved ? 'bg-green-50' : ''}`}
+                      className={`preset-btn w-full h-8 flex items-center gap-1.5 px-2 hover:bg-gray-100 rounded text-left transition-colors border-0 outline-none bg-transparent overflow-hidden ${isSaved ? 'bg-green-50' : ''}`}
                       style={{ fontSize: `${baseFontSize}px` }}
+                      data-icon={preset.icon}
                     >
-                      <IconComponent size={14} className={`${iconColor} flex-shrink-0`} />
+                      {/* Icon: gray by default, colored on hover via CSS */}
+                      <IconComponent size={14} className="preset-icon flex-shrink-0 text-gray-400 transition-colors" />
                       <span className="text-gray-700 truncate flex-1">{preset.name}</span>
                       {isSaved ? (
                         <span className="p-1 flex-shrink-0">

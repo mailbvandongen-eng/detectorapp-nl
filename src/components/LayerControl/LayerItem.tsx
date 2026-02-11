@@ -39,7 +39,7 @@ export function LayerItem({ name, type, hasOverlay, displayName }: Props) {
       toggleLayer(name)
     } else {
       // For base layers, turn off all other base layers
-      const baseLayerNames = ['CartoDB (licht)', 'OpenStreetMap', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
+      const baseLayerNames = ['Esri Licht', 'Esri Straten', 'Esri Satelliet', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
       baseLayerNames.forEach(layerName => {
         setLayerVisibility(layerName, layerName === name)
       })

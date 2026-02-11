@@ -49,15 +49,17 @@ export const VISIBLE_THEMES: Record<BuildMode, string[]> = {
  */
 export const VISIBLE_BASE_LAYERS: Record<BuildMode, string[]> = {
   commercial: [
-    'CartoDB (licht)',
-    'OpenStreetMap',
+    'Esri Licht',
+    'Esri Straten',
+    'Esri Satelliet',
     'Luchtfoto',
     'TMK 1850',
     'Bonnebladen 1900',
   ],
   personal: [
-    'CartoDB (licht)',
-    'OpenStreetMap',
+    'Esri Licht',
+    'Esri Straten',
+    'Esri Satelliet',
     'Luchtfoto',
     'TMK 1850',
     'Bonnebladen 1900',

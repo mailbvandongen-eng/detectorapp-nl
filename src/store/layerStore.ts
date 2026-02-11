@@ -37,9 +37,10 @@ export const useLayerStore = create<LayerState>()(
   immer((set, get) => ({
     // Initial visibility state - NL only
     visible: {
-      // Base layers
-      'CartoDB (licht)': true,
-      'OpenStreetMap': false,
+      // Base layers (Esri basemaps)
+      'Esri Licht': true,
+      'Esri Straten': false,
+      'Esri Satelliet': false,
       'Luchtfoto': false,
       'Labels Overlay': false,
       'TMK 1850': false,

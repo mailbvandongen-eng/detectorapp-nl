@@ -30,8 +30,9 @@ export function LayerControlPanel() {
           <div className="p-2 overflow-y-auto flex-1">
               {/* Base Layers - collapsed by default */}
               <LayerGroup title="Achtergrond" defaultExpanded={false}>
-                <LayerItem name="CartoDB (licht)" type="base" />
-                <LayerItem name="OpenStreetMap" type="base" />
+                <LayerItem name="Esri Licht" type="base" />
+                <LayerItem name="Esri Straten" type="base" />
+                <LayerItem name="Esri Satelliet" type="base" />
                 <LayerItem name="Luchtfoto" type="base" />
                 <LayerItem name="Labels Overlay" type="overlay" />
                 <LayerItem name="TMK 1850" type="base" />

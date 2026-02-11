@@ -38,8 +38,9 @@ export function BackgroundsPanel() {
               </button>
             </div>
             <div className="p-2">
-              <LayerItem name="CartoDB (licht)" type="base" />
-              <LayerItem name="OpenStreetMap" type="base" />
+              <LayerItem name="Esri Licht" type="base" />
+              <LayerItem name="Esri Straten" type="base" />
+              <LayerItem name="Esri Satelliet" type="base" />
               <LayerItem name="Luchtfoto" type="base" />
               <LayerItem name="Labels Overlay" type="overlay" />
               <LayerItem name="TMK 1850" type="base" />

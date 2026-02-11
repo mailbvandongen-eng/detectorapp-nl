@@ -33,9 +33,10 @@ interface SubscriptionState {
 // Lagen die altijd gratis zijn (basis functionaliteit)
 // Dit is een voorlopige lijst - we bespreken dit per laag later
 export const FREE_LAYERS = [
-  // Achtergronden
-  'CartoDB (licht)',
-  'OpenStreetMap',
+  // Achtergronden (Esri basemaps)
+  'Esri Licht',
+  'Esri Straten',
+  'Esri Satelliet',
   'Luchtfoto',
   'Labels Overlay',
 

@@ -11,47 +11,47 @@ import EsriMap from '@arcgis/core/Map'
 import MapView from '@arcgis/core/views/MapView'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
-import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer'
-import TileLayer from '@arcgis/core/layers/TileLayer'
 import ScaleBar from '@arcgis/core/widgets/ScaleBar'
 import { useMapStore, useSettingsStore, useGPSStore } from '../../store'
 import { engineLog } from '../../config/mapEngineConfig'
 
-// Base layer configuration
-const BASE_LAYERS = {
-  'CartoDB (licht)': {
-    type: 'webtile',
-    url: 'https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png',
-    subDomains: ['a', 'b', 'c', 'd'],
-    copyright: '© OpenStreetMap contributors © CARTO'
+// Esri basemap types
+type EsriBasemapConfig = { type: 'esri'; id: string }
+type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
+type BasemapConfig = EsriBasemapConfig | WebTileConfig
+
+// Base layer configuration - using Esri native basemaps where possible
+const BASE_LAYERS: Record<string, BasemapConfig> = {
+  'Esri Licht': {
+    type: 'esri',
+    id: 'gray-vector'
   },
-  'OpenStreetMap': {
-    type: 'webtile',
-    url: 'https://{subDomain}.tile.openstreetmap.org/{level}/{col}/{row}.png',
-    subDomains: ['a', 'b', 'c'],
-    copyright: '© OpenStreetMap contributors'
+  'Esri Straten': {
+    type: 'esri',
+    id: 'streets-vector'
+  },
+  'Esri Satelliet': {
+    type: 'esri',
+    id: 'satellite'
   },
   'Luchtfoto': {
     type: 'webtile',
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
-    subDomains: [],
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
   'TMK 1850': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
-    subDomains: [],
     copyright: '© Kadaster / Map5.nl',
     maxScale: 4514 // ~zoom 14
   },
   'Bonnebladen 1900': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
-    subDomains: [],
     copyright: '© Kadaster / Map5.nl',
     maxScale: 4514 // ~zoom 14
   }
-} as const
+}
 
 type BaseLayerName = keyof typeof BASE_LAYERS
 
@@ -59,7 +59,7 @@ interface ArcGISMapContainerProps {
   defaultBackground?: string
 }
 
-export function ArcGISMapContainer({ defaultBackground = 'CartoDB (licht)' }: ArcGISMapContainerProps) {
+export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISMapContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<MapView | null>(null)
   const scaleBarRef = useRef<ScaleBar | null>(null)
@@ -82,15 +82,8 @@ export function ArcGISMapContainer({ defaultBackground = 'CartoDB (licht)' }: Ar
 
     engineLog('Initializing ArcGIS MapView...')
 
-    // Create base layer
-    const baseLayerConfig = BASE_LAYERS[activeBg as BaseLayerName] || BASE_LAYERS['CartoDB (licht)']
-    const baseLayer = createBaseLayer(activeBg as BaseLayerName, baseLayerConfig)
-
-    // Create basemap with the layer
-    const basemap = new Basemap({
-      baseLayers: [baseLayer],
-      title: activeBg
-    })
+    // Create basemap
+    const basemap = createBasemap(activeBg)
 
     // Create map
     const map = new EsriMap({
@@ -147,7 +140,7 @@ export function ArcGISMapContainer({ defaultBackground = 'CartoDB (licht)' }: Ar
         }, 500)
       }
     }).catch((error: Error) => {
-      console.error('❌ ArcGIS MapView initialization failed:', error)
+      console.error('ArcGIS MapView initialization failed:', error)
     })
 
     // Cleanup
@@ -190,18 +183,7 @@ export function ArcGISMapContainer({ defaultBackground = 'CartoDB (licht)' }: Ar
     const view = viewRef.current
     if (!view || !isReady) return
 
-    const baseLayerConfig = BASE_LAYERS[activeBg as BaseLayerName]
-    if (!baseLayerConfig) {
-      engineLog('Unknown basemap:', activeBg)
-      return
-    }
-
-    const baseLayer = createBaseLayer(activeBg as BaseLayerName, baseLayerConfig)
-    const basemap = new Basemap({
-      baseLayers: [baseLayer],
-      title: activeBg
-    })
-
+    const basemap = createBasemap(activeBg)
     view.map.basemap = basemap
     engineLog('Basemap changed to:', activeBg)
   }, [activeBg, isReady])
@@ -222,25 +204,29 @@ export function ArcGISMapContainer({ defaultBackground = 'CartoDB (licht)' }: Ar
 }
 
 /**
- * Create a base layer from config
+ * Create a basemap from config - supports both Esri native and custom WebTile
  */
-function createBaseLayer(name: BaseLayerName, config: typeof BASE_LAYERS[BaseLayerName]) {
-  if (config.type === 'webtile') {
-    return new WebTileLayer({
-      urlTemplate: config.url.replace('{subDomain}', '{subDomain}'),
-      subDomains: config.subDomains.length > 0 ? [...config.subDomains] : undefined,
-      copyright: config.copyright,
-      title: name,
-      maxScale: 'maxScale' in config ? config.maxScale : undefined
-    })
+function createBasemap(name: string): Basemap {
+  const config = BASE_LAYERS[name] || BASE_LAYERS['Esri Licht']
+
+  if (config.type === 'esri') {
+    // Use Esri's native basemap
+    return Basemap.fromId(config.id)
   }
 
-  // Fallback
-  return new WebTileLayer({
-    urlTemplate: 'https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png',
-    subDomains: ['a', 'b', 'c', 'd'],
-    copyright: '© OpenStreetMap contributors © CARTO',
-    title: 'CartoDB (licht)'
+  // Create custom WebTileLayer basemap
+  const webTileConfig = config as WebTileConfig
+  const baseLayer = new WebTileLayer({
+    urlTemplate: webTileConfig.url,
+    subDomains: webTileConfig.subDomains,
+    copyright: webTileConfig.copyright,
+    title: name,
+    maxScale: webTileConfig.maxScale
+  })
+
+  return new Basemap({
+    baseLayers: [baseLayer],
+    title: name
   })
 }
 
