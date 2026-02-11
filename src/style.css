@@ -26,16 +26,25 @@ html, body {
   z-index: 0;
 }
 
-/* ArcGIS overlay container (for AHN layers) */
+/* ArcGIS map container - pointer-events controlled by inline styles based on engine mode */
 #arcgis-map {
   position: absolute !important;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  pointer-events: none;
+  /* z-index and pointer-events set via inline styles in MapContainer.tsx */
   background: transparent !important;
+}
+
+/* OL overlay container - when ArcGIS is primary, OL becomes overlay */
+#ol-overlay {
+  pointer-events: none !important;
+}
+
+/* Ensure OL viewport inside overlay doesn't capture events */
+#ol-overlay .ol-viewport {
+  pointer-events: none !important;
 }
 
 /* ArcGIS MapView internal container needs proper sizing */
