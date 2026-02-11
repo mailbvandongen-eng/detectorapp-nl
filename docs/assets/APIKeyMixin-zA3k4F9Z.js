@@ -1,2 +1,0 @@
-import{bn as r,bo as a,br as n}from"./index-CIfIyDTb.js";function p(i){return"portalItem"in i}const l=i=>{const s=i;let e=class extends s{get apiKey(){return this._isOverridden("apiKey")?this._get("apiKey"):p(this)?this.portalItem?.apiKey:null}set apiKey(t){t!=null?this._override("apiKey",t):(this._clearOverride("apiKey"),this.clear("apiKey","user"))}};return r([a({type:String})],e.prototype,"apiKey",null),e=r([n("esri.layers.mixins.APIKeyMixin")],e),e};export{l as o};
-//# sourceMappingURL=APIKeyMixin-zA3k4F9Z.js.map
