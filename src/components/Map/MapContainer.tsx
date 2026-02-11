@@ -28,25 +28,28 @@ const BASE_LAYERS = [
 ]
 
 // Hybrid basemap types
-type EsriBasemapConfig = { type: 'esri'; id: string }
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type HybridOLConfig = { type: 'hybrid-ol'; olLayerName: string }  // Use OL layer instead of ArcGIS
-type BasemapConfig = EsriBasemapConfig | WebTileConfig | HybridOLConfig
+type HybridOLConfig = { type: 'hybrid-ol'; olLayerName: string }
+type BasemapConfig = EsriTileConfig | WebTileConfig | HybridOLConfig
 
-// ArcGIS base layer configurations - hybrid approach for historical maps
+// ArcGIS base layer configurations - using Esri tile services (no special API key needed)
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
-  // Esri built-in basemaps (required by Esri for marketplace)
+  // Esri tile services (public, no extra API privileges required)
   'Esri Licht': {
-    type: 'esri',
-    id: 'gray-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer',
+    copyright: '© Esri'
   },
   'Esri Straten': {
-    type: 'esri',
-    id: 'streets-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer',
+    copyright: '© Esri'
   },
   'Esri Satelliet': {
-    type: 'esri',
-    id: 'satellite'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
+    copyright: '© Esri'
   },
   // PDOK aerial imagery (high resolution Netherlands)
   'Luchtfoto': {
@@ -94,35 +97,14 @@ export function MapContainer() {
   const defaultBackground = useSettingsStore(state => state.defaultBackground)
   const showScaleBar = useSettingsStore(state => state.showScaleBar)
 
-  // Create ArcGIS basemap helper - supports Esri basemaps, Esri TileLayers, and custom WebTileLayers
+  // Create ArcGIS basemap helper - supports Esri TileLayers and custom WebTileLayers
   const createArcGISBasemap = useCallback((bgName: string): Basemap => {
     const config = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['Esri Licht']
+    engineLog('Creating basemap:', bgName, config.type)
 
-    // Debug: Check API key status
-    console.log('🔑 ArcGIS API Key set:', !!esriConfig.apiKey, esriConfig.apiKey?.substring(0, 8) + '...')
-    engineLog('Creating basemap:', bgName, config)
-
-    if (config.type === 'esri') {
-      // Use Basemap.fromId() for well-known Esri basemap IDs
-      console.log('🗺️ Creating Esri basemap with ID:', config.id)
-      const esriBasemap = Basemap.fromId(config.id)
-      console.log('🗺️ Basemap.fromId result:', esriBasemap?.title || 'null')
-
-      if (esriBasemap) {
-        // Add load event listener for debugging
-        esriBasemap.load().then(() => {
-          console.log('✅ Basemap loaded successfully:', config.id)
-        }).catch((err: Error) => {
-          console.error('❌ Basemap load failed:', config.id, err.message)
-        })
-        return esriBasemap
-      }
-
-      // Final fallback - try creating with just title
-      console.warn('⚠️ Basemap.fromId returned null for:', config.id)
-      return new Basemap({ title: bgName })
-    } else if (config.type === 'esritile') {
+    if (config.type === 'esritile') {
       // Use Esri TileLayer for ArcGIS Server tile services
+      console.log('🗺️ Creating Esri TileLayer basemap:', bgName, config.url)
       const esriTileLayer = new EsriTileLayer({
         url: config.url,
         copyright: config.copyright,
@@ -133,21 +115,25 @@ export function MapContainer() {
         baseLayers: [esriTileLayer],
         title: bgName
       })
-    } else {
-      // Use custom WebTileLayer for standard XYZ/TMS tiles
-      const webTileConfig = config as WebTileConfig
+    } else if (config.type === 'webtile') {
+      // Use custom WebTileLayer for standard XYZ/TMS tiles (PDOK, etc.)
+      console.log('🗺️ Creating WebTileLayer basemap:', bgName)
       const baseLayer = new WebTileLayer({
-        urlTemplate: webTileConfig.url,
-        subDomains: webTileConfig.subDomains,
-        copyright: webTileConfig.copyright,
+        urlTemplate: config.url,
+        subDomains: config.subDomains,
+        copyright: config.copyright,
         title: bgName,
-        maxScale: webTileConfig.maxScale
+        maxScale: config.maxScale
       })
 
       return new Basemap({
         baseLayers: [baseLayer],
         title: bgName
       })
+    } else {
+      // hybrid-ol type - return empty basemap (OL layer handles it)
+      console.log('🗺️ Creating empty basemap for hybrid-ol:', bgName)
+      return new Basemap({ title: 'empty' })
     }
   }, [])
 
@@ -339,29 +325,21 @@ export function MapContainer() {
       })
 
       // Create basemap for primary mode
-      console.log('🔧 ArcGIS init - isPrimary:', arcgisIsPrimary, 'arcgisBaseLayers:', arcgisBaseLayers, 'defaultBg:', defaultBackground)
-
-      // For Esri basemaps, pass string ID directly to Map constructor
-      // For custom WebTile basemaps, create Basemap object
       const bgName = defaultBackground || 'Esri Licht'
       const bgConfig = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['Esri Licht']
+      console.log('🔧 ArcGIS init - bgName:', bgName, 'type:', bgConfig.type)
 
       let esriMap: EsriMap
 
       if (arcgisIsPrimary && arcgisBaseLayers) {
-        if (bgConfig.type === 'esri') {
-          // Pass Esri basemap ID directly as string
-          console.log('🔧 Using Esri basemap string:', bgConfig.id)
-          esriMap = new EsriMap({ basemap: bgConfig.id as any })
-        } else if (bgConfig.type === 'hybrid-ol') {
+        if (bgConfig.type === 'hybrid-ol') {
           // HYBRID: Start with empty basemap, OL layer will be shown separately
           console.log('🔧 Using HYBRID basemap (OL layer):', bgConfig.olLayerName)
           esriMap = new EsriMap({ basemap: new Basemap({ title: 'empty' }) })
-          // Note: OL layer visibility will be set after OL map is ready
         } else {
-          // Create custom WebTile basemap
+          // Create Esri TileLayer or WebTile basemap
           const basemap = createArcGISBasemap(bgName)
-          console.log('🔧 Using custom WebTile basemap:', bgName)
+          console.log('🔧 Using basemap:', bgName)
           esriMap = new EsriMap({ basemap })
         }
       } else {
@@ -526,17 +504,7 @@ export function MapContainer() {
     setLayerVisibility('TMK 1850', false)
     setLayerVisibility('Bonnebladen 1900', false)
 
-    if (bgConfig.type === 'esri') {
-      // For Esri basemaps, use Basemap.fromId or string assignment
-      console.log('🔄 Changing to Esri basemap:', bgConfig.id)
-      const newBasemap = Basemap.fromId(bgConfig.id)
-      if (newBasemap) {
-        arcgisView.map.basemap = newBasemap
-      } else {
-        // Fallback: assign string directly (works in some cases)
-        (arcgisView.map as any).basemap = bgConfig.id
-      }
-    } else if (bgConfig.type === 'hybrid-ol') {
+    if (bgConfig.type === 'hybrid-ol') {
       // HYBRID: Use OL layer for historical maps
       console.log('🔄 Changing to HYBRID basemap (OL layer):', bgConfig.olLayerName)
       // Set ArcGIS to empty/transparent basemap
@@ -544,8 +512,8 @@ export function MapContainer() {
       // Show the OL historical layer
       setLayerVisibility(bgConfig.olLayerName, true)
     } else {
-      // For custom WebTile basemaps, create Basemap object
-      console.log('🔄 Changing to WebTile basemap:', bgName)
+      // For Esri TileLayer or WebTile basemaps
+      console.log('🔄 Changing to basemap:', bgName, bgConfig.type)
       arcgisView.map.basemap = createArcGISBasemap(bgName)
     }
 

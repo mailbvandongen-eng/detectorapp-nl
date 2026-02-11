@@ -8,26 +8,28 @@ import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import EsriTileLayer from '@arcgis/core/layers/TileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
 
-// Esri basemap IDs for built-in basemaps
-type EsriBasemapConfig = { type: 'esri'; id: string }
+// Basemap configuration types
 type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type BasemapConfig = EsriBasemapConfig | EsriTileConfig | WebTileConfig
+type BasemapConfig = EsriTileConfig | WebTileConfig
 
-// ArcGIS base layer configurations - using Esri basemaps where possible
+// ArcGIS base layer configurations - using public Esri tile services (no special API key needed)
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
-  // Esri built-in basemaps (required by Esri for marketplace)
+  // Esri tile services (public, no extra API privileges required)
   'Esri Licht': {
-    type: 'esri',
-    id: 'gray-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer',
+    copyright: '© Esri'
   },
   'Esri Straten': {
-    type: 'esri',
-    id: 'streets-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer',
+    copyright: '© Esri'
   },
   'Esri Satelliet': {
-    type: 'esri',
-    id: 'satellite'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
+    copyright: '© Esri'
   },
   // PDOK aerial imagery (high resolution Netherlands)
   'Luchtfoto': {
@@ -224,42 +226,38 @@ export const useMapStore = create<MapState>()(
 
         let basemap: Basemap
 
-        if (config.type === 'esri') {
-          // Use built-in Esri basemap
-          basemap = Basemap.fromId(config.id)
-          engineLog('Using Esri basemap:', config.id)
-        } else if (config.type === 'esritile') {
+        if (config.type === 'esritile') {
           // Use Esri TileLayer for ArcGIS Server tile services
           const esriTileLayer = new EsriTileLayer({
             url: config.url,
             copyright: config.copyright,
-            title: basemapName
+            title: resolvedName
           })
 
           basemap = new Basemap({
             baseLayers: [esriTileLayer],
-            title: basemapName
+            title: resolvedName
           })
           engineLog('Using Esri TileLayer:', config.url)
         } else {
           // Use custom WebTileLayer for standard XYZ/TMS tiles
-          const webTileConfig = config as WebTileConfig
           const baseLayer = new WebTileLayer({
-            urlTemplate: webTileConfig.url,
-            subDomains: webTileConfig.subDomains,
-            copyright: webTileConfig.copyright,
-            title: basemapName,
-            maxScale: webTileConfig.maxScale
+            urlTemplate: config.url,
+            subDomains: config.subDomains,
+            copyright: config.copyright,
+            title: resolvedName,
+            maxScale: config.maxScale
           })
 
           basemap = new Basemap({
             baseLayers: [baseLayer],
-            title: basemapName
+            title: resolvedName
           })
+          engineLog('Using WebTileLayer:', config.url)
         }
 
         state.arcgisView.map.basemap = basemap
-        engineLog('Basemap changed to:', basemapName)
+        engineLog('Basemap changed to:', resolvedName)
       }
     }
   }))

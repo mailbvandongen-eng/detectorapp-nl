@@ -11,28 +11,32 @@ import EsriMap from '@arcgis/core/Map'
 import MapView from '@arcgis/core/views/MapView'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
+import TileLayer from '@arcgis/core/layers/TileLayer'
 import ScaleBar from '@arcgis/core/widgets/ScaleBar'
 import { useMapStore, useSettingsStore, useGPSStore } from '../../store'
 import { engineLog } from '../../config/mapEngineConfig'
 
-// Esri basemap types
-type EsriBasemapConfig = { type: 'esri'; id: string }
+// Basemap configuration types
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type BasemapConfig = EsriBasemapConfig | WebTileConfig
+type BasemapConfig = EsriTileConfig | WebTileConfig
 
-// Base layer configuration - using Esri native basemaps where possible
+// Base layer configuration - using public Esri tile services (no special API key needed)
 const BASE_LAYERS: Record<string, BasemapConfig> = {
   'Esri Licht': {
-    type: 'esri',
-    id: 'gray-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer',
+    copyright: '© Esri'
   },
   'Esri Straten': {
-    type: 'esri',
-    id: 'streets-vector'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer',
+    copyright: '© Esri'
   },
   'Esri Satelliet': {
-    type: 'esri',
-    id: 'satellite'
+    type: 'esritile',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
+    copyright: '© Esri'
   },
   'Luchtfoto': {
     type: 'webtile',
@@ -203,28 +207,33 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
 }
 
 /**
- * Create a basemap from config - supports Esri native basemaps and custom WebTile
+ * Create a basemap from config - supports Esri TileLayers and custom WebTile
  */
 function createBasemap(name: string): Basemap {
   const config = BASE_LAYERS[name] || BASE_LAYERS['Esri Licht']
-  engineLog('Creating basemap:', name, config)
+  engineLog('Creating basemap:', name, config.type)
 
-  if (config.type === 'esri') {
-    // Use Esri's native basemap - fromId can return null so we fallback
-    const esriBasemap = Basemap.fromId(config.id)
-    if (esriBasemap) return esriBasemap
-    // Fallback to gray-vector if the basemap ID doesn't exist
-    return Basemap.fromId('gray-vector') || new Basemap({ title: name })
+  if (config.type === 'esritile') {
+    // Use Esri TileLayer for ArcGIS Server tile services
+    const tileLayer = new TileLayer({
+      url: config.url,
+      copyright: config.copyright,
+      title: name
+    })
+
+    return new Basemap({
+      baseLayers: [tileLayer],
+      title: name
+    })
   }
 
   // Create custom WebTileLayer basemap for standard XYZ/TMS tiles
-  const webTileConfig = config as WebTileConfig
   const baseLayer = new WebTileLayer({
-    urlTemplate: webTileConfig.url,
-    subDomains: webTileConfig.subDomains,
-    copyright: webTileConfig.copyright,
+    urlTemplate: config.url,
+    subDomains: config.subDomains,
+    copyright: config.copyright,
     title: name,
-    maxScale: webTileConfig.maxScale
+    maxScale: config.maxScale
   })
 
   return new Basemap({
