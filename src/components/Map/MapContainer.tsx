@@ -5,7 +5,7 @@ import { OSM, XYZ } from 'ol/source'
 import { useMap } from '../../hooks/useMap'
 import { useLayerStore, useMapStore, useSettingsStore, useGPSStore } from '../../store'
 import { getImmediateLoadLayers } from '../../layers/layerRegistry'
-import { toLonLat } from 'ol/proj'
+import { toLonLat, fromLonLat } from 'ol/proj'
 import { isArcGISEngine, useArcGISFeature, engineLog } from '../../config/mapEngineConfig'
 
 // ArcGIS imports
@@ -388,7 +388,6 @@ export function MapContainer() {
 
             esriView.watch('center', (center) => {
               if (center && olMap) {
-                const { fromLonLat } = require('ol/proj')
                 olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
               }
             })

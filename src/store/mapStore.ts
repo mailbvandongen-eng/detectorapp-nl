@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import type Map from 'ol/Map'
+import { fromLonLat } from 'ol/proj'
 import type MapView from '@arcgis/core/views/MapView'
 import type EsriMap from '@arcgis/core/Map'
 import Basemap from '@arcgis/core/Basemap'
@@ -202,7 +203,6 @@ export const useMapStore = create<MapState>()(
           })
         } else {
           if (center) {
-            const { fromLonLat } = require('ol/proj')
             view.setCenter(fromLonLat(center))
           }
           if (zoom !== undefined) view.setZoom(zoom)

@@ -1,0 +1,2 @@
+import{aj as f}from"./index-CH40XmCz.js";import{i as o}from"./projectPointToVector-Bv12Zd5_.js";function r(n,l,a,e){return{x:n,y:l,z:a,hasZ:a!=null,hasM:!1,spatialReference:e,type:"point"}}function p(n,l,a,e,t){n.x=l,n.y=a,n.z=e,n.hasZ=e!=null,n.spatialReference=t}function c(n,l,a,e,t){return!(l==null||e==null||n.length<2)&&(i.x=n[0],i.y=n[1],i.z=n[2],i.spatialReference=l,o(i,a,e,t))}const i=r(0,0,0,f.WGS84);export{p as i,c as n,r as t};
+//# sourceMappingURL=projectVectorToVector-D6u_5sn1.js.map
