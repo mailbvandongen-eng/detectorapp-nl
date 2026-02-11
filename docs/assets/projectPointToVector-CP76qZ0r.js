@@ -1,2 +1,0 @@
-import{ea as f,d$ as i,eb as u,ec as o,N as l}from"./index-TvVFvfF_.js";function p(n,a,e,t){if(f(n.spatialReference,e)){s[0]=n.x,s[1]=n.y;const c=n.z;return s[2]=c??t??0,u(s,n.spatialReference,0,a,e,0)}const r=o(n,e);return!!r&&(a[0]=r?.x,a[1]=r?.y,a[2]=r?.z??t??0,!0)}async function y(n,a,e,t,r){return await l(n.spatialReference,e,null,r),p(n,a,e,t)}const s=i();export{y as c,p as i};
-//# sourceMappingURL=projectPointToVector-CP76qZ0r.js.map

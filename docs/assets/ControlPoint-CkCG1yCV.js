@@ -1,2 +1,0 @@
-import{dV as e,bn as t,bo as s,O as p,br as a}from"./index-TvVFvfF_.js";let o=class extends e{constructor(r){super(r),this.sourcePoint=null,this.mapPoint=null}};t([s()],o.prototype,"sourcePoint",void 0),t([s({type:p})],o.prototype,"mapPoint",void 0),o=t([a("esri.layers.support.ControlPoint")],o);export{o as p};
-//# sourceMappingURL=ControlPoint-CkCG1yCV.js.map

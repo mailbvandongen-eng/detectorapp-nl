@@ -1,2 +1,0 @@
-import{c6 as i}from"./index-TvVFvfF_.js";import{m as p}from"./queryTopFeatures-CpNQ7BxM.js";import a from"./TopFeaturesQuery-BiV_Pw78.js";import"./query-C9KBaeQx.js";import"./pbfQueryUtils-BWNxuQcj.js";import"./pbf-D5zkPPjd.js";import"./memoryEstimations-CAjyLizR.js";import"./OptimizedFeature-BRT5WVZZ.js";import"./OptimizedFeatureSet-BR8EEvDc.js";import"./queryZScale-cTcLafS1.js";async function j(o,r,t){const m=i(o);return(await p(m,a.from(r),{...t})).data.objectIds}export{j as executeForTopIds};
-//# sourceMappingURL=executeForTopIds-ENlWO9Sb.js.map
