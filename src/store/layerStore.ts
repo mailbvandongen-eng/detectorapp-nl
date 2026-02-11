@@ -4,6 +4,11 @@ import type { Layer } from 'ol/layer'
 import type ImageryLayer from '@arcgis/core/layers/ImageryLayer'
 import { layerRegistry } from '../layers/layerRegistry'
 import { useMapStore } from './mapStore'
+import { useSettingsStore, type DefaultBackground } from './settingsStore'
+import { isArcGISEngine, useArcGISFeature } from '../config/mapEngineConfig'
+
+// Basemap layer names that are handled by ArcGIS when ArcGIS is primary
+const BASEMAP_LAYERS: DefaultBackground[] = ['Esri Licht', 'Esri Straten', 'Esri Satelliet', 'Luchtfoto', 'TMK 1850', 'Bonnebladen 1900']
 
 export type LoadingState = 'idle' | 'loading' | 'loaded' | 'error'
 
@@ -220,6 +225,24 @@ export const useLayerStore = create<LayerState>()(
 
     setLayerVisibility: (name: string, visible: boolean) => {
       const state = get()
+
+      // Check if this is a basemap layer that ArcGIS handles
+      const isBasemapLayer = BASEMAP_LAYERS.includes(name as DefaultBackground)
+      const arcgisHandlesBasemaps = isArcGISEngine() && useArcGISFeature('arcgisBaseLayers')
+
+      if (isBasemapLayer && arcgisHandlesBasemaps && visible) {
+        // When ArcGIS handles basemaps, use settingsStore to change basemap
+        // Update visibility state for all basemaps (radio button behavior)
+        set(s => {
+          BASEMAP_LAYERS.forEach(basemap => {
+            s.visible[basemap] = basemap === name
+          })
+        })
+        // Trigger basemap change via settings store
+        useSettingsStore.getState().setDefaultBackground(name as DefaultBackground)
+        return
+      }
+
       const layerDef = layerRegistry[name]
       const isArcGIS = layerDef?.platform === 'arcgis'
 
