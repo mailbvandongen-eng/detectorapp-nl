@@ -3,6 +3,7 @@ import { immer } from 'zustand/middleware/immer'
 
 interface UIState {
   // Panel states
+  hamburgerMenuOpen: boolean
   layerControlOpen: boolean
   legendOpen: boolean
   backgroundsPanelOpen: boolean
@@ -39,6 +40,7 @@ interface UIState {
 
   // Actions
   closeAllPanels: () => void
+  toggleHamburgerMenu: () => void
   toggleLayerControl: () => void
   toggleLegend: () => void
   toggleBackgroundsPanel: () => void
@@ -80,6 +82,7 @@ interface UIState {
 
 export const useUIStore = create<UIState>()(
   immer((set, get) => ({
+    hamburgerMenuOpen: false,
     layerControlOpen: false,
     legendOpen: false,
     backgroundsPanelOpen: false,
@@ -106,12 +109,29 @@ export const useUIStore = create<UIState>()(
 
     closeAllPanels: () => {
       set(state => {
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
         state.infoPanelOpen = false
         state.presetsPanelOpen = false
         state.monumentFilterOpen = false
+      })
+    },
+
+    toggleHamburgerMenu: () => {
+      set(state => {
+        const wasOpen = state.hamburgerMenuOpen
+        // Close ALL panels first
+        state.hamburgerMenuOpen = false
+        state.backgroundsPanelOpen = false
+        state.themesPanelOpen = false
+        state.settingsPanelOpen = false
+        state.infoPanelOpen = false
+        state.presetsPanelOpen = false
+        state.monumentFilterOpen = false
+        // Toggle this one
+        if (!wasOpen) state.hamburgerMenuOpen = true
       })
     },
 
@@ -131,6 +151,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.backgroundsPanelOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -146,6 +167,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.themesPanelOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -161,6 +183,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.settingsPanelOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -176,6 +199,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.infoPanelOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -191,6 +215,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.presetsPanelOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -227,6 +252,7 @@ export const useUIStore = create<UIState>()(
     openVondstForm: (location, photo) => {
       set(state => {
         // Close all panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -251,6 +277,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.vondstDashboardOpen
         // Close all panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -329,6 +356,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.monumentSearchOpen
         // Close all panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false
@@ -350,6 +378,7 @@ export const useUIStore = create<UIState>()(
       set(state => {
         const wasOpen = state.monumentFilterOpen
         // Close ALL panels first
+        state.hamburgerMenuOpen = false
         state.backgroundsPanelOpen = false
         state.themesPanelOpen = false
         state.settingsPanelOpen = false

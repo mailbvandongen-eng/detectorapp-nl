@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
@@ -32,9 +31,9 @@ function GoogleLogo({ size = 18 }: { size?: number }) {
 
 
 export function HamburgerMenu() {
-  const [isOpen, setIsOpen] = useState(false)
   const { user, loading, signInWithGoogle, logout } = useAuthStore()
-  const { toggleInfoPanel, toggleSettingsPanel, toggleMonumentSearch } = useUIStore()
+  const { hamburgerMenuOpen, toggleHamburgerMenu, toggleInfoPanel, toggleSettingsPanel, toggleMonumentSearch } = useUIStore()
+  const isOpen = hamburgerMenuOpen
 
   // Settings for font scale
   const menuFontScale = useSettingsStore(state => state.menuFontScale)
@@ -59,7 +58,7 @@ export function HamburgerMenu() {
   // Safe top position for mobile browsers (accounts for notch/status bar)
   const safeTopStyle = { top: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }
 
-  const closeMenu = () => setIsOpen(false)
+  const closeMenu = () => toggleHamburgerMenu()
 
   const handleInfoClick = () => {
     closeMenu()
@@ -99,7 +98,7 @@ export function HamburgerMenu() {
             : 'bg-white/90 hover:bg-white'
         }`}
         style={safeTopStyle}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleHamburgerMenu}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         title="Menu"
@@ -225,18 +224,18 @@ export function HamburgerMenu() {
                 </button>
               </div>
 
-              {/* Toggle Options */}
+              {/* Toggle Options - all subtle gray icons, blue toggles */}
               <div className="py-1 border-t border-gray-100">
                 {/* Vondst knop toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <MapPin size={18} className="text-orange-500" />
+                    <MapPin size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Vondst knop</span>
                   </div>
                   <button
                     onClick={() => setShowVondstButton(!showVondstButton)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showVondstButton ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gray-300'
+                      showVondstButton ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -250,13 +249,13 @@ export function HamburgerMenu() {
                 {/* Route knop toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Route size={18} className="text-green-500" />
+                    <Route size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Route knop</span>
                   </div>
                   <button
                     onClick={() => setShowRouteRecordButton(!showRouteRecordButton)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showRouteRecordButton ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gray-300'
+                      showRouteRecordButton ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -270,13 +269,13 @@ export function HamburgerMenu() {
                 {/* Weerwidget toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Cloud size={18} className="text-cyan-500" />
+                    <Cloud size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Weerwidget</span>
                   </div>
                   <button
                     onClick={() => setShowWeatherButton(!showWeatherButton)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showWeatherButton ? 'bg-gradient-to-r from-cyan-500 to-cyan-600' : 'bg-gray-300'
+                      showWeatherButton ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -290,13 +289,13 @@ export function HamburgerMenu() {
                 {/* Mijn lagen toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Layers size={18} className="text-amber-500" />
+                    <Layers size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Mijn lagen</span>
                   </div>
                   <button
                     onClick={() => setShowCustomPointLayers(!showCustomPointLayers)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showCustomPointLayers ? 'bg-gradient-to-r from-amber-500 to-amber-600' : 'bg-gray-300'
+                      showCustomPointLayers ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -310,13 +309,13 @@ export function HamburgerMenu() {
                 {/* Meetgereedschap toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Ruler size={18} className="text-blue-500" />
+                    <Ruler size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Meten</span>
                   </div>
                   <button
                     onClick={() => setShowMeasureTool(!showMeasureTool)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showMeasureTool ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 'bg-gray-300'
+                      showMeasureTool ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -330,13 +329,13 @@ export function HamburgerMenu() {
                 {/* Tekengereedschap toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Pencil size={18} className="text-orange-500" />
+                    <Pencil size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Tekenen</span>
                   </div>
                   <button
                     onClick={() => setShowDrawTool(!showDrawTool)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showDrawTool ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gray-300'
+                      showDrawTool ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -350,13 +349,13 @@ export function HamburgerMenu() {
                 {/* Exporteren toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Printer size={18} className="text-indigo-500" />
+                    <Printer size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Exporteren</span>
                   </div>
                   <button
                     onClick={() => setShowPrintTool(!showPrintTool)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showPrintTool ? 'bg-gradient-to-r from-indigo-500 to-indigo-600' : 'bg-gray-300'
+                      showPrintTool ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -370,13 +369,13 @@ export function HamburgerMenu() {
                 {/* Tekstgrootte schuifjes toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Type size={18} className="text-purple-500" />
+                    <Type size={18} className="text-gray-400" />
                     <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Tekstgrootte</span>
                   </div>
                   <button
                     onClick={() => setShowFontSliders(!showFontSliders)}
                     className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showFontSliders ? 'bg-gradient-to-r from-purple-500 to-purple-600' : 'bg-gray-300'
+                      showFontSliders ? 'bg-blue-500' : 'bg-gray-300'
                     }`}
                   >
                     <span
