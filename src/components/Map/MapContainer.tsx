@@ -453,10 +453,11 @@ export function MapContainer() {
   useEffect(() => {
     if (!arcgisIsPrimary || !arcgisBaseLayers || !arcgisReady || !arcgisView) return
 
-    const bgName = defaultBackground || 'Esri Licht'
+    // Handle legacy basemap names (migration from CartoDB to Esri)
+    let bgName = defaultBackground || 'Esri Licht'
     if (!ARCGIS_BASE_LAYERS[bgName]) {
-      engineLog('Unknown basemap:', bgName)
-      return
+      engineLog('Unknown basemap, falling back to Esri Licht:', bgName)
+      bgName = 'Esri Licht'
     }
 
     arcgisView.map.basemap = createArcGISBasemap(bgName)

@@ -214,11 +214,13 @@ export const useMapStore = create<MapState>()(
 
       // Only change ArcGIS basemap if ArcGIS is primary engine
       if (state.activeEngine === 'arcgis' && state.arcgisView) {
-        const config = ARCGIS_BASE_LAYERS[basemapName]
-        if (!config) {
-          engineLog('Unknown basemap:', basemapName)
-          return
+        // Handle legacy basemap names (migration from CartoDB to Esri)
+        let resolvedName = basemapName
+        if (!ARCGIS_BASE_LAYERS[basemapName]) {
+          engineLog('Unknown basemap, falling back to Esri Licht:', basemapName)
+          resolvedName = 'Esri Licht'
         }
+        const config = ARCGIS_BASE_LAYERS[resolvedName]
 
         let basemap: Basemap
 
