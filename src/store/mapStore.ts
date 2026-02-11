@@ -196,7 +196,7 @@ export const useMapStore = create<MapState>()(
         const view = state.map.getView()
         if (animate) {
           view.animate({
-            center: center ? [center[0], center[1]] : undefined,
+            center: center ? fromLonLat(center) : undefined,
             zoom,
             rotation: rotation !== undefined ? (rotation * Math.PI) / 180 : undefined,
             duration: 500

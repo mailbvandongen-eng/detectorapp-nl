@@ -1,25 +1,41 @@
 import { motion } from 'framer-motion'
 import { Plus, Minus } from 'lucide-react'
 import { useMapStore } from '../../store'
+import { isArcGISEngine } from '../../config/mapEngineConfig'
 
 export function ZoomButtons() {
   const map = useMapStore(state => state.map)
+  const arcgisView = useMapStore(state => state.arcgisView)
+  const zoom = useMapStore(state => state.zoom)
+  const goTo = useMapStore(state => state.goTo)
 
   const handleZoomIn = () => {
-    if (!map) return
-    const view = map.getView()
-    const zoom = view.getZoom()
-    if (zoom !== undefined) {
-      view.animate({ zoom: zoom + 1, duration: 200 })
+    if (isArcGISEngine() && arcgisView) {
+      // ArcGIS primary: use goTo which syncs both engines
+      const currentZoom = arcgisView.zoom ?? zoom
+      goTo({ zoom: currentZoom + 1, animate: true })
+    } else if (map) {
+      // OL primary: control OL directly
+      const view = map.getView()
+      const currentZoom = view.getZoom()
+      if (currentZoom !== undefined) {
+        view.animate({ zoom: currentZoom + 1, duration: 200 })
+      }
     }
   }
 
   const handleZoomOut = () => {
-    if (!map) return
-    const view = map.getView()
-    const zoom = view.getZoom()
-    if (zoom !== undefined) {
-      view.animate({ zoom: zoom - 1, duration: 200 })
+    if (isArcGISEngine() && arcgisView) {
+      // ArcGIS primary: use goTo which syncs both engines
+      const currentZoom = arcgisView.zoom ?? zoom
+      goTo({ zoom: currentZoom - 1, animate: true })
+    } else if (map) {
+      // OL primary: control OL directly
+      const view = map.getView()
+      const currentZoom = view.getZoom()
+      if (currentZoom !== undefined) {
+        view.animate({ zoom: currentZoom - 1, duration: 200 })
+      }
     }
   }
 
