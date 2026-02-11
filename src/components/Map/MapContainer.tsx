@@ -13,7 +13,9 @@ import EsriMap from '@arcgis/core/Map'
 import MapView from '@arcgis/core/views/MapView'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
+import EsriTileLayer from '@arcgis/core/layers/TileLayer'
 import ScaleBar from '@arcgis/core/widgets/ScaleBar'
+import esriConfig from '@arcgis/core/config'
 
 // Base layer names - updated to use Esri basemaps
 const BASE_LAYERS = [
@@ -25,12 +27,13 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
-// Esri basemap IDs for built-in basemaps
+// Hybrid basemap types
 type EsriBasemapConfig = { type: 'esri'; id: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type BasemapConfig = EsriBasemapConfig | WebTileConfig
+type HybridOLConfig = { type: 'hybrid-ol'; olLayerName: string }  // Use OL layer instead of ArcGIS
+type BasemapConfig = EsriBasemapConfig | WebTileConfig | HybridOLConfig
 
-// ArcGIS base layer configurations - using Esri basemaps where possible
+// ArcGIS base layer configurations - hybrid approach for historical maps
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   // Esri built-in basemaps (required by Esri for marketplace)
   'Esri Licht': {
@@ -51,18 +54,14 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
-  // Historical maps (custom WebTileLayers)
+  // Historical maps - HYBRID: use OL layers (works reliably)
   'TMK 1850': {
-    type: 'webtile',
-    url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514
+    type: 'hybrid-ol',
+    olLayerName: 'TMK 1850'
   },
   'Bonnebladen 1900': {
-    type: 'webtile',
-    url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514
+    type: 'hybrid-ol',
+    olLayerName: 'Bonnebladen 1900'
   }
 }
 
@@ -95,22 +94,54 @@ export function MapContainer() {
   const defaultBackground = useSettingsStore(state => state.defaultBackground)
   const showScaleBar = useSettingsStore(state => state.showScaleBar)
 
-  // Create ArcGIS basemap helper - supports Esri basemaps and custom WebTileLayers
+  // Create ArcGIS basemap helper - supports Esri basemaps, Esri TileLayers, and custom WebTileLayers
   const createArcGISBasemap = useCallback((bgName: string): Basemap => {
     const config = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['Esri Licht']
+
+    // Debug: Check API key status
+    console.log('🔑 ArcGIS API Key set:', !!esriConfig.apiKey, esriConfig.apiKey?.substring(0, 8) + '...')
     engineLog('Creating basemap:', bgName, config)
 
     if (config.type === 'esri') {
-      // Use built-in Esri basemap
-      return Basemap.fromId(config.id)
-    } else {
-      // Use custom WebTileLayer
-      const baseLayer = new WebTileLayer({
-        urlTemplate: config.url,
-        subDomains: config.subDomains,
+      // Use Basemap.fromId() for well-known Esri basemap IDs
+      console.log('🗺️ Creating Esri basemap with ID:', config.id)
+      const esriBasemap = Basemap.fromId(config.id)
+      console.log('🗺️ Basemap.fromId result:', esriBasemap?.title || 'null')
+
+      if (esriBasemap) {
+        // Add load event listener for debugging
+        esriBasemap.load().then(() => {
+          console.log('✅ Basemap loaded successfully:', config.id)
+        }).catch((err: Error) => {
+          console.error('❌ Basemap load failed:', config.id, err.message)
+        })
+        return esriBasemap
+      }
+
+      // Final fallback - try creating with just title
+      console.warn('⚠️ Basemap.fromId returned null for:', config.id)
+      return new Basemap({ title: bgName })
+    } else if (config.type === 'esritile') {
+      // Use Esri TileLayer for ArcGIS Server tile services
+      const esriTileLayer = new EsriTileLayer({
+        url: config.url,
         copyright: config.copyright,
+        title: bgName
+      })
+
+      return new Basemap({
+        baseLayers: [esriTileLayer],
+        title: bgName
+      })
+    } else {
+      // Use custom WebTileLayer for standard XYZ/TMS tiles
+      const webTileConfig = config as WebTileConfig
+      const baseLayer = new WebTileLayer({
+        urlTemplate: webTileConfig.url,
+        subDomains: webTileConfig.subDomains,
+        copyright: webTileConfig.copyright,
         title: bgName,
-        maxScale: config.maxScale
+        maxScale: webTileConfig.maxScale
       })
 
       return new Basemap({
@@ -128,7 +159,39 @@ export function MapContainer() {
 
     engineLog('Initializing OL map layers...', { arcgisBaseLayers })
 
-    // Skip OL base layers if ArcGIS handles them
+    // Historical map layers from Map5.nl - ALWAYS create these for hybrid mode
+    const tmk1850Layer = new TileLayer({
+      properties: { title: 'TMK 1850', type: 'base' },
+      visible: false,
+      source: new XYZ({
+        url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{z}/{x}/{y}.png',
+        attributions: '© Kadaster / Map5.nl',
+        crossOrigin: 'anonymous',
+        maxZoom: 14
+      }),
+      zIndex: 0  // Below other layers
+    })
+
+    const bonne1900Layer = new TileLayer({
+      properties: { title: 'Bonnebladen 1900', type: 'base' },
+      visible: false,
+      source: new XYZ({
+        url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{z}/{x}/{y}.png',
+        attributions: '© Kadaster / Map5.nl',
+        crossOrigin: 'anonymous',
+        maxZoom: 14
+      }),
+      zIndex: 0  // Below other layers
+    })
+
+    // Always add historical layers (needed for hybrid mode)
+    map.addLayer(tmk1850Layer)
+    map.addLayer(bonne1900Layer)
+    registerLayer('TMK 1850', tmk1850Layer)
+    registerLayer('Bonnebladen 1900', bonne1900Layer)
+    engineLog('OL historical layers added for hybrid mode')
+
+    // Skip other OL base layers if ArcGIS handles them
     if (!arcgisBaseLayers) {
       // Base layers (only when OL is primary or ArcGIS doesn't handle basemaps)
       const osmLayer = new TileLayer({
@@ -169,48 +232,21 @@ export function MapContainer() {
         zIndex: 100
       })
 
-      // Historical map layers from Map5.nl
-      const tmk1850Layer = new TileLayer({
-        properties: { title: 'TMK 1850', type: 'base' },
-        visible: false,
-        source: new XYZ({
-          url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{z}/{x}/{y}.png',
-          attributions: '© Kadaster / Map5.nl',
-          crossOrigin: 'anonymous',
-          maxZoom: 14
-        })
-      })
-
-      const bonne1900Layer = new TileLayer({
-        properties: { title: 'Bonnebladen 1900', type: 'base' },
-        visible: false,
-        source: new XYZ({
-          url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{z}/{x}/{y}.png',
-          attributions: '© Kadaster / Map5.nl',
-          crossOrigin: 'anonymous',
-          maxZoom: 14
-        })
-      })
-
       // Add base layers to map
       map.addLayer(osmLayer)
       map.addLayer(cartoDBLayer)
       map.addLayer(satelliteLayer)
       map.addLayer(labelsLayer)
-      map.addLayer(tmk1850Layer)
-      map.addLayer(bonne1900Layer)
 
-      // Register base layers in store
+      // Register base layers in store (historical maps already registered above)
       registerLayer('OpenStreetMap', osmLayer)
       registerLayer('CartoDB (licht)', cartoDBLayer)
       registerLayer('Luchtfoto', satelliteLayer)
       registerLayer('Labels Overlay', labelsLayer)
-      registerLayer('TMK 1850', tmk1850Layer)
-      registerLayer('Bonnebladen 1900', bonne1900Layer)
 
       engineLog('OL base layers added')
     } else {
-      engineLog('Skipping OL base layers (ArcGIS handles basemaps)')
+      engineLog('Skipping OL base layers (ArcGIS handles basemaps, historical maps still available)')
     }
 
     // Force map to render
@@ -303,12 +339,36 @@ export function MapContainer() {
       })
 
       // Create basemap for primary mode
-      const basemap = (arcgisIsPrimary && arcgisBaseLayers)
-        ? createArcGISBasemap(defaultBackground || 'Esri Licht')
-        : undefined
+      console.log('🔧 ArcGIS init - isPrimary:', arcgisIsPrimary, 'arcgisBaseLayers:', arcgisBaseLayers, 'defaultBg:', defaultBackground)
 
-      // Create ArcGIS Map
-      const esriMap = new EsriMap({ basemap })
+      // For Esri basemaps, pass string ID directly to Map constructor
+      // For custom WebTile basemaps, create Basemap object
+      const bgName = defaultBackground || 'Esri Licht'
+      const bgConfig = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['Esri Licht']
+
+      let esriMap: EsriMap
+
+      if (arcgisIsPrimary && arcgisBaseLayers) {
+        if (bgConfig.type === 'esri') {
+          // Pass Esri basemap ID directly as string
+          console.log('🔧 Using Esri basemap string:', bgConfig.id)
+          esriMap = new EsriMap({ basemap: bgConfig.id as any })
+        } else if (bgConfig.type === 'hybrid-ol') {
+          // HYBRID: Start with empty basemap, OL layer will be shown separately
+          console.log('🔧 Using HYBRID basemap (OL layer):', bgConfig.olLayerName)
+          esriMap = new EsriMap({ basemap: new Basemap({ title: 'empty' }) })
+          // Note: OL layer visibility will be set after OL map is ready
+        } else {
+          // Create custom WebTile basemap
+          const basemap = createArcGISBasemap(bgName)
+          console.log('🔧 Using custom WebTile basemap:', bgName)
+          esriMap = new EsriMap({ basemap })
+        }
+      } else {
+        esriMap = new EsriMap()
+      }
+
+      console.log('🔧 EsriMap created, basemap:', esriMap.basemap?.title || 'none')
 
       // Create ArcGIS MapView with explicit center and zoom
       const esriView = new MapView({
@@ -451,7 +511,7 @@ export function MapContainer() {
 
   // Handle basemap changes for ArcGIS primary mode
   useEffect(() => {
-    if (!arcgisIsPrimary || !arcgisBaseLayers || !arcgisReady || !arcgisView) return
+    if (!arcgisIsPrimary || !arcgisBaseLayers || !arcgisReady || !arcgisView?.map) return
 
     // Handle legacy basemap names (migration from CartoDB to Esri)
     let bgName = defaultBackground || 'Esri Licht'
@@ -460,9 +520,37 @@ export function MapContainer() {
       bgName = 'Esri Licht'
     }
 
-    arcgisView.map.basemap = createArcGISBasemap(bgName)
+    const bgConfig = ARCGIS_BASE_LAYERS[bgName]
+
+    // First, hide all OL historical layers
+    setLayerVisibility('TMK 1850', false)
+    setLayerVisibility('Bonnebladen 1900', false)
+
+    if (bgConfig.type === 'esri') {
+      // For Esri basemaps, use Basemap.fromId or string assignment
+      console.log('🔄 Changing to Esri basemap:', bgConfig.id)
+      const newBasemap = Basemap.fromId(bgConfig.id)
+      if (newBasemap) {
+        arcgisView.map.basemap = newBasemap
+      } else {
+        // Fallback: assign string directly (works in some cases)
+        (arcgisView.map as any).basemap = bgConfig.id
+      }
+    } else if (bgConfig.type === 'hybrid-ol') {
+      // HYBRID: Use OL layer for historical maps
+      console.log('🔄 Changing to HYBRID basemap (OL layer):', bgConfig.olLayerName)
+      // Set ArcGIS to empty/transparent basemap
+      arcgisView.map.basemap = new Basemap({ title: 'empty' })
+      // Show the OL historical layer
+      setLayerVisibility(bgConfig.olLayerName, true)
+    } else {
+      // For custom WebTile basemaps, create Basemap object
+      console.log('🔄 Changing to WebTile basemap:', bgName)
+      arcgisView.map.basemap = createArcGISBasemap(bgName)
+    }
+
     engineLog('Basemap changed to:', bgName)
-  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap])
+  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap, setLayerVisibility])
 
   // Apply default background setting on first load (only for OL base layers)
   useEffect(() => {

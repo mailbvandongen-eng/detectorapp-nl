@@ -5,12 +5,14 @@ import type MapView from '@arcgis/core/views/MapView'
 import type EsriMap from '@arcgis/core/Map'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
+import EsriTileLayer from '@arcgis/core/layers/TileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
 
 // Esri basemap IDs for built-in basemaps
 type EsriBasemapConfig = { type: 'esri'; id: string }
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type BasemapConfig = EsriBasemapConfig | WebTileConfig
+type BasemapConfig = EsriBasemapConfig | EsriTileConfig | WebTileConfig
 
 // ArcGIS base layer configurations - using Esri basemaps where possible
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
@@ -33,18 +35,16 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
-  // Historical maps (custom WebTileLayers)
+  // Historical maps from Map5.nl (publicly accessible XYZ tiles)
   'TMK 1850': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514
+    copyright: '© Kadaster / Map5.nl'
   },
   'Bonnebladen 1900': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514
+    copyright: '© Kadaster / Map5.nl'
   }
 }
 
@@ -228,14 +228,28 @@ export const useMapStore = create<MapState>()(
           // Use built-in Esri basemap
           basemap = Basemap.fromId(config.id)
           engineLog('Using Esri basemap:', config.id)
-        } else {
-          // Use custom WebTileLayer
-          const baseLayer = new WebTileLayer({
-            urlTemplate: config.url,
-            subDomains: config.subDomains,
+        } else if (config.type === 'esritile') {
+          // Use Esri TileLayer for ArcGIS Server tile services
+          const esriTileLayer = new EsriTileLayer({
+            url: config.url,
             copyright: config.copyright,
+            title: basemapName
+          })
+
+          basemap = new Basemap({
+            baseLayers: [esriTileLayer],
+            title: basemapName
+          })
+          engineLog('Using Esri TileLayer:', config.url)
+        } else {
+          // Use custom WebTileLayer for standard XYZ/TMS tiles
+          const webTileConfig = config as WebTileConfig
+          const baseLayer = new WebTileLayer({
+            urlTemplate: webTileConfig.url,
+            subDomains: webTileConfig.subDomains,
+            copyright: webTileConfig.copyright,
             title: basemapName,
-            maxScale: config.maxScale
+            maxScale: webTileConfig.maxScale
           })
 
           basemap = new Basemap({

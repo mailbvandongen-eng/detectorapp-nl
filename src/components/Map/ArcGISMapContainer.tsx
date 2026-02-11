@@ -39,17 +39,16 @@ const BASE_LAYERS: Record<string, BasemapConfig> = {
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
+  // Historical maps from Map5.nl (publicly accessible XYZ tiles)
   'TMK 1850': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514 // ~zoom 14
+    copyright: '© Kadaster / Map5.nl'
   },
   'Bonnebladen 1900': {
     type: 'webtile',
     url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
-    copyright: '© Kadaster / Map5.nl',
-    maxScale: 4514 // ~zoom 14
+    copyright: '© Kadaster / Map5.nl'
   }
 }
 
@@ -181,7 +180,7 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
   // Handle basemap changes
   useEffect(() => {
     const view = viewRef.current
-    if (!view || !isReady) return
+    if (!view?.map || !isReady) return
 
     const basemap = createBasemap(activeBg)
     view.map.basemap = basemap
@@ -204,17 +203,21 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
 }
 
 /**
- * Create a basemap from config - supports both Esri native and custom WebTile
+ * Create a basemap from config - supports Esri native basemaps and custom WebTile
  */
 function createBasemap(name: string): Basemap {
   const config = BASE_LAYERS[name] || BASE_LAYERS['Esri Licht']
+  engineLog('Creating basemap:', name, config)
 
   if (config.type === 'esri') {
-    // Use Esri's native basemap
-    return Basemap.fromId(config.id)
+    // Use Esri's native basemap - fromId can return null so we fallback
+    const esriBasemap = Basemap.fromId(config.id)
+    if (esriBasemap) return esriBasemap
+    // Fallback to gray-vector if the basemap ID doesn't exist
+    return Basemap.fromId('gray-vector') || new Basemap({ title: name })
   }
 
-  // Create custom WebTileLayer basemap
+  // Create custom WebTileLayer basemap for standard XYZ/TMS tiles
   const webTileConfig = config as WebTileConfig
   const baseLayer = new WebTileLayer({
     urlTemplate: webTileConfig.url,
