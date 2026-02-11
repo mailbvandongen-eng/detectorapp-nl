@@ -3,6 +3,7 @@ import Map from 'ol/Map'
 import View from 'ol/View'
 import { fromLonLat } from 'ol/proj'
 import { ScaleLine } from 'ol/control'
+import { defaults as defaultInteractions } from 'ol/interaction'
 import { useMapStore, useSettingsStore } from '../store'
 import { isArcGISEngine, engineLog } from '../config/mapEngineConfig'
 import type { MapViewOptions } from '../types/map'
@@ -38,9 +39,13 @@ export function useMap({ target, viewOptions }: UseMapOptions) {
         ...viewOptions
       }
 
+      // When ArcGIS is primary, disable OL interactions to let ArcGIS handle them
+      const arcgisIsPrimary = isArcGISEngine()
+
       const map = new Map({
         target,
         controls: [], // Hide default zoom controls - using custom ZoomButtons
+        interactions: arcgisIsPrimary ? [] : defaultInteractions(), // Disable when ArcGIS is primary
         view: new View({
           center: fromLonLat(defaultView.center),
           zoom: defaultView.zoom,
@@ -58,7 +63,8 @@ export function useMap({ target, viewOptions }: UseMapOptions) {
 
       engineLog('OpenLayers map created', {
         target,
-        isOverlay: isArcGISEngine(),
+        isOverlay: arcgisIsPrimary,
+        interactionsDisabled: arcgisIsPrimary,
         center: defaultView.center,
         zoom: defaultView.zoom
       })
