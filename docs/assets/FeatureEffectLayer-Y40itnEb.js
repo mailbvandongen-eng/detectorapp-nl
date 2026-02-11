@@ -1,0 +1,2 @@
+import{bb as t,bc as a,bd as c}from"./index-C027PFa0.js";import{p}from"./FeatureEffect-nq38093G.js";const r={write:{allowNull:!0}},i={type:p,json:{origins:{"web-map":r,"portal-item":r}}},n=s=>{const o=s;let e=class extends o{constructor(){super(...arguments),this.featureEffect=null}};return t([a(i)],e.prototype,"featureEffect",void 0),e=t([c("esri.layers.mixins.FeatureEffectLayer")],e),e};export{n as c,i as p};
+//# sourceMappingURL=FeatureEffectLayer-Y40itnEb.js.map

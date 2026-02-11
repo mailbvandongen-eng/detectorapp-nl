@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, PanInfo } from 'framer-motion'
 import TileWMS from 'ol/source/TileWMS'
 import TileLayer from 'ol/layer/Tile'
-import { toLonLat } from 'ol/proj'
+import { toLonLat, fromLonLat } from 'ol/proj'
 import proj4 from 'proj4'
 import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, ExternalLink, Plus, Check, Pencil, PersonStanding, GripHorizontal } from 'lucide-react'
 import { useMapStore, useUIStore } from '../../store'
+import { isArcGISEngine } from '../../config/mapEngineConfig'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
 import { useCustomPointLayerStore, type FeatureGeometry, type GeometryType } from '../../store/customPointLayerStore'
@@ -158,6 +159,7 @@ function getSoilExplanation(soilName: string, soilCode?: string): string[] {
 
 export function Popup() {
   const map = useMapStore(state => state.map)
+  const arcgisView = useMapStore(state => state.arcgisView)
   const isDrawingMode = useUIStore(state => state.isDrawingMode)
   const removeVondst = useLocalVondstenStore(state => state.removeVondst)
   const updateVondst = useLocalVondstenStore(state => state.updateVondst)
@@ -3571,6 +3573,45 @@ export function Popup() {
       map.un('click', handleClick)
     }
   }, [map])
+
+  // ArcGIS click handler - when ArcGIS is primary engine, forward clicks to OL
+  useEffect(() => {
+    if (!arcgisView || !map || !isArcGISEngine()) return
+
+    const handle = arcgisView.on('click', (event: any) => {
+      // Don't show popups when in drawing/measuring mode
+      if (useUIStore.getState().isDrawingMode) return
+
+      // Get the clicked coordinate in Web Mercator (EPSG:3857)
+      const lonLat = [event.mapPoint.longitude, event.mapPoint.latitude]
+      const coordinate = fromLonLat(lonLat)
+
+      // Get pixel position from screen point
+      const pixel = [event.screenPoint.x, event.screenPoint.y] as [number, number]
+
+      // Create a synthetic click event for OL
+      const syntheticEvent = {
+        coordinate,
+        pixel,
+        map,
+        originalEvent: event.native
+      } as MapBrowserEvent<any>
+
+      // Dispatch the click to OL's internal handler
+      // This will trigger the same handleClick logic we use for OL clicks
+      map.dispatchEvent({
+        type: 'click',
+        coordinate,
+        pixel,
+        map,
+        originalEvent: event.native
+      } as any)
+    })
+
+    return () => {
+      handle.remove()
+    }
+  }, [arcgisView, map])
 
   const handleClose = () => {
     setVisible(false)
