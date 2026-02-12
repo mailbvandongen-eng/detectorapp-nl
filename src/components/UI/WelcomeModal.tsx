@@ -12,13 +12,12 @@ interface WelcomeModalProps {
 export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
   const setHideWelcomeModal = useSettingsStore(state => state.setHideWelcomeModal)
   const [showHandleiding, setShowHandleiding] = useState(false)
+  const [dontShowAgain, setDontShowAgain] = useState(false)
 
   const handleClose = () => {
-    onClose()
-  }
-
-  const handleDontShowAgain = () => {
-    setHideWelcomeModal(true)
+    if (dontShowAgain) {
+      setHideWelcomeModal(true)
+    }
     onClose()
   }
 
@@ -110,18 +109,21 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-end gap-2 px-4 py-3 border-t border-gray-100 bg-gray-50 flex-shrink-0">
-                <button
-                  onClick={handleDontShowAgain}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-200 rounded-lg transition-colors border-0 outline-none"
-                >
-                  Toon niet meer
-                </button>
+              <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50 flex-shrink-0">
+                <label className="flex items-center gap-1.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={dontShowAgain}
+                    onChange={(e) => setDontShowAgain(e.target.checked)}
+                    className="w-3.5 h-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                  />
+                  <span className="text-xs text-gray-500">Toon niet meer</span>
+                </label>
                 <button
                   onClick={handleClose}
                   className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors border-0 outline-none"
                 >
-                  Begrepen
+                  Ok
                 </button>
               </div>
             </motion.div>
