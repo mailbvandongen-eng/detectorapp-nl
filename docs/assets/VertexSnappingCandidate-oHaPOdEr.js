@@ -1,2 +1,0 @@
-import{e as r}from"./hitTestSelectUtils-BC9l0Byn.js";import{b as e}from"./SketchViewModel-tOiLKJ_U.js";import{n as o}from"./PointSnappingHint-DHsEn5OU.js";class m extends e{constructor(t){super({...t,constraint:new r(t.targetPoint)})}get hints(){return[new o(this.targetPoint,this.isDraped,this.domain)]}}export{m as r};
-//# sourceMappingURL=VertexSnappingCandidate-oHaPOdEr.js.map
