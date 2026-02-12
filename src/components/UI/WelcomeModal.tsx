@@ -1,8 +1,16 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Layers, Search, MapPin, Compass, SlidersHorizontal, Filter, Menu, RotateCcw, BookOpen } from 'lucide-react'
+import { X, Layers, Search, MapPin, Compass, SlidersHorizontal, Filter, Menu, RotateCcw, BookOpen, Sparkles } from 'lucide-react'
 import { useSettingsStore } from '../../store/settingsStore'
 import { HandleidingModal } from './HandleidingModal'
+import { version } from '../../../package.json'
+
+// Recent changelog entries (most recent first)
+const CHANGELOG = [
+  { version: '2.32', changes: ['Verbeterde kaart synchronisatie', 'Import lagen met kleur/icoon selectie', 'Tekenen en meten tools hersteld'] },
+  { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
+  { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
+]
 
 interface WelcomeModalProps {
   isOpen: boolean
@@ -106,6 +114,29 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                     </span>
                   </div>
                 </button>
+
+                {/* Changelog section */}
+                <section className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={16} className="text-purple-600" />
+                    <h3 className="text-sm font-semibold text-purple-800">Nieuw in v{version}</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {CHANGELOG.slice(0, 2).map((entry) => (
+                      <div key={entry.version}>
+                        <div className="text-xs font-medium text-purple-700 mb-0.5">v{entry.version}</div>
+                        <ul className="text-xs text-purple-600 space-y-0.5">
+                          {entry.changes.map((change, i) => (
+                            <li key={i} className="flex items-start gap-1">
+                              <span className="text-purple-400 mt-0.5">•</span>
+                              <span>{change}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </section>
               </div>
 
               {/* Footer */}

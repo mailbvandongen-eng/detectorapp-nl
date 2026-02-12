@@ -382,64 +382,42 @@ export function MapContainer() {
 
         // Setup view sync
         if (arcgisIsPrimary) {
-          // ArcGIS primary: BIDIRECTIONAL sync (ArcGIS ↔ OL)
-          // This is needed because:
-          // - User pan/zoom goes to ArcGIS → needs to sync to OL for layers
-          // - GPS tracking updates OL directly → needs to sync to ArcGIS for basemap
+          // ArcGIS primary: ONE-WAY sync (ArcGIS → OL only for user interaction)
+          // GPS updates go through setCenter/setZoom which update both views directly
           const setupSync = (olMap: any) => {
             if (!olMap) return
 
-            // Flag to prevent infinite sync loops - with timeout to handle async events
-            let syncing = false
-            let syncTimeout: ReturnType<typeof setTimeout> | null = null
-
-            const startSync = () => {
-              syncing = true
-              if (syncTimeout) clearTimeout(syncTimeout)
-              // Keep syncing flag true for 100ms to handle async event propagation
-              syncTimeout = setTimeout(() => {
-                syncing = false
-              }, 100)
-            }
+            // Only sync ArcGIS → OL (user pan/zoom on basemap)
+            // Don't sync OL → ArcGIS to avoid feedback loops during zoom
 
             // ArcGIS → OL sync (user pan/zoom)
             esriView.watch('center', (center) => {
-              if (center && olMap && !syncing) {
-                startSync()
+              if (center && olMap && !esriView.interacting) {
                 olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
               }
             })
 
             esriView.watch('zoom', (newZoom) => {
-              if (newZoom !== undefined && olMap && !syncing) {
-                startSync()
+              if (newZoom !== undefined && olMap && !esriView.interacting) {
                 olMap.getView().setZoom(newZoom)
               }
             })
 
-            // OL → ArcGIS sync (GPS updates, programmatic moves)
-            const olView = olMap.getView()
-
-            olView.on('change:center', () => {
-              if (syncing) return
-              const newCenter = olView.getCenter()
-              if (newCenter && !esriView.destroyed) {
-                startSync()
-                const newLonLat = toLonLat(newCenter)
-                esriView.goTo({ center: newLonLat }, { animate: false })
+            // Also sync during interaction end for final position
+            esriView.watch('interacting', (interacting) => {
+              if (!interacting && olMap) {
+                const center = esriView.center
+                const zoom = esriView.zoom
+                if (center) {
+                  olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
+                }
+                if (zoom !== undefined) {
+                  olMap.getView().setZoom(zoom)
+                }
               }
             })
 
-            olView.on('change:resolution', () => {
-              if (syncing) return
-              const newZoom = olView.getZoom()
-              if (newZoom !== undefined && !esriView.destroyed) {
-                startSync()
-                esriView.goTo({ zoom: newZoom }, { animate: false })
-              }
-            })
-
-            engineLog('Bidirectional ArcGIS ↔ OL sync complete')
+            engineLog('ArcGIS → OL sync complete')
           }
 
           // Setup sync when OL map is available
