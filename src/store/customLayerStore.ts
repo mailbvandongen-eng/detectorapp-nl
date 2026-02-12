@@ -26,6 +26,8 @@ export interface CustomLayer {
   color: string // Hex color for markers
   createdAt: string
   sourceFileName: string
+  displayProperties?: string[] // Which properties to show in popup (empty = all)
+  icon?: string // Icon name for point features
 }
 
 interface CustomLayerState {

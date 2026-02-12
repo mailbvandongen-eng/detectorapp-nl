@@ -1,9 +1,34 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Upload, FileText, AlertCircle, CheckCircle, Loader2 } from 'lucide-react'
+import { X, Upload, FileText, AlertCircle, CheckCircle, Loader2, Palette, List, MapPin, Circle, Square, Triangle, Star, Heart, Flag, Home, Bookmark } from 'lucide-react'
 import { useCustomLayerStore } from '../../store/customLayerStore'
 import { parseFile, validateFile, getAcceptedExtensions, getSupportedFormatsText, detectFileType } from '../../utils/fileImport'
 import type { ParseResult } from '../../utils/fileImport'
+
+// Available colors for layer
+const LAYER_COLORS = [
+  { name: 'Rood', value: '#ef4444' },
+  { name: 'Oranje', value: '#f97316' },
+  { name: 'Geel', value: '#eab308' },
+  { name: 'Groen', value: '#22c55e' },
+  { name: 'Cyaan', value: '#06b6d4' },
+  { name: 'Blauw', value: '#3b82f6' },
+  { name: 'Paars', value: '#8b5cf6' },
+  { name: 'Roze', value: '#ec4899' },
+]
+
+// Available icons for point features
+const LAYER_ICONS = [
+  { name: 'Marker', value: 'marker', icon: MapPin },
+  { name: 'Cirkel', value: 'circle', icon: Circle },
+  { name: 'Vierkant', value: 'square', icon: Square },
+  { name: 'Driehoek', value: 'triangle', icon: Triangle },
+  { name: 'Ster', value: 'star', icon: Star },
+  { name: 'Hart', value: 'heart', icon: Heart },
+  { name: 'Vlag', value: 'flag', icon: Flag },
+  { name: 'Huis', value: 'home', icon: Home },
+  { name: 'Bookmark', value: 'bookmark', icon: Bookmark },
+]
 
 interface Props {
   isOpen: boolean
@@ -22,6 +47,29 @@ export function ImportLayerModal({ isOpen, onClose }: Props) {
   const [layerName, setLayerName] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [selectedColor, setSelectedColor] = useState(LAYER_COLORS[0].value)
+  const [selectedIcon, setSelectedIcon] = useState('marker')
+  const [selectedProperties, setSelectedProperties] = useState<string[]>([])
+
+  // Extract all unique property names from features
+  const availableProperties = useMemo(() => {
+    if (!parseResult) return []
+    const propSet = new Set<string>()
+    parseResult.features.features.forEach(feature => {
+      if (feature.properties) {
+        Object.keys(feature.properties).forEach(key => propSet.add(key))
+      }
+    })
+    return Array.from(propSet).sort()
+  }, [parseResult])
+
+  // Check if layer has point geometries
+  const hasPointGeometry = useMemo(() => {
+    if (!parseResult) return false
+    return parseResult.metadata.geometryTypes.some(t =>
+      t === 'Point' || t === 'MultiPoint'
+    )
+  }, [parseResult])
 
   const resetState = useCallback(() => {
     setImportState('idle')
@@ -29,6 +77,9 @@ export function ImportLayerModal({ isOpen, onClose }: Props) {
     setParseResult(null)
     setLayerName('')
     setError(null)
+    setSelectedColor(LAYER_COLORS[0].value)
+    setSelectedIcon('marker')
+    setSelectedProperties([])
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
@@ -117,12 +168,22 @@ export function ImportLayerModal({ isOpen, onClose }: Props) {
       features: parseResult.features,
       visible: true,
       opacity: 1,
-      color: '', // Will use default color from store
-      sourceFileName: selectedFile?.name || 'unknown'
+      color: selectedColor,
+      sourceFileName: selectedFile?.name || 'unknown',
+      displayProperties: selectedProperties.length > 0 ? selectedProperties : undefined,
+      icon: hasPointGeometry ? selectedIcon : undefined
     })
 
     handleClose()
-  }, [parseResult, layerName, selectedFile, addLayer, handleClose])
+  }, [parseResult, layerName, selectedFile, addLayer, handleClose, selectedColor, selectedProperties, selectedIcon, hasPointGeometry])
+
+  const toggleProperty = useCallback((prop: string) => {
+    setSelectedProperties(prev =>
+      prev.includes(prop)
+        ? prev.filter(p => p !== prop)
+        : [...prev, prop]
+    )
+  }, [])
 
   return (
     <AnimatePresence>
@@ -276,9 +337,93 @@ export function ImportLayerModal({ isOpen, onClose }: Props) {
                       value={layerName}
                       onChange={(e) => setLayerName(e.target.value)}
                       placeholder="Bijv. Mijn locaties"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-gray-100 rounded-lg text-sm border-0 outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
+
+                  {/* Color picker */}
+                  <div>
+                    <label className="flex items-center gap-1.5 text-sm font-medium text-gray-700 mb-2">
+                      <Palette size={14} />
+                      Kleur
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {LAYER_COLORS.map(color => (
+                        <button
+                          key={color.value}
+                          onClick={() => setSelectedColor(color.value)}
+                          className={`w-8 h-8 rounded-full border-2 transition-all ${
+                            selectedColor === color.value
+                              ? 'border-gray-800 scale-110'
+                              : 'border-transparent hover:border-gray-300'
+                          }`}
+                          style={{ backgroundColor: color.value }}
+                          title={color.name}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Icon picker (only for point geometries) */}
+                  {hasPointGeometry && (
+                    <div>
+                      <label className="flex items-center gap-1.5 text-sm font-medium text-gray-700 mb-2">
+                        <MapPin size={14} />
+                        Icoon
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {LAYER_ICONS.map(iconOption => {
+                          const IconComponent = iconOption.icon
+                          return (
+                            <button
+                              key={iconOption.value}
+                              onClick={() => setSelectedIcon(iconOption.value)}
+                              className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all border-0 outline-none ${
+                                selectedIcon === iconOption.value
+                                  ? 'bg-purple-100 text-purple-600 ring-2 ring-purple-500'
+                                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              }`}
+                              title={iconOption.name}
+                            >
+                              <IconComponent size={18} />
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Property selection */}
+                  {availableProperties.length > 0 && (
+                    <div>
+                      <label className="flex items-center gap-1.5 text-sm font-medium text-gray-700 mb-2">
+                        <List size={14} />
+                        Te tonen eigenschappen
+                        <span className="text-xs text-gray-400 font-normal ml-1">
+                          ({selectedProperties.length === 0 ? 'alle' : selectedProperties.length})
+                        </span>
+                      </label>
+                      <p className="text-xs text-gray-500 mb-2">
+                        Selecteer welke info je wilt zien in popups. Laat leeg voor alles.
+                      </p>
+                      <div className="max-h-32 overflow-y-auto bg-gray-50 rounded-lg p-2 space-y-1">
+                        {availableProperties.map(prop => (
+                          <label
+                            key={prop}
+                            className="flex items-center gap-2 px-2 py-1.5 hover:bg-white rounded cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={selectedProperties.includes(prop)}
+                              onChange={() => toggleProperty(prop)}
+                              className="w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                            />
+                            <span className="text-sm text-gray-700 truncate">{prop}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

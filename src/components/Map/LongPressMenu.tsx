@@ -5,6 +5,7 @@ import { toLonLat } from 'ol/proj'
 import { useMapStore } from '../../store'
 import { useUIStore } from '../../store/uiStore'
 import { useCustomPointLayerStore, CustomPointLayer } from '../../store/customPointLayerStore'
+import { isArcGISEngine } from '../../config/mapEngineConfig'
 
 // Check if a coordinate is already in a layer (within ~10m tolerance)
 const TOLERANCE = 0.0001 // ~10 meters at equator
@@ -23,6 +24,7 @@ interface LongPressLocation {
 
 export function LongPressMenu() {
   const map = useMapStore(state => state.map)
+  const arcgisView = useMapStore(state => state.arcgisView)
   const openVondstForm = useUIStore(state => state.openVondstForm)
   const { openAddPointModal, openCreateLayerModal, openLayerManagerModal } = useUIStore()
   const customLayers = useCustomPointLayerStore(state => state.layers)
@@ -244,6 +246,151 @@ export function LongPressMenu() {
       }
     }
   }, [map, visible])
+
+  // ArcGIS long press handler - when ArcGIS is primary engine
+  useEffect(() => {
+    if (!arcgisView || !isArcGISEngine()) return
+
+    const LONG_PRESS_DURATION = 600 // ms
+    const MOVE_THRESHOLD = 15 // pixels
+
+    const arcgisContainer = arcgisView.container as HTMLElement
+    if (!arcgisContainer) return
+
+    let arcgisLongPressTimer: number | null = null
+    let arcgisStartPos: { x: number; y: number } | null = null
+
+    const handleArcGISTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+
+      const touch = e.touches[0]
+      arcgisStartPos = { x: touch.clientX, y: touch.clientY }
+
+      if (arcgisLongPressTimer) clearTimeout(arcgisLongPressTimer)
+
+      arcgisLongPressTimer = window.setTimeout(() => {
+        if (!arcgisStartPos) return
+
+        // Get coordinate from ArcGIS view
+        const screenPoint = { x: arcgisStartPos.x, y: arcgisStartPos.y }
+        const mapPoint = arcgisView.toMap(screenPoint)
+
+        if (mapPoint) {
+          const lonLat: [number, number] = [mapPoint.longitude, mapPoint.latitude]
+
+          e.preventDefault()
+          setMenuLocation({
+            pixel: [arcgisStartPos.x, arcgisStartPos.y],
+            coordinate: lonLat
+          })
+          setVisible(true)
+          setCanClose(false)
+          setTimeout(() => setCanClose(true), 300)
+
+          if ('vibrate' in navigator) {
+            navigator.vibrate(50)
+          }
+          console.log('🎯 ArcGIS Long press detected at:', lonLat)
+        }
+      }, LONG_PRESS_DURATION)
+    }
+
+    const handleArcGISTouchMove = (e: TouchEvent) => {
+      if (!arcgisLongPressTimer || !arcgisStartPos) return
+
+      const touch = e.touches[0]
+      const dx = touch.clientX - arcgisStartPos.x
+      const dy = touch.clientY - arcgisStartPos.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+
+      if (distance > MOVE_THRESHOLD) {
+        clearTimeout(arcgisLongPressTimer)
+        arcgisLongPressTimer = null
+      }
+    }
+
+    const handleArcGISTouchEnd = () => {
+      if (arcgisLongPressTimer) {
+        clearTimeout(arcgisLongPressTimer)
+        arcgisLongPressTimer = null
+      }
+      arcgisStartPos = null
+    }
+
+    // Mouse events for desktop
+    const handleArcGISMouseDown = (e: MouseEvent) => {
+      if (e.button !== 0) return
+      arcgisStartPos = { x: e.clientX, y: e.clientY }
+
+      if (arcgisLongPressTimer) clearTimeout(arcgisLongPressTimer)
+
+      arcgisLongPressTimer = window.setTimeout(() => {
+        if (!arcgisStartPos) return
+
+        const rect = arcgisContainer.getBoundingClientRect()
+        const screenPoint = {
+          x: arcgisStartPos.x - rect.left,
+          y: arcgisStartPos.y - rect.top
+        }
+        const mapPoint = arcgisView.toMap(screenPoint)
+
+        if (mapPoint) {
+          const lonLat: [number, number] = [mapPoint.longitude, mapPoint.latitude]
+
+          setMenuLocation({
+            pixel: [arcgisStartPos.x, arcgisStartPos.y],
+            coordinate: lonLat
+          })
+          setVisible(true)
+          setCanClose(false)
+          setTimeout(() => setCanClose(true), 300)
+          console.log('🎯 ArcGIS Long press (mouse) detected at:', lonLat)
+        }
+      }, LONG_PRESS_DURATION)
+    }
+
+    const handleArcGISMouseMove = (e: MouseEvent) => {
+      if (!arcgisLongPressTimer || !arcgisStartPos) return
+
+      const dx = e.clientX - arcgisStartPos.x
+      const dy = e.clientY - arcgisStartPos.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+
+      if (distance > MOVE_THRESHOLD) {
+        clearTimeout(arcgisLongPressTimer)
+        arcgisLongPressTimer = null
+      }
+    }
+
+    const handleArcGISMouseUp = () => {
+      if (arcgisLongPressTimer) {
+        clearTimeout(arcgisLongPressTimer)
+        arcgisLongPressTimer = null
+      }
+      arcgisStartPos = null
+    }
+
+    arcgisContainer.addEventListener('touchstart', handleArcGISTouchStart, { passive: false })
+    arcgisContainer.addEventListener('touchmove', handleArcGISTouchMove, { passive: true })
+    arcgisContainer.addEventListener('touchend', handleArcGISTouchEnd)
+    arcgisContainer.addEventListener('touchcancel', handleArcGISTouchEnd)
+    arcgisContainer.addEventListener('mousedown', handleArcGISMouseDown)
+    arcgisContainer.addEventListener('mousemove', handleArcGISMouseMove)
+    arcgisContainer.addEventListener('mouseup', handleArcGISMouseUp)
+    arcgisContainer.addEventListener('mouseleave', handleArcGISMouseUp)
+
+    return () => {
+      arcgisContainer.removeEventListener('touchstart', handleArcGISTouchStart)
+      arcgisContainer.removeEventListener('touchmove', handleArcGISTouchMove)
+      arcgisContainer.removeEventListener('touchend', handleArcGISTouchEnd)
+      arcgisContainer.removeEventListener('touchcancel', handleArcGISTouchEnd)
+      arcgisContainer.removeEventListener('mousedown', handleArcGISMouseDown)
+      arcgisContainer.removeEventListener('mousemove', handleArcGISMouseMove)
+      arcgisContainer.removeEventListener('mouseup', handleArcGISMouseUp)
+      arcgisContainer.removeEventListener('mouseleave', handleArcGISMouseUp)
+      if (arcgisLongPressTimer) clearTimeout(arcgisLongPressTimer)
+    }
+  }, [arcgisView, visible])
 
   const handleClose = () => {
     if (!canClose) return // Prevent closing immediately after opening
