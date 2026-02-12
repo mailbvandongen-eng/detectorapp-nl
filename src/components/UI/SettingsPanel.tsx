@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Volume2, Cloud } from 'lucide-react'
+import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin, Download, LogOut, BarChart3, Pencil, Upload, Bug, Code, User, Sliders, Volume2, Cloud, Info } from 'lucide-react'
 
 // Bug report form URL
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
@@ -175,6 +175,16 @@ export function SettingsPanel() {
                       checked={settings.showScaleBar}
                       onChange={settings.setShowScaleBar}
                     />
+                    {settings.hideWelcomeModal && (
+                      <button
+                        onClick={() => settings.setHideWelcomeModal(false)}
+                        className="flex items-center gap-2 mt-2 px-2 py-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none w-full"
+                        style={{ fontSize: '0.9em' }}
+                      >
+                        <Info size={14} />
+                        <span>Activeer welkomstscherm</span>
+                      </button>
+                    )}
                   </Section>
 
                   {/* GPS */}

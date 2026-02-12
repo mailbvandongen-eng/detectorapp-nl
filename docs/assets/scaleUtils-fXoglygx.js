@@ -1,2 +1,0 @@
-import{ak as i,al as o,am as u}from"./index-DRvGZ7JB.js";const I=96;function s(n,t){const e=n.extent,r=n.width,a=i(e?.spatialReference);return e&&r?e.width/r*a*o*I:0}function N(n,t){return n/(i(t)*o*I)}function p(n,t,e){return c(n,t)&&f(n,e)}function c(n,t){return t===0||u(n,t)||n<t}function f(n,t){return t===0||u(n,t)||n>t}function T(n,t){return u(n,t)?0:(n||Number.POSITIVE_INFINITY)>(t||Number.POSITIVE_INFINITY)?1:-1}export{p as d,s as i,T as p,N as u};
-//# sourceMappingURL=scaleUtils-fXoglygx.js.map
