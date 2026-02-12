@@ -382,23 +382,58 @@ export function MapContainer() {
 
         // Setup view sync
         if (arcgisIsPrimary) {
-          // ArcGIS primary: sync ArcGIS → OL
+          // ArcGIS primary: BIDIRECTIONAL sync (ArcGIS ↔ OL)
+          // This is needed because:
+          // - User pan/zoom goes to ArcGIS → needs to sync to OL for layers
+          // - GPS tracking updates OL directly → needs to sync to ArcGIS for basemap
           const setupSync = (olMap: any) => {
             if (!olMap) return
 
+            // Flag to prevent infinite sync loops
+            let syncing = false
+
+            // ArcGIS → OL sync (user pan/zoom)
             esriView.watch('center', (center) => {
-              if (center && olMap) {
+              if (center && olMap && !syncing) {
+                syncing = true
                 olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
+                syncing = false
               }
             })
 
             esriView.watch('zoom', (newZoom) => {
-              if (newZoom !== undefined && olMap) {
+              if (newZoom !== undefined && olMap && !syncing) {
+                syncing = true
                 olMap.getView().setZoom(newZoom)
+                syncing = false
               }
             })
 
-            engineLog('ArcGIS → OL sync complete')
+            // OL → ArcGIS sync (GPS updates, programmatic moves)
+            const olView = olMap.getView()
+
+            olView.on('change:center', () => {
+              if (syncing) return
+              const newCenter = olView.getCenter()
+              if (newCenter && !esriView.destroyed) {
+                syncing = true
+                const newLonLat = toLonLat(newCenter)
+                esriView.goTo({ center: newLonLat }, { animate: false })
+                syncing = false
+              }
+            })
+
+            olView.on('change:resolution', () => {
+              if (syncing) return
+              const newZoom = olView.getZoom()
+              if (newZoom !== undefined && !esriView.destroyed) {
+                syncing = true
+                esriView.goTo({ zoom: newZoom }, { animate: false })
+                syncing = false
+              }
+            })
+
+            engineLog('Bidirectional ArcGIS ↔ OL sync complete')
           }
 
           // Setup sync when OL map is available
