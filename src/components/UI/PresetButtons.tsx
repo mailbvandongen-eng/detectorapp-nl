@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { RotateCcw, Compass, TreePalm, Layers, ChevronUp, Mountain, Waves, Search, Target, Grid3X3, Save, Plus, RotateCw, Check, LucideIcon, Bookmark } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { fromLonLat } from 'ol/proj'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
 import { useMonumentFilterStore } from '../../store/monumentFilterStore'
 import type { Preset } from '../../store/presetStore'
@@ -118,6 +119,34 @@ export function PresetButtons() {
     BASE_LAYERS.forEach(layer => {
       setLayerVisibility(layer, layer === 'Esri Licht')
     })
+
+    // Reset map view to default center of Netherlands and zoom
+    const DEFAULT_CENTER: [number, number] = [5.1214, 52.0907]
+    const DEFAULT_ZOOM = 8
+
+    // Reset both OL and ArcGIS views
+    const { map, arcgisView, setCenter, setZoom } = useMapStore.getState()
+
+    // Update store
+    setCenter(DEFAULT_CENTER)
+    setZoom(DEFAULT_ZOOM)
+
+    // Reset ArcGIS view if active
+    if (arcgisView && !arcgisView.destroyed) {
+      arcgisView.goTo({
+        center: DEFAULT_CENTER,
+        zoom: DEFAULT_ZOOM
+      }, { animate: true, duration: 500 })
+    }
+
+    // Reset OL view
+    if (map) {
+      map.getView().animate({
+        center: fromLonLat(DEFAULT_CENTER),
+        zoom: DEFAULT_ZOOM,
+        duration: 500
+      })
+    }
 
     // Also set ArcGIS basemap (for when ArcGIS is primary)
     const mapStore = useMapStore.getState()

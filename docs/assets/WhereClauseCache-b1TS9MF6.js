@@ -1,0 +1,2 @@
+import{e9 as n}from"./index-DnnESRO7.js";import{L as a}from"./WhereClause-DRB-Se7r.js";class u{constructor(e,t){this._cache=new n(e),this._invalidCache=new n(t)}get(e,t){const r=`${t?.uid}:${e}`,c=this._cache.get(r);if(c)return c;if(this._invalidCache.get(r)!=null)return null;try{const i=a.create(e,{fieldsIndex:t});return this._cache.put(r,i),i}catch(i){return this._invalidCache.put(r,i),null}}getError(e,t){const r=`${t?.uid}:${e}`;return this._invalidCache.get(r)??null}}export{u as WhereClauseCache};
+//# sourceMappingURL=WhereClauseCache-b1TS9MF6.js.map
