@@ -389,23 +389,31 @@ export function MapContainer() {
           const setupSync = (olMap: any) => {
             if (!olMap) return
 
-            // Flag to prevent infinite sync loops
+            // Flag to prevent infinite sync loops - with timeout to handle async events
             let syncing = false
+            let syncTimeout: ReturnType<typeof setTimeout> | null = null
+
+            const startSync = () => {
+              syncing = true
+              if (syncTimeout) clearTimeout(syncTimeout)
+              // Keep syncing flag true for 100ms to handle async event propagation
+              syncTimeout = setTimeout(() => {
+                syncing = false
+              }, 100)
+            }
 
             // ArcGIS → OL sync (user pan/zoom)
             esriView.watch('center', (center) => {
               if (center && olMap && !syncing) {
-                syncing = true
+                startSync()
                 olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
-                syncing = false
               }
             })
 
             esriView.watch('zoom', (newZoom) => {
               if (newZoom !== undefined && olMap && !syncing) {
-                syncing = true
+                startSync()
                 olMap.getView().setZoom(newZoom)
-                syncing = false
               }
             })
 
@@ -416,10 +424,9 @@ export function MapContainer() {
               if (syncing) return
               const newCenter = olView.getCenter()
               if (newCenter && !esriView.destroyed) {
-                syncing = true
+                startSync()
                 const newLonLat = toLonLat(newCenter)
                 esriView.goTo({ center: newLonLat }, { animate: false })
-                syncing = false
               }
             })
 
@@ -427,9 +434,8 @@ export function MapContainer() {
               if (syncing) return
               const newZoom = olView.getZoom()
               if (newZoom !== undefined && !esriView.destroyed) {
-                syncing = true
+                startSync()
                 esriView.goTo({ zoom: newZoom }, { animate: false })
-                syncing = false
               }
             })
 
