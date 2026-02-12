@@ -366,6 +366,21 @@ export function WeatherWidget() {
               )}
             </AnimatePresence>
           </div>
+        ) : weather.error ? (
+          <button
+            onClick={() => {
+              const loc = gps.position || DEFAULT_LOCATION
+              weather.fetchWeather(loc.lat, loc.lon)
+            }}
+            className="p-3 flex flex-col items-start gap-1 border-0 outline-none bg-transparent"
+            style={{ fontSize: `${baseFontSize}px` }}
+          >
+            <div className="flex items-center gap-2">
+              <Cloud size={18} className="text-red-400" />
+              <span className="text-red-500" style={{ fontSize: '1.17em' }}>Fout</span>
+            </div>
+            <span className="text-gray-400" style={{ fontSize: '0.9em' }}>Tik om opnieuw te laden</span>
+          </button>
         ) : (
           <button
             onClick={() => {

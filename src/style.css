@@ -47,6 +47,12 @@ html, body {
   pointer-events: none !important;
 }
 
+/* Enable pointer events on OL overlay when drawing mode is active */
+body.drawing-mode #ol-overlay,
+body.drawing-mode #ol-overlay .ol-viewport {
+  pointer-events: auto !important;
+}
+
 /* ArcGIS MapView internal container needs proper sizing */
 #arcgis-map .esri-view {
   height: 100% !important;

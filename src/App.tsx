@@ -75,6 +75,19 @@ function App() {
   const hideWelcomeModal = useSettingsStore(state => state.hideWelcomeModal)
   const [welcomeModalOpen, setWelcomeModalOpen] = useState(!hideWelcomeModal)
 
+  // Drawing mode - toggle body class for pointer-events on OL overlay
+  const isDrawingMode = useUIStore(state => state.isDrawingMode)
+  useEffect(() => {
+    if (isDrawingMode) {
+      document.body.classList.add('drawing-mode')
+    } else {
+      document.body.classList.remove('drawing-mode')
+    }
+    return () => {
+      document.body.classList.remove('drawing-mode')
+    }
+  }, [isDrawingMode])
+
   return (
     <PasswordGate>
       <div style={{ fontSize: `${baseFontSize}px` }}>

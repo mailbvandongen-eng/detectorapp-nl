@@ -212,25 +212,26 @@ export function RouteRecordButton() {
   const duration = getCurrentDuration()
   const speed = getAverageSpeed()
 
-  const getButtonColor = (state: RecordingState) => {
+  const getButtonIconColor = (state: RecordingState) => {
     switch (state) {
       case 'recording':
-        return 'bg-red-500 hover:bg-red-600'
+        return 'text-red-500'
       case 'paused':
-        return 'bg-yellow-500 hover:bg-yellow-600'
+        return 'text-yellow-500'
       default:
-        return 'bg-green-500 hover:bg-green-600'
+        return 'text-green-500'
     }
   }
 
   const getButtonIcon = (state: RecordingState) => {
+    const iconColor = getButtonIconColor(state)
     switch (state) {
       case 'recording':
-        return <Pause size={22} strokeWidth={2} />
+        return <Pause size={22} strokeWidth={2} className={iconColor} />
       case 'paused':
-        return <Play size={22} strokeWidth={2} />
+        return <Play size={22} strokeWidth={2} className={iconColor} />
       default:
-        return <Route size={22} strokeWidth={2} />
+        return <Route size={22} strokeWidth={2} className={iconColor} />
     }
   }
 
@@ -252,7 +253,7 @@ export function RouteRecordButton() {
     <>
       {/* Main button - positioned dynamically based on vondst button visibility */}
       <motion.button
-        className={`fixed bottom-2 ${mainButtonRight} z-[1000] w-11 h-11 ${getButtonColor(recordingState)} text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm`}
+        className={`fixed bottom-2 ${mainButtonRight} z-[1000] w-11 h-11 bg-white/90 hover:bg-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleMainButtonClick}
@@ -262,8 +263,8 @@ export function RouteRecordButton() {
         {/* Recording indicator pulse */}
         {recordingState === 'recording' && (
           <motion.div
-            className="absolute inset-0 rounded-xl bg-red-400"
-            animate={{ opacity: [0.5, 0, 0.5] }}
+            className="absolute inset-0 rounded-xl bg-red-200"
+            animate={{ opacity: [0.6, 0, 0.6] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
         )}
@@ -273,7 +274,7 @@ export function RouteRecordButton() {
       <AnimatePresence>
         {recordingState === 'idle' && savedRoutes.length > 0 && (
           <motion.button
-            className={`fixed bottom-2 ${secondaryButtonRight} z-[1000] w-11 h-11 bg-green-400 hover:bg-green-500 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none`}
+            className={`fixed bottom-2 ${secondaryButtonRight} z-[1000] w-11 h-11 bg-white/90 hover:bg-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none`}
             initial={{ opacity: 0, scale: 0.8, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.8, x: 20 }}
@@ -282,9 +283,9 @@ export function RouteRecordButton() {
             onClick={toggleRouteDashboard}
             title={`Mijn routes (${savedRoutes.length})`}
           >
-            <List size={18} strokeWidth={2} />
+            <List size={18} strokeWidth={2} className="text-green-500" />
             {/* Badge showing count */}
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-green-600 text-xs font-bold rounded-full flex items-center justify-center shadow-sm">
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-sm">
               {savedRoutes.length}
             </span>
           </motion.button>
@@ -295,7 +296,7 @@ export function RouteRecordButton() {
       <AnimatePresence>
         {(recordingState === 'recording' || recordingState === 'paused') && (
           <motion.button
-            className={`fixed bottom-2 ${secondaryButtonRight} z-[1000] w-11 h-11 bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none`}
+            className={`fixed bottom-2 ${secondaryButtonRight} z-[1000] w-11 h-11 bg-white/90 hover:bg-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none`}
             initial={{ opacity: 0, scale: 0.8, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.8, x: 20 }}
@@ -304,7 +305,7 @@ export function RouteRecordButton() {
             onClick={handleStopClick}
             title="Stoppen en opslaan"
           >
-            <Square size={18} strokeWidth={2} fill="currentColor" />
+            <Square size={18} strokeWidth={2} fill="currentColor" className="text-gray-600" />
           </motion.button>
         )}
       </AnimatePresence>
