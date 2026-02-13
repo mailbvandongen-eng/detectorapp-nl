@@ -168,7 +168,7 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
           unit: 'metric',
           style: 'line'
         })
-        view.ui.add(scaleBarRef.current, 'bottom-left')
+        view.ui.add(scaleBarRef.current, 'bottom-center')
         engineLog('ScaleBar added')
       }
     } else {
