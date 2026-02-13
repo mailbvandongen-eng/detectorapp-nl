@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Sparkles } from 'lucide-react'
+import { X, List } from 'lucide-react'
 import { useUIStore } from '../../store/uiStore'
+import { useSettingsStore } from '../../store/settingsStore'
 import { version } from '../../../package.json'
 
 // Changelog entries (most recent first)
@@ -17,6 +18,13 @@ const CHANGELOG = [
 
 export function ChangelogModal() {
   const { changelogOpen, closeChangelog } = useUIStore()
+
+  // Font scaling from settings
+  const fontScale = useSettingsStore(state => state.fontScale)
+  const setFontScale = useSettingsStore(state => state.setFontScale)
+  const showFontSliders = useSettingsStore(state => state.showFontSliders)
+
+  const baseFontSize = 14 * fontScale / 100
 
   return (
     <AnimatePresence>
@@ -39,47 +47,68 @@ export function ChangelogModal() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col w-full max-w-md max-h-full pointer-events-auto"
+              className="bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col w-full max-w-sm mx-auto my-auto max-h-[85vh] pointer-events-auto"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
-              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-purple-500 to-blue-500 flex-shrink-0">
+              {/* Header - blue bg, white text, font slider */}
+              <div className="flex items-center justify-between px-4 py-3 bg-blue-500 flex-shrink-0">
                 <div className="flex items-center gap-2">
-                  <Sparkles size={18} className="text-white" />
-                  <span className="font-semibold text-white">Wat is nieuw</span>
+                  <List size={18} className="text-white" />
+                  <span className="font-medium text-white">Wijzigingen</span>
                 </div>
-                <button
-                  onClick={closeChangelog}
-                  className="p-1.5 rounded-lg hover:bg-white/20 transition-colors border-0 outline-none"
-                >
-                  <X size={20} className="text-white" />
-                </button>
+                <div className="flex items-center gap-2">
+                  {showFontSliders && (
+                    <div className="flex items-center gap-1">
+                      <span className="text-[10px] text-blue-200">T</span>
+                      <input
+                        type="range"
+                        min="80"
+                        max="150"
+                        step="10"
+                        value={fontScale}
+                        onChange={(e) => setFontScale(parseInt(e.target.value))}
+                        className="header-slider w-16 opacity-70 hover:opacity-100 transition-opacity"
+                        title={`Tekstgrootte: ${fontScale}%`}
+                      />
+                      <span className="text-xs text-blue-200">T</span>
+                    </div>
+                  )}
+                  <button
+                    onClick={closeChangelog}
+                    className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none ml-1"
+                  >
+                    <X size={18} className="text-white" />
+                  </button>
+                </div>
               </div>
 
-              {/* Content - scrollable */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {/* Current version highlight */}
-                <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-3 border border-purple-100">
-                  <div className="text-sm font-semibold text-purple-800 mb-1">
+              {/* Content - scrollable, em-based font sizes */}
+              <div
+                className="flex-1 overflow-y-auto p-4 space-y-4"
+                style={{ fontSize: `${baseFontSize}px` }}
+              >
+                {/* Current version */}
+                <div className="bg-gray-100 rounded-lg p-3">
+                  <span className="font-medium text-gray-700" style={{ fontSize: '0.9em' }}>
                     Huidige versie: v{version}
-                  </div>
+                  </span>
                 </div>
 
                 {/* Changelog entries */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {CHANGELOG.map((entry) => (
-                    <div key={entry.version} className="border-l-2 border-blue-200 pl-3">
-                      <div className="text-sm font-semibold text-blue-700 mb-1">
-                        Versie {entry.version}
+                    <div key={entry.version} className="border-l-2 border-gray-300 pl-3">
+                      <div className="font-medium text-gray-700 mb-1" style={{ fontSize: '0.9em' }}>
+                        v{entry.version}
                       </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
+                      <ul className="text-gray-600 space-y-0.5" style={{ fontSize: '0.85em' }}>
                         {entry.changes.map((change, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-purple-400 mt-0.5">•</span>
+                          <li key={i} className="flex items-start gap-1.5">
+                            <span className="text-gray-400 mt-0.5">•</span>
                             <span>{change}</span>
                           </li>
                         ))}
@@ -90,10 +119,10 @@ export function ChangelogModal() {
               </div>
 
               {/* Footer */}
-              <div className="px-4 py-3 border-t border-gray-100 bg-gray-50 flex-shrink-0">
+              <div className="p-4 flex gap-3 border-t border-gray-100" style={{ fontSize: `${baseFontSize}px` }}>
                 <button
                   onClick={closeChangelog}
-                  className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors border-0 outline-none"
+                  className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors border-0 outline-none"
                 >
                   Sluiten
                 </button>

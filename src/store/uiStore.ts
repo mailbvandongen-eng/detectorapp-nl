@@ -124,6 +124,7 @@ export const useUIStore = create<UIState>()(
         state.infoPanelOpen = false
         state.presetsPanelOpen = false
         state.monumentFilterOpen = false
+        state.changelogOpen = false
       })
     },
 

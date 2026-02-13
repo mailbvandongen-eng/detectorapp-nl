@@ -83,9 +83,9 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
-// VASTE reset waarden - midden Nederland, ~50km view
+// VASTE reset waarden - Nederland centrum (Utrecht), ~50km view
 // Niet wijzigen! Dit zijn de definitieve reset waarden.
-const RESET_CENTER: [number, number] = [5.27, 52.13] // Exact midden Nederland
+const RESET_CENTER: [number, number] = [5.12, 52.09] // Utrecht - centrum Nederland
 const RESET_ZOOM = 7 // ~50km view
 
 export function PresetButtons() {
