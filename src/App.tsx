@@ -27,6 +27,7 @@ import { OfflineIndicator } from './components/UI/OfflineIndicator'
 import { MonumentSearch } from './components/UI/MonumentSearch'
 import { MonumentFilter } from './components/UI/MonumentFilter'
 import { WelcomeModal } from './components/UI/WelcomeModal'
+import { ChangelogModal } from './components/UI/ChangelogModal'
 import { MeasureTool } from './components/UI/MeasureTool'
 import { DrawTool } from './components/UI/DrawTool'
 import { PrintTool } from './components/UI/PrintTool'
@@ -149,6 +150,7 @@ function App() {
           isOpen={welcomeModalOpen}
           onClose={() => setWelcomeModalOpen(false)}
         />
+        <ChangelogModal />
       </div>
     </PasswordGate>
   )

@@ -1,4 +1,4 @@
-import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
@@ -32,7 +32,7 @@ function GoogleLogo({ size = 18 }: { size?: number }) {
 
 export function HamburgerMenu() {
   const { user, loading, signInWithGoogle, logout } = useAuthStore()
-  const { hamburgerMenuOpen, toggleHamburgerMenu, toggleInfoPanel, toggleSettingsPanel, toggleMonumentSearch } = useUIStore()
+  const { hamburgerMenuOpen, toggleHamburgerMenu, toggleInfoPanel, toggleSettingsPanel, toggleMonumentSearch, toggleChangelog } = useUIStore()
   const isOpen = hamburgerMenuOpen
 
   // Settings for font scale
@@ -73,6 +73,11 @@ export function HamburgerMenu() {
   const handleMonumentSearchClick = () => {
     closeMenu()
     toggleMonumentSearch()
+  }
+
+  const handleChangelogClick = () => {
+    closeMenu()
+    toggleChangelog()
   }
 
   const handleLogin = () => {
@@ -212,6 +217,15 @@ export function HamburgerMenu() {
                 >
                   <Info size={18} className="text-blue-500" />
                   <span>Info & handleiding</span>
+                </button>
+
+                <button
+                  onClick={handleChangelogClick}
+                  className="w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors text-gray-700 hover:bg-purple-50"
+                  style={{ fontSize: '0.95em' }}
+                >
+                  <Sparkles size={18} className="text-purple-500" />
+                  <span>Wat is nieuw</span>
                 </button>
 
                 <button

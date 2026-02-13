@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { Search, X, ExternalLink } from 'lucide-react'
 import { useMapStore, useSettingsStore } from '../../store'
 import { fromLonLat } from 'ol/proj'
@@ -177,13 +177,25 @@ export function SearchBox() {
     )
   }
 
-  // Expanded state: full search bar (leave space for hamburger icon and weather widget)
-  const leftPosition = showWeatherButton ? '220px' : '52px'
+  // Expanded state: full search bar
+  // On mobile (< 640px), use full width (left: 8px) and higher z-index to overlay weather
+  // On desktop, leave space for weather widget
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // On mobile: full width (8px left), overlays weather widget
+  // On desktop: leave space for weather widget (220px) or just hamburger (52px)
+  const leftPosition = isMobile ? '8px' : (showWeatherButton ? '220px' : '52px')
 
   return (
     <div
       ref={containerRef}
-      className="fixed right-14 z-[850]"
+      className="fixed right-14 z-[1150]"
       style={{ ...safeTopStyle, left: leftPosition }}
     >
       <motion.div

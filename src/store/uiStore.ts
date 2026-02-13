@@ -35,6 +35,9 @@ interface UIState {
   // Drawing/measuring mode - blocks popups
   isDrawingMode: boolean
 
+  // Changelog modal
+  changelogOpen: boolean
+
   // Collapsed categories
   collapsedCategories: Set<string>
 
@@ -78,6 +81,10 @@ interface UIState {
 
   // Drawing mode actions
   setDrawingMode: (active: boolean) => void
+
+  // Changelog actions
+  toggleChangelog: () => void
+  closeChangelog: () => void
 }
 
 export const useUIStore = create<UIState>()(
@@ -105,6 +112,7 @@ export const useUIStore = create<UIState>()(
     layerDashboardLayerId: null,
     routeDashboardOpen: false,
     isDrawingMode: false,
+    changelogOpen: false,
     collapsedCategories: new Set<string>(),
 
     closeAllPanels: () => {
@@ -400,6 +408,23 @@ export const useUIStore = create<UIState>()(
     setDrawingMode: (active) => {
       set(state => {
         state.isDrawingMode = active
+      })
+    },
+
+    // Changelog actions
+    toggleChangelog: () => {
+      set(state => {
+        state.changelogOpen = !state.changelogOpen
+        if (state.changelogOpen) {
+          // Close hamburger menu when opening changelog
+          state.hamburgerMenuOpen = false
+        }
+      })
+    },
+
+    closeChangelog: () => {
+      set(state => {
+        state.changelogOpen = false
       })
     }
   }))

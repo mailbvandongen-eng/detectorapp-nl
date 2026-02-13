@@ -83,9 +83,10 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
-// Center of Netherlands (Utrecht area) and zoom level for ~50km view
-const NL_CENTER = [5.2913, 52.1326] // [lon, lat]
-const NL_ZOOM = 8 // ~50km view
+// VASTE reset waarden - midden Nederland, ~50km view
+// Niet wijzigen! Dit zijn de definitieve reset waarden.
+const RESET_CENTER: [number, number] = [5.27, 52.13] // Exact midden Nederland
+const RESET_ZOOM = 7 // ~50km view
 
 export function PresetButtons() {
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
@@ -120,36 +121,13 @@ export function PresetButtons() {
       setLayerVisibility(layer, layer === 'Esri Licht')
     })
 
-    // Reset map view to default center of Netherlands and zoom (zoom 7 ≈ 50km view)
-    const DEFAULT_CENTER: [number, number] = [5.1214, 52.0907]
-    const DEFAULT_ZOOM = 7
+    // Reset default background in settings (persisted to localStorage)
+    useSettingsStore.getState().setDefaultBackground('Esri Licht')
 
-    // Reset both OL and ArcGIS views
-    const { map, arcgisView, setCenter, setZoom } = useMapStore.getState()
-
-    // Update store
-    setCenter(DEFAULT_CENTER)
-    setZoom(DEFAULT_ZOOM)
-
-    // Reset ArcGIS view if active
-    if (arcgisView && !arcgisView.destroyed) {
-      arcgisView.goTo({
-        center: DEFAULT_CENTER,
-        zoom: DEFAULT_ZOOM
-      }, { animate: true, duration: 500 })
-    }
-
-    // Reset OL view
-    if (map) {
-      map.getView().animate({
-        center: fromLonLat(DEFAULT_CENTER),
-        zoom: DEFAULT_ZOOM,
-        duration: 500
-      })
-    }
-
-    // Also set ArcGIS basemap (for when ArcGIS is primary)
+    // Get map references
     const mapStore = useMapStore.getState()
+
+    // Set ArcGIS basemap
     mapStore.setBasemap('Esri Licht')
 
     // Stop GPS tracking
@@ -158,14 +136,14 @@ export function PresetButtons() {
     // Clear monument filter
     clearMonumentFilter()
 
-    // Use unified goTo for both engines
+    // Reset map view using unified goTo - VASTE WAARDEN
     mapStore.goTo({
-      center: NL_CENTER as [number, number],
-      zoom: NL_ZOOM,
+      center: RESET_CENTER,
+      zoom: RESET_ZOOM,
       animate: true
     })
 
-    console.log('Reset: Esri Licht, alle lagen uit, GPS uit, zoom naar Nederland')
+    console.log('Reset: Esri Licht, alle lagen uit, GPS uit, zoom naar Nederland (midden)')
   }
 
   const handleApplyPreset = (id: string) => {
