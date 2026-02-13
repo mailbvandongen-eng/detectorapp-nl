@@ -1,4 +1,4 @@
-import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer, Sparkles } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer, List } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
@@ -221,10 +221,10 @@ export function HamburgerMenu() {
 
                 <button
                   onClick={handleChangelogClick}
-                  className="w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors text-gray-700 hover:bg-purple-50"
+                  className="w-full px-3 py-2.5 text-left flex items-center gap-3 border-0 outline-none bg-transparent transition-colors text-gray-700 hover:bg-blue-50"
                   style={{ fontSize: '0.95em' }}
                 >
-                  <Sparkles size={18} className="text-purple-500" />
+                  <List size={18} className="text-blue-500" />
                   <span>Wat is nieuw</span>
                 </button>
 
