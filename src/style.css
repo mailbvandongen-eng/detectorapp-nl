@@ -66,8 +66,16 @@ body.drawing-mode #ol-overlay .ol-viewport {
   background: transparent !important;
 }
 
-/* Hide ArcGIS UI elements (we use OpenLayers controls) */
-#arcgis-map .esri-ui {
+/* Hide most ArcGIS UI elements but keep scale bar */
+#arcgis-map .esri-ui-bottom-left {
+  /* Scale bar is here - keep visible */
+  display: block !important;
+  z-index: 100;
+}
+
+#arcgis-map .esri-ui-top-left,
+#arcgis-map .esri-ui-top-right,
+#arcgis-map .esri-ui-bottom-right {
   display: none !important;
 }
 

@@ -120,9 +120,9 @@ export function PresetButtons() {
       setLayerVisibility(layer, layer === 'Esri Licht')
     })
 
-    // Reset map view to default center of Netherlands and zoom
+    // Reset map view to default center of Netherlands and zoom (zoom 7 ≈ 50km view)
     const DEFAULT_CENTER: [number, number] = [5.1214, 52.0907]
-    const DEFAULT_ZOOM = 8
+    const DEFAULT_ZOOM = 7
 
     // Reset both OL and ArcGIS views
     const { map, arcgisView, setCenter, setZoom } = useMapStore.getState()
