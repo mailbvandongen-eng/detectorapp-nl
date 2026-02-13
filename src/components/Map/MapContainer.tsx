@@ -388,22 +388,22 @@ export function MapContainer() {
             if (!olMap) return
 
             // Only sync ArcGIS → OL (user pan/zoom on basemap)
-            // Don't sync OL → ArcGIS to avoid feedback loops during zoom
+            // Real-time sync during drag/zoom for smooth overlay movement
 
-            // ArcGIS → OL sync (user pan/zoom)
+            // ArcGIS → OL sync (user pan/zoom) - real-time during interaction
             esriView.watch('center', (center) => {
-              if (center && olMap && !esriView.interacting) {
+              if (center && olMap) {
                 olMap.getView().setCenter(fromLonLat([center.longitude, center.latitude]))
               }
             })
 
             esriView.watch('zoom', (newZoom) => {
-              if (newZoom !== undefined && olMap && !esriView.interacting) {
+              if (newZoom !== undefined && olMap) {
                 olMap.getView().setZoom(newZoom)
               }
             })
 
-            // Also sync during interaction end for final position
+            // Fallback sync when interaction ends for final position
             esriView.watch('interacting', (interacting) => {
               if (!interacting && olMap) {
                 const center = esriView.center
