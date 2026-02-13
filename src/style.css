@@ -66,8 +66,8 @@ body.drawing-mode #ol-overlay .ol-viewport {
   background: transparent !important;
 }
 
-/* Hide most ArcGIS UI elements but keep scale bar */
-#arcgis-map .esri-ui-bottom-left {
+/* Hide most ArcGIS UI elements but keep scale bar (centered) */
+#arcgis-map .esri-ui-bottom-center {
   /* Scale bar is here - keep visible */
   display: block !important;
   z-index: 100;
@@ -75,6 +75,7 @@ body.drawing-mode #ol-overlay .ol-viewport {
 
 #arcgis-map .esri-ui-top-left,
 #arcgis-map .esri-ui-top-right,
+#arcgis-map .esri-ui-bottom-left,
 #arcgis-map .esri-ui-bottom-right {
   display: none !important;
 }

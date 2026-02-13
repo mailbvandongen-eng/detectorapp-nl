@@ -492,7 +492,7 @@ export function MapContainer() {
           unit: 'metric',
           style: 'line'
         })
-        arcgisView.ui.add(scaleBarRef.current, 'bottom-left')
+        arcgisView.ui.add(scaleBarRef.current, 'bottom-center')
         engineLog('ScaleBar added')
       }
     } else {
