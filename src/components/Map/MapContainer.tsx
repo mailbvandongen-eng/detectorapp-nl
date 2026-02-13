@@ -3,7 +3,7 @@ import 'ol/ol.css'
 import { Tile as TileLayer } from 'ol/layer'
 import { OSM, XYZ } from 'ol/source'
 import { useMap } from '../../hooks/useMap'
-import { useLayerStore, useMapStore, useSettingsStore, useGPSStore } from '../../store'
+import { useLayerStore, useMapStore, useSettingsStore, useGPSStore, useUIStore } from '../../store'
 import { getImmediateLoadLayers } from '../../layers/layerRegistry'
 import { toLonLat, fromLonLat } from 'ol/proj'
 import { isArcGISEngine, useArcGISFeature, engineLog } from '../../config/mapEngineConfig'
@@ -84,6 +84,7 @@ export function MapContainer() {
   // Determine engine mode
   const arcgisIsPrimary = isArcGISEngine()
   const arcgisBaseLayers = useArcGISFeature('arcgisBaseLayers')
+  const isDrawingMode = useUIStore(state => state.isDrawingMode)
 
   // OL map target - 'map' for primary, 'ol-overlay' for overlay mode
   const olTarget = arcgisIsPrimary ? 'ol-overlay' : 'map'
@@ -626,7 +627,8 @@ export function MapContainer() {
     width: '100%',
     height: '100%',
     zIndex: 10,
-    pointerEvents: 'none', // Let ArcGIS handle interactions
+    // Enable pointer events when drawing/measuring, otherwise let ArcGIS handle
+    pointerEvents: isDrawingMode ? 'auto' : 'none',
     // Hide OL base layers when ArcGIS handles them
     opacity: arcgisBaseLayers ? 0.99 : 1 // Slight opacity to ensure rendering
   } : {

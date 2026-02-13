@@ -6,7 +6,7 @@ import { version } from '../../../package.json'
 
 // Changelog entries (most recent first)
 const CHANGELOG = [
-  { version: '2.32', changes: ['Verbeterde kaart synchronisatie', 'Import lagen met kleur/icoon selectie', 'Tekenen en meten tools hersteld', 'Schaal balk gecentreerd'] },
+  { version: '2.32.78', changes: ['Changelog apart via menu', 'Schaalbalk fix', 'Reset naar Nederland midden', 'Search/weather mobile fix'] },
   { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
   { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
   { version: '2.29', changes: ['Presets systeem toegevoegd', 'Verbeterde layer manager', 'Bug fixes'] },
