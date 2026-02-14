@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, List } from 'lucide-react'
+import { X } from 'lucide-react'
 import { useUIStore } from '../../store/uiStore'
 import { useSettingsStore } from '../../store/settingsStore'
 import { version } from '../../../package.json'
@@ -54,36 +54,31 @@ export function ChangelogModal() {
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header - blue bg, white text, font slider */}
-              <div className="flex items-center justify-between px-4 py-3 bg-blue-500 flex-shrink-0">
-                <div className="flex items-center gap-2">
-                  <List size={18} className="text-white" />
-                  <span className="font-medium text-white">Wijzigingen</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {showFontSliders && (
-                    <div className="flex items-center gap-1">
-                      <span className="text-[10px] text-blue-200">T</span>
-                      <input
-                        type="range"
-                        min="80"
-                        max="150"
-                        step="10"
-                        value={fontScale}
-                        onChange={(e) => setFontScale(parseInt(e.target.value))}
-                        className="header-slider w-16 opacity-70 hover:opacity-100 transition-opacity"
-                        title={`Tekstgrootte: ${fontScale}%`}
-                      />
-                      <span className="text-xs text-blue-200">T</span>
-                    </div>
-                  )}
-                  <button
-                    onClick={closeChangelog}
-                    className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none ml-1"
-                  >
-                    <X size={18} className="text-white" />
-                  </button>
-                </div>
+              {/* Header - compact like PresetButtons */}
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-blue-500 flex-shrink-0">
+                <span className="font-medium text-white" style={{ fontSize: `${baseFontSize}px` }}>Wijzigingen</span>
+                {showFontSliders && (
+                  <div className="flex items-center gap-1">
+                    <span className="text-[9px] text-blue-200">T</span>
+                    <input
+                      type="range"
+                      min="80"
+                      max="150"
+                      step="10"
+                      value={fontScale}
+                      onChange={(e) => setFontScale(parseInt(e.target.value))}
+                      className="w-16 opacity-70 hover:opacity-100 transition-opacity"
+                      title={`Tekstgrootte: ${fontScale}%`}
+                    />
+                    <span className="text-[11px] text-blue-200">T</span>
+                  </div>
+                )}
+                <button
+                  onClick={closeChangelog}
+                  className="p-1 rounded hover:bg-white/20 transition-colors border-0 outline-none"
+                >
+                  <X size={16} className="text-white" />
+                </button>
               </div>
 
               {/* Content - scrollable, em-based font sizes */}
