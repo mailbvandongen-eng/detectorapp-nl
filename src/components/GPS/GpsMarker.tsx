@@ -6,6 +6,9 @@ import { Vector as VectorSource } from 'ol/source'
 import { Style, Fill, Stroke, Icon, Circle as CircleStyle } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 import { useMapStore, useGPSStore } from '../../store'
+
+// Get goTo function for syncing both map engines
+const useGoTo = () => useMapStore(state => state.goTo)
 import { useSettingsStore } from '../../store/settingsStore'
 
 // Arrow SVG - rotates with heading to show direction
@@ -27,6 +30,7 @@ const DOT_STYLE = new Style({
 
 export function GpsMarker() {
   const map = useMapStore(state => state.map)
+  const goTo = useGoTo()
   const position = useGPSStore(state => state.position)
   const accuracy = useGPSStore(state => state.accuracy)
   const tracking = useGPSStore(state => state.tracking)
@@ -122,22 +126,18 @@ export function GpsMarker() {
       accuracyRef.current.setStyle(new Style({}))
     }
 
-    // First GPS fix: jump to position
-    if (firstFix && tracking) {
-      map.getView().setCenter(coords)
-      map.getView().setZoom(17)
+    // First GPS fix: jump to position (syncs both ArcGIS and OL)
+    if (firstFix && tracking && position) {
+      goTo({ center: [position.lng, position.lat], zoom: 17, animate: false })
       resetFirstFix()
       return
     }
 
-    // Center on user when tracking
-    if (tracking && centerOnUser && !firstFix) {
-      map.getView().animate({
-        center: coords,
-        duration: 150
-      })
+    // Center on user when tracking (syncs both ArcGIS and OL)
+    if (tracking && centerOnUser && !firstFix && position) {
+      goTo({ center: [position.lng, position.lat], animate: true })
     }
-  }, [map, tracking, position, accuracy, firstFix, resetFirstFix, centerOnUser, showAccuracyCircle])
+  }, [map, tracking, position, accuracy, firstFix, resetFirstFix, centerOnUser, showAccuracyCircle, goTo])
 
   // Update arrow rotation when tracking
   useEffect(() => {
@@ -147,43 +147,24 @@ export function GpsMarker() {
     markerRef.current.setStyle(createArrowStyle(rotation))
   }, [smoothHeading, createArrowStyle, tracking])
 
-  // Heading-up mode: rotate map so heading direction is "up"
+  // Heading-up mode: rotate map so heading direction is "up" (syncs both ArcGIS and OL)
   useEffect(() => {
     if (!map || !tracking) return
 
     if (navigationMode === 'headingUp' && smoothHeading !== null) {
-      const targetRotation = -(smoothHeading * Math.PI) / 180
-      const view = map.getView()
-      const currentRotation = view.getRotation()
-
-      let diff = targetRotation - currentRotation
-      while (diff > Math.PI) diff -= 2 * Math.PI
-      while (diff < -Math.PI) diff += 2 * Math.PI
-
-      if (Math.abs(diff) > 0.01) {
-        view.animate({
-          rotation: currentRotation + diff,
-          duration: 200
-        })
-      }
+      // goTo takes rotation in degrees, negative to rotate map opposite to heading
+      goTo({ rotation: -smoothHeading, animate: true })
     }
-  }, [map, tracking, navigationMode, smoothHeading])
+  }, [map, tracking, navigationMode, smoothHeading, goTo])
 
-  // Reset map rotation when leaving heading-up mode
+  // Reset map rotation when leaving heading-up mode (syncs both ArcGIS and OL)
   useEffect(() => {
     if (!map) return
 
     if (navigationMode === 'free') {
-      const view = map.getView()
-      const currentRotation = view.getRotation()
-      if (Math.abs(currentRotation) > 0.01) {
-        view.animate({
-          rotation: 0,
-          duration: 300
-        })
-      }
+      goTo({ rotation: 0, animate: true })
     }
-  }, [map, navigationMode])
+  }, [map, navigationMode, goTo])
 
   return null
 }

@@ -1,2 +1,0 @@
-import{M as i,b8 as o}from"./index-BgGEj7-X.js";function s(t,e){return{...l(t,e),readResourcePaths:[]}}function u(t,e,n){const r=o(t.itemUrl);return{...l(t,e),messages:[],writtenProperties:[],blockedRelativeUrls:[],verifyItemRelativeUrls:r?{rootPath:r.path,writtenUrls:[]}:null,resources:n?{toAdd:[],toUpdate:[],toKeep:[],pendingOperations:[]}:null}}function l(t,e){return{origin:e,url:o(t.itemUrl),portal:t.portal||i.getDefault(),portalItem:t}}export{s as e,u as o};
-//# sourceMappingURL=jsonContext-Bk-5ydfR.js.map

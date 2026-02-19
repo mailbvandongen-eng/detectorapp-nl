@@ -4,7 +4,7 @@ import { useGPSStore } from '../../store/gpsStore'
 
 export function ModeToggleButton() {
   const navigationMode = useGPSStore(state => state.navigationMode)
-  const toggleMode = useGPSStore(state => state.toggleMode)
+  const toggleMode = useGPSStore(state => state.toggleNavigationMode)
 
   const isFreeMode = navigationMode === 'free'
 

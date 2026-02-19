@@ -404,6 +404,14 @@ export function MapContainer() {
               }
             })
 
+            // Rotation sync (for heading-up mode)
+            esriView.watch('rotation', (rotation) => {
+              if (rotation !== undefined && olMap) {
+                // ArcGIS uses degrees, OL uses radians
+                olMap.getView().setRotation((rotation * Math.PI) / 180)
+              }
+            })
+
             // Fallback sync when interaction ends for final position
             esriView.watch('interacting', (interacting) => {
               if (!interacting && olMap) {
