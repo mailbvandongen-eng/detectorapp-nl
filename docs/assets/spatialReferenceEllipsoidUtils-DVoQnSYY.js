@@ -1,2 +1,0 @@
-import{ak as a,dT as d,dU as k,dV as u,dW as U,dX as l,dY as r}from"./index-R1489gWK.js";const m=new a(U),n=new a(k),e=new a(u),T=new a(d);function W(t){const p=c.get(t);if(p)return p;let s=m;if(t)if(t===n)s=n;else if(t===e)s=e;else{const o=t.wkid,f=t.latestWkid;if(o!=null||f!=null)l(o)||l(f)?s=n:(r(o)||r(f))&&(s=e);else{const w=t.wkt2??t.wkt;if(w){const i=w.toUpperCase();i===C?s=n:i===$&&(s=e)}}}return c.set(t,s),s}const c=new Map,C=n.wkt.toUpperCase(),$=e.wkt.toUpperCase();export{W as a,T as c};
-//# sourceMappingURL=spatialReferenceEllipsoidUtils-DVoQnSYY.js.map

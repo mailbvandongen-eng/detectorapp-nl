@@ -1,0 +1,2 @@
+import{s as c}from"./sphere-CKMCXzsR.js";import{dl as m,dm as p,dn as e,dp as v,dq as s}from"./index-CNZ6-jsW.js";import{v as w}from"./lineSegment-CZMQ3hF8.js";import"./vectorStacks-BUfuK-c8.js";function M(r){return r?{p0:s(r.p0),p1:s(r.p1),p2:s(r.p2)}:{p0:p(),p1:p(),p2:p()}}function q(r,n,o){const i=n[0]-r[0],f=n[1]-r[1],u=o[0]-r[0],d=o[1]-r[1];return .5*Math.abs(i*d-f*u)}function x(r,n,o){return m(a,n,r),m(t,o,r),.5*e(v(a,a,t))}new c(w);new c(()=>M());const a=p(),t=p();export{x as S,q as v};
+//# sourceMappingURL=triangle-CE2V0nFq.js.map
