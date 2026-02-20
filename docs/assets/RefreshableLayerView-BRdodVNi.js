@@ -1,0 +1,2 @@
+import{bl as i,bn as h,cE as c,cw as d,Y as l}from"./index-DpRbc06E.js";const n=s=>{const r=s;let e=class extends r{initialize(){this.addHandles(c(()=>this.layer,"refresh",t=>{this.doRefresh(t.dataChanged).catch(a=>{d(a)||l.getLogger(this).error(a)})}),"RefreshableLayerView")}};return e=i([h("esri.views.layers.RefreshableLayerView")],e),e};export{n as i};
+//# sourceMappingURL=RefreshableLayerView-BRdodVNi.js.map
