@@ -70,8 +70,8 @@ export const mapEngineConfig: MapEngineConfig = {
     // Fase 5: GPS - ArcGIS GraphicsLayer marker
     arcgisGPS: true,
 
-    // Fase 6: Tools (nog niet klaar)
-    arcgisTools: false
+    // Fase 6: Tools - ArcGIS Sketch widgets
+    arcgisTools: true
   },
 
   debug: true

@@ -1,2 +1,0 @@
-import{be as e,bf as o,bg as s}from"./index-CNZ6-jsW.js";import{d as i}from"./quantityUtils-QNTA_3_z.js";import{r as a}from"./rotate-Do4kyERI.js";let t=class extends a{constructor(r){super(r),this.type="translate",this.distance=i}clear(){this.distance=i}};e([o()],t.prototype,"type",void 0),e([o()],t.prototype,"distance",void 0),t=e([s("esri.views.interactive.tooltip.infos.TranslateTooltipInfo")],t);export{t as i};
-//# sourceMappingURL=TranslateTooltipInfo-Cq4n1cGT.js.map

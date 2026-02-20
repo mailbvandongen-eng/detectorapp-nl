@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Pencil, X, Trash2, MapPin, Spline, Pentagon, Move, Save } from 'lucide-react'
 import { useMapStore, useUIStore, useSettingsStore } from '../../store'
 import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
+import { useArcGISFeature } from '../../config/mapEngineConfig'
+import { ArcGISDrawTool } from './ArcGISDrawTool'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { Draw, Modify, Select } from 'ol/interaction'
@@ -20,6 +22,16 @@ type DrawMode = 'select' | 'point' | 'line' | 'polygon'
 const DRAWINGS_LAYER_NAME = 'Mijn Tekeningen'
 
 export function DrawTool() {
+  // Use ArcGIS implementation if feature flag is enabled
+  const useArcGIS = useArcGISFeature('arcgisTools')
+  if (useArcGIS) {
+    return <ArcGISDrawTool />
+  }
+
+  return <OpenLayersDrawTool />
+}
+
+function OpenLayersDrawTool() {
   const map = useMapStore(state => state.map)
   const setDrawingMode = useUIStore(state => state.setDrawingMode)
   const showDrawTool = useSettingsStore(state => state.showDrawTool)

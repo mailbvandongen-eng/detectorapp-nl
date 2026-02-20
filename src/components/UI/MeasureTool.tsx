@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Ruler, X, Trash2 } from 'lucide-react'
 import { useMapStore, useUIStore, useSettingsStore } from '../../store'
+import { useArcGISFeature } from '../../config/mapEngineConfig'
+import { ArcGISMeasureTool } from './ArcGISMeasureTool'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { Draw } from 'ol/interaction'
@@ -13,6 +15,16 @@ import type Feature from 'ol/Feature'
 import type { EventsKey } from 'ol/events'
 
 export function MeasureTool() {
+  // Use ArcGIS implementation if feature flag is enabled
+  const useArcGIS = useArcGISFeature('arcgisTools')
+  if (useArcGIS) {
+    return <ArcGISMeasureTool />
+  }
+
+  return <OpenLayersMeasureTool />
+}
+
+function OpenLayersMeasureTool() {
   const map = useMapStore(state => state.map)
   const setDrawingMode = useUIStore(state => state.setDrawingMode)
   const showMeasureTool = useSettingsStore(state => state.showMeasureTool)

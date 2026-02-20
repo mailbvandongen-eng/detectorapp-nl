@@ -1,2 +1,0 @@
-import{dL as f,dm as i,dM as u,dN as o,N as l}from"./index-CNZ6-jsW.js";function p(n,a,r,s){if(f(n.spatialReference,r)){e[0]=n.x,e[1]=n.y;const c=n.z;return e[2]=c??s??0,u(e,n.spatialReference,0,a,r,0)}const t=o(n,r);return!!t&&(a[0]=t?.x,a[1]=t?.y,a[2]=t?.z??s??0,!0)}async function m(n,a,r,s,t){return await l(n.spatialReference,r,null,t),p(n,a,r,s)}const e=i();export{m as c,p as i};
-//# sourceMappingURL=projectPointToVector-BWYUAfNg.js.map
