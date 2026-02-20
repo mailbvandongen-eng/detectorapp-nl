@@ -12,9 +12,10 @@ import MapView from '@arcgis/core/views/MapView'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import TileLayer from '@arcgis/core/layers/TileLayer'
-import ScaleBar from '@arcgis/core/widgets/ScaleBar'
+// ScaleBar widget deprecated - using arcgis-scale-bar web component instead
 import { useMapStore, useSettingsStore, useGPSStore } from '../../store'
 import { engineLog } from '../../config/mapEngineConfig'
+import { useArcGISLayers } from '../../hooks/useArcGISLayers'
 
 // Basemap configuration types
 type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
@@ -65,8 +66,12 @@ interface ArcGISMapContainerProps {
 export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISMapContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<MapView | null>(null)
-  const scaleBarRef = useRef<ScaleBar | null>(null)
+  const scaleBarRef = useRef<HTMLElement | null>(null)
   const [isReady, setIsReady] = useState(false)
+
+  // Use ArcGIS layers hook for WMS/Vector/Imagery layers
+  // The hook internally checks feature flags and manages layer loading/visibility
+  useArcGISLayers()
 
   const setArcGISMap = useMapStore(state => state.setArcGISMap)
   const setCenter = useMapStore(state => state.setCenter)
@@ -156,25 +161,24 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
     }
   }, []) // Only run once
 
-  // Handle ScaleBar widget
+  // Handle ScaleBar - using web component instead of deprecated widget
   useEffect(() => {
     const view = viewRef.current
     if (!view || !isReady) return
 
     if (showScaleBar) {
       if (!scaleBarRef.current) {
-        scaleBarRef.current = new ScaleBar({
-          view,
-          unit: 'metric',
-          style: 'line'
-        })
-        view.ui.add(scaleBarRef.current, 'bottom-center')
-        engineLog('ScaleBar added')
+        // Create arcgis-scale-bar web component
+        const scaleBar = document.createElement('arcgis-scale-bar')
+        scaleBar.setAttribute('unit', 'metric')
+        ;(scaleBar as any).view = view
+        scaleBarRef.current = scaleBar
+        view.ui.add(scaleBar, 'bottom-center')
+        engineLog('ScaleBar (web component) added')
       }
     } else {
       if (scaleBarRef.current) {
         view.ui.remove(scaleBarRef.current)
-        scaleBarRef.current.destroy()
         scaleBarRef.current = null
         engineLog('ScaleBar removed')
       }

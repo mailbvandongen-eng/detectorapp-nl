@@ -60,9 +60,9 @@ export const mapEngineConfig: MapEngineConfig = {
     // Fase 2: Base layers via ArcGIS
     arcgisBaseLayers: true,
 
-    // Fase 3: Layer migratie (nog niet klaar)
-    arcgisWMSLayers: false,
-    arcgisVectorLayers: false,
+    // Fase 3: Layer migratie - TEST ENABLED
+    arcgisWMSLayers: true,
+    arcgisVectorLayers: true,
 
     // Fase 4: Popups (nog niet klaar)
     arcgisPopups: false,

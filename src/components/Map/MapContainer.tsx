@@ -3,6 +3,7 @@ import 'ol/ol.css'
 import { Tile as TileLayer } from 'ol/layer'
 import { OSM, XYZ } from 'ol/source'
 import { useMap } from '../../hooks/useMap'
+import { useArcGISLayers } from '../../hooks/useArcGISLayers'
 import { useLayerStore, useMapStore, useSettingsStore, useGPSStore, useUIStore } from '../../store'
 import { getImmediateLoadLayers } from '../../layers/layerRegistry'
 import { toLonLat, fromLonLat } from 'ol/proj'
@@ -14,7 +15,7 @@ import MapView from '@arcgis/core/views/MapView'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import EsriTileLayer from '@arcgis/core/layers/TileLayer'
-import ScaleBar from '@arcgis/core/widgets/ScaleBar'
+// ScaleBar widget deprecated - using arcgis-scale-bar web component instead
 import esriConfig from '@arcgis/core/config'
 
 // Base layer names - updated to use Esri basemaps
@@ -78,7 +79,7 @@ export function MapContainer() {
   const initialBgApplied = useRef(false)
   const arcgisInitialized = useRef(false)
   const arcgisViewRef = useRef<MapView | null>(null)
-  const scaleBarRef = useRef<ScaleBar | null>(null)
+  const scaleBarRef = useRef<HTMLElement | null>(null)
   const [arcgisReady, setArcgisReady] = useState(false)
 
   // Determine engine mode
@@ -89,6 +90,9 @@ export function MapContainer() {
   // OL map target - 'map' for primary, 'ol-overlay' for overlay mode
   const olTarget = arcgisIsPrimary ? 'ol-overlay' : 'map'
   useMap({ target: olTarget })
+
+  // ArcGIS layers hook - manages WMS/Vector/Imagery layers when feature flags enabled
+  useArcGISLayers()
 
   const map = useMapStore(state => state.map)
   const arcgisView = useMapStore(state => state.arcgisView)
@@ -490,24 +494,24 @@ export function MapContainer() {
     }
   }, [])
 
-  // Handle ScaleBar for ArcGIS primary mode
+  // Handle ScaleBar for ArcGIS primary mode - using web component
   useEffect(() => {
     if (!arcgisIsPrimary || !arcgisReady || !arcgisView) return
 
     if (showScaleBar) {
       if (!scaleBarRef.current) {
-        scaleBarRef.current = new ScaleBar({
-          view: arcgisView,
-          unit: 'metric',
-          style: 'line'
-        })
-        arcgisView.ui.add(scaleBarRef.current, 'bottom-center')
-        engineLog('ScaleBar added')
+        // Create arcgis-scale-bar web component
+        const scaleBar = document.createElement('arcgis-scale-bar')
+        scaleBar.setAttribute('unit', 'metric')
+        // Set the view reference - web component needs the view
+        ;(scaleBar as any).view = arcgisView
+        scaleBarRef.current = scaleBar
+        arcgisView.ui.add(scaleBar, 'bottom-center')
+        engineLog('ScaleBar (web component) added')
       }
     } else {
       if (scaleBarRef.current) {
         arcgisView.ui.remove(scaleBarRef.current)
-        scaleBarRef.current.destroy()
         scaleBarRef.current = null
         engineLog('ScaleBar removed')
       }
