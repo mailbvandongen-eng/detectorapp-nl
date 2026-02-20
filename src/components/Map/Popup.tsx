@@ -6,7 +6,7 @@ import { toLonLat, fromLonLat } from 'ol/proj'
 import proj4 from 'proj4'
 import { X, ChevronLeft, ChevronRight, Mountain, Loader2, Trash2, Type, ExternalLink, Plus, Check, Pencil, PersonStanding, GripHorizontal } from 'lucide-react'
 import { useMapStore, useUIStore } from '../../store'
-import { isArcGISEngine } from '../../config/mapEngineConfig'
+import { isArcGISEngine, useArcGISFeature } from '../../config/mapEngineConfig'
 import { showParcelHeightMap, clearParcelHighlight } from '../../layers/parcelHighlight'
 import { useLocalVondstenStore, type LocalVondst } from '../../store/localVondstenStore'
 import { useCustomPointLayerStore, type FeatureGeometry, type GeometryType } from '../../store/customPointLayerStore'
@@ -3574,11 +3574,13 @@ export function Popup() {
     }
   }, [map])
 
-  // ArcGIS click handler - when ArcGIS is primary engine, forward clicks to OL
+  // ArcGIS click handler - when ArcGIS is primary engine
+  // Uses hitTest for ArcGIS vector features when arcgisPopups is enabled
+  // Falls back to OL bridge for WMS queries and legacy features
   useEffect(() => {
     if (!arcgisView || !map || !isArcGISEngine()) return
 
-    const handle = arcgisView.on('click', (event: any) => {
+    const handle = arcgisView.on('click', async (event: any) => {
       // Don't show popups when in drawing/measuring mode
       if (useUIStore.getState().isDrawingMode) return
 
@@ -3589,16 +3591,96 @@ export function Popup() {
       // Get pixel position from screen point
       const pixel = [event.screenPoint.x, event.screenPoint.y] as [number, number]
 
-      // Create a synthetic click event for OL
-      const syntheticEvent = {
-        coordinate,
-        pixel,
-        map,
-        originalEvent: event.native
-      } as MapBrowserEvent<any>
+      // Check if we should use native ArcGIS hitTest for popups
+      const useArcGISPopups = useArcGISFeature('arcgisPopups')
 
+      if (useArcGISPopups) {
+        // Native ArcGIS hitTest for vector features
+        try {
+          const hitTestResult = await arcgisView.hitTest(event)
+          const collectedContents: string[] = []
+
+          // Process each hit graphic
+          for (const result of hitTestResult.results) {
+            if (result.type === 'graphic' && result.graphic) {
+              const graphic = result.graphic
+              const attrs = graphic.attributes || {}
+              const layerId = graphic.layer?.id || ''
+
+              // Skip GPS layer
+              if (layerId === 'gps-layer') continue
+
+              // Format popup based on layer type and attributes
+              let html = ''
+
+              // GeoJSON layers (Hunebedden, Kastelen, etc.)
+              if (attrs.name || attrs.naam || attrs.Name) {
+                const name = attrs.name || attrs.naam || attrs.Name || 'Feature'
+                html = `<strong>${name}</strong>`
+
+                // Add description if available
+                if (attrs.description || attrs.beschrijving) {
+                  html += `<br/><span class="text-sm text-gray-600">${attrs.description || attrs.beschrijving}</span>`
+                }
+
+                // Add address if available
+                if (attrs.address || attrs.adres) {
+                  html += `<br/><span class="text-sm text-gray-500">${attrs.address || attrs.adres}</span>`
+                }
+
+                // Add website link
+                if (attrs.website || attrs.url) {
+                  html += `<br/><a href="${attrs.website || attrs.url}" target="_blank" rel="noopener" class="text-blue-600 hover:underline text-sm">Website</a>`
+                }
+
+                // Add opening hours
+                if (attrs.opening_hours || attrs.openingstijden) {
+                  const hours = translateOpeningHours(attrs.opening_hours || attrs.openingstijden)
+                  html += `<br/><span class="text-xs text-gray-500">${hours}</span>`
+                }
+
+                // Show all other attributes for debugging/completeness
+                const skipKeys = ['name', 'naam', 'Name', 'description', 'beschrijving', 'address', 'adres', 'website', 'url', 'opening_hours', 'openingstijden', 'geometry', 'OBJECTID', 'FID']
+                const otherAttrs = Object.entries(attrs).filter(([k]) => !skipKeys.includes(k))
+                if (otherAttrs.length > 0 && otherAttrs.length <= 5) {
+                  for (const [key, value] of otherAttrs) {
+                    if (value !== null && value !== undefined && value !== '') {
+                      html += `<br/><span class="text-xs text-gray-400">${key}: ${value}</span>`
+                    }
+                  }
+                }
+              }
+
+              if (html) {
+                collectedContents.push(html)
+              }
+            }
+          }
+
+          // If we found ArcGIS features, show popup
+          if (collectedContents.length > 0) {
+            setAllContents(collectedContents)
+            setAllFeatureData([]) // No geometry extraction for now
+            setCurrentIndex(0)
+            setParcelCoordinate(coordinate)
+            setShowingHeightMap(false)
+            setShowLayerPicker(false)
+            setShowNewLayerInput(false)
+            setNewLayerName('')
+            setAddedToLayer(null)
+            setPopupCoordinate(lonLat)
+            setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${lonLat[1]},${lonLat[0]}`)
+            setStreetViewUrl(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lonLat[1]},${lonLat[0]}`)
+            setVisible(true)
+            return // Don't forward to OL
+          }
+        } catch (error) {
+          console.warn('ArcGIS hitTest failed:', error)
+        }
+      }
+
+      // Fall back to OL for WMS queries and legacy features
       // Dispatch the click to OL's internal handler
-      // This will trigger the same handleClick logic we use for OL clicks
       map.dispatchEvent({
         type: 'click',
         coordinate,

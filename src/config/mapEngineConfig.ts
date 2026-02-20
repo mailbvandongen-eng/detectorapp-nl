@@ -64,8 +64,8 @@ export const mapEngineConfig: MapEngineConfig = {
     arcgisWMSLayers: true,
     arcgisVectorLayers: true,
 
-    // Fase 4: Popups (nog niet klaar)
-    arcgisPopups: false,
+    // Fase 4: Popups - ArcGIS hitTest voor vector features
+    arcgisPopups: true,
 
     // Fase 5: GPS - ArcGIS GraphicsLayer marker
     arcgisGPS: true,
