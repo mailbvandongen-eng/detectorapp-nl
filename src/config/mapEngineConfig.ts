@@ -67,8 +67,8 @@ export const mapEngineConfig: MapEngineConfig = {
     // Fase 4: Popups (nog niet klaar)
     arcgisPopups: false,
 
-    // Fase 5: GPS (nog niet klaar)
-    arcgisGPS: false,
+    // Fase 5: GPS - ArcGIS GraphicsLayer marker
+    arcgisGPS: true,
 
     // Fase 6: Tools (nog niet klaar)
     arcgisTools: false

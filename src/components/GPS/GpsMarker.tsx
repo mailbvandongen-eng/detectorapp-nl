@@ -6,10 +6,12 @@ import { Vector as VectorSource } from 'ol/source'
 import { Style, Fill, Stroke, Icon, Circle as CircleStyle } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 import { useMapStore, useGPSStore } from '../../store'
+import { useSettingsStore } from '../../store/settingsStore'
+import { useArcGISFeature } from '../../config/mapEngineConfig'
+import { ArcGISGpsMarker } from './ArcGISGpsMarker'
 
 // Get goTo function for syncing both map engines
 const useGoTo = () => useMapStore(state => state.goTo)
-import { useSettingsStore } from '../../store/settingsStore'
 
 // Arrow SVG - rotates with heading to show direction
 const ARROW_SVG = (() => {
@@ -29,6 +31,22 @@ const DOT_STYLE = new Style({
 })
 
 export function GpsMarker() {
+  // Check if we should use ArcGIS GPS
+  const useArcGIS = useArcGISFeature('arcgisGPS')
+
+  // If ArcGIS GPS is enabled, render the ArcGIS version
+  if (useArcGIS) {
+    return <ArcGISGpsMarker />
+  }
+
+  // Otherwise, render the OpenLayers version (below)
+  return <OpenLayersGpsMarker />
+}
+
+/**
+ * OpenLayers GPS Marker - original implementation
+ */
+function OpenLayersGpsMarker() {
   const map = useMapStore(state => state.map)
   const goTo = useGoTo()
   const position = useGPSStore(state => state.position)

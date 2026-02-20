@@ -80,7 +80,8 @@
       "Bash(npm run dev:commercial:*)",
       "WebFetch(domain:www.atlasleefomgeving.nl)",
       "WebFetch(domain:s.map5.nl)",
-      "WebFetch(domain:tiles.arcgis.com)"
+      "WebFetch(domain:tiles.arcgis.com)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }
