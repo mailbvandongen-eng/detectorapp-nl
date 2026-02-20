@@ -10,9 +10,12 @@ import EsriTileLayer from '@arcgis/core/layers/TileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
 
 // Basemap configuration types
-type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
-type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string; referenceUrl?: string }
+type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number; referenceUrl?: string }
 type BasemapConfig = EsriTileConfig | WebTileConfig
+
+// Reference layer URL for labels on aerial/satellite imagery
+const ESRI_REFERENCE_LABELS = 'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer'
 
 // ArcGIS base layer configurations - using public Esri tile services (no special API key needed)
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
@@ -30,13 +33,15 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   'Esri Satelliet': {
     type: 'esritile',
     url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
-    copyright: '© Esri'
+    copyright: '© Esri',
+    referenceUrl: ESRI_REFERENCE_LABELS
   },
   // PDOK aerial imagery (high resolution Netherlands)
   'Luchtfoto': {
     type: 'webtile',
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
-    copyright: '© Kadaster / PDOK Luchtfoto'
+    copyright: '© Kadaster / PDOK Luchtfoto',
+    referenceUrl: ESRI_REFERENCE_LABELS
   },
   // Historical maps from Map5.nl (publicly accessible XYZ tiles)
   'TMK 1850': {
@@ -224,6 +229,14 @@ export const useMapStore = create<MapState>()(
         }
         const config = ARCGIS_BASE_LAYERS[resolvedName]
 
+        // Create reference layer for labels (if configured)
+        const referenceLayers = config.referenceUrl ? [
+          new EsriTileLayer({
+            url: config.referenceUrl,
+            title: 'Labels'
+          })
+        ] : []
+
         let basemap: Basemap
 
         if (config.type === 'esritile') {
@@ -236,9 +249,10 @@ export const useMapStore = create<MapState>()(
 
           basemap = new Basemap({
             baseLayers: [esriTileLayer],
+            referenceLayers,
             title: resolvedName
           })
-          engineLog('Using Esri TileLayer:', config.url)
+          engineLog('Using Esri TileLayer:', config.url, config.referenceUrl ? '+ labels' : '')
         } else {
           // Use custom WebTileLayer for standard XYZ/TMS tiles
           const baseLayer = new WebTileLayer({
@@ -251,9 +265,10 @@ export const useMapStore = create<MapState>()(
 
           basemap = new Basemap({
             baseLayers: [baseLayer],
+            referenceLayers,
             title: resolvedName
           })
-          engineLog('Using WebTileLayer:', config.url)
+          engineLog('Using WebTileLayer:', config.url, config.referenceUrl ? '+ labels' : '')
         }
 
         state.arcgisView.map.basemap = basemap

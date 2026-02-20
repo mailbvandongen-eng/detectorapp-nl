@@ -18,9 +18,12 @@ import { engineLog } from '../../config/mapEngineConfig'
 import { useArcGISLayers } from '../../hooks/useArcGISLayers'
 
 // Basemap configuration types
-type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
-type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string; referenceUrl?: string }
+type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number; referenceUrl?: string }
 type BasemapConfig = EsriTileConfig | WebTileConfig
+
+// Reference layer URL for labels on aerial/satellite imagery
+const ESRI_REFERENCE_LABELS = 'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer'
 
 // Base layer configuration - using public Esri tile services (no special API key needed)
 const BASE_LAYERS: Record<string, BasemapConfig> = {
@@ -37,12 +40,14 @@ const BASE_LAYERS: Record<string, BasemapConfig> = {
   'Esri Satelliet': {
     type: 'esritile',
     url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
-    copyright: '© Esri'
+    copyright: '© Esri',
+    referenceUrl: ESRI_REFERENCE_LABELS
   },
   'Luchtfoto': {
     type: 'webtile',
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
-    copyright: '© Kadaster / PDOK Luchtfoto'
+    copyright: '© Kadaster / PDOK Luchtfoto',
+    referenceUrl: ESRI_REFERENCE_LABELS
   },
   // Historical maps from Map5.nl (publicly accessible XYZ tiles)
   'TMK 1850': {
@@ -212,10 +217,19 @@ export function ArcGISMapContainer({ defaultBackground = 'Esri Licht' }: ArcGISM
 
 /**
  * Create a basemap from config - supports Esri TileLayers and custom WebTile
+ * Includes reference layers (labels) for aerial/satellite imagery
  */
 function createBasemap(name: string): Basemap {
   const config = BASE_LAYERS[name] || BASE_LAYERS['Esri Licht']
-  engineLog('Creating basemap:', name, config.type)
+  engineLog('Creating basemap:', name, config.type, config.referenceUrl ? '+ labels' : '')
+
+  // Create reference layer for labels (if configured)
+  const referenceLayers = config.referenceUrl ? [
+    new TileLayer({
+      url: config.referenceUrl,
+      title: 'Labels'
+    })
+  ] : []
 
   if (config.type === 'esritile') {
     // Use Esri TileLayer for ArcGIS Server tile services
@@ -227,6 +241,7 @@ function createBasemap(name: string): Basemap {
 
     return new Basemap({
       baseLayers: [tileLayer],
+      referenceLayers,
       title: name
     })
   }
@@ -242,6 +257,7 @@ function createBasemap(name: string): Basemap {
 
   return new Basemap({
     baseLayers: [baseLayer],
+    referenceLayers,
     title: name
   })
 }
