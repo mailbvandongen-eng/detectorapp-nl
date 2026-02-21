@@ -186,17 +186,30 @@ export const useMapStore = create<MapState>()(
       })
 
       // Apply to ArcGIS view (primary)
-      if (state.arcgisView) {
+      // When ArcGIS is primary, OL is synced via watch handlers in MapContainer
+      // This ensures OL uses the ACTUAL ArcGIS position, preventing misalignment
+      if (state.activeEngine === 'arcgis' && state.arcgisView) {
         const arcgisOptions: any = {}
         if (center) arcgisOptions.center = center
         if (zoom !== undefined) arcgisOptions.zoom = zoom
         if (rotation !== undefined) arcgisOptions.rotation = rotation
 
+        // Use goTo and let watch handlers sync OL when ArcGIS updates
         state.arcgisView.goTo(arcgisOptions, { animate, duration: animate ? 500 : 0 })
+          .then(() => {
+            // After ArcGIS completes, force OL to update size for proper tile loading
+            if (state.map && !animate) {
+              state.map.updateSize()
+            }
+          })
+          .catch(() => {
+            // goTo can be cancelled, ignore errors
+          })
         engineLog('goTo ArcGIS', arcgisOptions)
+        return // Don't update OL directly - let watch handlers do it
       }
 
-      // Sync to OpenLayers (if still active for layers)
+      // Only directly update OL when it's the primary engine
       if (state.map) {
         const view = state.map.getView()
         if (animate) {
