@@ -200,7 +200,7 @@ export function ThemesPanel() {
 
               {/* Archaeological Layers */}
               {isThemeVisible('Archeologische lagen') && (
-                <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Archeo Onderzoeken', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten', 'Romeinse Forten Lijnen']}>
+                <LayerGroup title="Archeologische lagen" defaultExpanded={false} layerNames={['AMK Monumenten', 'AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig', 'Archeo Onderzoeken', 'Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten']}>
                   <LayerItem name="AMK Monumenten" type="overlay" />
                   {/* AMK per periode */}
                   <LayerGroup title="Per periode" defaultExpanded={false} layerNames={['AMK Romeins', 'AMK Steentijd', 'AMK Vroege ME', 'AMK Late ME', 'AMK Overig']}>
@@ -212,13 +212,10 @@ export function ThemesPanel() {
                   </LayerGroup>
                   <LayerItem name="Archeo Onderzoeken" type="overlay" />
                   {/* Romeinse tijd - wegen en forten */}
-                  <LayerGroup title="Romeinse tijd" defaultExpanded={false} layerNames={['Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten', 'Romeinse Forten Lijnen']}>
+                  <LayerGroup title="Romeinse tijd" defaultExpanded={false} layerNames={['Romeinse wegen (regio)', 'Romeinse wegen (Wereld)', 'Romeinse Forten']}>
                     <LayerItem name="Romeinse wegen (regio)" type="overlay" />
                     <LayerItem name="Romeinse wegen (Wereld)" type="overlay" />
-                    <LayerGroup title="Romeinse Forten" defaultExpanded={false} layerNames={['Romeinse Forten', 'Romeinse Forten Lijnen']}>
-                      <LayerItem name="Romeinse Forten" type="overlay" />
-                      <LayerItem name="Romeinse Forten Lijnen" type="overlay" />
-                    </LayerGroup>
+                    <LayerItem name="Romeinse Forten" type="overlay" />
                   </LayerGroup>
                 </LayerGroup>
               )}

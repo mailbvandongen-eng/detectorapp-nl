@@ -1,2 +1,0 @@
-import{n as o}from"./ref-BEtuMaWo.js";import{bF as c,bG as l,bE as r}from"./index-CZHjDgkz.js";const d={validationContainer:"validation-container"},p=()=>{},$=({scale:i,status:t,id:n,icon:e,message:s,ref:a})=>l`<div class=${c(d.validationContainer)} ${o(a||p)}><calcite-input-message aria-live=polite .icon=${e} id=${n??r} .scale=${i} .status=${t}>${s}</calcite-input-message></div>`;export{$ as V};
-//# sourceMappingURL=Validation-hKvGJpls.js.map
