@@ -1,2 +1,0 @@
-import{E as u,g8 as f,ii as c,ij as p,Y as $}from"./index-CzWy0vQl.js";async function m(i,s,o,e){if(!s)throw new u("post:missing-guid","guid for version is missing");const t=f(i),r=o.toJSON(),a=c(t.query,{query:p({...r,f:"json"}),...e,method:"post"});s.startsWith("{")&&(s=s.slice(1,-1));const d=`${t.path}/versions/${s}/deleteForwardEdits`,{data:n}=await $(d,a);return n}export{m as deleteForwardEdits};
-//# sourceMappingURL=deleteForwardEdits-B8RLBHlN.js.map

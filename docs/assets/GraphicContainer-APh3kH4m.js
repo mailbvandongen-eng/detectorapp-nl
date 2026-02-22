@@ -1,2 +1,0 @@
-import{s}from"./AGraphicContainer-BSdeO3ZD.js";import{d9 as i}from"./index-CzWy0vQl.js";class n extends s{renderChildren(e){for(const r of this.children)r.setTransform(e.state);if(super.renderChildren(e),this._updateAttributeView(),this.children.some(r=>r.hasData)){switch(e.drawPhase){case 1:this._renderChildren(e,0);break;case 16:this.hasHighlight&&this._renderHighlight(e)}this._boundsRenderer&&this._boundsRenderer.doRender(e)}}_renderHighlight(e){i(e,!1,r=>{this._renderChildren(r,1)})}}export{n as i};
-//# sourceMappingURL=GraphicContainer-APh3kH4m.js.map
