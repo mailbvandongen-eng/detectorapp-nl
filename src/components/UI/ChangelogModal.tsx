@@ -2,19 +2,36 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useUIStore } from '../../store/uiStore'
 import { useSettingsStore } from '../../store/settingsStore'
+import { isCommercialMode } from '../../config/buildMode'
 import { version } from '../../../package.json'
 
-// Changelog entries (most recent first)
-const CHANGELOG = [
-  { version: '2.32.78', changes: ['Changelog apart via menu', 'Schaalbalk fix', 'Reset naar Nederland midden', 'Search/weather mobile fix'] },
-  { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
-  { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
-  { version: '2.29', changes: ['Presets systeem toegevoegd', 'Verbeterde layer manager', 'Bug fixes'] },
-  { version: '2.28', changes: ['Weerwidget toegevoegd', 'Buienradar integratie', 'Performance verbeteringen'] },
-  { version: '2.27', changes: ['Provinciale waardenkaarten', 'Relictenkaart Gelderland', 'Verdronken dorpen Zeeland'] },
-  { version: '2.26', changes: ['UIKAV lagen toegevoegd', 'Fossiel hotspots', 'Goudrivieren kaart'] },
-  { version: '2.25', changes: ['Paleokaarten alle periodes', 'Verbeterde hillshade', 'AHN 0.5m toegevoegd'] },
-]
+// Changelog entries - filtered based on build mode
+const getChangelog = (isCommercial: boolean) => {
+  if (isCommercial) {
+    // Commercial: exclude route/weather/measure/draw references
+    return [
+      { version: '2.32.78', changes: ['Changelog apart via menu', 'Schaalbalk fix', 'Reset naar Nederland midden'] },
+      { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
+      { version: '2.30', changes: ['Monument filter op periode', 'Lokale vondsten opslag'] },
+      { version: '2.29', changes: ['Presets systeem toegevoegd', 'Verbeterde layer manager', 'Bug fixes'] },
+      { version: '2.28', changes: ['Performance verbeteringen'] },
+      { version: '2.27', changes: ['Provinciale waardenkaarten', 'Relictenkaart Gelderland', 'Verdronken dorpen Zeeland'] },
+      { version: '2.26', changes: ['UIKAV lagen toegevoegd', 'Fossiel hotspots', 'Goudrivieren kaart'] },
+      { version: '2.25', changes: ['Paleokaarten alle periodes', 'Verbeterde hillshade', 'AHN 0.5m toegevoegd'] },
+    ]
+  }
+  // Personal: full changelog
+  return [
+    { version: '2.32.78', changes: ['Changelog apart via menu', 'Schaalbalk fix', 'Reset naar Nederland midden', 'Search/weather mobile fix'] },
+    { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
+    { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
+    { version: '2.29', changes: ['Presets systeem toegevoegd', 'Verbeterde layer manager', 'Bug fixes'] },
+    { version: '2.28', changes: ['Weerwidget toegevoegd', 'Buienradar integratie', 'Performance verbeteringen'] },
+    { version: '2.27', changes: ['Provinciale waardenkaarten', 'Relictenkaart Gelderland', 'Verdronken dorpen Zeeland'] },
+    { version: '2.26', changes: ['UIKAV lagen toegevoegd', 'Fossiel hotspots', 'Goudrivieren kaart'] },
+    { version: '2.25', changes: ['Paleokaarten alle periodes', 'Verbeterde hillshade', 'AHN 0.5m toegevoegd'] },
+  ]
+}
 
 export function ChangelogModal() {
   const { changelogOpen, closeChangelog } = useUIStore()
@@ -23,6 +40,10 @@ export function ChangelogModal() {
   const fontScale = useSettingsStore(state => state.fontScale)
   const setFontScale = useSettingsStore(state => state.setFontScale)
   const showFontSliders = useSettingsStore(state => state.showFontSliders)
+
+  // Get changelog based on build mode
+  const isCommercial = isCommercialMode()
+  const CHANGELOG = getChangelog(isCommercial)
 
   const baseFontSize = 14 * fontScale / 100
 

@@ -3,14 +3,26 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Layers, Search, MapPin, Compass, SlidersHorizontal, Filter, Menu, RotateCcw, BookOpen, Sparkles } from 'lucide-react'
 import { useSettingsStore } from '../../store/settingsStore'
 import { HandleidingModal } from './HandleidingModal'
+import { isCommercialMode } from '../../config/buildMode'
 import { version } from '../../../package.json'
 
-// Recent changelog entries (most recent first)
-const CHANGELOG = [
-  { version: '2.32', changes: ['Verbeterde kaart synchronisatie', 'Import lagen met kleur/icoon selectie', 'Tekenen en meten tools hersteld'] },
-  { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
-  { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
-]
+// Recent changelog entries (most recent first) - filtered based on build mode
+const getChangelog = (isCommercial: boolean) => {
+  if (isCommercial) {
+    // Commercial: exclude route/weather/measure/draw references
+    return [
+      { version: '2.32', changes: ['Verbeterde kaart synchronisatie', 'Import lagen met kleur/icoon selectie'] },
+      { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
+      { version: '2.30', changes: ['Monument filter op periode', 'Lokale vondsten opslag'] },
+    ]
+  }
+  // Personal: full changelog
+  return [
+    { version: '2.32', changes: ['Verbeterde kaart synchronisatie', 'Import lagen met kleur/icoon selectie', 'Tekenen en meten tools hersteld'] },
+    { version: '2.31', changes: ['ArcGIS basemap integratie', 'Snellere kaartweergave', 'Verbeterde GPS tracking'] },
+    { version: '2.30', changes: ['Monument filter op periode', 'Route opname functie', 'Lokale vondsten opslag'] },
+  ]
+}
 
 interface WelcomeModalProps {
   isOpen: boolean
@@ -21,6 +33,8 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
   const setHideWelcomeModal = useSettingsStore(state => state.setHideWelcomeModal)
   const [showHandleiding, setShowHandleiding] = useState(false)
   const [dontShowAgain, setDontShowAgain] = useState(false)
+  const isCommercial = isCommercialMode()
+  const CHANGELOG = getChangelog(isCommercial)
 
   const handleClose = () => {
     if (dontShowAgain) {

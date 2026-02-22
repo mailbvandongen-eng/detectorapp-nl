@@ -4,6 +4,7 @@ import {
   Cloud, Ruler, Pencil, Printer, Plus, Minus, Navigation, Map,
   ChevronRight, Settings, Route, Star, Eye, EyeOff
 } from 'lucide-react'
+import { isCommercialMode } from '../../config/buildMode'
 
 interface HandleidingModalProps {
   isOpen: boolean
@@ -11,6 +12,7 @@ interface HandleidingModalProps {
 }
 
 export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
+  const isCommercial = isCommercialMode()
   return (
     <AnimatePresence>
       {isOpen && (
@@ -72,9 +74,12 @@ export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
 
                   <div className="space-y-3">
                     <LocationGroup title="Linksboven" items={[
-                      { icon: <Cloud size={14} />, name: "Weerwidget", desc: "Actueel weer en buienradar" },
-                      { icon: <Ruler size={14} />, name: "Meten", desc: "Afstanden meten op de kaart" },
-                      { icon: <Pencil size={14} />, name: "Tekenen", desc: "Punten, lijnen en vlakken tekenen" },
+                      // Weather, Measure, Draw hidden in commercial
+                      ...(!isCommercial ? [
+                        { icon: <Cloud size={14} />, name: "Weerwidget", desc: "Actueel weer en buienradar" },
+                        { icon: <Ruler size={14} />, name: "Meten", desc: "Afstanden meten op de kaart" },
+                        { icon: <Pencil size={14} />, name: "Tekenen", desc: "Punten, lijnen en vlakken tekenen" },
+                      ] : []),
                       { icon: <Printer size={14} />, name: "Exporteren", desc: "Kaart opslaan als afbeelding" },
                     ]} />
 
@@ -118,9 +123,9 @@ export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
                     </p>
                     <ul className="text-xs text-blue-700 space-y-1 ml-4 list-disc">
                       <li><strong>Vondst registreren</strong> - Knop voor vondsten vastleggen</li>
-                      <li><strong>Route opnemen</strong> - Knop voor routes vastleggen</li>
+                      {!isCommercial && <li><strong>Route opnemen</strong> - Knop voor routes vastleggen</li>}
                       <li><strong>Eigen lagen</strong> - Knop voor aangepaste puntenlagen</li>
-                      <li><strong>Weer</strong> - Weerwidget linksboven</li>
+                      {!isCommercial && <li><strong>Weer</strong> - Weerwidget linksboven</li>}
                     </ul>
                   </div>
                 </Section>
@@ -181,37 +186,39 @@ export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
                   </p>
                 </Section>
 
-                {/* Meet en Tekentool */}
-                <Section title="Meten en Tekenen" icon={<Ruler size={16} />}>
-                  <div className="space-y-3">
-                    <div className="p-3 bg-blue-50 rounded-xl">
-                      <h4 className="text-xs font-semibold text-blue-800 mb-1 flex items-center gap-1">
-                        <Ruler size={12} />
-                        Meetgereedschap
-                      </h4>
-                      <p className="text-xs text-blue-700">
-                        Klik om te meten, dubbelklik om te stoppen. De afstand wordt automatisch berekend in meters of kilometers.
-                      </p>
-                    </div>
-                    <div className="p-3 bg-orange-50 rounded-xl">
-                      <h4 className="text-xs font-semibold text-orange-800 mb-1 flex items-center gap-1">
-                        <Pencil size={12} />
-                        Tekengereedschap
-                      </h4>
-                      <p className="text-xs text-orange-700 mb-2">
-                        Teken punten, lijnen en vlakken op de kaart. Kies uit:
-                      </p>
-                      <div className="flex gap-2">
-                        <span className="text-xs bg-orange-100 px-2 py-1 rounded">Punt</span>
-                        <span className="text-xs bg-orange-100 px-2 py-1 rounded">Lijn</span>
-                        <span className="text-xs bg-orange-100 px-2 py-1 rounded">Vlak</span>
+                {/* Meet en Tekentool - hidden in commercial */}
+                {!isCommercial && (
+                  <Section title="Meten en Tekenen" icon={<Ruler size={16} />}>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-blue-50 rounded-xl">
+                        <h4 className="text-xs font-semibold text-blue-800 mb-1 flex items-center gap-1">
+                          <Ruler size={12} />
+                          Meetgereedschap
+                        </h4>
+                        <p className="text-xs text-blue-700">
+                          Klik om te meten, dubbelklik om te stoppen. De afstand wordt automatisch berekend in meters of kilometers.
+                        </p>
                       </div>
-                      <p className="text-xs text-orange-600 mt-2">
-                        Tekeningen kunnen opgeslagen worden naar je eigen lagen.
-                      </p>
+                      <div className="p-3 bg-orange-50 rounded-xl">
+                        <h4 className="text-xs font-semibold text-orange-800 mb-1 flex items-center gap-1">
+                          <Pencil size={12} />
+                          Tekengereedschap
+                        </h4>
+                        <p className="text-xs text-orange-700 mb-2">
+                          Teken punten, lijnen en vlakken op de kaart. Kies uit:
+                        </p>
+                        <div className="flex gap-2">
+                          <span className="text-xs bg-orange-100 px-2 py-1 rounded">Punt</span>
+                          <span className="text-xs bg-orange-100 px-2 py-1 rounded">Lijn</span>
+                          <span className="text-xs bg-orange-100 px-2 py-1 rounded">Vlak</span>
+                        </div>
+                        <p className="text-xs text-orange-600 mt-2">
+                          Tekeningen kunnen opgeslagen worden naar je eigen lagen.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Section>
+                  </Section>
+                )}
 
                 {/* Presets */}
                 <Section title="Presets" icon={<Star size={16} />}>

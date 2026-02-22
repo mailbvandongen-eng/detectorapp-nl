@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
 import { useSettingsStore } from '../../store/settingsStore'
+import { isCommercialMode } from '../../config/buildMode'
 import { version } from '../../../package.json'
 
 // Google logo SVG component
@@ -89,6 +90,9 @@ export function HamburgerMenu() {
     closeMenu()
     logout()
   }
+
+  // Check if commercial mode (hide route, weather, measure, draw)
+  const isCommercial = isCommercialMode()
 
   // Calculate font size based on menuFontScale
   const baseFontSize = 13 * menuFontScale / 100
@@ -260,45 +264,49 @@ export function HamburgerMenu() {
                   </button>
                 </div>
 
-                {/* Route knop toggle */}
-                <div className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Route size={18} className="text-gray-400" />
-                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Route knop</span>
-                  </div>
-                  <button
-                    onClick={() => setShowRouteRecordButton(!showRouteRecordButton)}
-                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showRouteRecordButton ? 'bg-blue-500' : 'bg-gray-300'
-                    }`}
-                  >
-                    <span
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
-                        showRouteRecordButton ? 'left-[22px]' : 'left-0.5'
+                {/* Route knop toggle - hidden in commercial */}
+                {!isCommercial && (
+                  <div className="px-3 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Route size={18} className="text-gray-400" />
+                      <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Route knop</span>
+                    </div>
+                    <button
+                      onClick={() => setShowRouteRecordButton(!showRouteRecordButton)}
+                      className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                        showRouteRecordButton ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
-                    />
-                  </button>
-                </div>
+                    >
+                      <span
+                        className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                          showRouteRecordButton ? 'left-[22px]' : 'left-0.5'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
 
-                {/* Weerwidget toggle */}
-                <div className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Cloud size={18} className="text-gray-400" />
-                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Weerwidget</span>
-                  </div>
-                  <button
-                    onClick={() => setShowWeatherButton(!showWeatherButton)}
-                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showWeatherButton ? 'bg-blue-500' : 'bg-gray-300'
-                    }`}
-                  >
-                    <span
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
-                        showWeatherButton ? 'left-[22px]' : 'left-0.5'
+                {/* Weerwidget toggle - hidden in commercial */}
+                {!isCommercial && (
+                  <div className="px-3 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Cloud size={18} className="text-gray-400" />
+                      <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Weerwidget</span>
+                    </div>
+                    <button
+                      onClick={() => setShowWeatherButton(!showWeatherButton)}
+                      className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                        showWeatherButton ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
-                    />
-                  </button>
-                </div>
+                    >
+                      <span
+                        className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                          showWeatherButton ? 'left-[22px]' : 'left-0.5'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
 
                 {/* Mijn lagen toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
@@ -320,45 +328,49 @@ export function HamburgerMenu() {
                   </button>
                 </div>
 
-                {/* Meetgereedschap toggle */}
-                <div className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Ruler size={18} className="text-gray-400" />
-                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Meten</span>
-                  </div>
-                  <button
-                    onClick={() => setShowMeasureTool(!showMeasureTool)}
-                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showMeasureTool ? 'bg-blue-500' : 'bg-gray-300'
-                    }`}
-                  >
-                    <span
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
-                        showMeasureTool ? 'left-[22px]' : 'left-0.5'
+                {/* Meetgereedschap toggle - hidden in commercial */}
+                {!isCommercial && (
+                  <div className="px-3 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Ruler size={18} className="text-gray-400" />
+                      <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Meten</span>
+                    </div>
+                    <button
+                      onClick={() => setShowMeasureTool(!showMeasureTool)}
+                      className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                        showMeasureTool ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
-                    />
-                  </button>
-                </div>
+                    >
+                      <span
+                        className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                          showMeasureTool ? 'left-[22px]' : 'left-0.5'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
 
-                {/* Tekengereedschap toggle */}
-                <div className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Pencil size={18} className="text-gray-400" />
-                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Tekenen</span>
-                  </div>
-                  <button
-                    onClick={() => setShowDrawTool(!showDrawTool)}
-                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showDrawTool ? 'bg-blue-500' : 'bg-gray-300'
-                    }`}
-                  >
-                    <span
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
-                        showDrawTool ? 'left-[22px]' : 'left-0.5'
+                {/* Tekengereedschap toggle - hidden in commercial */}
+                {!isCommercial && (
+                  <div className="px-3 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Pencil size={18} className="text-gray-400" />
+                      <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Tekenen</span>
+                    </div>
+                    <button
+                      onClick={() => setShowDrawTool(!showDrawTool)}
+                      className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                        showDrawTool ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
-                    />
-                  </button>
-                </div>
+                    >
+                      <span
+                        className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                          showDrawTool ? 'left-[22px]' : 'left-0.5'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
 
                 {/* Exporteren toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
