@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Search, X, ExternalLink } from 'lucide-react'
 import { useMapStore, useSettingsStore } from '../../store'
-import { fromLonLat } from 'ol/proj'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface SearchResult {
@@ -12,7 +11,7 @@ interface SearchResult {
 }
 
 export function SearchBox() {
-  const map = useMapStore(state => state.map)
+  const goTo = useMapStore(state => state.goTo)
   const showWeatherButton = useSettingsStore(state => state.showWeatherButton)
 
   const [isExpanded, setIsExpanded] = useState(false)
@@ -20,6 +19,7 @@ export function SearchBox() {
   const [results, setResults] = useState<SearchResult[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [searching, setSearching] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<number>()
@@ -58,6 +58,13 @@ export function SearchBox() {
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isExpanded])
+
+  // Handle window resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Debounced search
   useEffect(() => {
@@ -128,16 +135,13 @@ export function SearchBox() {
   }
 
   const handleSelect = async (result: SearchResult) => {
-    if (!map) return
-
     const coords = await getCoordinates(result.id)
     if (coords) {
-      // Zoom to location
-      const view = map.getView()
-      view.animate({
-        center: fromLonLat([coords.lng, coords.lat]),
+      // Zoom to location using unified goTo (works with both ArcGIS and OL)
+      goTo({
+        center: [coords.lng, coords.lat],
         zoom: 16,
-        duration: 1000
+        animate: true
       })
     }
 
@@ -178,16 +182,6 @@ export function SearchBox() {
   }
 
   // Expanded state: full search bar
-  // On mobile (< 640px), use full width (left: 8px) and higher z-index to overlay weather
-  // On desktop, leave space for weather widget
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   // On mobile: full width (8px left), overlays weather widget
   // On desktop: leave space for weather widget (220px) or just hamburger (52px)
   const leftPosition = isMobile ? '8px' : (showWeatherButton ? '220px' : '52px')

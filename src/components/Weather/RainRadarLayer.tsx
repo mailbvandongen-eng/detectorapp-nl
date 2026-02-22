@@ -15,11 +15,19 @@ interface RainRadarLayerProps {
   onClose: () => void
 }
 
+// Color scheme 8 = Black and White (greyscale) - matches Buienradar style
+// Light grey for light precipitation, dark for heavy
+const RAINVIEWER_COLOR_SCHEME = 8
+const RAINVIEWER_SMOOTH = 1 // 1 = smooth radar
+const RAINVIEWER_SNOW = 1   // 1 = show snow
+
 export function RainRadarLayer({ isVisible, onClose }: RainRadarLayerProps) {
   const map = useMapStore(state => state.map)
 
-  const layerRef = useRef<TileLayer<XYZ> | null>(null)
-  const animationRef = useRef<NodeJS.Timeout | null>(null)
+  // Keep references to all frame layers for smooth transitions
+  const layersRef = useRef<Map<number, TileLayer<XYZ>>>(new Map())
+  const animationRef = useRef<number | null>(null)
+  const lastFrameTimeRef = useRef<number>(0)
 
   // Radar state
   const [frames, setFrames] = useState<RadarFrame[]>([])
@@ -29,8 +37,8 @@ export function RainRadarLayer({ isVisible, onClose }: RainRadarLayerProps) {
   const [speed, setSpeed] = useState<'slow' | 'normal' | 'fast'>('normal')
   const [opacity, setOpacity] = useState(70)
 
-  // Speed in ms
-  const speedMs = speed === 'slow' ? 800 : speed === 'normal' ? 500 : 250
+  // Speed in ms - slightly faster for smoother feel
+  const speedMs = speed === 'slow' ? 700 : speed === 'normal' ? 400 : 200
 
   // Fetch radar frames from RainViewer API
   const fetchRadarData = useCallback(async () => {
@@ -76,96 +84,115 @@ export function RainRadarLayer({ isVisible, onClose }: RainRadarLayerProps) {
     }
   }, [isVisible, fetchRadarData])
 
-  // Create and manage the radar layer
+  // Helper to create tile URL
+  const getTileUrl = useCallback((framePath: string) => {
+    return `https://tilecache.rainviewer.com${framePath}/256/{z}/{x}/{y}/${RAINVIEWER_COLOR_SCHEME}/${RAINVIEWER_SMOOTH}_${RAINVIEWER_SNOW}.png`
+  }, [])
+
+  // Preload all frame layers for smooth animation
   useEffect(() => {
     if (!map || !isVisible || frames.length === 0) return
 
-    const frame = frames[currentFrameIndex]
-    if (!frame) return
+    // Create layers for all frames (preload)
+    frames.forEach((frame, index) => {
+      if (!layersRef.current.has(index)) {
+        const source = new XYZ({
+          url: getTileUrl(frame.path),
+          crossOrigin: 'anonymous'
+        })
 
-    // Create tile URL
-    const tileUrl = `https://tilecache.rainviewer.com${frame.path}/256/{z}/{x}/{y}/2/1_1.png`
+        const layer = new TileLayer({
+          source,
+          opacity: 0, // Start hidden
+          zIndex: 1500,
+          properties: {
+            name: `rain-radar-frame-${index}`,
+            title: 'Buienradar'
+          }
+        })
 
-    // If layer exists, update source
-    if (layerRef.current) {
-      const source = layerRef.current.getSource()
-      if (source) {
-        source.setUrl(tileUrl)
-        source.refresh()
+        layersRef.current.set(index, layer)
+        map.addLayer(layer)
       }
-    } else {
-      // Create new layer
-      const source = new XYZ({
-        url: tileUrl,
-        crossOrigin: 'anonymous'
-      })
+    })
 
-      const layer = new TileLayer({
-        source,
-        opacity: opacity / 100,
-        zIndex: 1500, // Above most layers but below UI
-        properties: {
-          name: 'rain-radar-layer',
-          title: 'Buienradar'
-        }
-      })
-
-      layerRef.current = layer
-      map.addLayer(layer)
-    }
+    // Show current frame
+    layersRef.current.forEach((layer, index) => {
+      layer.setOpacity(index === currentFrameIndex ? opacity / 100 : 0)
+    })
 
     return () => {
-      // Don't remove layer here, we manage it separately
+      // Cleanup handled in separate effect
     }
-  }, [map, isVisible, frames, currentFrameIndex])
+  }, [map, isVisible, frames, getTileUrl])
 
-  // Update opacity
+  // Update visible frame (fast opacity switch for smooth animation)
   useEffect(() => {
-    if (layerRef.current) {
-      layerRef.current.setOpacity(opacity / 100)
-    }
-  }, [opacity])
+    if (!isVisible || frames.length === 0) return
 
-  // Remove layer when hidden
+    layersRef.current.forEach((layer, index) => {
+      layer.setOpacity(index === currentFrameIndex ? opacity / 100 : 0)
+    })
+  }, [currentFrameIndex, opacity, isVisible, frames.length])
+
+  // Remove all layers when hidden
   useEffect(() => {
-    if (!isVisible && layerRef.current && map) {
-      map.removeLayer(layerRef.current)
-      layerRef.current = null
+    if (!isVisible && map) {
+      layersRef.current.forEach((layer) => {
+        map.removeLayer(layer)
+      })
+      layersRef.current.clear()
     }
   }, [isVisible, map])
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (layerRef.current && map) {
-        map.removeLayer(layerRef.current)
-        layerRef.current = null
+      if (map) {
+        layersRef.current.forEach((layer) => {
+          map.removeLayer(layer)
+        })
+        layersRef.current.clear()
       }
       if (animationRef.current) {
-        clearInterval(animationRef.current)
+        cancelAnimationFrame(animationRef.current)
       }
     }
   }, [map])
 
-  // Animation loop
+  // Smooth animation loop using requestAnimationFrame
   useEffect(() => {
     if (!isPlaying || frames.length === 0 || !isVisible) {
       if (animationRef.current) {
-        clearInterval(animationRef.current)
+        cancelAnimationFrame(animationRef.current)
         animationRef.current = null
       }
       return
     }
 
-    animationRef.current = setInterval(() => {
-      setCurrentFrameIndex(prev => (prev + 1) % frames.length)
-    }, speedMs)
+    const animate = (timestamp: number) => {
+      if (!lastFrameTimeRef.current) {
+        lastFrameTimeRef.current = timestamp
+      }
+
+      const elapsed = timestamp - lastFrameTimeRef.current
+
+      if (elapsed >= speedMs) {
+        setCurrentFrameIndex(prev => (prev + 1) % frames.length)
+        lastFrameTimeRef.current = timestamp
+      }
+
+      animationRef.current = requestAnimationFrame(animate)
+    }
+
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
       if (animationRef.current) {
-        clearInterval(animationRef.current)
+        cancelAnimationFrame(animationRef.current)
         animationRef.current = null
       }
+      lastFrameTimeRef.current = 0
     }
   }, [isPlaying, frames.length, speedMs, isVisible])
 
@@ -298,15 +325,15 @@ export function RainRadarLayer({ isVisible, onClose }: RainRadarLayerProps) {
           <span className="text-[10px] text-gray-500 w-8 text-right">{opacity}%</span>
         </div>
 
-        {/* Legend */}
+        {/* Legend - greyscale matching color scheme 8 */}
         <div className="px-3 pb-1.5 flex items-center justify-center gap-1.5">
           <span className="text-[8px] text-gray-400">Licht</span>
           <div className="flex h-1.5 rounded overflow-hidden">
-            <div className="w-3" style={{ backgroundColor: '#88D0F3' }} />
-            <div className="w-3" style={{ backgroundColor: '#32B8A4' }} />
-            <div className="w-3" style={{ backgroundColor: '#F4E61F' }} />
-            <div className="w-3" style={{ backgroundColor: '#F09D1C' }} />
-            <div className="w-3" style={{ backgroundColor: '#E12E18' }} />
+            <div className="w-3" style={{ backgroundColor: '#e0e0e0' }} />
+            <div className="w-3" style={{ backgroundColor: '#b0b0b0' }} />
+            <div className="w-3" style={{ backgroundColor: '#808080' }} />
+            <div className="w-3" style={{ backgroundColor: '#505050' }} />
+            <div className="w-3" style={{ backgroundColor: '#202020' }} />
           </div>
           <span className="text-[8px] text-gray-400">Zwaar</span>
         </div>
