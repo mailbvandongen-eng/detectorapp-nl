@@ -81,7 +81,8 @@
       "WebFetch(domain:www.atlasleefomgeving.nl)",
       "WebFetch(domain:s.map5.nl)",
       "WebFetch(domain:tiles.arcgis.com)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run:*)"
     ]
   }
 }

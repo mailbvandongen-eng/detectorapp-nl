@@ -35,6 +35,7 @@ import { useHeading } from './hooks/useHeading'
 import { useDynamicAHN } from './hooks/useDynamicAHN'
 import { useCloudSync } from './hooks/useCloudSync'
 import { useSettingsStore, useUIStore, useWeatherStore, useGPSStore } from './store'
+import { isCommercialMode } from './config/buildMode'
 import { AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
@@ -89,6 +90,9 @@ function App() {
     }
   }, [isDrawingMode])
 
+  // Check if we're in commercial mode (hides route, weather, measure, draw)
+  const isCommercial = isCommercialMode()
+
   return (
     <PasswordGate>
       <div style={{ fontSize: `${baseFontSize}px` }}>
@@ -98,41 +102,51 @@ function App() {
         <LocalVondstMarkers />
         <CustomLayerMarkers />
         <CustomPointMarkers />
-        <RouteRecordingLayer />
-        <SavedRoutesLayer />
-        <CoverageHeatmapLayer />
-        <GridOverlayLayer />
+        {!isCommercial && (
+          <>
+            <RouteRecordingLayer />
+            <SavedRoutesLayer />
+            <CoverageHeatmapLayer />
+            <GridOverlayLayer />
+          </>
+        )}
         <Popup />
         <LongPressMenu />
         <SearchBox />
         <GpsButton />
         <AddVondstButton />
-        <RouteRecordButton />
+        {!isCommercial && <RouteRecordButton />}
         <ZoomButtons />
         <LayerControlButton />
         <ThemesPanel />
         <OpacitySliders />
         <HamburgerMenu />
         <PresetButtons />
-        <MeasureTool />
-        <DrawTool />
+        {!isCommercial && <MeasureTool />}
+        {!isCommercial && <DrawTool />}
         <PrintTool />
         <InfoButton />
         <CompassButton />
-        <WeatherWidget />
-        <RainRadarLayer
-          isVisible={showBuienradar}
-          onClose={() => setShowBuienradar(false)}
-        />
+        {!isCommercial && (
+          <>
+            <WeatherWidget />
+            <RainRadarLayer
+              isVisible={showBuienradar}
+              onClose={() => setShowBuienradar(false)}
+            />
+          </>
+        )}
         <SettingsPanel />
         <CreateLayerModal />
         <AddPointModal />
         <LayerManagerModal />
         <LayerDashboard />
-        <RouteDashboard
-          isOpen={routeDashboardOpen}
-          onClose={toggleRouteDashboard}
-        />
+        {!isCommercial && (
+          <RouteDashboard
+            isOpen={routeDashboardOpen}
+            onClose={toggleRouteDashboard}
+          />
+        )}
         <AnimatePresence>
           {vondstFormOpen && (
             <AddVondstForm

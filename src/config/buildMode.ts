@@ -101,3 +101,10 @@ export function isSpecialSectionVisible(sectionName: string): boolean {
 export function getBuildModeLabel(): string {
   return BUILD_MODE === 'commercial' ? 'DetectorApp NL' : 'DetectorApp NL (Full)'
 }
+
+/**
+ * Check if we're in commercial build mode
+ */
+export function isCommercialMode(): boolean {
+  return BUILD_MODE === 'commercial'
+}
