@@ -74,13 +74,13 @@ export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
 
                   <div className="space-y-3">
                     <LocationGroup title="Linksboven" items={[
-                      // Weather, Measure, Draw hidden in commercial
+                      // Weather, Measure, Draw, Export hidden in commercial
                       ...(!isCommercial ? [
                         { icon: <Cloud size={14} />, name: "Weerwidget", desc: "Actueel weer en buienradar" },
                         { icon: <Ruler size={14} />, name: "Meten", desc: "Afstanden meten op de kaart" },
                         { icon: <Pencil size={14} />, name: "Tekenen", desc: "Punten, lijnen en vlakken tekenen" },
+                        { icon: <Printer size={14} />, name: "Exporteren", desc: "Kaart opslaan als afbeelding" },
                       ] : []),
-                      { icon: <Printer size={14} />, name: "Exporteren", desc: "Kaart opslaan als afbeelding" },
                     ]} />
 
                     <LocationGroup title="Rechtsboven" items={[
@@ -297,12 +297,14 @@ export function HandleidingModal({ isOpen, onClose }: HandleidingModalProps) {
                   </p>
                 </Section>
 
-                {/* Exporteren */}
-                <Section title="Kaart Exporteren" icon={<Printer size={16} />}>
-                  <p className="text-xs text-gray-600">
-                    Exporteer je huidige kaartweergave als afbeelding (PNG/JPEG) of print direct via PDF. Je kunt een titel toevoegen en de datum wordt automatisch toegevoegd.
-                  </p>
-                </Section>
+                {/* Exporteren - only in personal mode */}
+                {!isCommercial && (
+                  <Section title="Kaart Exporteren" icon={<Printer size={16} />}>
+                    <p className="text-xs text-gray-600">
+                      Exporteer je huidige kaartweergave als afbeelding (PNG/JPEG) of print direct via PDF. Je kunt een titel toevoegen en de datum wordt automatisch toegevoegd.
+                    </p>
+                  </Section>
+                )}
 
                 {/* Tips */}
                 <section className="p-4 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl">

@@ -372,25 +372,27 @@ export function HamburgerMenu() {
                   </div>
                 )}
 
-                {/* Exporteren toggle */}
-                <div className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Printer size={18} className="text-gray-400" />
-                    <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Exporteren</span>
-                  </div>
-                  <button
-                    onClick={() => setShowPrintTool(!showPrintTool)}
-                    className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
-                      showPrintTool ? 'bg-blue-500' : 'bg-gray-300'
-                    }`}
-                  >
-                    <span
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
-                        showPrintTool ? 'left-[22px]' : 'left-0.5'
+                {/* Exporteren toggle - only in personal mode */}
+                {!isCommercial && (
+                  <div className="px-3 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Printer size={18} className="text-gray-400" />
+                      <span className="text-gray-700" style={{ fontSize: '0.9em' }}>Exporteren</span>
+                    </div>
+                    <button
+                      onClick={() => setShowPrintTool(!showPrintTool)}
+                      className={`w-10 h-5 rounded-full transition-all border-0 outline-none relative ${
+                        showPrintTool ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
-                    />
-                  </button>
-                </div>
+                    >
+                      <span
+                        className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${
+                          showPrintTool ? 'left-[22px]' : 'left-0.5'
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
 
                 {/* Tekstgrootte schuifjes toggle */}
                 <div className="px-3 py-2 flex items-center justify-between">
