@@ -41,10 +41,10 @@ export function ZoomButtons() {
     }
   }
 
-  // Commercial: top-left, next to PresetButtons, vertical stacking (+ top, - bottom)
+  // Commercial: top-left corner, vertical stacking (+ top, - bottom)
   // Personal: bottom-right, horizontal (-/+)
   const containerClass = isCommercial
-    ? "fixed top-2 left-[56px] z-[800] flex flex-col gap-1"
+    ? "fixed top-2 left-2 z-[800] flex flex-col gap-1"
     : "fixed bottom-2 right-2 z-[800] flex flex-row-reverse gap-1"
 
   return (

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { fromLonLat } from 'ol/proj'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
 import { useMonumentFilterStore } from '../../store/monumentFilterStore'
-import { isCommercialMode } from '../../config/buildMode'
 import type { Preset } from '../../store/presetStore'
 
 // Icon mapping for dynamic icon rendering
@@ -96,7 +95,6 @@ export function PresetButtons() {
   const { presetsPanelOpen, togglePresetsPanel, closeAllPanels } = useUIStore()
   const { presets, applyPreset, updatePreset, createPreset, resetToDefaults } = usePresetStore()
   const visible = useLayerStore(state => state.visible)
-  const isCommercial = isCommercialMode()
 
   // Explicit selectors to ensure re-render on state change
   const presetPanelFontScale = useSettingsStore(state => state.presetPanelFontScale)
@@ -188,16 +186,10 @@ export function PresetButtons() {
     }
   }
 
-  // Commercial: top-left, Personal: bottom-left
-  const resetPosition = isCommercial
-    ? "fixed top-[56px] left-2 z-[800]"
-    : "fixed bottom-2 left-2 z-[800]"
-  const presetsPosition = isCommercial
-    ? "fixed top-2 left-2 z-[800]"
-    : "fixed bottom-[60px] left-2 z-[800]"
-  const panelPosition = isCommercial
-    ? "fixed top-2 left-[56px]"
-    : "fixed bottom-[60px] left-[56px]"
+  // Both modes: bottom-left
+  const resetPosition = "fixed bottom-2 left-2 z-[800]"
+  const presetsPosition = "fixed bottom-[60px] left-2 z-[800]"
+  const panelPosition = "fixed bottom-[60px] left-[56px]"
 
   return (
     <>

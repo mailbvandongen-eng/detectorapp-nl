@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Printer, X, Download, FileImage, Loader2 } from 'lucide-react'
 import { useMapStore, useSettingsStore } from '../../store'
+import { isCommercialMode } from '../../config/buildMode'
 
 type PrintFormat = 'png' | 'jpeg' | 'pdf'
 
@@ -11,6 +12,9 @@ export function PrintTool() {
   const showMeasureTool = useSettingsStore(state => state.showMeasureTool)
   const showDrawTool = useSettingsStore(state => state.showDrawTool)
   const [isOpen, setIsOpen] = useState(false)
+
+  // Hide in commercial mode
+  if (isCommercialMode()) return null
   const [isExporting, setIsExporting] = useState(false)
   const [format, setFormat] = useState<PrintFormat>('png')
   const [includeTitle, setIncludeTitle] = useState(true)

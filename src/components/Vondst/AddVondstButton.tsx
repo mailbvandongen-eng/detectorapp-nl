@@ -4,6 +4,7 @@ import { AddVondstForm } from './AddVondstForm'
 import { useAuth } from '../../hooks/useAuth'
 import { useSettingsStore } from '../../store/settingsStore'
 import { useUIStore } from '../../store/uiStore'
+import { isCommercialMode } from '../../config/buildMode'
 
 export function AddVondstButton() {
   const { isAuthenticated, loginAnonymous } = useAuth()
@@ -34,11 +35,15 @@ export function AddVondstButton() {
     openVondstForm()
   }
 
+  // Commercial: next to GPS at right-[56px], so Vondst at right-[104px]
+  // Personal: right-[152px] to leave room for route button
+  const rightPosition = isCommercialMode() ? 'right-[104px]' : 'right-[152px]'
+
   return (
     <>
       {/* Square button, same size as GPS button, positioned to its left */}
       <motion.button
-        className="fixed bottom-2 right-[152px] z-[1000] w-11 h-11 bg-white/90 hover:bg-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm"
+        className={`fixed bottom-2 ${rightPosition} z-[1000] w-11 h-11 bg-white/90 hover:bg-white rounded-xl shadow-sm flex items-center justify-center cursor-pointer border-0 outline-none backdrop-blur-sm`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}
