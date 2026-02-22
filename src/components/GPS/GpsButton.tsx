@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { LocateFixed, Navigation } from 'lucide-react'
 import { useGPS } from '../../hooks/useGPS'
 import { useGPSStore } from '../../store/gpsStore'
+import { isCommercialMode } from '../../config/buildMode'
 
 /**
  * Request iOS DeviceOrientation permission.
@@ -30,6 +31,7 @@ export function GpsButton() {
   const { tracking, start, stop } = useGPS()
   const navigationMode = useGPSStore(state => state.navigationMode)
   const setNavigationMode = useGPSStore(state => state.setNavigationMode)
+  const isCommercial = isCommercialMode()
 
   const isHeadingUp = tracking && navigationMode === 'headingUp'
 
@@ -49,10 +51,14 @@ export function GpsButton() {
     }
   }
 
+  // Commercial: next to LayerControl at right-2, so GPS at right-[56px]
+  // Personal: right-[104px] to leave room for vondst button etc
+  const rightPosition = isCommercial ? 'right-[56px]' : 'right-[104px]'
+
   return (
     <motion.button
       className={`
-        fixed bottom-2 right-[104px] z-[1000]
+        fixed bottom-2 ${rightPosition} z-[1000]
         w-11 h-11 cursor-pointer border-0 outline-none
         flex items-center justify-center
         rounded-xl backdrop-blur-sm

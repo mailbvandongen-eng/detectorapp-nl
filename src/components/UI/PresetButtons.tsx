@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { fromLonLat } from 'ol/proj'
 import { useLayerStore, useGPSStore, useUIStore, usePresetStore, useSettingsStore, useMapStore } from '../../store'
 import { useMonumentFilterStore } from '../../store/monumentFilterStore'
+import { isCommercialMode } from '../../config/buildMode'
 import type { Preset } from '../../store/presetStore'
 
 // Icon mapping for dynamic icon rendering
@@ -95,6 +96,7 @@ export function PresetButtons() {
   const { presetsPanelOpen, togglePresetsPanel, closeAllPanels } = useUIStore()
   const { presets, applyPreset, updatePreset, createPreset, resetToDefaults } = usePresetStore()
   const visible = useLayerStore(state => state.visible)
+  const isCommercial = isCommercialMode()
 
   // Explicit selectors to ensure re-render on state change
   const presetPanelFontScale = useSettingsStore(state => state.presetPanelFontScale)
@@ -186,12 +188,23 @@ export function PresetButtons() {
     }
   }
 
+  // Commercial: top-left, Personal: bottom-left
+  const resetPosition = isCommercial
+    ? "fixed top-[56px] left-2 z-[800]"
+    : "fixed bottom-2 left-2 z-[800]"
+  const presetsPosition = isCommercial
+    ? "fixed top-2 left-2 z-[800]"
+    : "fixed bottom-[60px] left-2 z-[800]"
+  const panelPosition = isCommercial
+    ? "fixed top-2 left-[56px]"
+    : "fixed bottom-[60px] left-[56px]"
+
   return (
     <>
-      {/* Reset button - bottom left, above nothing */}
+      {/* Reset button */}
       <motion.button
         onClick={resetAll}
-        className="fixed bottom-2 left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className={`${resetPosition} w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         title="Reset - Esri Licht, alle lagen uit, GPS uit"
@@ -199,10 +212,10 @@ export function PresetButtons() {
         <RotateCcw size={20} className="text-gray-600 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.15)]" />
       </motion.button>
 
-      {/* Presets button - above reset */}
+      {/* Presets button */}
       <motion.button
         onClick={togglePresetsPanel}
-        className="fixed bottom-[60px] left-2 z-[800] w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm"
+        className={`${presetsPosition} w-11 h-11 flex items-center justify-center bg-white/80 hover:bg-white/90 rounded-xl shadow-sm border-0 outline-none transition-colors backdrop-blur-sm`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         title="Presets"
@@ -231,7 +244,7 @@ export function PresetButtons() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="fixed bottom-[60px] left-[56px] bg-white/95 rounded-xl shadow-lg overflow-hidden w-[240px] backdrop-blur-sm z-[801]"
+              className={`${panelPosition} bg-white/95 rounded-xl shadow-lg overflow-hidden w-[240px] backdrop-blur-sm z-[801]`}
             >
               {/* Header with title and font size slider - blue bg, white text */}
               <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-blue-500" style={{ fontSize: `${baseFontSize}px` }}>
