@@ -4,20 +4,22 @@ import type Map from 'ol/Map'
 import { fromLonLat } from 'ol/proj'
 import type MapView from '@arcgis/core/views/MapView'
 import type EsriMap from '@arcgis/core/Map'
+import type TileLayer from '@arcgis/core/layers/TileLayer'
 import Basemap from '@arcgis/core/Basemap'
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 import EsriTileLayer from '@arcgis/core/layers/TileLayer'
 import { mapEngineConfig, engineLog, type MapEngine } from '../config/mapEngineConfig'
 
 // Basemap configuration types
-type EsriTileConfig = { type: 'esritile'; url: string; copyright: string; referenceUrl?: string }
-type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number; referenceUrl?: string }
+type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
+type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
 type BasemapConfig = EsriTileConfig | WebTileConfig
 
-// Reference layer URL for labels on aerial/satellite imagery
+// Reference layer URL for labels overlay (Esri World Reference Overlay)
 const ESRI_REFERENCE_LABELS = 'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer'
 
 // ArcGIS base layer configurations - using public Esri tile services (no special API key needed)
+// NOTE: Labels overlay is now handled separately via setLabelsOverlay()
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   // Esri tile services (public, no extra API privileges required)
   'Esri Licht': {
@@ -33,15 +35,13 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   'Esri Satelliet': {
     type: 'esritile',
     url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
-    copyright: '© Esri',
-    referenceUrl: ESRI_REFERENCE_LABELS
+    copyright: '© Esri'
   },
   // PDOK aerial imagery (high resolution Netherlands)
   'Luchtfoto': {
     type: 'webtile',
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
-    copyright: '© Kadaster / PDOK Luchtfoto',
-    referenceUrl: ESRI_REFERENCE_LABELS
+    copyright: '© Kadaster / PDOK Luchtfoto'
   },
   // Historical maps from Map5.nl (publicly accessible XYZ tiles)
   'TMK 1850': {
@@ -68,6 +68,9 @@ interface MapState {
   arcgisView: MapView | null
   arcgisInitialized: boolean
 
+  // Labels overlay layer (separate from basemap)
+  labelsLayer: TileLayer | null
+
   // View state (unified voor beide engines)
   center: [number, number] // [lon, lat] in WGS84
   zoom: number
@@ -88,6 +91,9 @@ interface MapState {
 
   // Basemap actions
   setBasemap: (basemapName: string) => void
+
+  // Labels overlay actions
+  setLabelsOverlay: (visible: boolean) => void
 }
 
 export const useMapStore = create<MapState>()(
@@ -97,6 +103,7 @@ export const useMapStore = create<MapState>()(
     arcgisMap: null,
     arcgisView: null,
     arcgisInitialized: false,
+    labelsLayer: null,
     center: [5.1214, 52.0907], // Netherlands center
     zoom: 8,
     rotation: 0,
@@ -286,6 +293,37 @@ export const useMapStore = create<MapState>()(
 
         state.arcgisView.map.basemap = basemap
         engineLog('Basemap changed to:', resolvedName)
+      }
+    },
+
+    setLabelsOverlay: (visible: boolean) => {
+      const state = get()
+
+      if (state.activeEngine !== 'arcgis' || !state.arcgisView?.map) {
+        engineLog('Labels overlay: ArcGIS not ready')
+        return
+      }
+
+      // Create labels layer if it doesn't exist
+      if (!state.labelsLayer) {
+        const labelsLayer = new EsriTileLayer({
+          url: ESRI_REFERENCE_LABELS,
+          title: 'Labels Overlay',
+          visible: visible
+        })
+
+        // Add to map at the top
+        state.arcgisView.map.add(labelsLayer)
+
+        set(s => {
+          s.labelsLayer = labelsLayer
+        })
+
+        engineLog('Labels overlay layer created and added')
+      } else {
+        // Toggle visibility
+        state.labelsLayer.visible = visible
+        engineLog('Labels overlay visibility:', visible)
       }
     }
   }))

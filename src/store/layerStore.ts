@@ -197,6 +197,15 @@ export const useLayerStore = create<LayerState>()(
       const state = get()
       const newVisible = !state.visible[name]
 
+      // Handle Labels Overlay specially - it's managed by mapStore
+      if (name === 'Labels Overlay') {
+        set(s => {
+          s.visible[name] = newVisible
+        })
+        useMapStore.getState().setLabelsOverlay(newVisible)
+        return
+      }
+
       // Set visibility immediately for responsive UI
       set(state => {
         state.visible[name] = newVisible
@@ -225,6 +234,16 @@ export const useLayerStore = create<LayerState>()(
 
     setLayerVisibility: (name: string, visible: boolean) => {
       const state = get()
+
+      // Handle Labels Overlay specially - it's managed by mapStore
+      if (name === 'Labels Overlay') {
+        set(s => {
+          s.visible[name] = visible
+        })
+        // Trigger mapStore to handle the labels layer
+        useMapStore.getState().setLabelsOverlay(visible)
+        return
+      }
 
       // Check if this is a basemap layer that ArcGIS handles
       const isBasemapLayer = BASEMAP_LAYERS.includes(name as DefaultBackground)
