@@ -1,0 +1,2 @@
+import{bb as v,bP as w,bQ as u}from"./index-DNMHyoOR.js";function I(o,a,s,i){const[r,n,t,b,c,p,M]=a.a,x=c??0,g=p??Math.hypot(r[0]-n[0],r[1]-n[1]),j=M??1,e=Math.cos(i),f=Math.sin(i),[h,m]=s,l=w(e,f,0,-f,e,0,h-e*h+f*m,m-f*h-e*m,1);return v(o,{a:[r,n,t,b,x,g,j]},l)}function P(o,a,s){const[i,r,n]=o.b,t=[...i],b=[...r],c=[...n];return u(t,t,a,s),u(b,b,a,s),u(c,c,a,s),{b:[t,b,c]}}function Q(o,a,s){const[i,r]=o.c,n=[...i],t=[...r];return u(n,n,a,s),u(t,t,a,s),{c:[n,t]}}export{I as c,P as i,Q as n};
+//# sourceMappingURL=rotate-CNb-IZeE.js.map
