@@ -28,13 +28,12 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
-// Hybrid basemap types
+// Basemap types - all ArcGIS native now (no more hybrid OL mess)
 type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
-type HybridOLConfig = { type: 'hybrid-ol'; olLayerName: string }
-type BasemapConfig = EsriTileConfig | WebTileConfig | HybridOLConfig
+type BasemapConfig = EsriTileConfig | WebTileConfig
 
-// ArcGIS base layer configurations - using Esri tile services (no special API key needed)
+// ArcGIS base layer configurations
 const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   // Esri tile services (public, no extra API privileges required)
   'Esri Licht': {
@@ -58,14 +57,19 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
     url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{level}/{col}/{row}.jpeg',
     copyright: '© Kadaster / PDOK Luchtfoto'
   },
-  // Historical maps - HYBRID: use OL layers (works reliably)
+  // Historical maps from Map5.nl - now as native ArcGIS WebTileLayers
+  // Max zoom 14 = scale ~35000 (prevent "paid subscription required" message)
   'TMK 1850': {
-    type: 'hybrid-ol',
-    olLayerName: 'TMK 1850'
+    type: 'webtile',
+    url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{level}/{col}/{row}.png',
+    copyright: '© Map5.nl / Kadaster',
+    maxScale: 35000  // Zoom 14 limit
   },
   'Bonnebladen 1900': {
-    type: 'hybrid-ol',
-    olLayerName: 'Bonnebladen 1900'
+    type: 'webtile',
+    url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{level}/{col}/{row}.png',
+    copyright: '© Map5.nl / Kadaster',
+    maxScale: 35000  // Zoom 14 limit
   }
 }
 
@@ -136,9 +140,9 @@ export function MapContainer() {
         title: bgName
       })
     } else {
-      // hybrid-ol type - return empty basemap (OL layer handles it)
-      console.log('🗺️ Creating empty basemap for hybrid-ol:', bgName)
-      return new Basemap({ title: 'empty' })
+      // Fallback - should not happen
+      console.warn('🗺️ Unknown basemap type:', bgName)
+      return new Basemap({ title: bgName })
     }
   }, [])
 
@@ -150,39 +154,7 @@ export function MapContainer() {
 
     engineLog('Initializing OL map layers...', { arcgisBaseLayers })
 
-    // Historical map layers from Map5.nl - ALWAYS create these for hybrid mode
-    const tmk1850Layer = new TileLayer({
-      properties: { title: 'TMK 1850', type: 'base' },
-      visible: false,
-      source: new XYZ({
-        url: 'https://s.map5.nl/map/gast/tiles/tmk_1850/EPSG3857/{z}/{x}/{y}.png',
-        attributions: '© Kadaster / Map5.nl',
-        crossOrigin: 'anonymous',
-        maxZoom: 14
-      }),
-      zIndex: 0  // Below other layers
-    })
-
-    const bonne1900Layer = new TileLayer({
-      properties: { title: 'Bonnebladen 1900', type: 'base' },
-      visible: false,
-      source: new XYZ({
-        url: 'https://s.map5.nl/map/gast/tiles/bonne_1900/EPSG3857/{z}/{x}/{y}.png',
-        attributions: '© Kadaster / Map5.nl',
-        crossOrigin: 'anonymous',
-        maxZoom: 14
-      }),
-      zIndex: 0  // Below other layers
-    })
-
-    // Always add historical layers (needed for hybrid mode)
-    map.addLayer(tmk1850Layer)
-    map.addLayer(bonne1900Layer)
-    registerLayer('TMK 1850', tmk1850Layer)
-    registerLayer('Bonnebladen 1900', bonne1900Layer)
-    engineLog('OL historical layers added for hybrid mode')
-
-    // Skip other OL base layers if ArcGIS handles them
+    // Skip OL base layers if ArcGIS handles basemaps (TMK/Bonnebladen are now native ArcGIS WebTileLayers)
     if (!arcgisBaseLayers) {
       // Base layers (only when OL is primary or ArcGIS doesn't handle basemaps)
       const osmLayer = new TileLayer({
@@ -337,16 +309,10 @@ export function MapContainer() {
       let esriMap: EsriMap
 
       if (arcgisIsPrimary && arcgisBaseLayers) {
-        if (bgConfig.type === 'hybrid-ol') {
-          // HYBRID: Start with empty basemap, OL layer will be shown separately
-          console.log('🔧 Using HYBRID basemap (OL layer):', bgConfig.olLayerName)
-          esriMap = new EsriMap({ basemap: new Basemap({ title: 'empty' }) })
-        } else {
-          // Create Esri TileLayer or WebTile basemap
-          const basemap = createArcGISBasemap(bgName)
-          console.log('🔧 Using basemap:', bgName)
-          esriMap = new EsriMap({ basemap })
-        }
+        // All basemaps are now native ArcGIS (no more hybrid-ol)
+        const basemap = createArcGISBasemap(bgName)
+        console.log('🔧 Using basemap:', bgName)
+        esriMap = new EsriMap({ basemap })
       } else {
         esriMap = new EsriMap()
       }
@@ -529,27 +495,20 @@ export function MapContainer() {
       bgName = 'Esri Licht'
     }
 
-    const bgConfig = ARCGIS_BASE_LAYERS[bgName]
+    // All basemaps are now native ArcGIS WebTileLayers (including TMK/Bonnebladen)
+    console.log('🔄 Changing to basemap:', bgName)
+    arcgisView.map.basemap = createArcGISBasemap(bgName)
 
-    // First, hide all OL historical layers
-    setLayerVisibility('TMK 1850', false)
-    setLayerVisibility('Bonnebladen 1900', false)
-
-    if (bgConfig.type === 'hybrid-ol') {
-      // HYBRID: Use OL layer for historical maps
-      console.log('🔄 Changing to HYBRID basemap (OL layer):', bgConfig.olLayerName)
-      // Set ArcGIS to empty/transparent basemap
-      arcgisView.map.basemap = new Basemap({ title: 'empty' })
-      // Show the OL historical layer
-      setLayerVisibility(bgConfig.olLayerName, true)
-    } else {
-      // For Esri TileLayer or WebTile basemaps
-      console.log('🔄 Changing to basemap:', bgName, bgConfig.type)
-      arcgisView.map.basemap = createArcGISBasemap(bgName)
+    // Adjust zoom constraints for historical maps (max zoom 14 = minScale ~35000)
+    const isHistoricalMap = bgName === 'TMK 1850' || bgName === 'Bonnebladen 1900'
+    arcgisView.constraints = {
+      ...arcgisView.constraints,
+      minScale: isHistoricalMap ? 35000 : undefined,  // Prevent zooming past level 14
+      maxZoom: isHistoricalMap ? 14 : 19
     }
 
-    engineLog('Basemap changed to:', bgName)
-  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap, setLayerVisibility])
+    engineLog('Basemap changed to:', bgName, isHistoricalMap ? '(zoom limited to 14)' : '')
+  }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap])
 
   // Apply default background setting on first load (only for OL base layers)
   useEffect(() => {
