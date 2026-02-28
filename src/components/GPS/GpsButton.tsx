@@ -51,9 +51,9 @@ export function GpsButton() {
     }
   }
 
-  // Commercial: next to LayerControl at right-2, so GPS at right-[56px]
+  // Commercial: LayerControl moved to left, so GPS at right-2
   // Personal: right-[104px] to leave room for vondst button etc
-  const rightPosition = isCommercial ? 'right-[56px]' : 'right-[104px]'
+  const rightPosition = isCommercial ? 'right-2' : 'right-[104px]'
 
   return (
     <motion.button

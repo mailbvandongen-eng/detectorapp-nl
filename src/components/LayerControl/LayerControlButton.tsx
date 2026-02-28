@@ -31,13 +31,13 @@ export function KaartlagenButton() {
     }
   }, [map])
 
-  // Commercial: bottom-right, same row as GPS button
+  // Commercial: top-left, below hamburger menu (52px from top)
   // Personal: top-right, below hamburger/compass
   if (isCommercial) {
     return (
       <motion.button
         className={`
-          fixed bottom-2 right-2 z-[800]
+          fixed left-2 z-[800]
           w-11 h-11 cursor-pointer border-0 outline-none
           flex items-center justify-center
           rounded-xl backdrop-blur-sm
@@ -47,6 +47,7 @@ export function KaartlagenButton() {
             : 'bg-white/80 text-gray-500 hover:bg-white/90 shadow-sm'
           }
         `}
+        style={{ top: 'calc(max(0.5rem, env(safe-area-inset-top, 0.5rem)) + 52px)' }}
         onClick={toggleThemesPanel}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}

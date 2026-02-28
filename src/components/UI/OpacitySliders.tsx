@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SlidersHorizontal } from 'lucide-react'
 import { useLayerStore } from '../../store/layerStore'
+import { isCommercialMode } from '../../config/buildMode'
 
 // All layers that should have opacity sliders - vlak/overlay lagen, geen punten
 const OPACITY_LAYERS = [
@@ -63,6 +64,7 @@ export function OpacitySliders() {
   const visibleLayers = useLayerStore(state => state.visible)
   const opacities = useLayerStore(state => state.opacity)
   const setLayerOpacity = useLayerStore(state => state.setLayerOpacity)
+  const isCommercial = isCommercialMode()
 
   // Filter to only visible layers
   const activeSliders = OPACITY_LAYERS.filter(layer => visibleLayers[layer.name])
@@ -70,8 +72,18 @@ export function OpacitySliders() {
   // Only show if at least one layer is visible
   if (activeSliders.length === 0) return null
 
+  // Commercial: left side under kaartlagen button (top: 52px + 44px button + 8px gap = 104px)
+  // Personal: bottom-right corner above LayerControl
+  const positionClass = isCommercial
+    ? 'fixed left-2 z-[900]'
+    : 'fixed bottom-[56px] right-2 z-[900]'
+
+  const positionStyle = isCommercial
+    ? { top: 'calc(max(0.5rem, env(safe-area-inset-top, 0.5rem)) + 104px)' }
+    : undefined
+
   return (
-    <div className="fixed bottom-[56px] right-2 z-[900]">
+    <div className={positionClass} style={positionStyle}>
       {/* Toggle button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
@@ -102,11 +114,13 @@ export function OpacitySliders() {
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              initial={{ opacity: 0, x: 20, scale: 0.9 }}
+              initial={{ opacity: 0, x: isCommercial ? -20 : 20, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 20, scale: 0.9 }}
+              exit={{ opacity: 0, x: isCommercial ? -20 : 20, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="absolute bottom-0 right-14 bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[220px] max-h-[60vh] flex flex-col"
+              className={`absolute bg-white/95 rounded-xl shadow-lg overflow-hidden min-w-[220px] max-h-[60vh] flex flex-col ${
+                isCommercial ? 'top-0 left-14' : 'bottom-0 right-14'
+              }`}
             >
               {/* Header */}
               <div className="px-3 py-1.5 bg-blue-500">

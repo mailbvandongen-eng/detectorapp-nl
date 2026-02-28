@@ -35,9 +35,9 @@ export function AddVondstButton() {
     openVondstForm()
   }
 
-  // Commercial: next to GPS at right-[56px], so Vondst at right-[104px]
+  // Commercial: GPS moved to right-2, so Vondst at right-[56px]
   // Personal: right-[152px] to leave room for route button
-  const rightPosition = isCommercialMode() ? 'right-[104px]' : 'right-[152px]'
+  const rightPosition = isCommercialMode() ? 'right-[56px]' : 'right-[152px]'
 
   return (
     <>
