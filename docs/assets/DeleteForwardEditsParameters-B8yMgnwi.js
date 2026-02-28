@@ -1,0 +1,2 @@
+import{bL as i,a1 as n,bM as s,bN as o,bO as m}from"./index-1btMxpg2.js";var r;let t=r=class extends i{static from(e){return n(r,e)}constructor(e){super(e),this.sessionId=void 0,this.moment=null}};s([o({type:String,json:{write:!0}})],t.prototype,"sessionId",void 0),s([o({type:Date,json:{type:Number,write:{writer:(e,a)=>{a.moment=e?e.getTime():null}}}})],t.prototype,"moment",void 0),t=r=s([m("esri.rest.versionManagement.gdbVersion.support.DeleteForwardEditsParameters")],t);const d=t;export{d as default};
+//# sourceMappingURL=DeleteForwardEditsParameters-B8yMgnwi.js.map
