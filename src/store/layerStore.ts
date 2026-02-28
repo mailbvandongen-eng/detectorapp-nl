@@ -249,12 +249,26 @@ export const useLayerStore = create<LayerState>()(
       const isBasemapLayer = BASEMAP_LAYERS.includes(name as DefaultBackground)
       const arcgisHandlesBasemaps = isArcGISEngine() && useArcGISFeature('arcgisBaseLayers')
 
+      // Historical maps that use OL tiles but act as basemaps
+      const HYBRID_OL_BASEMAPS = ['TMK 1850', 'Bonnebladen 1900']
+
       if (isBasemapLayer && arcgisHandlesBasemaps && visible) {
         // When ArcGIS handles basemaps, use settingsStore to change basemap
         // Update visibility state for all basemaps (radio button behavior)
         set(s => {
           BASEMAP_LAYERS.forEach(basemap => {
             s.visible[basemap] = basemap === name
+          })
+          // For hybrid-ol basemaps, also set OL layer visibility directly
+          HYBRID_OL_BASEMAPS.forEach(layerName => {
+            const layer = s.layers[layerName]
+            if (layer) {
+              const shouldShow = layerName === name
+              layer.setVisible(shouldShow)
+              if (shouldShow) {
+                layer.setOpacity(s.opacity[layerName] ?? 0.8)
+              }
+            }
           })
         })
         // Trigger basemap change via settings store
