@@ -26,7 +26,7 @@ const BUILT_IN_PRESETS: Preset[] = [
     name: 'Detectie',
     icon: 'Compass',
     layers: ['AMK Monumenten', 'Gewaspercelen', 'Geomorfologie', 'AHN4 Hoogtekaart Kleur', 'Kadastrale Grenzen'],
-    baseLayer: 'Luchtfoto',  // Luchtfoto als standaard voor detectie
+    baseLayer: 'Esri Licht',  // Esri Licht + AMK Monumenten overlay
     layerOpacities: {
       'AMK Monumenten': 0.50,
       'Gewaspercelen': 0.25,
