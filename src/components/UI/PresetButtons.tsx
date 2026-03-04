@@ -83,10 +83,10 @@ const BASE_LAYERS = [
   'Bonnebladen 1900'
 ]
 
-// VASTE reset waarden - Nederland centrum (Utrecht), ~50km view
+// VASTE reset waarden - Nederland centrum, heel Nederland in beeld
 // Niet wijzigen! Dit zijn de definitieve reset waarden.
-const RESET_CENTER: [number, number] = [5.12, 52.09] // Utrecht - centrum Nederland
-const RESET_ZOOM = 7 // ~50km view
+const RESET_CENTER: [number, number] = [5.3, 52.15] // Centrum Nederland (iets noordelijker)
+const RESET_ZOOM = 7.2 // Heel Nederland zichtbaar (zoom 7-7.5 = heel NL)
 
 export function PresetButtons() {
   const setLayerVisibility = useLayerStore(state => state.setLayerVisibility)
@@ -113,6 +113,12 @@ export function PresetButtons() {
     // Close any open panels
     closeAllPanels()
 
+    // Stop GPS tracking first (prevents any GPS-triggered map movements)
+    stopTracking()
+
+    // Clear monument filter
+    clearMonumentFilter()
+
     // Turn off all overlay layers
     ALL_OVERLAYS.forEach(layer => setLayerVisibility(layer, false))
 
@@ -120,6 +126,9 @@ export function PresetButtons() {
     BASE_LAYERS.forEach(layer => {
       setLayerVisibility(layer, layer === 'Esri Licht')
     })
+
+    // Zet standaard overlay aan: AMK Monumenten
+    setLayerVisibility('AMK Monumenten', true)
 
     // Reset default background in settings (persisted to localStorage)
     useSettingsStore.getState().setDefaultBackground('Esri Licht')
@@ -130,20 +139,18 @@ export function PresetButtons() {
     // Set ArcGIS basemap
     mapStore.setBasemap('Esri Licht')
 
-    // Stop GPS tracking
-    stopTracking()
-
-    // Clear monument filter
-    clearMonumentFilter()
-
     // Reset map view using unified goTo - VASTE WAARDEN
-    mapStore.goTo({
-      center: RESET_CENTER,
-      zoom: RESET_ZOOM,
-      animate: true
+    // Delay slightly to ensure all state changes are processed
+    requestAnimationFrame(() => {
+      mapStore.goTo({
+        center: RESET_CENTER,
+        zoom: RESET_ZOOM,
+        rotation: 0, // Reset kaart rotatie naar noord
+        animate: false // Geen animatie - direct springen
+      })
     })
 
-    console.log('Reset: Esri Licht, alle lagen uit, GPS uit, zoom naar Nederland (midden)')
+    console.log('Reset: Esri Licht + AMK Monumenten, GPS uit, zoom naar heel Nederland')
   }
 
   const handleApplyPreset = (id: string) => {

@@ -111,12 +111,16 @@ function OpenLayersGpsMarker() {
     if (!markerRef.current) return
 
     if (tracking) {
-      const rotation = smoothHeading !== null ? (smoothHeading * Math.PI) / 180 : 0
-      markerRef.current.setStyle(createArrowStyle(rotation))
+      // In heading-up mode: kaart roteert, dus pijl moet altijd omhoog (0 graden)
+      // In free mode: kaart is noord-georiënteerd, dus pijl toont heading
+      const headingRad = navigationMode === 'headingUp'
+        ? 0
+        : (smoothHeading !== null ? (smoothHeading * Math.PI) / 180 : 0)
+      markerRef.current.setStyle(createArrowStyle(headingRad))
     } else {
       markerRef.current.setStyle(DOT_STYLE)
     }
-  }, [tracking, createArrowStyle, smoothHeading])
+  }, [tracking, createArrowStyle, smoothHeading, navigationMode])
 
   // Update position and center map
   useEffect(() => {
@@ -161,9 +165,13 @@ function OpenLayersGpsMarker() {
   useEffect(() => {
     if (!markerRef.current || !tracking) return
 
-    const rotation = smoothHeading !== null ? (smoothHeading * Math.PI) / 180 : 0
-    markerRef.current.setStyle(createArrowStyle(rotation))
-  }, [smoothHeading, createArrowStyle, tracking])
+    // In heading-up mode: kaart roteert, dus pijl moet altijd omhoog (0 graden)
+    // In free mode: kaart is noord-georiënteerd, dus pijl toont heading
+    const headingRad = navigationMode === 'headingUp'
+      ? 0
+      : (smoothHeading !== null ? (smoothHeading * Math.PI) / 180 : 0)
+    markerRef.current.setStyle(createArrowStyle(headingRad))
+  }, [smoothHeading, createArrowStyle, tracking, navigationMode])
 
   // Heading-up mode: rotate map so heading direction is "up" (syncs both ArcGIS and OL)
   useEffect(() => {

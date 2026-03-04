@@ -6,6 +6,7 @@ export function createAHNLayerOL() {
     properties: { title: 'AHN 0.5m', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 4, // Hoogtekaart onder andere overlays en GPS marker
     source: new TileWMS({
       url: 'https://service.pdok.nl/rws/ahn/wms/v1_0',
       params: {
@@ -25,6 +26,7 @@ export function createGeomorfologieLayerOL() {
     properties: { title: 'Geomorfologie', type: 'wms' },
     visible: false,
     opacity: 0.5,
+    zIndex: 5, // Laag, onder GPS marker (1000) en andere overlays
     source: new TileWMS({
       url: 'https://service.pdok.nl/bzk/bro-geomorfologischekaart/wms/v2_0',
       params: {
@@ -44,6 +46,7 @@ export function createBodemkaartLayerOL() {
     properties: { title: 'Bodemkaart', type: 'wms' },
     visible: false,
     opacity: 0.6,
+    zIndex: 5, // Laag, onder GPS marker (1000)
     source: new TileWMS({
       url: 'https://service.pdok.nl/bzk/bro-bodemkaart/wms/v1_0',
       params: {
@@ -64,6 +67,7 @@ export function createIKAWLayerOL() {
     properties: { title: 'IKAW', type: 'wms' },
     visible: false,
     opacity: 0.5,
+    zIndex: 6, // Archeologie laag, onder GPS marker
     source: new TileWMS({
       url: 'https://services.rce.geovoorziening.nl/ikaw/wms',
       params: {
@@ -92,6 +96,7 @@ export function createFAMKESteentijdLayerOL() {
     },
     visible: false,
     opacity: 0.6,
+    zIndex: 6, // Archeologie laag
     source: new TileWMS({
       url: 'https://geoportaal.fryslan.nl/arcgis/services/Themas/cultuurhistorie/MapServer/WMSServer',
       params: {
@@ -120,6 +125,7 @@ export function createFAMKEIJzertijdLayerOL() {
     },
     visible: false,
     opacity: 0.6,
+    zIndex: 6, // Archeologie laag
     source: new TileWMS({
       url: 'https://geoportaal.fryslan.nl/arcgis/services/Themas/cultuurhistorie/MapServer/WMSServer',
       params: {
@@ -142,6 +148,7 @@ export function createEssenLayerOL() {
     properties: { title: 'Essen', type: 'wms' },
     visible: false,
     opacity: 0.6,
+    zIndex: 7, // Erfgoed/archeologie laag
     source: new TileWMS({
       url: 'https://services.rce.geovoorziening.nl/landschapsatlas/wms',
       params: {
@@ -212,6 +219,7 @@ export function createRijksmonumentenLayerOL() {
     properties: { title: 'Rijksmonumenten', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 15, // Monumenten boven terreinlagen
     source: new TileWMS({
       url: 'https://data.geo.cultureelerfgoed.nl/openbaar/wms',
       params: {
@@ -233,6 +241,7 @@ export function createArcheoOnderzoekenLayerOL() {
     properties: { title: 'Archeo Onderzoeken', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 12, // Archeologie laag
     source: new TileWMS({
       url: 'https://data.geo.cultureelerfgoed.nl/openbaar/wms',
       params: {
@@ -254,6 +263,7 @@ export function createWerelderfgoedLayerOL() {
     properties: { title: 'Werelderfgoed', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 14, // Erfgoed laag
     source: new TileWMS({
       url: 'https://service.pdok.nl/rce/ps-ch/wms/v1_0',
       params: {
@@ -280,6 +290,7 @@ export function createGewaspercelenLayerOL() {
     properties: { title: 'Gewaspercelen', type: 'wms' },
     visible: false,
     opacity: 0.6,
+    zIndex: 8, // Percelen laag
     source: new TileWMS({
       url: 'https://service.pdok.nl/rvo/brpgewaspercelen/wms/v1_0',
       params: {
@@ -302,6 +313,7 @@ export function createKadastraleKaartLayerOL() {
     properties: { title: 'Kadastrale Grenzen', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 9, // Percelen laag
     source: new TileWMS({
       url: 'https://service.pdok.nl/kadaster/kadastralekaart/wms/v5_0',
       params: {
@@ -330,6 +342,7 @@ export function createScheepswrakkenLayerOL() {
     properties: { title: 'Scheepswrakken', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 16, // Provinciale laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -352,6 +365,7 @@ export function createWoonheuvelsLayerOL() {
     properties: { title: 'Woonheuvels ZH', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 16, // Provinciale laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -374,6 +388,7 @@ export function createRomeinseFortenLayerOL() {
     properties: { title: 'Romeinse Forten', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 17, // Provinciale laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -396,6 +411,7 @@ export function createWindmolensLayerOL() {
     properties: { title: 'Windmolens', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 18, // Provinciale laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -418,6 +434,7 @@ export function createErfgoedlijnenLayerOL() {
     properties: { title: 'Erfgoedlijnen', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 13, // Erfgoed laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -440,6 +457,7 @@ export function createOudeKernenLayerOL() {
     properties: { title: 'Oude Kernen', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 11, // Kernen laag
     source: new TileWMS({
       url: 'https://geodata.zuid-holland.nl/geoserver/cultuur/wms',
       params: {
@@ -464,6 +482,7 @@ export function createRelictenkaartPuntenLayerOL() {
     properties: { title: 'Relictenkaart Punten', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 18, // Provinciale laag
     source: new TileWMS({
       url: 'https://geoserver.gelderland.nl/geoserver/ngr_a/wms',
       params: {
@@ -486,6 +505,7 @@ export function createRelictenkaartLijnenLayerOL() {
     properties: { title: 'Relictenkaart Lijnen', type: 'wms' },
     visible: false,
     opacity: 0.7,
+    zIndex: 13, // Provinciale laag - lijnen
     source: new TileWMS({
       url: 'https://geoserver.gelderland.nl/geoserver/ngr_a/wms',
       params: {
@@ -508,6 +528,7 @@ export function createRelictenkaartVlakkenLayerOL() {
     properties: { title: 'Relictenkaart Vlakken', type: 'wms' },
     visible: false,
     opacity: 0.5,
+    zIndex: 6, // Vlakken laag - onder punten
     source: new TileWMS({
       url: 'https://geoserver.gelderland.nl/geoserver/ngr_a/wms',
       params: {
@@ -532,6 +553,7 @@ export function createVerdronkenDorpenLayerOL() {
     properties: { title: 'Verdronken Dorpen', type: 'wms' },
     visible: false,
     opacity: 0.8,
+    zIndex: 17, // Provinciale laag
     source: new TileWMS({
       url: 'https://opengeodata.zeeland.nl/geoserver/chs/wms',
       params: {

@@ -73,9 +73,9 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
   }
 }
 
-// Netherlands center
-const NL_CENTER: [number, number] = [5.1214, 52.0907]
-const NL_ZOOM = 8
+// Netherlands center - heel Nederland in beeld bij opstart
+const NL_CENTER: [number, number] = [5.3, 52.15] // Centrum Nederland
+const NL_ZOOM = 7.2 // Heel Nederland zichtbaar
 
 export function MapContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -302,9 +302,10 @@ export function MapContainer() {
       })
 
       // Create basemap for primary mode
-      const bgName = defaultBackground || 'Esri Licht'
-      const bgConfig = ARCGIS_BASE_LAYERS[bgName] || ARCGIS_BASE_LAYERS['Esri Licht']
-      console.log('🔧 ArcGIS init - bgName:', bgName, 'type:', bgConfig.type)
+      // ALTIJD starten met Esri Licht, ongeacht wat er gepersisteerd is
+      const bgName = 'Esri Licht'
+      const bgConfig = ARCGIS_BASE_LAYERS[bgName]
+      console.log('🔧 ArcGIS init - starting with Esri Licht')
 
       let esriMap: EsriMap
 
@@ -484,9 +485,21 @@ export function MapContainer() {
     }
   }, [showScaleBar, arcgisReady, arcgisView, arcgisIsPrimary])
 
+  // Track if this is initial load (skip basemap change from persisted value)
+  const isInitialBasemapLoad = useRef(true)
+
   // Handle basemap changes for ArcGIS primary mode
+  // Skip first render - initial basemap is set during map creation
   useEffect(() => {
     if (!arcgisIsPrimary || !arcgisBaseLayers || !arcgisReady || !arcgisView?.map) return
+
+    // Skip initial load - we start with Esri Licht, ignore persisted value
+    if (isInitialBasemapLoad.current) {
+      isInitialBasemapLoad.current = false
+      // Reset persisted value to Esri Licht
+      useSettingsStore.getState().setDefaultBackground('Esri Licht')
+      return
+    }
 
     // Handle legacy basemap names (migration from CartoDB to Esri)
     let bgName = defaultBackground || 'Esri Licht'

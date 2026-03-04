@@ -146,8 +146,11 @@ export function ArcGISGpsMarker() {
     }
 
     // Create or update marker
+    // In heading-up mode: kaart roteert, dus pijl moet altijd omhoog (0 graden)
+    // In free mode: kaart is noord-georiënteerd, dus pijl toont heading
+    const arrowRotation = navigationMode === 'headingUp' ? 0 : (smoothHeading ?? 0)
     const symbol = tracking
-      ? createArrowSymbol(smoothHeading ?? 0)
+      ? createArrowSymbol(arrowRotation)
       : DOT_SYMBOL
 
     if (markerGraphicRef.current) {
@@ -185,8 +188,11 @@ export function ArcGISGpsMarker() {
   useEffect(() => {
     if (!markerGraphicRef.current || !tracking || smoothHeading === null) return
 
-    markerGraphicRef.current.symbol = createArrowSymbol(smoothHeading)
-  }, [smoothHeading, tracking, createArrowSymbol])
+    // In heading-up mode: kaart roteert, dus pijl moet altijd omhoog (0 graden)
+    // In free mode: kaart is noord-georiënteerd, dus pijl toont heading
+    const arrowRotation = navigationMode === 'headingUp' ? 0 : smoothHeading
+    markerGraphicRef.current.symbol = createArrowSymbol(arrowRotation)
+  }, [smoothHeading, tracking, navigationMode, createArrowSymbol])
 
   // Heading-up mode: rotate map so heading direction is "up"
   useEffect(() => {

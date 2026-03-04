@@ -104,8 +104,8 @@ export const useMapStore = create<MapState>()(
     arcgisView: null,
     arcgisInitialized: false,
     labelsLayer: null,
-    center: [5.1214, 52.0907], // Netherlands center
-    zoom: 8,
+    center: [5.3, 52.15], // Netherlands center - heel Nederland zichtbaar
+    zoom: 7.2, // Heel Nederland zichtbaar
     rotation: 0,
     rotationEnabled: true,
 
