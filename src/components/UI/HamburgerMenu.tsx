@@ -1,8 +1,9 @@
-import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer, List } from 'lucide-react'
+import { Menu, X, Info, Settings, LogOut, User, MapPin, Route, Type, Layers, Cloud, Landmark, Ruler, Pencil, Printer, List, RefreshCw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '../../store/authStore'
 import { useUIStore } from '../../store/uiStore'
 import { useSettingsStore } from '../../store/settingsStore'
+import { useCloudSync } from '../../hooks/useCloudSync'
 import { isCommercialMode } from '../../config/buildMode'
 import { version } from '../../../package.json'
 
@@ -93,6 +94,9 @@ export function HamburgerMenu() {
 
   // Check if commercial mode (hide route, weather, measure, draw)
   const isCommercial = isCommercialMode()
+
+  // Cloud sync
+  const { syncStatus, forceSync } = useCloudSync()
 
   // Calculate font size based on menuFontScale
   const baseFontSize = 13 * menuFontScale / 100
@@ -189,10 +193,18 @@ export function HamburgerMenu() {
                       <div className="font-medium text-gray-800 truncate" style={{ fontSize: '0.85em' }}>
                         {user.displayName || 'Gebruiker'}
                       </div>
-                      <div className="text-green-600" style={{ fontSize: '0.7em' }}>
-                        Cloud sync actief
+                      <div className={syncStatus === 'syncing' ? 'text-blue-600' : syncStatus === 'error' ? 'text-red-600' : 'text-green-600'} style={{ fontSize: '0.7em' }}>
+                        {syncStatus === 'syncing' ? 'Synchroniseren...' : syncStatus === 'error' ? 'Sync fout' : 'Cloud sync actief'}
                       </div>
                     </div>
+                    <button
+                      onClick={forceSync}
+                      className={`p-1.5 hover:bg-blue-50 rounded-lg transition-colors border-0 outline-none bg-transparent ${syncStatus === 'syncing' ? 'text-blue-500 animate-spin' : 'text-gray-400 hover:text-blue-500'}`}
+                      title="Synchroniseer nu"
+                      disabled={syncStatus === 'syncing'}
+                    >
+                      <RefreshCw size={16} />
+                    </button>
                     <button
                       onClick={handleLogout}
                       className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors border-0 outline-none bg-transparent"

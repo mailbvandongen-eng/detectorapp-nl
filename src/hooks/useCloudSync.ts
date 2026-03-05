@@ -17,6 +17,9 @@ import { useRouteRecordingStore, type RecordedRoute } from '../store/routeRecord
 // Debounce time for syncing (ms)
 const SYNC_DEBOUNCE = 2000
 
+// Sync status type
+export type SyncStatus = 'idle' | 'syncing' | 'synced' | 'error'
+
 // Wait for all stores to hydrate from localStorage
 async function waitForHydration(): Promise<void> {
   const stores = [
@@ -46,12 +49,18 @@ export function useCloudSync() {
   const { vondsten, clearAll: clearVondsten } = useLocalVondstenStore()
   const { savedRoutes } = useRouteRecordingStore()
 
-  const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  // Separate timeout refs for each data type to prevent overwrites
+  const layersSyncTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const vondstenSyncTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const routesSyncTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isInitialLoadRef = useRef(true)
   const lastSyncedLayersRef = useRef<string>('')
   const lastSyncedVondstenRef = useRef<string>('')
   const lastSyncedRoutesRef = useRef<string>('')
   const [isHydrated, setIsHydrated] = useState(false)
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle')
+  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
+  const unsubscribeRef = useRef<(() => void) | null>(null)
 
   // Wait for hydration on mount
   useEffect(() => {
@@ -65,6 +74,7 @@ export function useCloudSync() {
   const syncLayersToCloud = useCallback(async (layersData: CustomPointLayer[]) => {
     if (!user) return
 
+    setSyncStatus('syncing')
     try {
       const userDocRef = doc(db, 'users', user.uid)
       await setDoc(userDocRef, {
@@ -73,8 +83,11 @@ export function useCloudSync() {
       }, { merge: true })
 
       console.log('☁️ Lagen gesynchroniseerd naar cloud')
+      setSyncStatus('synced')
+      setLastSyncTime(new Date())
     } catch (error) {
       console.error('❌ Fout bij synchroniseren lagen:', error)
+      setSyncStatus('error')
     }
   }, [user])
 
@@ -82,6 +95,7 @@ export function useCloudSync() {
   const syncVondstenToCloud = useCallback(async (vondstenData: LocalVondst[]) => {
     if (!user) return
 
+    setSyncStatus('syncing')
     try {
       const userDocRef = doc(db, 'users', user.uid)
       await setDoc(userDocRef, {
@@ -90,8 +104,11 @@ export function useCloudSync() {
       }, { merge: true })
 
       console.log('☁️ Vondsten gesynchroniseerd naar cloud')
+      setSyncStatus('synced')
+      setLastSyncTime(new Date())
     } catch (error) {
       console.error('❌ Fout bij synchroniseren vondsten:', error)
+      setSyncStatus('error')
     }
   }, [user])
 
@@ -99,6 +116,7 @@ export function useCloudSync() {
   const syncRoutesToCloud = useCallback(async (routesData: RecordedRoute[]) => {
     if (!user) return
 
+    setSyncStatus('syncing')
     try {
       const userDocRef = doc(db, 'users', user.uid)
       await setDoc(userDocRef, {
@@ -107,8 +125,11 @@ export function useCloudSync() {
       }, { merge: true })
 
       console.log('☁️ Routes gesynchroniseerd naar cloud')
+      setSyncStatus('synced')
+      setLastSyncTime(new Date())
     } catch (error) {
       console.error('❌ Fout bij synchroniseren routes:', error)
+      setSyncStatus('error')
     }
   }, [user])
 
@@ -234,22 +255,22 @@ export function useCloudSync() {
     if (layersJson === lastSyncedLayersRef.current) return
 
     // Clear existing timeout
-    if (syncTimeoutRef.current) {
-      clearTimeout(syncTimeoutRef.current)
+    if (layersSyncTimeoutRef.current) {
+      clearTimeout(layersSyncTimeoutRef.current)
     }
 
     // Debounce sync
-    syncTimeoutRef.current = setTimeout(() => {
+    layersSyncTimeoutRef.current = setTimeout(() => {
       lastSyncedLayersRef.current = layersJson
       syncLayersToCloud(layers)
     }, SYNC_DEBOUNCE)
 
     return () => {
-      if (syncTimeoutRef.current) {
-        clearTimeout(syncTimeoutRef.current)
+      if (layersSyncTimeoutRef.current) {
+        clearTimeout(layersSyncTimeoutRef.current)
       }
     }
-  }, [user, layers, syncLayersToCloud])
+  }, [user, layers, syncLayersToCloud, isHydrated])
 
   // Sync vondsten when they change (debounced)
   useEffect(() => {
@@ -261,22 +282,22 @@ export function useCloudSync() {
     if (vondstenJson === lastSyncedVondstenRef.current) return
 
     // Clear existing timeout
-    if (syncTimeoutRef.current) {
-      clearTimeout(syncTimeoutRef.current)
+    if (vondstenSyncTimeoutRef.current) {
+      clearTimeout(vondstenSyncTimeoutRef.current)
     }
 
     // Debounce sync
-    syncTimeoutRef.current = setTimeout(() => {
+    vondstenSyncTimeoutRef.current = setTimeout(() => {
       lastSyncedVondstenRef.current = vondstenJson
       syncVondstenToCloud(vondsten)
     }, SYNC_DEBOUNCE)
 
     return () => {
-      if (syncTimeoutRef.current) {
-        clearTimeout(syncTimeoutRef.current)
+      if (vondstenSyncTimeoutRef.current) {
+        clearTimeout(vondstenSyncTimeoutRef.current)
       }
     }
-  }, [user, vondsten, syncVondstenToCloud])
+  }, [user, vondsten, syncVondstenToCloud, isHydrated])
 
   // Sync routes when they change (debounced)
   useEffect(() => {
@@ -288,27 +309,86 @@ export function useCloudSync() {
     if (routesJson === lastSyncedRoutesRef.current) return
 
     // Clear existing timeout
-    if (syncTimeoutRef.current) {
-      clearTimeout(syncTimeoutRef.current)
+    if (routesSyncTimeoutRef.current) {
+      clearTimeout(routesSyncTimeoutRef.current)
     }
 
     // Debounce sync
-    syncTimeoutRef.current = setTimeout(() => {
+    routesSyncTimeoutRef.current = setTimeout(() => {
       lastSyncedRoutesRef.current = routesJson
       syncRoutesToCloud(savedRoutes)
     }, SYNC_DEBOUNCE)
 
     return () => {
-      if (syncTimeoutRef.current) {
-        clearTimeout(syncTimeoutRef.current)
+      if (routesSyncTimeoutRef.current) {
+        clearTimeout(routesSyncTimeoutRef.current)
       }
     }
-  }, [user, savedRoutes, syncRoutesToCloud])
+  }, [user, savedRoutes, syncRoutesToCloud, isHydrated])
+
+  // Force sync all data immediately (bypasses debounce)
+  const forceSync = useCallback(async () => {
+    if (!user) return
+
+    console.log('🔄 Forceer synchronisatie gestart...')
+    setSyncStatus('syncing')
+
+    try {
+      // Get current state
+      const currentLayers = useCustomPointLayerStore.getState().layers
+      const currentVondsten = useLocalVondstenStore.getState().vondsten
+      const currentRoutes = useRouteRecordingStore.getState().savedRoutes
+
+      // Sync all data
+      await Promise.all([
+        syncLayersToCloud(currentLayers),
+        syncVondstenToCloud(currentVondsten),
+        syncRoutesToCloud(currentRoutes)
+      ])
+
+      // Update refs
+      lastSyncedLayersRef.current = JSON.stringify(currentLayers)
+      lastSyncedVondstenRef.current = JSON.stringify(currentVondsten)
+      lastSyncedRoutesRef.current = JSON.stringify(currentRoutes)
+
+      console.log('✅ Forceer synchronisatie voltooid')
+      setSyncStatus('synced')
+      setLastSyncTime(new Date())
+    } catch (error) {
+      console.error('❌ Forceer synchronisatie mislukt:', error)
+      setSyncStatus('error')
+    }
+  }, [user, syncLayersToCloud, syncVondstenToCloud, syncRoutesToCloud])
+
+  // Reload data from cloud (useful after login on new device)
+  const reloadFromCloud = useCallback(async () => {
+    if (!user) return
+
+    console.log('🔄 Herladen van cloud gestart...')
+    setSyncStatus('syncing')
+    isInitialLoadRef.current = true
+    await loadFromCloud()
+    setSyncStatus('synced')
+    setLastSyncTime(new Date())
+  }, [user, loadFromCloud])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (unsubscribeRef.current) {
+        unsubscribeRef.current()
+      }
+    }
+  }, [])
 
   return {
     isLoggedIn: !!user,
+    syncStatus,
+    lastSyncTime,
     syncLayersToCloud,
     syncVondstenToCloud,
-    syncRoutesToCloud
+    syncRoutesToCloud,
+    forceSync,
+    reloadFromCloud
   }
 }

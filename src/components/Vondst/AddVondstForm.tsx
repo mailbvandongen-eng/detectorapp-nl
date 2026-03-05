@@ -10,6 +10,7 @@ import { useRouteRecordingStore } from '../../store/routeRecordingStore'
 import { useSettingsStore } from '../../store/settingsStore'
 import { announceVondst } from '../../utils/voiceFeedback'
 import { savePhoto, getThumbnailUrl, getPhoto } from '../../lib/photoStorage'
+import { isCommercialMode } from '../../config/buildMode'
 
 interface Props {
   onClose: () => void
@@ -405,36 +406,38 @@ export function AddVondstForm({ onClose, initialLocation }: Props) {
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
           <div className="p-5 space-y-4">
 
-            {/* Photo section */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Foto</label>
-              {photoPreview ? (
-                <div className="relative">
-                  <img
-                    src={photoPreview}
-                    alt="Vondst"
-                    className="w-full h-40 object-cover rounded-xl"
-                  />
+            {/* Photo section - verbergen in commercial */}
+            {!isCommercialMode() && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Foto</label>
+                {photoPreview ? (
+                  <div className="relative">
+                    <img
+                      src={photoPreview}
+                      alt="Vondst"
+                      className="w-full h-40 object-cover rounded-xl"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemovePhoto}
+                      className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors border-0 outline-none shadow-lg"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ) : (
                   <button
                     type="button"
-                    onClick={handleRemovePhoto}
-                    className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors border-0 outline-none shadow-lg"
+                    onClick={handleTakePhoto}
+                    className="w-full h-32 bg-gray-50 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-gray-100 transition-colors text-gray-500 border-2 border-dashed border-gray-200"
+                    style={{ outline: 'none' }}
                   >
-                    <Trash2 size={16} />
+                    <Camera size={32} />
+                    <span className="text-sm">Maak een foto</span>
                   </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleTakePhoto}
-                  className="w-full h-32 bg-gray-50 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-gray-100 transition-colors text-gray-500 border-2 border-dashed border-gray-200"
-                  style={{ outline: 'none' }}
-                >
-                  <Camera size={32} />
-                  <span className="text-sm">Maak een foto</span>
-                </button>
-              )}
-            </div>
+                )}
+              </div>
+            )}
 
             {/* Location */}
             <div>

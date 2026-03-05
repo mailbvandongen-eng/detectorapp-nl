@@ -94,7 +94,7 @@ function OpenLayersGpsMarker() {
       source: new VectorSource({
         features: [accuracyRef.current, markerRef.current]
       }),
-      zIndex: 1000
+      zIndex: 10000 // Very high z-index to ensure GPS is ALWAYS on top of all layers
     })
 
     map.addLayer(layerRef.current)

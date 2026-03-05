@@ -273,6 +273,8 @@ export function PresetButtons() {
                 {presets.map(preset => {
                   const IconComponent = ICON_MAP[preset.icon] || Layers
                   const isSaved = savedPresetId === preset.id
+                  // Get the active color for this icon, fallback to blue
+                  const iconColor = ICON_COLORS_ACTIVE[preset.icon] || 'text-blue-500'
 
                   return (
                     <button
@@ -282,8 +284,8 @@ export function PresetButtons() {
                       style={{ fontSize: `${baseFontSize}px` }}
                       data-icon={preset.icon}
                     >
-                      {/* Icon: gray by default, colored on hover via CSS */}
-                      <IconComponent size={14} className="preset-icon flex-shrink-0 text-gray-400 transition-colors" />
+                      {/* Icon: always colored */}
+                      <IconComponent size={14} className={`preset-icon flex-shrink-0 ${iconColor} transition-colors`} />
                       <span className="text-gray-700 truncate flex-1">{preset.name}</span>
                       {isSaved ? (
                         <span className="p-1 flex-shrink-0">

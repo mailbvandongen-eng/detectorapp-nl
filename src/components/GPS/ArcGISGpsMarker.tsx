@@ -91,14 +91,30 @@ export function ArcGISGpsMarker() {
       listMode: 'hide' // Don't show in layer list
     })
 
-    // Add to map at high z-index
-    arcgisView.map.add(gpsLayer)
+    // Add to map at very high index to ensure it's always on top
+    // Use a high index (999) to place above all other layers
+    arcgisView.map.add(gpsLayer, 999)
     layerRef.current = gpsLayer
     isInitialized.current = true
+
+    // Re-order to top whenever new layers are added
+    const reorderToTop = () => {
+      if (layerRef.current && arcgisView?.map) {
+        const totalLayers = arcgisView.map.layers.length
+        arcgisView.map.reorder(layerRef.current, totalLayers - 1)
+      }
+    }
+
+    // Watch for layer changes and re-order GPS to top
+    const layerHandle = arcgisView.map.layers.on('change', reorderToTop)
 
     engineLog('ArcGIS GPS layer initialized')
 
     return () => {
+      // Remove layer change watcher
+      if (layerHandle) {
+        layerHandle.remove()
+      }
       if (layerRef.current && arcgisView?.map) {
         arcgisView.map.remove(layerRef.current)
         layerRef.current = null

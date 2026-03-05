@@ -139,8 +139,13 @@ function App() {
         <SettingsPanel />
         <CreateLayerModal />
         <AddPointModal />
-        <LayerManagerModal />
-        <LayerDashboard />
+        {/* Mijn lagen beheren en dashboard - verbergen in commercial */}
+        {!isCommercial && (
+          <>
+            <LayerManagerModal />
+            <LayerDashboard />
+          </>
+        )}
         {!isCommercial && (
           <RouteDashboard
             isOpen={routeDashboardOpen}

@@ -5,6 +5,7 @@ import { X, Settings, Map, Navigation, Smartphone, Layers, Plus, Trash2, MapPin,
 const BUG_REPORT_URL = 'https://forms.gle/R5LCk11Bzu5XrkBj8'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore, useSettingsStore, usePresetStore, useSubscriptionStore } from '../../store'
+import { isCommercialMode } from '../../config/buildMode'
 import { useLocalVondstenStore } from '../../store/localVondstenStore'
 import { useCustomLayerStore } from '../../store/customLayerStore'
 import { useCustomPointLayerStore } from '../../store/customPointLayerStore'
@@ -250,72 +251,74 @@ export function SettingsPanel() {
 
               {activeTab === 'lagen' && (
                 <>
-                  {/* Mijn lagen (CustomPointLayers) */}
-                  <Section title="Mijn lagen" icon={<Layers size={16} />} isOwn>
-                    <div className="space-y-1">
-                      {customPointLayers.filter(l => !l.archived).length === 0 ? (
-                        <p className="text-gray-500 py-1" style={{ fontSize: '0.75em' }}>
-                          Nog geen eigen lagen aangemaakt.
-                        </p>
-                      ) : (
-                        customPointLayers.filter(l => !l.archived).map(layer => (
-                          <div key={layer.id} className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-50 rounded">
-                            {renamingLayerId === layer.id ? (
-                              <input
-                                type="text"
-                                value={renameLayerValue}
-                                onChange={(e) => setRenameLayerValue(e.target.value)}
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter') {
+                  {/* Mijn lagen (CustomPointLayers) - verbergen in commercial */}
+                  {!isCommercialMode() && (
+                    <Section title="Mijn lagen" icon={<Layers size={16} />} isOwn>
+                      <div className="space-y-1">
+                        {customPointLayers.filter(l => !l.archived).length === 0 ? (
+                          <p className="text-gray-500 py-1" style={{ fontSize: '0.75em' }}>
+                            Nog geen eigen lagen aangemaakt.
+                          </p>
+                        ) : (
+                          customPointLayers.filter(l => !l.archived).map(layer => (
+                            <div key={layer.id} className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-50 rounded">
+                              {renamingLayerId === layer.id ? (
+                                <input
+                                  type="text"
+                                  value={renameLayerValue}
+                                  onChange={(e) => setRenameLayerValue(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      if (renameLayerValue.trim()) {
+                                        updateCustomPointLayer(layer.id, { name: renameLayerValue.trim() })
+                                      }
+                                      setRenamingLayerId(null)
+                                    } else if (e.key === 'Escape') {
+                                      setRenamingLayerId(null)
+                                    }
+                                  }}
+                                  onBlur={() => {
                                     if (renameLayerValue.trim()) {
                                       updateCustomPointLayer(layer.id, { name: renameLayerValue.trim() })
                                     }
                                     setRenamingLayerId(null)
-                                  } else if (e.key === 'Escape') {
-                                    setRenamingLayerId(null)
-                                  }
-                                }}
-                                onBlur={() => {
-                                  if (renameLayerValue.trim()) {
-                                    updateCustomPointLayer(layer.id, { name: renameLayerValue.trim() })
-                                  }
-                                  setRenamingLayerId(null)
-                                }}
-                                autoFocus
-                                className="flex-1 px-1.5 py-0.5 text-sm bg-orange-50 rounded outline-none focus:ring-1 focus:ring-orange-400"
-                              />
-                            ) : (
-                              <>
-                                <span className="flex-1 text-sm text-gray-700 truncate">{layer.name}</span>
-                                <span className="text-xs text-gray-400">{layer.points.length} punten</span>
-                                <button
-                                  onClick={() => {
-                                    setRenamingLayerId(layer.id)
-                                    setRenameLayerValue(layer.name)
                                   }}
-                                  className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none bg-transparent"
-                                  title="Naam bewerken"
-                                >
-                                  <Pencil size={12} />
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        ))
-                      )}
-                      <button
-                        onClick={() => {
-                          openLayerManagerModal()
-                          toggleSettingsPanel()
-                        }}
-                        className="flex items-center gap-2 mt-2 px-2 py-1.5 text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none w-full"
-                        style={{ fontSize: '0.9em' }}
-                      >
-                        <Settings size={14} />
-                        <span>Lagen beheren</span>
-                      </button>
-                    </div>
-                  </Section>
+                                  autoFocus
+                                  className="flex-1 px-1.5 py-0.5 text-sm bg-orange-50 rounded outline-none focus:ring-1 focus:ring-orange-400"
+                                />
+                              ) : (
+                                <>
+                                  <span className="flex-1 text-sm text-gray-700 truncate">{layer.name}</span>
+                                  <span className="text-xs text-gray-400">{layer.points.length} punten</span>
+                                  <button
+                                    onClick={() => {
+                                      setRenamingLayerId(layer.id)
+                                      setRenameLayerValue(layer.name)
+                                    }}
+                                    className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors border-0 outline-none bg-transparent"
+                                    title="Naam bewerken"
+                                  >
+                                    <Pencil size={12} />
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          ))
+                        )}
+                        <button
+                          onClick={() => {
+                            openLayerManagerModal()
+                            toggleSettingsPanel()
+                          }}
+                          className="flex items-center gap-2 mt-2 px-2 py-1.5 text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none w-full"
+                          style={{ fontSize: '0.9em' }}
+                        >
+                          <Settings size={14} />
+                          <span>Lagen beheren</span>
+                        </button>
+                      </div>
+                    </Section>
+                  )}
 
                   {/* Lagen importeren */}
                   <Section title="Lagen importeren" icon={<Upload size={16} />}>
@@ -464,15 +467,17 @@ export function SettingsPanel() {
                     <p className="text-gray-500 py-1" style={{ fontSize: '0.75em' }}>
                       Vondsten worden altijd lokaal op dit apparaat opgeslagen.
                     </p>
-                    {/* Dashboard button */}
-                    <button
-                      onClick={toggleVondstDashboard}
-                      className="flex items-center gap-2 mt-2 px-2 py-1.5 text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none w-full"
-                      style={{ fontSize: '0.9em' }}
-                    >
-                      <BarChart3 size={14} />
-                      <span>Dashboard ({vondsten.length} vondsten)</span>
-                    </button>
+                    {/* Dashboard button - verbergen in commercial (Te doen/Voltooid/Overgeslagen) */}
+                    {!isCommercialMode() && (
+                      <button
+                        onClick={toggleVondstDashboard}
+                        className="flex items-center gap-2 mt-2 px-2 py-1.5 text-orange-600 hover:bg-orange-50 rounded transition-colors border-0 outline-none w-full"
+                        style={{ fontSize: '0.9em' }}
+                      >
+                        <BarChart3 size={14} />
+                        <span>Dashboard ({vondsten.length} vondsten)</span>
+                      </button>
+                    )}
                     <ExportButton />
                   </Section>
                 </>
@@ -508,11 +513,13 @@ export function SettingsPanel() {
       )}
     </AnimatePresence>
 
-    {/* Vondsten Dashboard */}
-    <VondstenDashboard
-      isOpen={vondstDashboardOpen}
-      onClose={toggleVondstDashboard}
-    />
+    {/* Vondsten Dashboard - verbergen in commercial */}
+    {!isCommercialMode() && (
+      <VondstenDashboard
+        isOpen={vondstDashboardOpen}
+        onClose={toggleVondstDashboard}
+      />
+    )}
 
     {/* Import Layer Modal */}
     <ImportLayerModal
