@@ -148,8 +148,9 @@ function OpenLayersGpsMarker() {
       accuracyRef.current.setStyle(new Style({}))
     }
 
-    // First GPS fix: jump to position (syncs both ArcGIS and OL)
+    // First GPS fix: jump to position and zoom to street level
     if (firstFix && tracking && position) {
+      // Zoom level 17 = street/neighborhood level
       goTo({ center: [position.lng, position.lat], zoom: 17, animate: false })
       resetFirstFix()
       return

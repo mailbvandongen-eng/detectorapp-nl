@@ -184,14 +184,26 @@ export function ArcGISGpsMarker() {
     }
   }, [position, accuracy, tracking, smoothHeading, showAccuracyCircle, createArrowSymbol])
 
-  // Handle first fix - center map on position
+  // Handle first fix - center and zoom map on position
   useEffect(() => {
     if (!arcgisView || !position || !firstFix || !tracking) return
 
-    engineLog('GPS first fix - centering map')
-    goTo({ center: [position.lng, position.lat], zoom: 17, animate: false })
+    // Zoom to street level (17-18) on first GPS fix
+    engineLog('GPS first fix - centering and zooming to position')
+
+    // Use ArcGIS goTo directly for more reliable zoom
+    arcgisView.goTo({
+      center: [position.lng, position.lat],
+      zoom: 17
+    }, {
+      animate: false,
+      duration: 0
+    }).catch(() => {
+      // goTo can be cancelled, ignore errors
+    })
+
     resetFirstFix()
-  }, [arcgisView, position, firstFix, tracking, goTo, resetFirstFix])
+  }, [arcgisView, position, firstFix, tracking, resetFirstFix])
 
   // Center on user when tracking
   useEffect(() => {
