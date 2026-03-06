@@ -15,8 +15,8 @@ type EsriTileConfig = { type: 'esritile'; url: string; copyright: string }
 type WebTileConfig = { type: 'webtile'; url: string; subDomains?: string[]; copyright: string; maxScale?: number }
 type BasemapConfig = EsriTileConfig | WebTileConfig
 
-// Reference layer URL for labels overlay (Esri World Reference Overlay)
-const ESRI_REFERENCE_LABELS = 'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer'
+// CartoDB labels URL - werkt tot straatniveau (beter dan Esri World Reference Overlay)
+const CARTO_LABELS_URL = 'https://{subDomain}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{level}/{col}/{row}.png'
 
 // ArcGIS base layer configurations - using public Esri tile services (no special API key needed)
 // NOTE: Labels overlay is now handled separately via setLabelsOverlay()
@@ -69,7 +69,7 @@ interface MapState {
   arcgisInitialized: boolean
 
   // Labels overlay layer (separate from basemap)
-  labelsLayer: TileLayer | null
+  labelsLayer: WebTileLayer | null
 
   // View state (unified voor beide engines)
   center: [number, number] // [lon, lat] in WGS84
@@ -306,10 +306,13 @@ export const useMapStore = create<MapState>()(
 
       // Create labels layer if it doesn't exist
       if (!state.labelsLayer) {
-        const labelsLayer = new EsriTileLayer({
-          url: ESRI_REFERENCE_LABELS,
+        // Gebruik CartoDB labels - werkt tot straatniveau (beter dan Esri)
+        const labelsLayer = new WebTileLayer({
+          urlTemplate: CARTO_LABELS_URL,
+          subDomains: ['a', 'b', 'c', 'd'],
           title: 'Labels Overlay',
-          visible: visible
+          visible: visible,
+          copyright: '© OpenStreetMap contributors, © CARTO'
         })
 
         // Add to map at the top
