@@ -1,2 +1,0 @@
-import{g8 as s,fM as i}from"./index-C62oCYpJ.js";import{p}from"./queryTopFeatures-DUCnaL-i.js";import n from"./TopFeaturesQuery-DqfrWUum.js";async function x(r,o,t,a){const f=s(r),m={...a},{data:e}=await p(f,n.from(o),t,m);return i.fromJSON(e)}export{x as executeTopFeaturesQuery};
-//# sourceMappingURL=executeTopFeaturesQuery-D_ZJM0dG.js.map
