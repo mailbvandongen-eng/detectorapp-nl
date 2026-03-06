@@ -47,9 +47,30 @@ function App() {
 
   // Fetch passive position once on app start (shows blue dot)
   const fetchPassivePosition = useGPSStore(state => state.fetchPassivePosition)
+  const passivePosition = useGPSStore(state => state.position)
+  const gpsTracking = useGPSStore(state => state.tracking)
   useEffect(() => {
     fetchPassivePosition()
   }, [fetchPassivePosition])
+
+  // Retry passive position a few times on startup.
+  // Some browsers/devices resolve geolocation late after initial app load.
+  useEffect(() => {
+    if (passivePosition || gpsTracking) return
+
+    let attempts = 0
+    const maxAttempts = 6
+    const timer = setInterval(() => {
+      if (attempts >= maxAttempts) {
+        clearInterval(timer)
+        return
+      }
+      attempts += 1
+      fetchPassivePosition()
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [passivePosition, gpsTracking, fetchPassivePosition])
 
   // Get font scale setting (80-150%)
   const fontScale = useSettingsStore(state => state.fontScale)

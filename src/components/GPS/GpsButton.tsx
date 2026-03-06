@@ -38,6 +38,14 @@ export function GpsButton() {
 
   const isHeadingUp = tracking && navigationMode === 'headingUp'
 
+  const jumpToStreetLevel = (center?: [number, number]) => {
+    if (center) {
+      goTo({ center, zoom: 17, animate: false })
+      return
+    }
+    goTo({ zoom: 17, animate: false })
+  }
+
   const handleClick = async () => {
     if (!tracking) {
       // OFF → TRACKING (north-up)
@@ -46,9 +54,37 @@ export function GpsButton() {
       start()
       setNavigationMode('free')
 
-      // If passive position already exists, jump to street level immediately
+      // Always zoom to street level on first GPS tap.
+      // Use passive position if available, otherwise request one quick fix.
       if (position) {
-        goTo({ center: [position.lng, position.lat], zoom: 17, animate: false })
+        jumpToStreetLevel([position.lng, position.lat])
+      } else if (navigator.geolocation) {
+        // Fallback watch: more reliable than one-shot getCurrentPosition on some devices.
+        let settled = false
+        const watchId = navigator.geolocation.watchPosition(
+          (pos) => {
+            if (settled) return
+            settled = true
+            jumpToStreetLevel([pos.coords.longitude, pos.coords.latitude])
+            navigator.geolocation.clearWatch(watchId)
+          },
+          () => {
+            if (settled) return
+            settled = true
+            // Keep zoom behavior even when first fix is delayed/blocked.
+            jumpToStreetLevel()
+            navigator.geolocation.clearWatch(watchId)
+          },
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 12000 }
+        )
+
+        setTimeout(() => {
+          if (!settled) {
+            settled = true
+            jumpToStreetLevel()
+            navigator.geolocation.clearWatch(watchId)
+          }
+        }, 13000)
       }
     } else if (navigationMode === 'free') {
       // TRACKING → HEADING-UP
