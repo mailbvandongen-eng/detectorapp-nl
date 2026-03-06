@@ -1,2 +1,0 @@
-import{ip as r,iq as i}from"./index-4micIQpC.js";import{n as s}from"./PointSnappingHint-DrUAr-p2.js";class a extends r{constructor(t){super({...t,constraint:new i(t.targetPoint)})}get hints(){return[new s(this.targetPoint,this.isDraped,this.domain)]}}export{a as r};
-//# sourceMappingURL=VertexSnappingCandidate-H9EBWKrC.js.map
