@@ -127,9 +127,6 @@ export function PresetButtons() {
       setLayerVisibility(layer, layer === 'Esri Licht')
     })
 
-    // Zet standaard overlay aan: AMK Monumenten
-    setLayerVisibility('AMK Monumenten', true)
-
     // Reset default background in settings (persisted to localStorage)
     useSettingsStore.getState().setDefaultBackground('Esri Licht')
 
@@ -150,7 +147,7 @@ export function PresetButtons() {
       })
     })
 
-    console.log('Reset: Esri Licht + AMK Monumenten, GPS uit, zoom naar heel Nederland')
+    console.log('Reset: Esri Licht, alle lagen uit, GPS uit, zoom naar heel Nederland')
   }
 
   const handleApplyPreset = (id: string) => {

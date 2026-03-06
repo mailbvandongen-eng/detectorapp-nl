@@ -512,26 +512,11 @@ export function MapContainer() {
     console.log('🔄 Changing to basemap:', bgName)
     arcgisView.map.basemap = createArcGISBasemap(bgName)
 
-    // Adjust zoom constraints for historical maps
-    // maxScale = hoe ver je kunt INZOOMEN (lage waarde = meer detail)
-    // minScale = hoe ver je kunt UITZOOMEN (hoge waarde = heel land zichtbaar)
-    const isHistoricalMap = bgName === 'TMK 1850' || bgName === 'Bonnebladen 1900'
-    if (isHistoricalMap) {
-      arcgisView.constraints = {
-        ...arcgisView.constraints,
-        maxScale: 35000,  // Voorkom inzoomen voorbij level 14 (betaalniveau)
-        minScale: 0       // Geen beperking op uitzoomen - heel NL mogelijk
-      }
-    } else {
-      // Reset constraints voor normale kaarten
-      arcgisView.constraints = {
-        ...arcgisView.constraints,
-        maxScale: 0,      // Geen inzoom beperking
-        minScale: 0       // Geen uitzoom beperking
-      }
-    }
+    // GEEN view constraints - de WebTileLayer maxScale voorkomt betaalde tile requests
+    // View constraints blokkeren het hele zoomen inclusief labels overlay
+    // De historische kaart wordt gewoon leeg/geschaald bij verder inzoomen
 
-    engineLog('Basemap changed to:', bgName, isHistoricalMap ? '(zoom limited to 14)' : '')
+    engineLog('Basemap changed to:', bgName)
   }, [defaultBackground, arcgisReady, arcgisView, arcgisIsPrimary, arcgisBaseLayers, createArcGISBasemap])
 
   // Apply default background setting on first load (only for OL base layers)
