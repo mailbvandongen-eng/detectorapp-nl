@@ -57,7 +57,7 @@ export const useLayerStore = create<LayerState>()(
       'Grafheuvels': false,
       'Terpen': false,
       // Archeologische lagen
-      'AMK Monumenten': true,
+      'AMK Monumenten': false,
       'AMK Romeins': false,
       'AMK Steentijd': false,
       'AMK Vroege ME': false,
