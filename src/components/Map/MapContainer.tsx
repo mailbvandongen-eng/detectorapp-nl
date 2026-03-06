@@ -512,12 +512,23 @@ export function MapContainer() {
     console.log('🔄 Changing to basemap:', bgName)
     arcgisView.map.basemap = createArcGISBasemap(bgName)
 
-    // Adjust zoom constraints for historical maps (max zoom 14 = minScale ~35000)
+    // Adjust zoom constraints for historical maps
+    // maxScale = hoe ver je kunt INZOOMEN (lage waarde = meer detail)
+    // minScale = hoe ver je kunt UITZOOMEN (hoge waarde = heel land zichtbaar)
     const isHistoricalMap = bgName === 'TMK 1850' || bgName === 'Bonnebladen 1900'
-    arcgisView.constraints = {
-      ...arcgisView.constraints,
-      minScale: isHistoricalMap ? 35000 : undefined,  // Prevent zooming past level 14
-      maxZoom: isHistoricalMap ? 14 : 19
+    if (isHistoricalMap) {
+      arcgisView.constraints = {
+        ...arcgisView.constraints,
+        maxScale: 35000,  // Voorkom inzoomen voorbij level 14 (betaalniveau)
+        minScale: 0       // Geen beperking op uitzoomen - heel NL mogelijk
+      }
+    } else {
+      // Reset constraints voor normale kaarten
+      arcgisView.constraints = {
+        ...arcgisView.constraints,
+        maxScale: 0,      // Geen inzoom beperking
+        minScale: 0       // Geen uitzoom beperking
+      }
     }
 
     engineLog('Basemap changed to:', bgName, isHistoricalMap ? '(zoom limited to 14)' : '')
