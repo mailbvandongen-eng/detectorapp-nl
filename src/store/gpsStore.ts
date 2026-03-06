@@ -84,6 +84,7 @@ export const useGPSStore = create<GPSState>()(
     startTracking: () => {
       set(state => {
         state.tracking = true
+        state.firstFix = true // Reset zodat we naar straatniveau zoomen bij nieuwe GPS sessie
       })
     },
 
