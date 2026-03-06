@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { LocateFixed, Navigation } from 'lucide-react'
 import { useGPS } from '../../hooks/useGPS'
+import { useMapStore } from '../../store'
 import { useGPSStore } from '../../store/gpsStore'
 import { isCommercialMode } from '../../config/buildMode'
 
@@ -29,6 +30,8 @@ async function requestOrientationPermission(): Promise<boolean> {
  */
 export function GpsButton() {
   const { tracking, start, stop } = useGPS()
+  const goTo = useMapStore(state => state.goTo)
+  const position = useGPSStore(state => state.position)
   const navigationMode = useGPSStore(state => state.navigationMode)
   const setNavigationMode = useGPSStore(state => state.setNavigationMode)
   const isCommercial = isCommercialMode()
@@ -42,6 +45,11 @@ export function GpsButton() {
       await requestOrientationPermission()
       start()
       setNavigationMode('free')
+
+      // If passive position already exists, jump to street level immediately
+      if (position) {
+        goTo({ center: [position.lng, position.lat], zoom: 17, animate: false })
+      }
     } else if (navigationMode === 'free') {
       // TRACKING → HEADING-UP
       setNavigationMode('headingUp')

@@ -5,7 +5,7 @@
  * Gebruikt GraphicsLayer met Point graphics voor marker en accuracy circle.
  */
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer'
 import Graphic from '@arcgis/core/Graphic'
 import Point from '@arcgis/core/geometry/Point'
@@ -62,6 +62,7 @@ export function ArcGISGpsMarker() {
   const centerOnUser = useGPSStore(state => state.config.centerOnUser)
 
   const showAccuracyCircle = useSettingsStore(state => state.showAccuracyCircle)
+  const [layerReady, setLayerReady] = useState(false)
 
   // Refs for graphics and layer
   const layerRef = useRef<GraphicsLayer | null>(null)
@@ -96,6 +97,7 @@ export function ArcGISGpsMarker() {
     arcgisView.map.add(gpsLayer, 999)
     layerRef.current = gpsLayer
     isInitialized.current = true
+    setLayerReady(true)
 
     // Re-order to top whenever new layers are added
     const reorderToTop = () => {
@@ -119,6 +121,7 @@ export function ArcGISGpsMarker() {
         arcgisView.map.remove(layerRef.current)
         layerRef.current = null
         isInitialized.current = false
+        setLayerReady(false)
         engineLog('ArcGIS GPS layer removed')
       }
     }
@@ -126,7 +129,7 @@ export function ArcGISGpsMarker() {
 
   // Update position and marker
   useEffect(() => {
-    if (!layerRef.current || !position) return
+    if (!layerReady || !layerRef.current || !position) return
 
     const point = new Point({
       longitude: position.lng,
@@ -182,7 +185,7 @@ export function ArcGISGpsMarker() {
       layerRef.current.add(markerGraphic)
       markerGraphicRef.current = markerGraphic
     }
-  }, [position, accuracy, tracking, smoothHeading, showAccuracyCircle, createArrowSymbol])
+  }, [layerReady, position, accuracy, tracking, smoothHeading, showAccuracyCircle, createArrowSymbol])
 
   // Handle first fix - center and zoom map on position
   useEffect(() => {

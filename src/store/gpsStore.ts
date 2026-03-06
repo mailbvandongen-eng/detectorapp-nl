@@ -75,9 +75,46 @@ export const useGPSStore = create<GPSState>()(
           })
         },
         () => {
-          // Silently fail - passive position is not critical
+          // Fallback for devices where getCurrentPosition returns too slowly on startup.
+          // We listen briefly for one watchPosition update and then stop.
+          let passiveWatchId: number | null = null
+          let fallbackTimeoutId: ReturnType<typeof setTimeout> | null = null
+
+          const clearFallback = () => {
+            if (passiveWatchId !== null) {
+              navigator.geolocation.clearWatch(passiveWatchId)
+              passiveWatchId = null
+            }
+            if (fallbackTimeoutId !== null) {
+              clearTimeout(fallbackTimeoutId)
+              fallbackTimeoutId = null
+            }
+          }
+
+          passiveWatchId = navigator.geolocation.watchPosition(
+            (watchPos) => {
+              set(state => {
+                if (!state.tracking) {
+                  state.position = {
+                    lat: watchPos.coords.latitude,
+                    lng: watchPos.coords.longitude
+                  }
+                  state.accuracy = watchPos.coords.accuracy
+                }
+              })
+              clearFallback()
+            },
+            () => {
+              clearFallback()
+            },
+            { enableHighAccuracy: false, maximumAge: 0, timeout: 20000 }
+          )
+
+          fallbackTimeoutId = setTimeout(() => {
+            clearFallback()
+          }, 25000)
         },
-        { enableHighAccuracy: false, maximumAge: 60000, timeout: 10000 }
+        { enableHighAccuracy: false, maximumAge: 300000, timeout: 15000 }
       )
     },
 
