@@ -1,6 +1,103 @@
 # Detectorapp-NL - Sessienotities
 
-## Huidige versie: 2.32.47
+## Huidige versie: 2.33.15
+
+---
+
+# 📋 RECENTE SESSIE - maart 2026
+
+## Wat is er gewijzigd (v2.33.9 - v2.33.15)
+
+### 1. Default Lagen Aangepast
+**v2.33.9** - AMK Monumenten staat nu standaard UIT bij opstarten.
+- `src/store/layerStore.ts`: `'AMK Monumenten': false`
+- Reset knop zet nu alleen "Esri Licht" aan, geen andere lagen
+
+### 2. Preset Button Icoon Kleuren
+**v2.33.10** - Iconen in het preset-menu zijn nu altijd gekleurd (niet alleen bij hover).
+- CSS in `src/style.css` verwijderd die iconen standaard grijs maakte
+- Kleuren zijn nu via Tailwind classes in de component zelf
+
+### 3. GPS Zoom naar Straatniveau
+**v2.33.11** - GPS springt nu correct naar straatniveau bij elke nieuwe tracking sessie.
+- `src/store/gpsStore.ts`: `startTracking()` reset nu `firstFix = true`
+- Hierdoor triggert elke GPS sessie een zoom naar straatniveau
+
+### 4. Labels Overlay - CartoDB
+**v2.33.14** - Labels overlay werkt nu tot straatniveau (was beperkt tot zoom ~12-13).
+- **Probleem:** Esri World Reference Overlay had beperkte zoom levels
+- **Oplossing:** Switched naar CartoDB labels (`voyager_only_labels`)
+- `src/store/mapStore.ts`:
+  ```typescript
+  const CARTO_LABELS_URL = 'https://{subDomain}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{level}/{col}/{row}.png'
+  ```
+- CartoDB is gratis met © OpenStreetMap contributors, © CARTO attributie
+
+### 5. hasOverlay voor Meer Basemaps
+**v2.33.15** - Labels overlay toggle beschikbaar voor meer achtergrondkaarten.
+- `src/components/LayerControl/BackgroundsPanel.tsx`
+- `src/components/LayerControl/LayerControlPanel.tsx`
+- Toegevoegd aan: Esri Satelliet, Luchtfoto, TMK 1850, Bonnebladen 1900
+
+---
+
+## ⚠️ TECHNISCHE BESLISSINGEN - ONTHOUDEN!
+
+### CartoDB Labels vs Esri Reference Overlay
+**Esri World Reference Overlay** (verwijderd):
+- Beperkte zoom: werkt alleen tot ~zoom 12-13
+- Tekst "plakt vast" bij verder inzoomen
+- Kan niet aangepast worden
+
+**CartoDB Voyager Only Labels** (nu actief):
+- Werkt tot zoom 19+ (straatniveau)
+- Gratis voor redelijk gebruik
+- Attributie verplicht: `© OpenStreetMap contributors, © CARTO`
+- URL: `https://{a,b,c,d}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{level}/{col}/{row}.png`
+
+### TMK/Bonnebladen Zoom Constraints
+**Verwijderd uit MapContainer.tsx:**
+- View constraints (minScale/maxScale) NIET gebruiken voor tile-limieten
+- Deze beïnvloeden ALLE lagen, niet alleen de basemap
+
+**Behouden:**
+- `maxScale` op de WebTileLayer zelf (voorkomt laden van betaalde tiles)
+- Gebruiker kan gewoon in/uitzoomen, tiles laden gewoon niet bij te hoog zoomniveau
+
+### GPS firstFix Reset
+Bij elke nieuwe GPS sessie moet `firstFix = true` gezet worden in `startTracking()`.
+Anders zoomt de app niet naar straatniveau bij volgende keer GPS aanzetten.
+
+---
+
+## 🔧 HUIDIGE ARCHITECTUUR
+
+### Kaart Engine
+- **Primair:** ArcGIS Maps SDK for JavaScript
+- **Secundair:** OpenLayers (wordt uitgefaseerd, zie migratie plan hieronder)
+- **Basemaps:** Via ArcGIS Basemap met TileLayer/WebTileLayer
+- **Labels:** CartoDB Voyager Only Labels als aparte WebTileLayer
+
+### State Management
+- **Zustand** met immer middleware
+- Stores: `mapStore`, `layerStore`, `gpsStore`, `uiStore`, `settingsStore`, `presetStore`
+
+### Key Files
+| Bestand | Functie |
+|---------|---------|
+| `src/store/mapStore.ts` | Kaart state, basemap switching, labels overlay |
+| `src/store/layerStore.ts` | Layer visibility, default lagen |
+| `src/store/gpsStore.ts` | GPS tracking, firstFix, heading |
+| `src/components/Map/MapContainer.tsx` | Kaart initialisatie, view sync |
+| `src/components/LayerControl/LayerItem.tsx` | Laag toggle met hasOverlay support |
+| `src/components/UI/PresetButtons.tsx` | Reset knop, presets, ALL_OVERLAYS array |
+
+### Versie Bumpen
+```bash
+npm version patch   # Automatisch in package.json
+npm run build && git add -A && git commit -m "vX.X.X: beschrijving" && git push
+```
+Versie wordt automatisch geïmporteerd uit package.json in main.tsx en UI componenten.
 
 ---
 
