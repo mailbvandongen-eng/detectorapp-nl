@@ -32,11 +32,10 @@ export function LayerControlPanel() {
               <LayerGroup title="Achtergrond" defaultExpanded={false}>
                 <LayerItem name="Esri Licht" type="base" />
                 <LayerItem name="Esri Straten" type="base" />
-                <LayerItem name="Esri Satelliet" type="base" />
-                <LayerItem name="Luchtfoto" type="base" />
-                <LayerItem name="Labels Overlay" type="overlay" />
-                <LayerItem name="TMK 1850" type="base" />
-                <LayerItem name="Bonnebladen 1900" type="base" />
+                <LayerItem name="Esri Satelliet" type="base" hasOverlay />
+                <LayerItem name="Luchtfoto" type="base" hasOverlay />
+                <LayerItem name="TMK 1850" type="base" hasOverlay />
+                <LayerItem name="Bonnebladen 1900" type="base" hasOverlay />
               </LayerGroup>
 
               {/* Steentijd (Stone Age) */}
