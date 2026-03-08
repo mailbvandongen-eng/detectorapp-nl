@@ -5,6 +5,13 @@ import TileWMS from 'ol/source/TileWMS'
 import XYZ from 'ol/source/XYZ'
 import ImageArcGISRest from 'ol/source/ImageArcGISRest'
 
+// Performance tuning for AHN ArcGIS ImageServer requests.
+// This avoids oversized retina requests and improves responsiveness on mobile.
+const AHN_IMAGE_SOURCE_OPTIONS = {
+  hidpi: false,
+  ratio: 1
+} as const
+
 // AHN4 Hoogtekaart Kleur - 50cm resolutie met dynamische kleuren
 // Toont hoogteverschillen in kleur (blauw=laag → groen → oranje/bruin=hoog)
 // Dynamische color ramp past zich aan aan lokale hoogteverschillen
@@ -20,6 +27,7 @@ export function createAHN4ColorElevationLayerOL() {
           rasterFunction: 'AHN - Color Ramp D'  // Dynamisch! blauw→groen→geel→bruin
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous',
       attributions: '© Esri Nederland, AHN4 50cm'
     })
@@ -43,6 +51,7 @@ export function createAHN4ShadedReliefLayerOL() {
           rasterFunction: 'AHN - Color Ramp D'
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous',
       attributions: '© Esri Nederland, AHN4 50cm'
     })
@@ -59,6 +68,7 @@ export function createAHN4ShadedReliefLayerOL() {
           rasterFunction: 'AHN - Hillshade'
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous'
     })
   })
@@ -101,6 +111,7 @@ export function createAHN4HillshadeLayerOL() {
           rasterFunction: 'AHN - Hillshade'
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous',
       attributions: '© Esri Nederland, AHN'
     })
@@ -122,6 +133,7 @@ export function createAHN4MultiHillshadeLayerOL() {
           rasterFunction: 'AHN - Hillshade (Multidirectionaal)'
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous',
       attributions: '© Esri Nederland, AHN'
     })
@@ -143,6 +155,7 @@ export function createAHN4SlopeLayerOL() {
           rasterFunction: 'AHN - Slope'
         })
       },
+      ...AHN_IMAGE_SOURCE_OPTIONS,
       crossOrigin: 'anonymous',
       attributions: '© Esri Nederland, AHN'
     })
