@@ -61,19 +61,23 @@ export const useGPSStore = create<GPSState>()(
     // Actions
     fetchPassivePosition: () => {
       if (!navigator.geolocation) return
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          set(state => {
-            // Only set passive position if not already tracking
-            if (!state.tracking) {
-              state.position = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude
-              }
-              state.accuracy = pos.coords.accuracy
+
+      const applyPassivePosition = (pos: GeolocationPosition) => {
+        set(state => {
+          // Only set passive position if not already tracking
+          if (!state.tracking) {
+            state.position = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
             }
-          })
-        },
+            state.accuracy = pos.coords.accuracy
+          }
+        })
+      }
+
+      // First try: fast cached/coarse position for immediate startup marker.
+      navigator.geolocation.getCurrentPosition(
+        applyPassivePosition,
         () => {
           // Fallback for devices where getCurrentPosition returns too slowly on startup.
           // We listen briefly for one watchPosition update and then stop.
@@ -93,28 +97,29 @@ export const useGPSStore = create<GPSState>()(
 
           passiveWatchId = navigator.geolocation.watchPosition(
             (watchPos) => {
-              set(state => {
-                if (!state.tracking) {
-                  state.position = {
-                    lat: watchPos.coords.latitude,
-                    lng: watchPos.coords.longitude
-                  }
-                  state.accuracy = watchPos.coords.accuracy
-                }
-              })
+              applyPassivePosition(watchPos)
               clearFallback()
             },
             () => {
               clearFallback()
             },
-            { enableHighAccuracy: false, maximumAge: 0, timeout: 20000 }
+            { enableHighAccuracy: false, maximumAge: 120000, timeout: 8000 }
           )
 
           fallbackTimeoutId = setTimeout(() => {
             clearFallback()
-          }, 25000)
+          }, 10000)
         },
-        { enableHighAccuracy: false, maximumAge: 300000, timeout: 15000 }
+        { enableHighAccuracy: false, maximumAge: 300000, timeout: 4000 }
+      )
+
+      // Second try: improve accuracy in background without delaying dot visibility.
+      navigator.geolocation.getCurrentPosition(
+        applyPassivePosition,
+        () => {
+          // Best effort only.
+        },
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
       )
     },
 

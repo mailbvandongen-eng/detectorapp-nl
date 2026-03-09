@@ -282,12 +282,21 @@ function createWebTileLayer(config: WebTileLayerConfig): WebTileLayer {
 }
 
 function createImageryLayer(config: ImageryLayerConfig): ImageryLayer {
+  const nav = typeof navigator !== 'undefined' ? (navigator as any) : null
+  const connection = nav?.connection
+  const effectiveType = connection?.effectiveType as string | undefined
+  const saveData = Boolean(connection?.saveData)
+  const lowBandwidth = saveData || effectiveType === 'slow-2g' || effectiveType === '2g' || effectiveType === '3g'
+
   // Use type assertion for layerOptions since renderingRule is valid but not in TS types
   const layerOptions: any = {
     url: config.url,
     title: config.title,
     opacity: config.opacity ?? 1,
-    visible: config.visible ?? false
+    visible: config.visible ?? false,
+    // Prefer lighter payloads on poor mobile connections.
+    format: lowBandwidth ? 'jpg' : 'jpgpng',
+    compressionQuality: lowBandwidth ? 55 : 75
   }
 
   // renderingRule is a valid ImageryLayer property for server-side rendering

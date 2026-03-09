@@ -77,6 +77,22 @@ const ARCGIS_BASE_LAYERS: Record<string, BasemapConfig> = {
 const NL_CENTER: [number, number] = [5.3, 52.15] // Centrum Nederland
 const NL_ZOOM = 7.2 // Heel Nederland zichtbaar
 
+function getAdaptiveQualityProfile(): 'high' | 'medium' | 'low' {
+  const nav = typeof navigator !== 'undefined' ? (navigator as any) : null
+  const connection = nav?.connection
+  const effectiveType = connection?.effectiveType as string | undefined
+  const saveData = Boolean(connection?.saveData)
+  const memory = typeof nav?.deviceMemory === 'number' ? nav.deviceMemory : undefined
+
+  if (saveData || effectiveType === 'slow-2g' || effectiveType === '2g') {
+    return 'low'
+  }
+  if (effectiveType === '3g' || (typeof memory === 'number' && memory <= 4)) {
+    return 'medium'
+  }
+  return 'high'
+}
+
 export function MapContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
   const arcgisContainerRef = useRef<HTMLDivElement>(null)
@@ -326,6 +342,7 @@ export function MapContainer() {
         map: esriMap,
         center: NL_CENTER,
         zoom: NL_ZOOM,
+        qualityProfile: getAdaptiveQualityProfile(),
         constraints: {
           rotationEnabled: true,
           minZoom: 3,

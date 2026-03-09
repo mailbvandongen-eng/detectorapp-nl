@@ -29,13 +29,27 @@ export function useGPS() {
       return
     }
 
+    // Seed position quickly with a low-accuracy one-shot fix.
+    // This helps centering and marker visibility on slow/weak GPS devices.
+    navigator.geolocation.getCurrentPosition(
+      handleSuccess,
+      () => {
+        // Ignore here; continuous watch below remains the primary source.
+      },
+      {
+        enableHighAccuracy: false,
+        maximumAge: 120000,
+        timeout: 5000
+      }
+    )
+
     const id = navigator.geolocation.watchPosition(
       handleSuccess,
       handleError,
       {
         enableHighAccuracy: true,
         maximumAge: 1000,
-        timeout: 15000
+        timeout: 12000
       }
     )
 

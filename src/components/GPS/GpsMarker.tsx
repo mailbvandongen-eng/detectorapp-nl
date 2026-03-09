@@ -31,11 +31,14 @@ const DOT_STYLE = new Style({
 })
 
 export function GpsMarker() {
-  // Check if we should use ArcGIS GPS
+  // ArcGIS GPS graphics are rendered inside the ArcGIS canvas.
+  // During hybrid mode (ArcGIS base + OL overlay), that canvas is below OL overlay layers.
+  // Prefer OL GPS marker whenever an OL map exists so marker always stays on top.
+  const olMap = useMapStore(state => state.map)
   const useArcGIS = useArcGISFeature('arcgisGPS')
 
   // If ArcGIS GPS is enabled, render the ArcGIS version
-  if (useArcGIS) {
+  if (useArcGIS && !olMap) {
     return <ArcGISGpsMarker />
   }
 

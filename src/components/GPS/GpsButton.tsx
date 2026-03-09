@@ -26,7 +26,7 @@ async function requestOrientationPermission(): Promise<boolean> {
 
 /**
  * GPS button with 3-state cycling (Google Maps style):
- * OFF → TRACKING (north-up, centered) → HEADING-UP (map rotates with heading) → OFF
+ * OFF -> TRACKING (north-up, centered) -> HEADING-UP (map rotates with heading) -> OFF
  */
 export function GpsButton() {
   const { tracking, start, stop } = useGPS()
@@ -48,18 +48,30 @@ export function GpsButton() {
 
   const handleClick = async () => {
     if (!tracking) {
-      // OFF → TRACKING (north-up)
-      // Request iOS compass permission on first GPS activation
+      // OFF -> TRACKING (north-up)
       await requestOrientationPermission()
       start()
       setNavigationMode('free')
 
-      // Always zoom to street level on first GPS tap.
-      // Use passive position if available, otherwise request one quick fix.
+      // Always jump immediately to street level on first GPS tap.
       if (position) {
         jumpToStreetLevel([position.lng, position.lat])
-      } else if (navigator.geolocation) {
-        // Fallback watch: more reliable than one-shot getCurrentPosition on some devices.
+      } else {
+        jumpToStreetLevel()
+      }
+
+      // If we don't have a passive position yet, try to center quickly.
+      if (!position && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            jumpToStreetLevel([pos.coords.longitude, pos.coords.latitude])
+          },
+          () => {
+            // Ignore; watch fallback below handles slower devices.
+          },
+          { enableHighAccuracy: false, maximumAge: 120000, timeout: 5000 }
+        )
+
         let settled = false
         const watchId = navigator.geolocation.watchPosition(
           (pos) => {
@@ -71,11 +83,10 @@ export function GpsButton() {
           () => {
             if (settled) return
             settled = true
-            // Keep zoom behavior even when first fix is delayed/blocked.
             jumpToStreetLevel()
             navigator.geolocation.clearWatch(watchId)
           },
-          { enableHighAccuracy: true, maximumAge: 0, timeout: 12000 }
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
         )
 
         setTimeout(() => {
@@ -87,10 +98,10 @@ export function GpsButton() {
         }, 13000)
       }
     } else if (navigationMode === 'free') {
-      // TRACKING → HEADING-UP
+      // TRACKING -> HEADING-UP
       setNavigationMode('headingUp')
     } else {
-      // HEADING-UP → OFF
+      // HEADING-UP -> OFF
       stop()
     }
   }
